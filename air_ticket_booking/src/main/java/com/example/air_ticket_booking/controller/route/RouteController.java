@@ -13,6 +13,13 @@ import org.springframework.web.bind.annotation.*;
 public class RouteController {
     @Autowired
     private IRouteService iRouteService;
+    /**
+     *method :find a flight route by id
+     * created by :NamPC
+     * date create: 10/08/2023
+     * @param id
+     * return Route
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Route>getRouteById(@PathVariable Long id){
         Route route = iRouteService.findRouteById(id);

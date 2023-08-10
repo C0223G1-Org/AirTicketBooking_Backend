@@ -38,8 +38,6 @@ public class TicketController {
         iTicketService.createNewTicket(ticketDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-    @Autowired
-    private ITicketService ticketService;
     /**
      * method :findTicketByNameAndIdCardPassengers()
      * created by :KietNT
@@ -51,7 +49,7 @@ public class TicketController {
     @ResponseBody
     public ResponseEntity<?> findTicketByNameAndIdCardPassenger(@PathVariable String namePassenger,
                                                                 @PathVariable String idCardPassenger) {
-        return new ResponseEntity<>(ticketService.findTicketByNameAndIdCard(namePassenger, idCardPassenger),
+        return new ResponseEntity<>(iTicketService.findTicketByNameAndIdCard(namePassenger, idCardPassenger),
                 HttpStatus.OK);
     }
 }
