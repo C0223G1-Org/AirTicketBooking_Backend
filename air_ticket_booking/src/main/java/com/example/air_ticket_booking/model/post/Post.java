@@ -15,14 +15,14 @@ public class Post {
     private String content;
     private String image;
     private boolean flagPost;
-    private LocalDateTime datePost;
+    private String datePost;
     @ManyToOne
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "employee_id" ,referencedColumnName = "id")
     private Employee employee;
     public Post() {
     }
 
-    public Post(Long id, String title, String content, String image, boolean flagPost, LocalDateTime datePost, Employee employee) {
+    public Post(Long id, String title, String content, String image, boolean flagPost, String datePost, Employee employee) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -65,11 +65,11 @@ public class Post {
     }
 
 
-    public LocalDateTime getDatePost() {
+    public String getDatePost() {
         return datePost;
     }
 
-    public void setDatePost(LocalDateTime datePost) {
+    public void setDatePost(String datePost) {
         this.datePost = datePost;
     }
 

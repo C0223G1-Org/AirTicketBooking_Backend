@@ -12,16 +12,41 @@ import org.springframework.stereotype.Service;
 public class PostService implements IPostService {
     @Autowired
     private IPostRepository iPostRepository;
+
     @Override
     public void createPost(PostDto postDTO) {
         Post post = new Post();
         BeanUtils.copyProperties(postDTO, post);
         iPostRepository.createPost(
                 post.getTitle(),
-                post.getEmployee().getId(),
+                post.isFlagPost(),
                 post.getDatePost(),
                 post.getImage(),
-                post.getContent()
+                post.getContent(),
+                post.getEmployee().getId()
+        );
+    }
+
+    @Override
+    public Post findPostById(Long id) {
+        return iPostRepository.findPostById(id);
+    }
+
+    @Override
+    public void savePost(PostDto postDto) {
+        Post post = iPostRepository.findPostById(postDto.getId());
+        post.setTitle(postDto.getTitle());
+        post.setDatePost(postDto.getDatePost());
+        post.setImage(postDto.getImage());
+        post.setContent(postDto.getContent());
+        post.setEmployee(postDto.getEmployee());
+        iPostRepository.updatePost(
+                post.getTitle(),
+                post.getDatePost(),
+                post.getImage(),
+                post.getContent(),
+                post.getEmployee().getId(),
+                post.getId()
         );
     }
 }
