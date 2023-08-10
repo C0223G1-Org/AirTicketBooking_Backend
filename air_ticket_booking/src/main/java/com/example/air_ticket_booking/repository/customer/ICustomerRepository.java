@@ -28,7 +28,11 @@ public interface ICustomerRepository extends JpaRepository<Customer,Long> {
     * return: Page
     */
 
-   @Query(value = " select * from customer where email_customer like concat('%',:email,'%') and name_customer" +
+   @Query(value = " select customer.id_customer,customer.name_customer,customer.gender_customer,customer.email_customer," +
+           "customer.date_customer,customer.id_card_customer,customer.address_customer,customer.flag_customer,customer.img_customer," +
+           "customer.tel_customer,customer.nationality_customer,customer.account_id_account " +
+           "from customer where email_customer " +
+           "like concat('%',:email,'%') and name_customer" +
            " like concat('%',:name,'%') and nationality_customer like concat('%',:nationality,'%') " +
            "and flag_customer = false",nativeQuery = true)
    Page<Customer> getListSearchCustomer(Pageable pageable, @Param("email") String email,@Param("name") String name, @Param("nationality") String nationality);
@@ -49,6 +53,9 @@ public interface ICustomerRepository extends JpaRepository<Customer,Long> {
     * Method: find customer passing param id to @Query and get data from DB
     * return: Customer
     */
-   @Query(value = "select * from customer where id_customer=:id and flag_customer=false ",nativeQuery = true)
-   Customer findCustomerById(@Param("id")Long id);
+   @Query(value = "select customer.id_customer,customer.name_customer,customer.gender_customer,customer.email_customer," +
+           "customer.date_customer,customer.id_card_customer,customer.address_customer,customer.flag_customer," +
+           "customer.img_customer,customer.tel_customer,customer.nationality_customer,customer.account_id_account" +
+           " from customer where id_customer = :id and flag_customer=false",nativeQuery = true)
+   Customer findCustomerById(@Param("id") Long id);
 }
