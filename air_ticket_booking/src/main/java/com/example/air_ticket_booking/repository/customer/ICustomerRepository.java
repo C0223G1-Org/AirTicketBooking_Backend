@@ -1,16 +1,19 @@
 package com.example.air_ticket_booking.repository.customer;
 
+
 import com.example.air_ticket_booking.dto.account.AccountDto;
 import com.example.air_ticket_booking.model.customer.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 public interface ICustomerRepository extends JpaRepository<Customer, Long> {
+
     /**
      * Create by: HungLV
      * Date create: 10/08/2023
@@ -57,6 +60,7 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
     @Query(value = "select * from customer where id_customer = :id and flag_customer=false", nativeQuery = true)
     Customer findCustomerById(@Param("id") Long id);
 
+
     /**
      * Create by: NhanDT
      * Date create: 10/08/2023
@@ -79,11 +83,12 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
      * @Return: void
      */
     @Modifying
-    @Transactional
+    @org.springframework.transaction.annotation.Transactional
     @Query(value = "insert into customer(name_customer,gender_customer, email_customer, date_customer," +
             "id_card_customer, address_customer, flag_customer, img_customer, tel_customer,nationality_customer,account_id_account)" +
             "values (:#{#accountDto.nameCustomer},:#{#accountDto.genderCustomer},:#{#accountDto.emailCustomer},:#{#accountDto.dateCustomer}" +
-            ",:#{#accountDto.idCardCustomer},:#{#accountDto.addressCustomer},0,:#{#accountDto.flagCustomer}," +
+            ",:#{#accountDto.idCardCustomer},:#{#accountDto.addressCustomer},:#{#accountDto.flagCustomer},:#{#accountDto.imgCustomer}," +
             ":#{#accountDto.telCustomer},:#{#accountDto.nationalityCustomer},:idAccountNew)", nativeQuery = true)
-    void createCustomer(@Param("accountDto")AccountDto accountDto,@Param("idAccountNew") Long idAccountNew);
+    void createCustomer(@Param("accountDto") AccountDto accountDto, @Param("idAccountNew") Long idAccountNew);
+
 }

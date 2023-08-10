@@ -37,6 +37,8 @@ public interface ICustomerService {
      */
 
     Customer findCustomerById(Long id);
+
+
     /**
      * Create by: NhanDT
      * Date create: 10/08/2023
@@ -57,4 +59,5 @@ public interface ICustomerService {
      * @Return: List<Customer>
      */
     void createCustomer(AccountDto accountDto, Long idAccountNew);
+
 }
