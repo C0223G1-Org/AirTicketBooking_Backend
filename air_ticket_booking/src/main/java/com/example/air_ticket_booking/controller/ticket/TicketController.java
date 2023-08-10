@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.*;
 import com.example.air_ticket_booking.dto.ticket.TicketDto;
 import com.example.air_ticket_booking.model.customer.Customer;
@@ -19,14 +17,7 @@ import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
 import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
-import com.example.air_ticket_booking.service.ticket.ITicketService;
-import com.example.air_ticket_booking.service.ticket.impl.TicketService;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin("*")
