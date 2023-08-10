@@ -11,6 +11,12 @@ import java.util.List;
 public class TypeSeatService implements ITypeSeatService {
     @Autowired
     private ITypeSeatRepository typeSeatRepository;
+
+    /**
+     * create by : SangTDN
+     * @return List TypeSeat
+     * call method getListSeat() form ITypeSeatRepository
+     */
     @Override
     public List<TypeSeat> getListSeat() {
         return typeSeatRepository.getListSeat();

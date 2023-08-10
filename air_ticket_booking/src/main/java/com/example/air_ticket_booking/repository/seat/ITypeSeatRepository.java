@@ -9,7 +9,8 @@ import java.util.List;
 public interface ITypeSeatRepository extends JpaRepository<TypeSeat, Long> {
     /**
      * create by : SangTDN
-     * @return
+     * @return List TypeSeat
+     * get list of seat type
      */
     @Query(value = "select * from type_seat", nativeQuery = true)
     List<TypeSeat> getListSeat ();

@@ -14,6 +14,13 @@ public class AccountController {
     @Autowired
     private IAccountService accountService;
 
+    /**
+     * create by: SangTDN
+     * @param newPass
+     * @param oldPass
+     * @param idCustomer
+     * @return status
+     */
     @PatchMapping("/change-pass-customer/{newPass}/{oldPass}/{idCustomer}")
     public ResponseEntity<?> updatePasswordForCustomer (@PathVariable String newPass, @PathVariable String oldPass,
                                                      @PathVariable Long idCustomer){
@@ -21,6 +28,13 @@ public class AccountController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * create by: SangTDN
+     * @param newPass
+     * @param oldPass
+     * @param idEmployee
+     * @return status
+     */
     @PatchMapping("/change-pass-employee/{newPass}/{oldPass}/{idEmployee}")
     public ResponseEntity<?> updatePasswordForEmployee (@PathVariable String newPass, @PathVariable String oldPass,
                                                         @PathVariable Long idEmployee){

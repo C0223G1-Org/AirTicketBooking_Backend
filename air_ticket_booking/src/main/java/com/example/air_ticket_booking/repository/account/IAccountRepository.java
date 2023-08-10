@@ -8,7 +8,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface IAccountRepository extends JpaRepository<Account, Long> {
-
+    /**
+     * create by : SangTDN
+     * @param newPass
+     * @param oldPass
+     * @param idCustomer
+     *update password when user is customer
+     */
     @Transactional
     @Modifying
     @Query(value = "UPDATE account SET password = :newPass \n" +
@@ -20,7 +26,13 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
     void updatePasswordForCustomer (@Param("newPass") String newPass, @Param("oldPass") String oldPass,
                                     @Param("idCustomer") Long idCustomer );
 
-
+    /**
+     * create by : SangTDN
+     * @param newPass
+     * @param oldPass
+     * @param idEmployee
+     * update password when user is employee
+     */
     @Transactional
     @Modifying
     @Query(value = "UPDATE account SET password = :newPass \n" +
