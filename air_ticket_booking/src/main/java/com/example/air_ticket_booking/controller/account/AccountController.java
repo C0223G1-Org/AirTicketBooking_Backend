@@ -65,10 +65,6 @@ public class AccountController {
         }
     }
 
-    public ResponseEntity<?> saveCustomer(@RequestBody Customer customer) {
-        customerService.saveCustomer(customer);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
     @PostMapping("/signup")
     public ResponseEntity<?> signUp(@RequestBody AccountDto accountDto){
         if (accountService.signUp(accountDto)){
