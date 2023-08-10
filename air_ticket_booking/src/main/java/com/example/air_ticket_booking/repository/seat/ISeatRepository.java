@@ -9,6 +9,12 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ISeatRepository extends JpaRepository<Seat,Long> {
+    /**
+     * create by : SangTDN
+     * @param idRoute
+     * @return List SeatProjection (see details in path air_ticket_booking/model/projection_tdns/SeatProjection.java)
+     * get the number of seats available for each seat type for the corresponding flight
+     */
     @Query (value = "select ts.id_type_seat as idTypeSeat,ts.name_type_seat as nameTypeSeat, count(*) as countSeatEmpty \n" +
             "from seat s join type_seat ts on s.id_type_seat = ts.id_type_seat\n" +
             "where s.id_route = :idRoute \n" +

@@ -12,8 +12,16 @@ public class RouteService implements IRouteService {
     @Autowired
     private IRouteRepository routeRepository;
 
+    /**
+     * create by : SangTDN
+     * @param departure
+     * @param destination
+     * @param dateDeparture
+     * @return List RouteProjection (RouteProjection is interface to collect attributes from many related tables)
+     * call method showListRoute () from IRouteRepository
+     */
     @Override
-    public List<RouteProjection> showListRoute(String departure, String destination) {
-        return routeRepository.showListRoute(departure,destination);
+    public List<RouteProjection> showListRoute(String departure, String destination, String dateDeparture) {
+        return routeRepository.showListRoute(departure,destination,dateDeparture);
     }
 }

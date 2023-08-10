@@ -19,10 +19,13 @@ public class RouteController {
      * Create by: SangTDN
      * @param departure
      * @param destination
-     * @return list RouteProjection
+     * @return list RouteProjection , status
+     * get data from the URL as the appropriate argument of the function showListRoute() from IRouteService
+     * then Upload data to API
      */
-    @GetMapping("/search-trips/{departure}/{destination}")
-public ResponseEntity<List<RouteProjection>> searchTrips(@PathVariable String departure, @PathVariable String destination){
-        return new ResponseEntity<>(routeService.showListRoute(departure,destination), HttpStatus.OK);
+    @GetMapping("/search-trips/{departure}/{destination}/{dateDeparture}")
+public ResponseEntity<List<RouteProjection>> searchTrips(@PathVariable String departure, @PathVariable String destination,
+                                                         @PathVariable String dateDeparture){
+        return new ResponseEntity<>(routeService.showListRoute(departure,destination,dateDeparture), HttpStatus.OK);
     }
 }

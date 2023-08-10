@@ -5,5 +5,13 @@ import com.example.air_ticket_booking.model.projection_tdns.RouteProjection;
 import java.util.List;
 
 public interface IRouteService {
-    List<RouteProjection> showListRoute (String departure,String destination);
+    /**
+     * create by : SangTDN
+     * @param departure
+     * @param destination
+     * @param dateDeparture
+     * @return List RouteProjection (RouteProjection is interface to collect attributes from many related tables)
+     * it is abstract method
+     */
+    List<RouteProjection> showListRoute (String departure,String destination, String dateDeparture);
 }

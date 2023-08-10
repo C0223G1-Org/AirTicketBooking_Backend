@@ -7,6 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ITypeSeatRepository extends JpaRepository<TypeSeat, Long> {
+    /**
+     * create by : SangTDN
+     * @return
+     */
     @Query(value = "select * from type_seat", nativeQuery = true)
     List<TypeSeat> getListSeat ();
 }
