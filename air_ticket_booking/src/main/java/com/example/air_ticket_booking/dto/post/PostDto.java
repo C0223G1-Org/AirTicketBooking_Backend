@@ -2,6 +2,8 @@ package com.example.air_ticket_booking.dto.post;
 
 import com.example.air_ticket_booking.model.employee.Employee;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -12,22 +14,22 @@ public class PostDto {
     private String title;
     @NotBlank
     private String content;
-    @NotBlank
-    private String image;
     private boolean flagPost;
     @NotBlank
+    private String image;
+    @NotBlank
     private String datePost;
-    @NotNull
+   @NotNull
     private Employee employee;
     public PostDto() {
     }
 
-    public PostDto(Long id, String title, String content, String image, boolean flagPost, String datePost, Employee employee) {
+    public PostDto(Long id, String title, String content, boolean flagPost, String image, String datePost, Employee employee) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.image = image;
         this.flagPost = flagPost;
+        this.image = image;
         this.datePost = datePost;
         this.employee = employee;
     }
@@ -63,6 +65,7 @@ public class PostDto {
     public void setImage(String image) {
         this.image = image;
     }
+
 
     public String getDatePost() {
         return datePost;

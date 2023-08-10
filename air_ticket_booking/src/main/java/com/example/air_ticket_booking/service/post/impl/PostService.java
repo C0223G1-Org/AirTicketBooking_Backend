@@ -13,6 +13,14 @@ public class PostService implements IPostService {
     @Autowired
     private IPostRepository iPostRepository;
 
+    /**
+     * Create by : TriPD
+     * Date created : 10/08/2023
+     * Function : createPost()
+     *
+     * @Param:postDto
+     * @Return: void
+     */
     @Override
     public void createPost(PostDto postDTO) {
         Post post = new Post();
@@ -23,15 +31,38 @@ public class PostService implements IPostService {
                 post.getDatePost(),
                 post.getImage(),
                 post.getContent(),
-                post.getEmployee().getId()
+                post.getEmployee().getIdEmployee()
         );
     }
 
+
+
+
+    /**
+     * Create by : TriPD
+     * Date created : 10/08/2023
+     * Function : findPostById()
+     *
+     * @Param: id
+     * @Return: Post
+     */
     @Override
     public Post findPostById(Long id) {
         return iPostRepository.findPostById(id);
     }
 
+
+
+
+
+    /**
+     * Create by : TriPD
+     * Date created : 10/08/2023
+     * Function : updatePost()
+     *
+     * @Param: postDto
+     * @Return: void
+     */
     @Override
     public void savePost(PostDto postDto) {
         Post post = iPostRepository.findPostById(postDto.getId());
@@ -45,7 +76,7 @@ public class PostService implements IPostService {
                 post.getDatePost(),
                 post.getImage(),
                 post.getContent(),
-                post.getEmployee().getId(),
+                post.getEmployee().getIdEmployee(),
                 post.getId()
         );
     }
