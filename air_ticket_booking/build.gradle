@@ -25,6 +25,7 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    implementation 'com.paypal.sdk:checkout-sdk:1.0.4'
 }
 
 tasks.named('test') {
