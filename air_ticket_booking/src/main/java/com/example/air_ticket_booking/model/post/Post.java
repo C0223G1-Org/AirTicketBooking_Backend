@@ -14,6 +14,7 @@ public class Post {
     private String title;
     private String content;
     private String image;
+    private boolean flagPost;
     private LocalDateTime datePost;
     @ManyToOne
     @JoinColumn(name = "employee_id")
@@ -21,11 +22,12 @@ public class Post {
     public Post() {
     }
 
-    public Post(Long id, String title, String content, String image, LocalDateTime datePost, Employee employee) {
+    public Post(Long id, String title, String content, String image, boolean flagPost, LocalDateTime datePost, Employee employee) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.image = image;
+        this.flagPost = flagPost;
         this.datePost = datePost;
         this.employee = employee;
     }
@@ -78,4 +80,13 @@ public class Post {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
+    public boolean isFlagPost() {
+        return flagPost;
+    }
+
+    public void setFlagPost(boolean flagPost) {
+        this.flagPost = flagPost;
+    }
 }
+
