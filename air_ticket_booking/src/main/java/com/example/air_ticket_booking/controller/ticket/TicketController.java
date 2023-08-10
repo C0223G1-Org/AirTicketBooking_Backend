@@ -47,7 +47,7 @@ public class TicketController {
      * @param namePassenger,idCardPassenger
      * return List Ticket
      */
-    @GetMapping("/{namePassenger}/{idCardPassenger}")
+    @GetMapping("/search-ticket/{namePassenger}/{idCardPassenger}")
     @ResponseBody
     public ResponseEntity<?> findTicketByNameAndIdCardPassenger(@PathVariable String namePassenger,
                                                                 @PathVariable String idCardPassenger) {
