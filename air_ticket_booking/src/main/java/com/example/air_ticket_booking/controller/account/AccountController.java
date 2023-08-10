@@ -54,7 +54,7 @@ public class AccountController {
 
             return ResponseEntity.ok(new JwtResponse(token, principal.getUsername(), authority != null ? authority.getAuthority() : null));
         } catch (BadCredentialsException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Login fail!!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Tài khoản không đúng!!!");
         }
     }
 }
