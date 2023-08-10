@@ -4,32 +4,32 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 public class AccountDto {
-    @NotBlank(message = "Không được để trống trường này")
-    @Size(max = 50, min = 10)
-    @Pattern(regexp = "^[\\p{Lu}][\\p{Ll}]*([\\s][\\p{Lu}][\\p{Ll}]*)*$", message = "Bạn phải viết hoa chữ cái đầu của từng từ và có khoảng trắng giữa các từ")
+//    @NotBlank(message = "Không được để trống trường này")
+//    @Size(max = 50, min = 10)
+//    @Pattern(regexp = "^[\\p{Lu}][\\p{Ll}]*([\\s][\\p{Lu}][\\p{Ll}]*)*$", message = "Bạn phải viết hoa chữ cái đầu của từng từ và có khoảng trắng giữa các từ")
     private String nameCustomer;
-    @NotBlank(message = "Không được để trống trường này")
+//    @NotBlank(message = "Không được để trống trường này")
     private Boolean genderCustomer;
-    @NotBlank(message = "Không được để trống trường này")
-    @Pattern(regexp = "^\\w+@\\w+(.\\w+)$", message = "Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt ")
+//    @NotBlank(message = "Không được để trống trường này")
+//    @Pattern(regexp = "^\\w+@\\w+(.\\w+)$", message = "Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt ")
     private String emailCustomer;
-    @NotBlank(message = "Không được để trống trường này")
-    @Pattern(regexp = "^(\\+84|0)[1-9][0-9]{8}$", message = "Nhập theo định dạng 0xxxxxxxxx với x là ký tự số")
+//    @NotBlank(message = "Không được để trống trường này")
+//    @Pattern(regexp = "^(\\+84|0)[1-9][0-9]{8}$", message = "Nhập theo định dạng 0xxxxxxxxx với x là ký tự số")
     private String telCustomer;
-    @NotBlank(message = "Không được để trống trường này")
+//    @NotBlank(message = "Không được để trống trường này")
     private String addressCustomer;
 
     private String imgCustomer;
-    @NotBlank(message = "Không được để trống trường này")
+//    @NotBlank(message = "Không được để trống trường này")
     private String nationalityCustomer;
-    @NotBlank(message = "Không được để trống trường này")
-    @Pattern(regexp = "^([A-Z][0-9]{6})|([0-9]{12})$", message = "Nhập theo định dạng (7 ký tự đối với hộ chiếu và 12 ký tự đối với CCCD)")
+//    @NotBlank(message = "Không được để trống trường này")
+//    @Pattern(regexp = "^([A-Z][0-9]{6})|([0-9]{12})$", message = "Nhập theo định dạng (7 ký tự đối với hộ chiếu và 12 ký tự đối với CCCD)")
     private String idCardCustomer;
-    @NotBlank(message = "Không được để trống trường này")
+//    @NotBlank(message = "Không được để trống trường này")
     private String dateCustomer;
     private Boolean flagCustomer = false;
-    @NotBlank(message = "Không được để trống trường này")
-    @Size(min = 8, max = 20, message = "Mật khẩu phải từ 8 ký tự và ít hơn 20 ký tự")
+//    @NotBlank(message = "Không được để trống trường này")
+//    @Size(min = 8, max = 20, message = "Mật khẩu phải từ 8 ký tự và ít hơn 20 ký tự")
     private String password;
 
     public AccountDto( String nameCustomer, Boolean genderCustomer, String emailCustomer, String telCustomer, String addressCustomer, String imgCustomer, String nationalityCustomer, String idCardCustomer, String dateCustomer, Boolean flagCustomer, String password) {

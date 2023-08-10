@@ -1,6 +1,9 @@
 package com.example.air_ticket_booking.service.customer;
 
+import com.example.air_ticket_booking.dto.account.AccountDto;
 import com.example.air_ticket_booking.model.customer.Customer;
+
+import java.util.List;
 
 public interface ICustomerService {
     /**
@@ -34,5 +37,24 @@ public interface ICustomerService {
      */
 
     Customer findCustomerById(Long id);
+    /**
+     * Create by: NhanDT
+     * Date create: 10/08/2023
+     * Function: declare function for use
+     *
+     * @Param: id
+     * @Return: List<Customer>
+     */
+    List<Customer> findAllByEmail(String email);
 
+
+    /**
+     * Create by: NhanDT
+     * Date create: 10/08/2023
+     * Function: declare function for use
+     *
+     * @Param: id
+     * @Return: List<Customer>
+     */
+    void createCustomer(AccountDto accountDto, Long idAccountNew);
 }

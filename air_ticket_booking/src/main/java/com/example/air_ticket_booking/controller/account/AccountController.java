@@ -17,6 +17,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -40,6 +41,7 @@ public class AccountController {
     @Autowired
     private ICustomerService customerService;
 
+
     class ErrorInfo {
         private String error;
         private Long id;
@@ -62,18 +64,17 @@ public class AccountController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Đăng nhập thất bại!!!");
         }
     }
-    @PostMapping("/")
+
     public ResponseEntity<?> saveCustomer(@RequestBody Customer customer) {
         customerService.saveCustomer(customer);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @PostMapping("/signup")
     public ResponseEntity<?> signUp(@RequestBody AccountDto accountDto){
-        try{
-
-        }catch ()
-
-        accountService.saveAccount(accountDto.getEmailCustomer(), accountDto.getPassword());
-        return new ResponseEntity<>(HttpStatus.OK);
+        if (accountService.signUp(accountDto)){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+//        String encoderPassword = passwordEncoder.encode(accountDto.getPassword());
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }
