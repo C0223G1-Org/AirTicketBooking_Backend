@@ -16,7 +16,7 @@ public class RouteController {
     private IRouteService routeService;
 
     /**
-     * method dùng để lấy danh sách top 10 chuyến bay giá rẻ nhất
+     * method dùng để lấy danh sách top 10 chuyến bay giá rẻ nhất từ database
      * @author ThaiVV
      * @since 10/08/2023
      * @return ResponseEntity
