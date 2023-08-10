@@ -19,7 +19,7 @@ public class SeatController {
     /**
      * create by: SangTDN
      * @param idRoute
-     * @return array Json SeatProjection, status
+     * @return array Json SeatProjection,status
      * Upload data to API
      */
     @GetMapping("/seat-empty/{idRoute}")
