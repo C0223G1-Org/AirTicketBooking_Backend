@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RestController
-@RequestMapping("/ticket")
+@RequestMapping("/search-ticket")
 @CrossOrigin("*")
 public class TicketController {
     @Autowired
@@ -22,7 +22,7 @@ public class TicketController {
      * @param namePassenger,idCardPassenger
      * return List Ticket
      */
-    @GetMapping("/search/{namePassenger}/{idCardPassenger}")
+    @GetMapping("/{namePassenger}/{idCardPassenger}")
     @ResponseBody
     public ResponseEntity<?> findTicketByNameAndIdCardPassenger(@PathVariable String namePassenger,
                                                                 @PathVariable String idCardPassenger) {
