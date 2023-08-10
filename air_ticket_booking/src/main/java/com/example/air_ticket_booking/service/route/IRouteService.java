@@ -12,7 +12,7 @@ import com.example.air_ticket_booking.model.route.Route;
 
 public interface IRouteService {
     List<Route> findTop10RouteCheapest();
-    List<RouteProjection> showListRoute (String departure,String destination);
+
     /**
      * create by : SangTDN
      * @param departure
