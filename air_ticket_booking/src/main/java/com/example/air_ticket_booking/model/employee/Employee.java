@@ -1,5 +1,10 @@
 package com.example.air_ticket_booking.model.employee;
 
+import com.example.air_ticket_booking.model.account.Account;
+
+import javax.persistence.*;
+
+@Entity
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
