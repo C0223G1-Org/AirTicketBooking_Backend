@@ -17,7 +17,7 @@ import java.util.Optional;
 @Repository
 public interface ITicketRepository extends JpaRepository<Ticket,Long> {
   /**
-   * task take  data by database
+   * task take  data from database
    * @Method findAllTickets
    * @param pageable
    * @return Page<Ticket>
@@ -37,7 +37,7 @@ public interface ITicketRepository extends JpaRepository<Ticket,Long> {
           "where t.flag_ticket=0",nativeQuery = true)
   Page<ITicketProjection> findAllTickets(Pageable pageable);
   /**
-   * task delete ticket by database
+   * task delete ticket by ID database
    * @Method deleteTicketById
    * @param id
    * @return
@@ -70,7 +70,7 @@ public interface ITicketRepository extends JpaRepository<Ticket,Long> {
           "where t.flag_ticket=0 and tt.id_type_ticket=:idTypeTicket and name_passenger Like concat('%',:namePassenger,'%') and name_route like concat('%',:nameRoute,'%') and name_departure like concat('%',:nameDeparture,'%') and name_destination like concat('%',:nameDestination,'%')",nativeQuery = true)
   Page<ITicketProjection> searchTicket(@Param("idTypeTicket")Long idTypeTicket,@Param("namePassenger")String namePassenger,@Param("nameRoute")String nameRoute,@Param("nameDeparture") String nameDeparture,@Param("nameDestination")String nameDestination,Pageable pageable);
   /**
-   * task get all tickets unbooked
+   * task get all tickets  unbooked from database
    * @Method findAllTicketUnbooked
    * @param pageable
    * @return Page<Ticket>
@@ -85,7 +85,7 @@ public interface ITicketRepository extends JpaRepository<Ticket,Long> {
           "where s.flag_seat=0",nativeQuery = true)
   Page<ITicketUnbookedProjection> findAllTicketUnbooked(Pageable pageable);
   /**
-   * task get search all tickets unbooked
+   * task get search all tickets unbooked from database
    * @Method searchTicketUnbooked
    * @param pageable,idTypeSeat,positionSeat,nameRoute,nameDeparture,timeDeparture
    * @return Page<Ticket>
