@@ -21,7 +21,7 @@ public class CustomerController {
     /**
      * Create by: HungLV
      * Date create: 10/08/2023
-     * Function:updateCustomer()
+     * Function: get data from front-end and check id, if get customer = null, return status not found, else update customer return status success
      *
      * @Param: customer, id
      * @Return: ResponseEntity
@@ -39,7 +39,7 @@ public class CustomerController {
     /**
      * Create by: HungLV
      * Date create: 10/08/2023
-     * Function:saveCustomer()
+     * Function:get data from front-end and save data in database and return status success
      *
      * @Param: customer
      * @Return: ResponseEntity

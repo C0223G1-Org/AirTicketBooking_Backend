@@ -15,7 +15,7 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
     /**
      * Create by: HungLV
      * Date create: 10/08/2023
-     * Function:saveCustomer()
+     * Function: get data from service and insert fields of customers into database
      *
      * @Param: customer
      * @Return: void
@@ -31,7 +31,7 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
     /**
      * Create by: HungLV
      * Date create: 10/08/2023
-     * Function:updateCustomer()
+     * Function:get data from service and update fields of customers into database following id
      *
      * @Param: customer
      * @Return: void
@@ -49,7 +49,7 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
     /**
      * Create by: HungLV
      * Date create: 10/08/2023
-     * Function:findCustomerById()
+     * Function:get id from service and get all fields of customer
      *
      * @Param: id
      * @Return: Customer

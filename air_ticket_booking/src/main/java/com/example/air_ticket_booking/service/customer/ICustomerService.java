@@ -8,7 +8,7 @@ public interface ICustomerService {
     /**
      * Create by: HungLV
      * Date create: 10/08/2023
-     * Function:saveCustomer()
+     * Function: declare function for use
      *
      * @Param: customer
      * @Return: void
@@ -18,7 +18,7 @@ public interface ICustomerService {
     /**
      * Create by: HungLV
      * Date create: 10/08/2023
-     * Function:updateCustomer()
+     * Function: declare function for use
      *
      * @Param: customer
      * @Return: void
@@ -29,7 +29,7 @@ public interface ICustomerService {
     /**
      * Create by: HungLV
      * Date create: 10/08/2023
-     * Function:findCustomerById()
+     * Function: declare function for use
      *
      * @Param: id
      * @Return: Customer

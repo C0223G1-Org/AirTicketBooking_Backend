@@ -16,7 +16,7 @@ public class CustomerService implements ICustomerService {
     /**
      * Create by: HungLV
      * Date create: 10/08/2023
-     * Function:saveCustomer()
+     * Function:get data from controller and call method of customer-repository execute process
      *
      * @Param: customer
      * @Return: void
@@ -29,7 +29,7 @@ public class CustomerService implements ICustomerService {
     /**
      * Create by: HungLV
      * Date create: 10/08/2023
-     * Function:updateCustomer()
+     * Function:get data from controller and call method of customer-repository execute process
      *
      * @Param: customer
      * @Return: void
