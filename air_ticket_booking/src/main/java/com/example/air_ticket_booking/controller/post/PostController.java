@@ -24,7 +24,7 @@ public class PostController {
      * return NOT_FOUND status otherwise return page and status ACCEPTED
      * @param page
      * @param limit
-     * @return
+     * @return ResponseEntity<Page<Post>>
      */
     @GetMapping("/{page}/{limit}")
     public ResponseEntity<Page<Post>> getListPost(@PathVariable(value = "page", required = false) Integer page, @PathVariable(value = "limit", required = false) Integer limit) {
@@ -40,7 +40,7 @@ public class PostController {
      * Handling:Get data from the link and check the execution process, if it is correct,
      * return the message "Not found the document you want to delete" and the status NOT_FOUND otherwise return the OK status and return the message "Post deleted"
      * @param id
-     * @return
+     * @return message and status
      */
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deletePost(@PathVariable(value = "id", required = false) Long id) {
