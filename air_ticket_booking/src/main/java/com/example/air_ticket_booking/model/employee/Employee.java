@@ -1,58 +1,64 @@
 package com.example.air_ticket_booking.model.employee;
 
+import com.example.air_ticket_booking.model.account.Account;
+
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "employee")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String birthDay;
+    private Long idEmployee;
+    private String nameEmployee;
+    private String dateEmployee;
     private String telEmployee;
     private String image;
+    private String emailEmployee;
+    private Boolean gender;
+    private Boolean flagEmployee;
 
-    private int gender;
-    private boolean flagEmployee;
+    @OneToOne
+    private Account account;
 
     public Employee() {
     }
 
-    public Employee(Long id, String name, String birthDay, String telEmployee, String image, int gender, boolean flagEmployee) {
-        this.id = id;
-        this.name = name;
-        this.birthDay = birthDay;
+    public Employee(Long idEmployee, String nameEmployee, String dateEmployee, String telEmployee,
+                    String image, String emailEmployee, Boolean gender, Boolean flagEmployee, Account account) {
+        this.idEmployee = idEmployee;
+        this.nameEmployee = nameEmployee;
+        this.dateEmployee = dateEmployee;
         this.telEmployee = telEmployee;
         this.image = image;
+        this.emailEmployee = emailEmployee;
         this.gender = gender;
         this.flagEmployee = flagEmployee;
+        this.account = account;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdEmployee() {
+        return idEmployee;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdEmployee(Long idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
-    public String getName() {
-        return name;
+    public String getNameEmployee() {
+        return nameEmployee;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameEmployee(String nameEmployee) {
+        this.nameEmployee = nameEmployee;
     }
 
-    public String getBirthDay() {
-        return birthDay;
+    public String getDateEmployee() {
+        return dateEmployee;
     }
 
-    public void setBirthDay(String birthDay) {
-        this.birthDay = birthDay;
+    public void setDateEmployee(String dateEmployee) {
+        this.dateEmployee = dateEmployee;
     }
 
     public String getTelEmployee() {
@@ -71,20 +77,35 @@ public class Employee {
         this.image = image;
     }
 
-    public int getGender() {
+    public String getEmailEmployee() {
+        return emailEmployee;
+    }
+
+    public void setEmailEmployee(String emailEmployee) {
+        this.emailEmployee = emailEmployee;
+    }
+
+    public Boolean getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(Boolean gender) {
         this.gender = gender;
     }
 
-    public boolean isFlagEmployee() {
+    public Boolean getFlagEmployee() {
         return flagEmployee;
     }
 
-    public void setFlagEmployee(boolean flagEmployee) {
+    public void setFlagEmployee(Boolean flagEmployee) {
         this.flagEmployee = flagEmployee;
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 }
