@@ -58,4 +58,5 @@ public interface ICustomerRepository extends JpaRepository<Customer,Long> {
            "customer.img_customer,customer.tel_customer,customer.nationality_customer,customer.account_id_account" +
            " from customer where id_customer = :id and flag_customer=false",nativeQuery = true)
    Customer findCustomerById(@Param("id") Long id);
+
 }

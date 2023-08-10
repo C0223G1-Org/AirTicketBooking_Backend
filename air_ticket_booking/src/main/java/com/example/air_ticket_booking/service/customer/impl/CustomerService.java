@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class CustomerService implements ICustomerService {
 
     @Autowired
-    private ICustomerRepository iCustomerRepository;
+    private ICustomerRepository customerRepository;
 
     /**
      * @param pageable
@@ -23,7 +23,7 @@ public class CustomerService implements ICustomerService {
      */
     @Override
     public Page<Customer> getListCustomer(Pageable pageable) {
-        return iCustomerRepository.getListCustomer(pageable);
+        return customerRepository.getListCustomer(pageable);
     }
     /**
      * @param pageable,email,name,nationality
@@ -35,7 +35,7 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public Page<Customer> getListSearchCustomer(Pageable pageable, String email, String name, String nationality) {
-        return iCustomerRepository.getListSearchCustomer(pageable, email, name, nationality);
+        return customerRepository.getListSearchCustomer(pageable, email, name, nationality);
     }
     /**
      * @param id
@@ -47,7 +47,7 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public void deleteCustomer(Long id) {
-        iCustomerRepository.deleteCustomer(id);
+        customerRepository.deleteCustomer(id);
     }
     /**
      * @param id
@@ -59,6 +59,6 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public Customer findCustomerById(Long id) {
-        return iCustomerRepository.findCustomerById(id);
+        return customerRepository.findCustomerById(id);
     }
 }
