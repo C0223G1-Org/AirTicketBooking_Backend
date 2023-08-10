@@ -36,7 +36,7 @@ public class CustomerController {
 
     /**
      * @param pageable, name, nationality, email
-     * @return if getListSearchCustomer have data return getListSearchCustomer and status OK else return status NO_CONTENT
+     * @return if getListSearch have data return getListSearch and status OK else return status NO_CONTENT
      *Create by: TàiMP
      *Date create: 10/08/2023
      */
