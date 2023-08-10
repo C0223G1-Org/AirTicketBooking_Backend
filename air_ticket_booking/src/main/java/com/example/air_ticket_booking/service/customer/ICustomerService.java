@@ -58,4 +58,36 @@ public interface ICustomerService {
      * @return Customer
      */
     Customer findCustomerById(Long id);
+
+    /**
+     * Create by: HungLV
+     * Date create: 10/08/2023
+     * Function: declare function for use
+     *
+     * @Param: customer
+     * @Return: void
+     */
+    void saveCustomer(Customer customer);
+
+    /**
+     * Create by: HungLV
+     * Date create: 10/08/2023
+     * Function: declare function for use
+     *
+     * @Param: customer
+     * @Return: void
+     */
+
+//    void updateCustomer(Customer customer);
+
+    /**
+     * Create by: HungLV
+     * Date create: 10/08/2023
+     * Function: declare function for use
+     *
+     * @Param: id
+     * @Return: Customer
+     */
+
+//    Customer findCustomerById(Long id);
 }

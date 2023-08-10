@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("*")
@@ -94,6 +96,38 @@ public class CustomerController {
     @GetMapping("/details/{id}")
     public ResponseEntity<?> customerDetails(@PathVariable Long id) {
         return new ResponseEntity<>(customerService.findCustomerById(id), HttpStatus.OK);
+    }
+    /**
+     * Create by: HungLV
+     * Date create: 10/08/2023
+     * Function: get data from front-end and check id, if get customer = null, return status not found, else update customer return status success
+     *
+     * @Param: customer, id
+     * @Return: ResponseEntity
+     */
+
+//    @PutMapping("/{id}")
+//    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
+//        if (customerService.findCustomerById(id) == null) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        customerService.updateCustomer(customer);
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
+
+    /**
+     * Create by: HungLV
+     * Date create: 10/08/2023
+     * Function:get data from front-end and save data in database and return status success
+     *
+     * @Param: customer
+     * @Return: ResponseEntity
+     */
+
+    @PostMapping("")
+    public ResponseEntity<?> saveCustomer(@RequestBody Customer customer) {
+        customerService.saveCustomer(customer);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
     

@@ -85,6 +85,46 @@ public class CustomerService implements ICustomerService {
 //    public Customer findCustomerById(Long id) {
 //        return customerRepository.findCustomerById(id);
 //    }
+    /**
+     * Create by: HungLV
+     * Date create: 10/08/2023
+     * Function:get data from controller and call method of customer-repository execute process
+     *
+     * @Param: customer
+     * @Return: void
+     */
+    @Override
+    public void saveCustomer(Customer customer) {
+        customerRepository.saveCustomer(customer);
+    }
+
+    /**
+     * Create by: HungLV
+     * Date create: 10/08/2023
+     * Function:get data from controller and call method of customer-repository execute process
+     *
+     * @Param: customer
+     * @Return: void
+     */
+
+//    @Override
+//    public void updateCustomer(Customer customer) {
+//        customerRepository.updateCustomer(customer);
+//    }
+
+    /**
+     * Create by: HungLV
+     * Date create: 10/08/2023
+     * Function:findCustomerById()
+     *
+     * @Param: id
+     * @Return: Customer
+     */
+
+//    @Override
+//    public Customer findCustomerById(Long id) {
+//        return customerRepository.findCustomerById(id);
+//    }
 
 
 }
