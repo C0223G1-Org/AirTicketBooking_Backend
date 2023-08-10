@@ -2,9 +2,12 @@ package com.example.air_ticket_booking.controller.account;
 
 import com.example.air_ticket_booking.config.JwtTokenUtil;
 import com.example.air_ticket_booking.config.JwtUserDetails;
+import com.example.air_ticket_booking.dto.account.AccountDto;
+import com.example.air_ticket_booking.model.customer.Customer;
 import com.example.air_ticket_booking.reponse.JwtRequest;
 import com.example.air_ticket_booking.reponse.JwtResponse;
 import com.example.air_ticket_booking.service.account.impl.AccountService;
+import com.example.air_ticket_booking.service.customer.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +37,8 @@ public class AccountController {
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private ICustomerService customerService;
 
     class ErrorInfo {
         private String error;
@@ -54,7 +59,21 @@ public class AccountController {
 
             return ResponseEntity.ok(new JwtResponse(token, principal.getUsername(), authority != null ? authority.getAuthority() : null));
         } catch (BadCredentialsException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Tài khoản không đúng!!!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Đăng nhập thất bại!!!");
         }
+    }
+    @PostMapping("/")
+    public ResponseEntity<?> saveCustomer(@RequestBody Customer customer) {
+        customerService.saveCustomer(customer);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PostMapping("/signup")
+    public ResponseEntity<?> signUp(@RequestBody AccountDto accountDto){
+        try{
+
+        }catch ()
+
+        accountService.saveAccount(accountDto.getEmailCustomer(), accountDto.getPassword());
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
