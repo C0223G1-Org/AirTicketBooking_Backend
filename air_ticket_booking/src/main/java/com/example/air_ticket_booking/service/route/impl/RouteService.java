@@ -1,4 +1,19 @@
 package com.example.air_ticket_booking.service.route.impl;
 
-public class RouteService {
+import com.example.air_ticket_booking.model.projection_tdns.RouteProjection;
+import com.example.air_ticket_booking.repository.route.IRouteRepository;
+import com.example.air_ticket_booking.service.route.IRouteService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+@Service
+public class RouteService implements IRouteService {
+    @Autowired
+    private IRouteRepository routeRepository;
+
+    @Override
+    public List<RouteProjection> showListRoute(String departure, String destination) {
+        return routeRepository.showListRoute(departure,destination);
+    }
 }
