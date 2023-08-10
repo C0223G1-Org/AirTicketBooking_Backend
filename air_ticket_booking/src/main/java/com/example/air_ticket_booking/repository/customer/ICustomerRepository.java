@@ -15,7 +15,7 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
     /**
      * Create by: HoaLTY
      *      * Date create: 10/08/2023
-     *      * Function:updateCustomer()
+     *      * Function:update customer information
      * @param customer
      */
     @Modifying
@@ -30,10 +30,12 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
     /**
      * Create by: HoaLTY
      *      * Date create: 10/08/2023
-     *      * Function: findCustomerById()
+     *      * Function: get customer details by id
      * @param id
      * @return Customer
      */
-    @Query(value = "select * from customer where id_customer = :id and flag_customer=false",nativeQuery = true)
+    @Query(value = "select customer.name_customer,customer.gender_customer,customer.email_customer,customer.date_customer,customer.id_card_customer,customer.address_customer," +
+            "customer.img_customer,customer.tel_customer,customer.nationality_customer" +
+            " from customer where id_customer = :id and flag_customer=false",nativeQuery = true)
     Customer findCustomerById(@Param("id") Long id);
 }

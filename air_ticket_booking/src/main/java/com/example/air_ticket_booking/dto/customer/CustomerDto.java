@@ -162,26 +162,29 @@ public class CustomerDto implements Validator {
 
     /**
      * Create by: HoaLTY
-     *      * Date create: 10/08/2023
-     *      * Function: validate()
+     *  Date create: 10/08/2023
+     *  Function: validate age of customer must be over 18 years old
      * @param target
      * @return errors
      */
     @Override
     public void validate(Object target, Errors errors) {
 
-            CustomerDto customerDto=(CustomerDto) target;
-            String dateOfBirth = customerDto.dateCustomer;
-//            int year= Integer.parseInt(dateOfBirth.substring(6,9)) ;
-//            int month=Integer.parseInt(dateOfBirth.substring(3,4));
-//            int day=Integer.parseInt(dateOfBirth.substring(0,1));
-//            LocalDate today= LocalDate.now();
-//            int age = today.getYear()-year;
-//            if (age < 18||today.getMonthValue() < month  || (today.getMonthValue() == month && day<today.getDayOfMonth()|| today.getDayOfMonth() < month)  ) {
-//                age--; // Giảm tuổi nếu chưa đến ngày sinh nhật trong năm hiện tại
-//            }
+        CustomerDto customerDto = (CustomerDto) target;
+        String date = customerDto.dateCustomer;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(dateOfBirth, formatter);
+        LocalDate dateOfBirth = LocalDate.parse(date, formatter);
+        LocalDate today = LocalDate.now();
+        int age = today.getYear() - dateOfBirth.getYear();
+
+        if (today.getMonthValue() < dateOfBirth.getMonthValue()
+                || (today.getMonthValue() == dateOfBirth.getMonthValue() && today.getDayOfMonth() < dateOfBirth.getDayOfMonth())) {
+            age--; //Age reduction if the birthday is not reached in the current year
+
+        }
+        if (age >= 18) {
+            errors.rejectValue("dateCustomer", "dateCustomer", "Hành khách phải trên 18 tuổi");
+        }
 
     }
 }

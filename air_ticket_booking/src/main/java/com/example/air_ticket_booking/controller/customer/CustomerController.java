@@ -28,7 +28,7 @@ public class CustomerController {
     /**
      * Create by: HoaLTY
      * Date create: 10/08/2023
-     * Function:updateCustomer()
+     * Function:update customer information
      * @param id
      * @param customer
      * @return
@@ -45,11 +45,11 @@ public class CustomerController {
     /**
      * Create by: HoaLTY
      * Date create: 10/08/2023
-     * Function:updateCustomer()
+     * Function: get customer details by id
      * @param id
-     * @return customerDetails
+     * @return customer
      */
-    @GetMapping("details/{id}")
+    @GetMapping("/details/{id}")
     public ResponseEntity<?> customerDetails(@PathVariable Long id){
         return new ResponseEntity<>(customerService.findCustomerById(id),HttpStatus.OK);
     }
