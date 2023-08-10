@@ -6,10 +6,21 @@ import com.example.air_ticket_booking.service.seat.ITypeSeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 @Service
 public class TypeSeatService implements ITypeSeatService {
     @Autowired
-    private ITypeSeatRepository iTypeSeatRepository;
+    private ITypeSeatRepository typeSeatRepository;
+
+    /**
+     * create by : SangTDN
+     * @return List TypeSeat
+     * call method getListSeat() form ITypeSeatRepository
+     */
+    @Override
+    public List<TypeSeat> getListSeat() {
+        return typeSeatRepository.getListSeat();
+    }
 
     /**
      *method :find  type seat  by id in service
@@ -20,6 +31,6 @@ public class TypeSeatService implements ITypeSeatService {
      */
     @Override
     public TypeSeat findTypeSeatById(Long id) {
-        return iTypeSeatRepository.findTypeSeatById(id);
+        return typeSeatRepository.findTypeSeatById(id);
     }
 }
