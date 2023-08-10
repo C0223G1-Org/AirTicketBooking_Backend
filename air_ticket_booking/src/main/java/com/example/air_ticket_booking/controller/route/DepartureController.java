@@ -19,7 +19,7 @@ public class DepartureController {
      * method dùng để lấy danh sách tất cả các điểm đi để hiển thị lên form tìm kiếm chuyến bay
      * @author ThaiVV
      * @since 10/08/2023
-     * @return List<Departure>
+     * @return ResponseEntity
      */
     @GetMapping()
     public ResponseEntity<?> getAll() {

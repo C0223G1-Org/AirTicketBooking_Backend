@@ -20,7 +20,7 @@ public class DestinationController {
      * method dùng để lấy danh sách tất cả các điểm đến để hiển thị lên form tìm kiếm chuyến bay
      * @author ThaiVV
      * @since 10/08/2023
-     * @return List<Destination>
+     * @return ResponseEntity
      */
     @GetMapping()
     public ResponseEntity<?> findAll() {
