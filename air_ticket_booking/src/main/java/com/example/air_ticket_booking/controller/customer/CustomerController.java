@@ -53,7 +53,7 @@ public class CustomerController {
 
     /**
      * @param id
-     * @return if iCustomerService.findCustomerById(id) have data return status OK and set flag customer = true that customer else return status NOT_FOUND
+     * @return if customerService.findCustomerById(id) have data return status OK and set flag customer = true that customer else return status NOT_FOUND
      * Create by: TàiMP
      * Date create: 10/08/2023
      */
@@ -68,13 +68,12 @@ public class CustomerController {
     }
 
     /**
-     * Create by: HoaLTY
+     * Create by: HoaLTY,HungLV
      * Date create: 10/08/2023
-     * Function:update customer information
+     * Function: get data from front-end and check id, if get customer = null, return status not found, else update customer return status success
      *
-     * @param id
-     * @param customer
-     * @return
+     * @param id,customer
+     * @return ResponseEntity<>
      */
     @PutMapping("/{id}")
     public ResponseEntity<?> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
@@ -97,14 +96,14 @@ public class CustomerController {
     public ResponseEntity<?> customerDetails(@PathVariable Long id) {
         return new ResponseEntity<>(customerService.findCustomerById(id), HttpStatus.OK);
     }
-    /**
-     * Create by: HungLV
-     * Date create: 10/08/2023
-     * Function: get data from front-end and check id, if get customer = null, return status not found, else update customer return status success
-     *
-     * @Param: customer, id
-     * @Return: ResponseEntity
-     */
+//    /**
+//     * Create by: HungLV
+//     * Date create: 10/08/2023
+//     * Function: get data from front-end and check id, if get customer = null, return status not found, else update customer return status success
+//     *
+//     * @Param: customer, id
+//     * @Return: ResponseEntity
+//     */
 
 //    @PutMapping("/{id}")
 //    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {

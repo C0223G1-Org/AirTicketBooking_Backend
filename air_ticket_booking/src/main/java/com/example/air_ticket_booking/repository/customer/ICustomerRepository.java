@@ -18,7 +18,10 @@ public interface ICustomerRepository extends JpaRepository<Customer,Long> {
     *Method: get all the information of the customers and have flag_customer = flase in DB
     *return: Page
     */
-   @Query(value = " select * from customer where flag_customer=false",nativeQuery = true)
+   @Query(value = " select customer.id_customer,customer.name_customer,customer.gender_customer,customer.email_customer," +
+           "customer.date_customer,customer.id_card_customer,customer.address_customer,customer.flag_customer,customer.img_customer," +
+           "customer.tel_customer,customer.nationality_customer,customer.account_id_account " +
+           " from customer where flag_customer=false",nativeQuery = true)
    Page<Customer> getListCustomer(Pageable pageable);
    /**
     * @param pageable,email,name,nationality
@@ -46,23 +49,13 @@ public interface ICustomerRepository extends JpaRepository<Customer,Long> {
    @Modifying
    @Query(value = "update customer set flag_customer=true where id_customer = :id and flag_customer=false",nativeQuery = true)
    void deleteCustomer(@Param("id") Long id);
+
    /**
-    *  @param id
-    * Create by: TàiMP
-    * Date create: 10/08/2023
-    * Method: find customer passing param id to @Query and get data from DB
-    * return: Customer
-    */
-//   @Query(value = "select customer.id_customer,customer.name_customer,customer.gender_customer,customer.email_customer," +
-//           "customer.date_customer,customer.id_card_customer,customer.address_customer,customer.flag_customer," +
-//           "customer.img_customer,customer.tel_customer,customer.nationality_customer,customer.account_id_account" +
-//           " from customer where id_customer = :id and flag_customer=false",nativeQuery = true)
-//   Customer findCustomerById(@Param("id") Long id);
-   /**
-    * Create by: HoaLTY
+    * Create by: HoaLTY,HungLV
     *      * Date create: 10/08/2023
-    *      * Function:update customer information
+    *      * Function: get data from service and update fields of customers into database following id
     * @param customer
+    * @Return: void
     */
    @Modifying
    @Query(value = "update customer set name_customer =:#{#customer.nameCustomer} ,gender_customer = :#{#customer.genderCustomer}," +
@@ -74,13 +67,14 @@ public interface ICustomerRepository extends JpaRepository<Customer,Long> {
    void updateCustomer(@Param("customer") Customer customer);
 
    /**
-    * Create by: HoaLTY
+    * Create by: HoaLTY, TaiMP, HungLV
     *      * Date create: 10/08/2023
-    *      * Function: get customer details by id
+    *      * Function: get id from service and get all fields of customer
     * @param id
     * @return Customer
     */
-   @Query(value = "select customer.id_customer,customer.name_customer,customer.gender_customer,customer.email_customer,customer.date_customer,customer.id_card_customer,customer.address_customer,customer.flag_customer," +
+   @Query(value = "select customer.id_customer,customer.name_customer,customer.gender_customer,customer.email_customer," +
+           "customer.date_customer,customer.id_card_customer,customer.address_customer,customer.flag_customer," +
            "customer.img_customer,customer.tel_customer,customer.nationality_customer,customer.account_id_account" +
            " from customer where id_customer = :id and flag_customer=false",nativeQuery = true)
    Customer findCustomerById(@Param("id") Long id);
@@ -101,14 +95,14 @@ public interface ICustomerRepository extends JpaRepository<Customer,Long> {
             ":#{#customer.telCustomer},:#{#customer.nationalityCustomer},:#{#customer.account.idAccount})", nativeQuery = true)
     void saveCustomer(@Param("customer") Customer customer);
 
-    /**
-     * Create by: HungLV
-     * Date create: 10/08/2023
-     * Function:get data from service and update fields of customers into database following id
-     *
-     * @Param: customer
-     * @Return: void
-     */
+//    /**
+//     * Create by: HungLV
+//     * Date create: 10/08/2023
+//     * Function:get data from service and update fields of customers into database following id
+//     *
+//     * @Param: customer
+//     * @Return: void
+//     */
 
 //    @Modifying
 //    @Query(value = "update customer set name_customer =:#{#customer.nameCustomer} ,gender_customer = :#{#customer.genderCustomer}," +
@@ -119,15 +113,5 @@ public interface ICustomerRepository extends JpaRepository<Customer,Long> {
 //            , nativeQuery = true)
 //    void updateCustomer(@Param("customer") Customer customer);
 
-    /**
-     * Create by: HungLV
-     * Date create: 10/08/2023
-     * Function:get id from service and get all fields of customer
-     *
-     * @Param: id
-     * @Return: Customer
-     */
 
-//    @Query(value = "select * from customer where id_customer = :id and flag_customer=false", nativeQuery = true)
-//    Customer findCustomerById(@Param("id") Long id);
 }

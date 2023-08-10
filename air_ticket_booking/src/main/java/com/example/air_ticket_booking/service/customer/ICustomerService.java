@@ -10,50 +10,34 @@ public interface ICustomerService {
      * @param pageable
      *Create by: TàiMP
      *Date create: 10/08/2023
-     *getListCustomer()
+     *Method: declare function for use
      *return: Page
      */
     Page<Customer> getListCustomer(Pageable pageable);
+
     /**
      * @param pageable,email,name,nationality
      *Create by: TàiMP
      *Date create: 10/08/2023
-     * Method: getListSearchCustomer()
+     * Method: declare function for use
      * return: Page
      */
-
     Page<Customer> getListSearchCustomer(Pageable pageable, String email, String name, String nationality);
+
     /**
      * @param id
      * Create by: TàiMP
      * Date create: 10/08/2023
-     * Method: deleteCustomer()
+     * Method: declare function for use
      * return: void
      */
-
     void deleteCustomer(Long id);
+
+
     /**
-     * @param id
-     * Create by: TàiMP
+     * Create by: HoaLTY, TaiMP, HungLV
      * Date create: 10/08/2023
-     * Method: findCustomerById()
-     * return: Customer
-     */
-
-
-//    Customer findCustomerById(Long id);
-    /**
-     * Create by: HoaLTY
-     *      * Date create: 10/08/2023
-     *      * Function:update customer information
-     * @param customer
-     */
-    void updateCustomer(Customer customer);
-
-    /**
-     * Create by: HoaLTY
-     *      * Date create: 10/08/2023
-     *      * Function: get customer details by id
+     *Function: declare function for use
      * @param id
      * @return Customer
      */
@@ -63,31 +47,19 @@ public interface ICustomerService {
      * Create by: HungLV
      * Date create: 10/08/2023
      * Function: declare function for use
-     *
      * @Param: customer
      * @Return: void
      */
     void saveCustomer(Customer customer);
 
     /**
-     * Create by: HungLV
+     * Create by: HungLV, HoaLTY
      * Date create: 10/08/2023
      * Function: declare function for use
-     *
      * @Param: customer
      * @Return: void
      */
 
-//    void updateCustomer(Customer customer);
+    void updateCustomer(Customer customer);
 
-    /**
-     * Create by: HungLV
-     * Date create: 10/08/2023
-     * Function: declare function for use
-     *
-     * @Param: id
-     * @Return: Customer
-     */
-
-//    Customer findCustomerById(Long id);
 }

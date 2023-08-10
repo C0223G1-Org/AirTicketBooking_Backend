@@ -16,10 +16,11 @@ public class CustomerService implements ICustomerService {
     private ICustomerRepository customerRepository;
 
     /**
-     *  Create by: HoaLTY
-     *      * Date create: 10/08/2023
-     *      * Function: update customer information
+     *  Create by: HoaLTY, HungLV
+     *  Date create: 10/08/2023
+     *  Function: get data from controller and call method of customer-repository execute process
      * @param customer
+     * @Return: void
      */
     @Override
     public void updateCustomer(Customer customer) {
@@ -27,9 +28,9 @@ public class CustomerService implements ICustomerService {
     }
 
     /**
-     * Create by: HoaLTY
-     *      * Date create: 10/08/2023
-     *      * Function: get customer details by id
+     * Create by: HoaLTY,HungLV,TaiMP
+     * Date create: 10/08/2023
+     * Function: get customer details by id
      * @param id
      * @return Customer
      */
@@ -49,6 +50,7 @@ public class CustomerService implements ICustomerService {
     public Page<Customer> getListCustomer(Pageable pageable) {
         return customerRepository.getListCustomer(pageable);
     }
+
     /**
      * @param pageable,email,name,nationality
      *Create by: TàiMP
@@ -56,11 +58,11 @@ public class CustomerService implements ICustomerService {
      * Method: getListSearchCustomer() get pageable, email, name, nationality from CustomerController
      * return: Page
      */
-
     @Override
     public Page<Customer> getListSearchCustomer(Pageable pageable, String email, String name, String nationality) {
         return customerRepository.getListSearchCustomer(pageable, email, name, nationality);
     }
+
     /**
      * @param id
      * Create by: TàiMP
@@ -68,28 +70,15 @@ public class CustomerService implements ICustomerService {
      * Method: deleteCustomer() get id from CustomerController
      * return: void
      */
-
     @Override
     public void deleteCustomer(Long id) {
         customerRepository.deleteCustomer(id);
     }
-    /**
-     * @param id
-     * Create by: TàiMP
-     * Date create: 10/08/2023
-     * Method: findCustomerById() get id from CustomerController
-     * return: Customer
-     */
 
-//    @Override
-//    public Customer findCustomerById(Long id) {
-//        return customerRepository.findCustomerById(id);
-//    }
     /**
      * Create by: HungLV
      * Date create: 10/08/2023
      * Function:get data from controller and call method of customer-repository execute process
-     *
      * @Param: customer
      * @Return: void
      */
@@ -98,33 +87,6 @@ public class CustomerService implements ICustomerService {
         customerRepository.saveCustomer(customer);
     }
 
-    /**
-     * Create by: HungLV
-     * Date create: 10/08/2023
-     * Function:get data from controller and call method of customer-repository execute process
-     *
-     * @Param: customer
-     * @Return: void
-     */
-
-//    @Override
-//    public void updateCustomer(Customer customer) {
-//        customerRepository.updateCustomer(customer);
-//    }
-
-    /**
-     * Create by: HungLV
-     * Date create: 10/08/2023
-     * Function:findCustomerById()
-     *
-     * @Param: id
-     * @Return: Customer
-     */
-
-//    @Override
-//    public Customer findCustomerById(Long id) {
-//        return customerRepository.findCustomerById(id);
-//    }
 
 
 }
