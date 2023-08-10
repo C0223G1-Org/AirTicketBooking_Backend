@@ -14,11 +14,12 @@ public interface IReportRepository extends JpaRepository<Ticket, Long> {
      * Created by: KhangPVA
      * Date created: 10/08/2023
      * Function: create report
+     *
      * @param startDate
      * @param endDate
      * @return revenue data
      */
-    @Query(value = "SELECT t.date_booking, SUM(t.price_ticket) AS total_revenue\n" +
+    @Query(value = "SELECT t.date_booking as dateBooking, SUM(t.price_ticket) AS priceTicket\n" +
             "FROM ticket as t\n" +
             "WHERE t.date_booking BETWEEN :startDate AND :endDate\n" +
             "GROUP BY date_booking", nativeQuery = true)
@@ -29,11 +30,12 @@ public interface IReportRepository extends JpaRepository<Ticket, Long> {
      * Created by: KhangPVA
      * Date created: 10/08/2023
      * Function: create report
+     *
      * @param startDate
      * @param endDate
      * @return revenue data
      */
-    @Query(value = "SELECT t.date_booking, SUM(t.price_ticket) AS total_revenue\n" +
+    @Query(value = "SELECT t.date_booking as dateBooking, SUM(t.price_ticket) AS priceTicket\n" +
             "FROM ticket as t\n" +
             "WHERE t.date_booking \n" +
             "  and case\n" +

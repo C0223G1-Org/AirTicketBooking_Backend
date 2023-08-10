@@ -22,6 +22,7 @@ public class ReportServiceImpl implements IReportService {
      * Created by: KhangPVA
      * Date created: 10/08/2023
      * Function: create report
+     *
      * @param timeRange
      * @return revenue data
      */
@@ -31,14 +32,14 @@ public class ReportServiceImpl implements IReportService {
         LocalDate startDate;
         LocalDate endDate;
         int currentYear;
-        List<IReport> reports; // Khai báo biến reports để lưu kết quả trước khi trả về
+        List<IReport> reports;
 
         switch (timeRange) {
             case "week":
                 currentDate = LocalDate.now();
                 startDate = currentDate.with(TemporalAdjusters.previousOrSame(java.time.DayOfWeek.MONDAY));
                 endDate = currentDate.with(TemporalAdjusters.nextOrSame(java.time.DayOfWeek.SUNDAY));
-                reports = reportRepository.getCurrentRevenue(startDate, endDate); // Gán kết quả vào biến reports
+                reports = reportRepository.getCurrentRevenue(startDate, endDate);
                 break;
             case "month":
                 currentDate = LocalDate.now();
@@ -46,7 +47,7 @@ public class ReportServiceImpl implements IReportService {
                 YearMonth yearMonth = YearMonth.now();
                 startDate = yearMonth.atDay(1);
                 endDate = yearMonth.atEndOfMonth();
-                reports = reportRepository.getCurrentRevenue(startDate, endDate); // Gán kết quả vào biến reports
+                reports = reportRepository.getCurrentRevenue(startDate, endDate);
                 break;
             case "quarter":
                 currentDate = LocalDate.now();
@@ -54,27 +55,28 @@ public class ReportServiceImpl implements IReportService {
                 int currentQuarter = currentDate.get(IsoFields.QUARTER_OF_YEAR);
                 startDate = LocalDate.of(currentYear, Month.of((currentQuarter - 1) * 3 + 1), 1);
                 endDate = startDate.plusMonths(3).minusDays(1);
-                reports = reportRepository.getCurrentRevenue(startDate, endDate); // Gán kết quả vào biến reports
+                reports = reportRepository.getCurrentRevenue(startDate, endDate);
                 break;
             case "year":
                 currentDate = LocalDate.now();
                 currentYear = Year.now().getValue();
                 startDate = YearMonth.of(currentYear, 1).atDay(1);
                 endDate = YearMonth.of(currentYear, 12).atEndOfMonth();
-                reports = reportRepository.getCurrentRevenue(startDate, endDate); // Gán kết quả vào biến reports
+                reports = reportRepository.getCurrentRevenue(startDate, endDate);
                 break;
             default:
-                reports = new ArrayList<>(); // Trường hợp không hợp lệ, gán reports là một danh sách rỗng
+                reports = new ArrayList<>();
                 break;
         }
 
-        return reports; // Trả về danh sách reports đã tạo trong các trường hợp hợp lệ
+        return reports;
     }
 
     /**
      * Created by: KhangPVA
      * Date created: 10/08/2023
      * Function: create report
+     *
      * @param timeRange
      * @return revenue data
      */
@@ -84,43 +86,43 @@ public class ReportServiceImpl implements IReportService {
         LocalDate startDate;
         LocalDate endDate;
         int currentYear;
-        List<IReport> reports; // Khai báo biến reports để lưu kết quả trước khi trả về
+        List<IReport> reports;
 
         switch (timeRange) {
             case "week":
                 currentDate = LocalDate.now();
-                startDate = currentDate.with(TemporalAdjusters.previousOrSame(java.time.DayOfWeek.MONDAY)).minusWeeks(1); // Tuần trước
-                endDate = currentDate.with(TemporalAdjusters.nextOrSame(java.time.DayOfWeek.SUNDAY)).minusWeeks(1); // Tuần trước
-                reports = reportRepository.getCurrentRevenue(startDate, endDate); // Gán kết quả vào biến reports
+                startDate = currentDate.with(TemporalAdjusters.previousOrSame(java.time.DayOfWeek.MONDAY)).minusWeeks(1);
+                endDate = currentDate.with(TemporalAdjusters.nextOrSame(java.time.DayOfWeek.SUNDAY)).minusWeeks(1);
+                reports = reportRepository.getCurrentRevenue(startDate, endDate);
                 break;
             case "month":
                 currentDate = LocalDate.now();
                 Month currentMonth = currentDate.getMonth();
-                YearMonth yearMonth = YearMonth.now().minusMonths(1); // Tháng trước
+                YearMonth yearMonth = YearMonth.now().minusMonths(1);
                 startDate = yearMonth.atDay(1);
                 endDate = yearMonth.atEndOfMonth();
-                reports = reportRepository.getCurrentRevenue(startDate, endDate); // Gán kết quả vào biến reports
+                reports = reportRepository.getCurrentRevenue(startDate, endDate);
                 break;
             case "quarter":
                 currentDate = LocalDate.now();
                 currentYear = currentDate.getYear();
                 int currentQuarter = currentDate.get(IsoFields.QUARTER_OF_YEAR);
-                startDate = LocalDate.of(currentYear, Month.of((currentQuarter - 1) * 3 + 1), 1).minusMonths(3); // Quý trước
+                startDate = LocalDate.of(currentYear, Month.of((currentQuarter - 1) * 3 + 1), 1).minusMonths(3);
                 endDate = startDate.plusMonths(3).minusDays(1);
-                reports = reportRepository.getCurrentRevenue(startDate, endDate); // Gán kết quả vào biến reports
+                reports = reportRepository.getCurrentRevenue(startDate, endDate);
                 break;
             case "year":
                 currentDate = LocalDate.now();
                 currentYear = Year.now().getValue() - 1; // Năm trước
                 startDate = YearMonth.of(currentYear, 1).atDay(1);
                 endDate = YearMonth.of(currentYear, 12).atEndOfMonth();
-                reports = reportRepository.getCurrentRevenue(startDate, endDate); // Gán kết quả vào biến reports
+                reports = reportRepository.getCurrentRevenue(startDate, endDate);
                 break;
             default:
-               return null;
+                return null;
         }
 
-        return reports; // Trả về danh sách reports đã tạo trong các trường hợp hợp lệ
+        return reports;
     }
 
 
@@ -128,12 +130,13 @@ public class ReportServiceImpl implements IReportService {
      * Created by: KhangPVA
      * Date created: 10/08/2023
      * Function: create report
+     *
      * @param startDate
      * @param endDate
      * @return revenue data
      */
     @Override
     public List<IReport> getRevenue(String startDate, String endDate) {
-        return reportRepository.getRevenue(startDate,endDate);
+        return reportRepository.getRevenue(startDate, endDate);
     }
 }
