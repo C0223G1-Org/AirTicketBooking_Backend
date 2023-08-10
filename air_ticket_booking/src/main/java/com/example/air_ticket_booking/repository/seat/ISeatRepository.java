@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface ISeatRepository extends JpaRepository<Seat,Long> {
     /**
-     *method :findSeatById()
+     *method :find seat in database by id in repository
      * created by :NamPC
      * date create: 10/08/2023
      * @param id

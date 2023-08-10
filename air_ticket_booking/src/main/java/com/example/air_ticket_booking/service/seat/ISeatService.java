@@ -5,7 +5,7 @@ import com.example.air_ticket_booking.model.seat.TypeSeat;
 
 public interface ISeatService {
     /**
-     *method :findSeatById()
+     *method :find seat  by id in service
      * created by :NamPC
      * date create: 10/08/2023
      * @param id

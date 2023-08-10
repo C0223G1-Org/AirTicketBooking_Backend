@@ -9,21 +9,22 @@ import java.util.List;
 
 public interface ILuggageRepository extends JpaRepository<Luggage, Long> {
     /**
-     * method :getAllLuggage()
+     * method :get all the options the user chooses to buy extra luggage weight
      * created by :NamPC
      * date create: 10/08/2023
-     *
-     * @param "not" return List<Luggage>
+     * @param "not"
+     * return all luggage in database
      */
     @Query(value = "select * from luggage", nativeQuery = true)
     List<Luggage> getAllLuggage();
 
     /**
-     * method :findLuggageById()
+     * method :find extra luggage by id
      * created by :NamPC
      * date create: 10/08/2023
      *
-     * @param id return Luggage
+     * @param id
+     * return a luggage if found
      */
 
     @Query(value = "select  * from luggage where id_luggage=:id", nativeQuery = true)

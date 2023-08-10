@@ -12,22 +12,24 @@ public class LuggageService implements ILuggageService {
     @Autowired
     private ILuggageRepository iLuggageRepository;
     /**
-     * method :getAllLuggage()
+     * method :get all the options the user chooses to buy extra luggage weight
      * created by :NamPC
      * date create: 10/08/2023
      *
-     * @param "not" return List<Luggage>
+     * @param "not"
+     * return all luggage in database
      */
     @Override
     public List<Luggage> getAllLuggage() {
         return iLuggageRepository.getAllLuggage();
     }
     /**
-     * method :findLuggageById()
+     * method :find extra luggage by id
      * created by :NamPC
      * date create: 10/08/2023
      *
-     * @param id return List<Luggage>
+     * @param id
+     * return all luggage in database
      */
 
 

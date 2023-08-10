@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ITypeTicketRepository extends JpaRepository<TypeTicket, Long> {
     /**
-     *method :findTypeTicketById()
+     *method :find  type ticket  by id
      * created by :NamPC
      * date create: 10/08/2023
      * @param id

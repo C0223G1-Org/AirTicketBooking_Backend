@@ -12,7 +12,7 @@ public class TypeSeatService implements ITypeSeatService {
     private ITypeSeatRepository iTypeSeatRepository;
 
     /**
-     *method :findTypeSeatById()
+     *method :find  type seat  by id in service
      * created by :NamPC
      * date create: 10/08/2023
      * @param id

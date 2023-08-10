@@ -16,14 +16,14 @@ public class LuggageController {
     @Autowired
     private ILuggageService iLuggageService;
     /**
-     *method :getAllLuggage()
+     *method : get all the options the user chooses to buy extra luggage weight
      * created by :NamPC
      * date create: 10/08/2023
      * @param "not param"
      * return HttpStatus,List<Luggage>
      */
 
-    @GetMapping("list")
+    @GetMapping("/list")
     public ResponseEntity<List<Luggage>> getAllLuggage(){
         List<Luggage> luggageList=iLuggageService.getAllLuggage();
         if (luggageList.isEmpty()){
@@ -34,7 +34,7 @@ public class LuggageController {
         }
     }
     /**
-     *method :findLuggageById()
+     *method :find extra luggage by id
      * created by :NamPC
      * date create: 10/08/2023
      * @param id

@@ -7,11 +7,11 @@ import org.springframework.data.repository.query.Param;
 
 public interface IRouteRepository extends JpaRepository<Route,Long> {
     /**
-     *method :findRouteById()
+     *method :find a flight route by id in database
      * created by :NamPC
      * date create: 10/08/2023
      * @param id
-     * return Route
+     * return flight route
      */
 
     @Query(value = "select rt.id_route ,rt.date_arrival, rt.date_departure, rt.name_route, rt.price_route, rt.time_arrival, rt.time_departure, ac.name_air_craft, dt.name_destination, dp.name_departure\n" +

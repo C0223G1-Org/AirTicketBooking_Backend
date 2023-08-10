@@ -15,7 +15,7 @@ public class TypeTicketController {
     private ITypeTicketService typeTicketService;
 
     /**
-     * method:getTypeTicketById()
+     * method: get ticket type by id
      * created by :NamPC
      * date create: 10/08/2023
      * @param id

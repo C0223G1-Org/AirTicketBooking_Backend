@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 /**
- *class :TicketDto
+ *class : class use verify the validity of the data
  * created by :NamPC
  * date create: 10/08/2023
  */

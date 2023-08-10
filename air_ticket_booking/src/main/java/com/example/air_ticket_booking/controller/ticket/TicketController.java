@@ -22,7 +22,7 @@ public class TicketController {
     private ITicketService iTicketService;
 
     /**
-     * method:createNewTicket()
+     * method: used to create a new ticket when the user confirms the booking
      * created by :NamPC
      * date create: 10/08/2023
      * @param ticketDto

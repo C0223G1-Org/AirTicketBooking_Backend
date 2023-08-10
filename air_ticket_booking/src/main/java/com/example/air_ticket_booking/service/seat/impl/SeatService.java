@@ -11,7 +11,7 @@ public class SeatService implements ISeatService {
     @Autowired
     private ISeatRepository iSeatRepository;
     /**
-     *method :findSeatById()
+     *method :find seat  by id in service
      * created by :NamPC
      * date create: 10/08/2023
      * @param id

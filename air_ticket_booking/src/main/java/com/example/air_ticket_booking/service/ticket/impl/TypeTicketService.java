@@ -11,11 +11,11 @@ public class TypeTicketService implements ITypeTicketService {
     @Autowired
     private ITypeTicketRepository iTypeTicketRepository;
     /**
-     *method :findTypeSeatById()
+     *method :find  type ticket by id in service
      * created by :NamPC
      * date create: 10/08/2023
      * @param id
-     * return TypeSeat
+     * return Type ticket
      */
 
     @Override

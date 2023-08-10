@@ -11,7 +11,7 @@ public class RouteService implements IRouteService {
     @Autowired
     private IRouteRepository iRouteRepository;
     /**
-     *method :findRouteById()
+     *method :find a flight route by id in service
      * created by :NamPC
      * date create: 10/08/2023
      * @param id
