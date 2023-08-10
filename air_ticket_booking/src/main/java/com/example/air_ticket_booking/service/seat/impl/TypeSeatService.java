@@ -21,4 +21,16 @@ public class TypeSeatService implements ITypeSeatService {
     public List<TypeSeat> getListSeat() {
         return typeSeatRepository.getListSeat();
     }
+
+    /**
+     *method :find  type seat  by id in service
+     * created by :NamPC
+     * date create: 10/08/2023
+     * @param id
+     * return TypeSeat
+     */
+    @Override
+    public TypeSeat findTypeSeatById(Long id) {
+        return typeSeatRepository.findTypeSeatById(id);
+    }
 }
