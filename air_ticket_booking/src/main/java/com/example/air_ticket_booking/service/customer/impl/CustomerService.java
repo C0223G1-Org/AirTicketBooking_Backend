@@ -14,7 +14,7 @@ public class CustomerService implements ICustomerService {
     private ICustomerRepository customerRepository;
 
     /**
-     * Create by: HoaLTY
+     *  Create by: HoaLTY
      *      * Date create: 10/08/2023
      *      * Function: update customer information
      * @param customer
