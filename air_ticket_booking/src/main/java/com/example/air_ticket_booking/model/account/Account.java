@@ -1,14 +1,13 @@
 package com.example.air_ticket_booking.model.account;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Account {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAccount;
-    private String user;
+    private String username;
     private String password;
     @ManyToOne
     private Role role;
@@ -16,9 +15,9 @@ public class Account {
     public Account() {
     }
 
-    public Account(Long idAccount, String user, String password, Role role) {
+    public Account(Long idAccount, String username, String password, Role role) {
         this.idAccount = idAccount;
-        this.user = user;
+        this.username = username;
         this.password = password;
         this.role = role;
     }
@@ -31,12 +30,12 @@ public class Account {
         this.idAccount = idAccount;
     }
 
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsername(String user) {
+        this.username = user;
     }
 
     public String getPassword() {
