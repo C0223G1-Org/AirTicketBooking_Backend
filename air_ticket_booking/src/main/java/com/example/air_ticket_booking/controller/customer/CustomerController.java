@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerController {
     @Autowired
     private ICustomerService iCustomerService;
-
     /**
      * @param pageable
      * @return if getListCustomer have data return getListCustomer and status OK else return status NO_CONTENT
@@ -32,8 +31,6 @@ public class CustomerController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
-
-
     /**
      * @param pageable, name, nationality, email
      * @return if getListSearch have data return getListSearch and status OK else return status NO_CONTENT
@@ -50,8 +47,6 @@ public class CustomerController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
-
-
     /**
      * @param id
      * @return if iCustomerService.findCustomerById(id) have data return status OK and set flag customer = true that customer else return status NOT_FOUND
