@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface ITypeTicketRepository extends JpaRepository<TypeTicket,Long> {
+
     @Query(nativeQuery = true,value = "select * from type_ticket")
     List<TypeTicket> findAllTypeTicket();
 }

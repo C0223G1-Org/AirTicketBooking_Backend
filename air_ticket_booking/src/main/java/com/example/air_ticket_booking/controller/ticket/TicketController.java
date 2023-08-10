@@ -1,10 +1,4 @@
-/**
- *method :findTicketByNameAndIdCardPassengers()
- * created by :KietNT
- * date create: 10/08/2023
- * @param namePassenger,idCardPassenger
- * return List Ticket
- */
+
 package com.example.air_ticket_booking.controller.ticket;
 
 import com.example.air_ticket_booking.service.ticket.ITicketService;
@@ -21,7 +15,13 @@ import org.springframework.web.bind.annotation.*;
 public class TicketController {
     @Autowired
     private ITicketService ticketService;
-
+    /**
+     * method :findTicketByNameAndIdCardPassengers()
+     * created by :KietNT
+     * date create: 10/08/2023
+     * @param namePassenger,idCardPassenger
+     * return List Ticket
+     */
     @GetMapping("/search/{namePassenger}/{idCardPassenger}")
     @ResponseBody
     public ResponseEntity<?> findTicketByNameAndIdCardPassenger(@PathVariable String namePassenger,
