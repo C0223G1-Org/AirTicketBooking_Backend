@@ -18,7 +18,7 @@ public class CustomerService implements ICustomerService {
      * @param pageable
      *Create by: TàiMP
      *Date create: 10/08/2023
-     *getListCustomer()
+     *Method : get all the information of the customers in DB
      *return: Page
      */
     @Override
@@ -29,7 +29,7 @@ public class CustomerService implements ICustomerService {
      * @param pageable,email,name,nationality
      *Create by: TàiMP
      *Date create: 10/08/2023
-     * Method: getListSearchCustomer()
+     * Method: getListSearchCustomer() get pageable, email, name, nationality from CustomerController
      * return: Page
      */
 
@@ -41,7 +41,7 @@ public class CustomerService implements ICustomerService {
      * @param id
      * Create by: TàiMP
      * Date create: 10/08/2023
-     * Method: deleteCustomer()
+     * Method: deleteCustomer() get id from CustomerController
      * return: void
      */
 
@@ -53,7 +53,7 @@ public class CustomerService implements ICustomerService {
      * @param id
      * Create by: TàiMP
      * Date create: 10/08/2023
-     * Method: findCustomerById()
+     * Method: findCustomerById() get id from CustomerController
      * return: Customer
      */
 

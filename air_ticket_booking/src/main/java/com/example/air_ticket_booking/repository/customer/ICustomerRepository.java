@@ -15,7 +15,7 @@ public interface ICustomerRepository extends JpaRepository<Customer,Long> {
     * @param pageable
     *Create by: TàiMP
     *Date create: 10/08/2023
-    *getListCustomer()
+    *Method: get all the information of the customers and have flag_customer = flase in DB
     *return: Page
     */
    @Query(value = " select * from customer where flag_customer=false",nativeQuery = true)
@@ -24,11 +24,11 @@ public interface ICustomerRepository extends JpaRepository<Customer,Long> {
     * @param pageable,email,name,nationality
     *Create by: TàiMP
     *Date create: 10/08/2023
-    * Method: getListSearchCustomer()
+    * Method: get list customers by passing param email,name,nationality to @Query and get data from DB
     * return: Page
     */
 
-   @Query(value = "select * from customer where email_customer like concat('%',:email,'%') and name_customer" +
+   @Query(value = " select * from customer where email_customer like concat('%',:email,'%') and name_customer" +
            " like concat('%',:name,'%') and nationality_customer like concat('%',:nationality,'%') " +
            "and flag_customer = false",nativeQuery = true)
    Page<Customer> getListSearchCustomer(Pageable pageable, @Param("email") String email,@Param("name") String name, @Param("nationality") String nationality);
@@ -36,7 +36,7 @@ public interface ICustomerRepository extends JpaRepository<Customer,Long> {
     * @param id
     * Create by: TàiMP
     * Date create: 10/08/2023
-    * Method: deleteCustomer()
+    * Method: delete by passing param id to @Query set flag_customer = true
     * return: void
     */
    @Modifying
@@ -46,7 +46,7 @@ public interface ICustomerRepository extends JpaRepository<Customer,Long> {
     * @param id
     * Create by: TàiMP
     * Date create: 10/08/2023
-    * Method: findCustomerById()
+    * Method: find customer passing param id to @Query and get data from DB
     * return: Customer
     */
    @Query(value = "select * from customer where id_customer=:id and flag_customer=false ",nativeQuery = true)

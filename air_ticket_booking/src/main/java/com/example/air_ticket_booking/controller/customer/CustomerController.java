@@ -34,6 +34,7 @@ public class CustomerController {
     /**
      * @param pageable, name, nationality, email
      * @return if getListSearch have data return getListSearch and status OK else return status NO_CONTENT
+     * Method: get data from front-end
      *Create by: TàiMP
      *Date create: 10/08/2023
      */
@@ -50,7 +51,8 @@ public class CustomerController {
     /**
      * @param id
      * @return if iCustomerService.findCustomerById(id) have data return status OK and set flag customer = true that customer else return status NOT_FOUND
-     *Create by: TàiMP
+     * Method: get data from front-end and check customer have that id
+     *Creates by: TàiMP
      *Date create: 10/08/2023
      */
     @PutMapping("/{id}")
