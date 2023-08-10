@@ -2,6 +2,7 @@ package com.example.air_ticket_booking.controller.ticket;
 
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
+import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,6 +36,9 @@ public class TicketController {
 
     @Autowired
     private ITicketService iTicketService;
+
+    @Autowired
+    private ITicketRepository ticketRepository;
 
     /**
      * method: used to create a new ticket when the user confirms the booking
@@ -118,11 +122,10 @@ public class TicketController {
         Seat seat = ticketDto.getSeat();
         Customer customer = ticketDto.getCustomer();
 
-        iTicketService.updateTicket(id, price, flag, name, gender, email, tel, idCard, dateBooking, typeTicket, luggage, typePassenger, seat, customer);
+        ticketRepository.updateTicket(id, price, flag, name, gender, email, tel, idCard, dateBooking, typeTicket, luggage, typePassenger, seat, customer);
         return ResponseEntity.ok("Cập nhật vé thành công");
     }
-    @Autowired
-    private ITicketService ticketService;
+
     /**
      * task response data ticket booked to FE
      * @Method showAllTickets
@@ -133,10 +136,10 @@ public class TicketController {
     @GetMapping()
     public ResponseEntity<Page<ITicketProjection>> showAllTickets(Pageable pageable){
         System.out.println("nhan");
-        if(ticketService.findAllTickets(pageable).isEmpty()){
+        if(iTicketService.findAllTickets(pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }else {
-            return new ResponseEntity<>(ticketService.findAllTickets(pageable),HttpStatus.OK);
+            return new ResponseEntity<>(iTicketService.findAllTickets(pageable),HttpStatus.OK);
         }
     }
 
@@ -149,7 +152,7 @@ public class TicketController {
      */
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteTicket(@PathVariable Long id){
-        if(ticketService.deleteTicket(id)) {
+        if(iTicketService.deleteTicket(id)) {
             return new ResponseEntity<>(HttpStatus.OK);
         }else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -165,11 +168,11 @@ public class TicketController {
     @GetMapping("/search/{item}")
     public ResponseEntity<Page<ITicketProjection>> searchTickets(@PathVariable String item,Pageable pageable){
         String[] input = item.split(",");
-        if(ticketService.searchTicket(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable).isEmpty()){
+        if(iTicketService.searchTicket(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         else {
-            return new ResponseEntity<>(ticketService.searchTicket(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable),HttpStatus.OK);
+            return new ResponseEntity<>(iTicketService.searchTicket(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable),HttpStatus.OK);
         }
     }
     /**
@@ -182,10 +185,10 @@ public class TicketController {
     @GetMapping("/unbooked")
     public ResponseEntity<Page<ITicketUnbookedProjection>> findAllTicketUnbooked(Pageable pageable){
         System.out.println("nhan");
-        if(ticketService.findAllTicketUnbooked(pageable).isEmpty()){
+        if(iTicketService.findAllTicketUnbooked(pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }else {
-            return new ResponseEntity<>(ticketService.findAllTicketUnbooked(pageable),HttpStatus.OK);
+            return new ResponseEntity<>(iTicketService.findAllTicketUnbooked(pageable),HttpStatus.OK);
         }
     }
     /**
@@ -198,11 +201,11 @@ public class TicketController {
     @GetMapping("/search-unbooked/{item}")
     public ResponseEntity<Page<ITicketUnbookedProjection>> searchTicketsUnBooked(@PathVariable String item,Pageable pageable){
         String[] input = item.split(",");
-        if(ticketService.searchTicketUnbooked(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable).isEmpty()){
+        if(iTicketService.searchTicketUnbooked(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         else {
-            return new ResponseEntity<>(ticketService.searchTicketUnbooked(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable),HttpStatus.OK);
+            return new ResponseEntity<>(iTicketService.searchTicketUnbooked(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable),HttpStatus.OK);
         }
     }
 }

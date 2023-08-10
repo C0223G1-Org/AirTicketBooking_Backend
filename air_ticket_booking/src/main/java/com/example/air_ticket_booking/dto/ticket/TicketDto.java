@@ -5,6 +5,8 @@ import com.example.air_ticket_booking.model.luggage.Luggage;
 import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
 import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -16,7 +18,7 @@ import javax.validation.constraints.Size;
  * date create: 10/08/2023
  */
 
-public class TicketDto {
+public class TicketDto implements Validator {
     private Long idTicket;
     private Long priceTicket;
     private Boolean flagTicket;
@@ -172,5 +174,15 @@ public class TicketDto {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+
     }
 }

@@ -1,8 +1,6 @@
 package com.example.air_ticket_booking.service.ticket.impl;
 
 
-
-
 import com.example.air_ticket_booking.dto.ticket.TicketDto;
 import com.example.air_ticket_booking.model.customer.Customer;
 import com.example.air_ticket_booking.model.luggage.Luggage;
@@ -28,23 +26,25 @@ import java.util.List;
 public class TicketService implements ITicketService {
     @Autowired
     private ITicketRepository ticketRepository;
+
     /**
-     *method :findTicketByNameAndIdCardPassengers()
+     * method :findTicketByNameAndIdCardPassengers()
      * created by : KietNT
      * date create: 10/08/2023
-     * @param namePassenger,idCardPassenger
-     * return List Ticket
+     *
+     * @param namePassenger,idCardPassenger return List Ticket
      */
     @Override
     public List<Ticket> findTicketByNameAndIdCard(String namePassenger, String idCardPassenger) {
-        return ticketRepository.findTicketByNameAndIdCardPassengers(namePassenger,idCardPassenger);
+        return ticketRepository.findTicketByNameAndIdCardPassengers(namePassenger, idCardPassenger);
     }
+
     /**
      * method :used to create a new ticket when the user confirms the booking
      * created by :NamPC
      * date create: 10/08/2023
-     * @param "ticketDto"
-     * return void
+     *
+     * @param "ticketDto" return void
      */
 
     @Override
@@ -55,25 +55,26 @@ public class TicketService implements ITicketService {
         ticketRepository.createNewTicket(ticket);
     }
 
-        /**
-         *Create by: VuDT
-         *Date create: 10/08/2023
-         * Function:updateTicket()
-         * @Param: ticket
-         * @Return: void
-         */
-        @Transactional
-        public void updateTicket(Long id, Long price, Boolean flag, String name, Boolean gender, String email, String tel, String idCard,
-                                 String dateBooking, TypeTicket typeTicket, Luggage luggage, TypePassenger typePassenger, Seat seat, Customer customer) {
-            ticketRepository.updateTicket(id, price, flag, name, gender, email, tel, idCard, dateBooking, typeTicket, luggage, typePassenger, seat, customer);
-        }
-    @Autowired
-    private  ITicketRepository ticketRepository;
+    /**
+     * Create by: VuDT
+     * Date create: 10/08/2023
+     * Function:updateTicket()
+     *
+     * @Param: ticket
+     * @Return: void
+     */
+    @Transactional
+    public void updateTicket(Long id, Long price, Boolean flag, String name, Boolean gender, String email, String tel, String idCard,
+                             String dateBooking, TypeTicket typeTicket, Luggage luggage, TypePassenger typePassenger, Seat seat, Customer customer) {
+        ticketRepository.updateTicket(id, price, flag, name, gender, email, tel, idCard, dateBooking, typeTicket, luggage, typePassenger, seat, customer);
+    }
+
     /**
      * task get all Ticket booked
-     * @Method findAllTickets
+     *
      * @param pageable
      * @return Page<Ticket>
+     * @Method findAllTickets
      * @author Nhàn NA
      */
     @Override
@@ -85,57 +86,66 @@ public class TicketService implements ITicketService {
             throw new RuntimeException("Lỗi khi truy vấn dữ liệu từ database", e);
         }
     }
+
     /**
      * task get Ticket by id
-     * @Method findByTicket
+     *
      * @param id
      * @return Ticket or null
+     * @Method findByTicket
      * @author Nhàn NA
      */
     @Override
     public Ticket findByIdTicket(Long id) {
-        if(ticketRepository.findByTicket(id).isPresent()){
+        if (ticketRepository.findByTicket(id).isPresent()) {
             return ticketRepository.findByTicket(id).get();
         }
         return null;
     }
+
     /**
      * task delete ticket
-     * @Method findByTicket
+     *
      * @param id
      * @return boolean
+     * @Method findByTicket
      * @author Nhàn NA
      */
 
     @Override
     public boolean deleteTicket(Long id) {
-        if(findByIdTicket(id)!=null){
+        if (findByIdTicket(id) != null) {
             ticketRepository.deleteTicketById(id);
             return true;
         }
         return false;
     }
+
     /**
      * task search ticket
-     * @Method searchTicket
+     *
      * @param idTypeTicket, namePassenger, nameRoute,  nameDeparture, nameDestination,pageable
      * @return Page<Ticket>
+     * @Method searchTicket
      * @author Nhàn NA
      */
     @Override
     public Page<ITicketProjection> searchTicket(Long idTypeTicket, String namePassenger, String nameRoute, String nameDeparture, String nameDestination, Pageable pageable) {
         try {
-            return ticketRepository.searchTicket(idTypeTicket, namePassenger, nameRoute,  nameDeparture, nameDestination,pageable);
+//            return ticketRepository.searchTicket(idTypeTicket, namePassenger, nameRoute, nameDeparture, nameDestination, pageable);
+            return null;
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Lỗi khi truy vấn dữ liệu từ database", e);
         }
     }
+
     /**
      * task get all ticket unbooked
-     * @Method findAllTicketUnbooked
+     *
      * @param pageable
      * @return Page<Ticket>
+     * @Method findAllTicketUnbooked
      * @author Nhàn NA
      */
     @Override
@@ -147,20 +157,23 @@ public class TicketService implements ITicketService {
             throw new RuntimeException("Lỗi khi truy vấn dữ liệu từ database", e);
         }
     }
+
     /**
      * task search ticket unbooked
-     * @Method searchTicketUnbooked
+     *
      * @param idTypeSeat,positionSeat,nameRoute,nameDeparture,nameDestination,pageable
      * @return Page<Ticket>
+     * @Method searchTicketUnbooked
      * @author Nhàn NA
      */
     @Override
     public Page<ITicketUnbookedProjection> searchTicketUnbooked(Long idTypeSeat, String positionSeat, String nameRoute, String nameDeparture, String nameDestination, Pageable pageable) {
         try {
-            return ticketRepository.searchTicketUnbooked(idTypeSeat,positionSeat,nameRoute,nameDeparture,nameDestination,pageable);
+//            return ticketRepository.searchTicketUnbooked(idTypeSeat, positionSeat, nameRoute, nameDeparture, nameDestination, pageable);
+            return null;
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Lỗi khi truy vấn dữ liệu từ database", e);
         }
     }
-    }
+}
