@@ -47,7 +47,7 @@ public interface ICustomerRepository extends JpaRepository<Customer,Long> {
    @Query(value = "update customer set flag_customer=true where id_customer = :id and flag_customer=false",nativeQuery = true)
    void deleteCustomer(@Param("id") Long id);
    /**
-    * @param id
+    *  @param id
     * Create by: TàiMP
     * Date create: 10/08/2023
     * Method: find customer passing param id to @Query and get data from DB
