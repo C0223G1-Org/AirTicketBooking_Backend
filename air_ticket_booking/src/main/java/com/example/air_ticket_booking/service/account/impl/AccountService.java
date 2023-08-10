@@ -19,6 +19,14 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by: NhanDT
+ * Date created: 10/08/2023
+ * Function: Login , SignUp
+ *
+ * @param
+ * @return
+ */
 @Service
 public class AccountService implements UserDetailsService,IAccountService {
     @Autowired
