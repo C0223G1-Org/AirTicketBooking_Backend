@@ -26,8 +26,8 @@ public class TicketController {
      *Create by: VuDT
      *Date create: 10/08/2023
      * Function:getTicketById()
-     * @Param: ticketDto
-     * @Return: void
+     * @Param: Long id
+     * @Return: ticket
      */
     @GetMapping("/{id}")
     public ResponseEntity<Ticket> getTicketById(@PathVariable Long id){
@@ -40,13 +40,12 @@ public class TicketController {
     /**
      *Create by: VuDT
      *Date create: 10/08/2023
-     * Function:updateTicket()
+     * Function: updateTicket()
      * @Param: ticketDto
-     * @Return: void
+     * @Return: ticket
      */
 
     @PutMapping("/updateTicket/{id}")
-
     public ResponseEntity<?> updateTicket(@PathVariable Long id,@RequestBody TicketDto ticketDto, BindingResult bindingResult ) {
         ticketDto.validate(ticketDto, bindingResult);
         if (bindingResult.hasErrors()) {
