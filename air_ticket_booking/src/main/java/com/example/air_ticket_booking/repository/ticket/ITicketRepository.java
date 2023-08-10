@@ -7,12 +7,20 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import javax.transaction.Transactional;
-
+import java.util.List;
 @Repository
-@Transactional
-
-public interface ITicketRepository extends JpaRepository<Ticket ,Long> {
+public interface ITicketRepository extends JpaRepository<Ticket, Long> {
+    /**
+     *method :findTicketByNameAndIdCardPassengers()
+     * created by :KietNT
+     * date create: 10/08/2023
+     * @param namePassenger,idCardPassenger
+     * return List Ticket
+     */
+    @Query(nativeQuery = true,
+            value = "select * from ticket where name_passenger like concat('%', :namePassenger, '%') and id_card_passenger = :idCardPassenger;")
+    List<Ticket> findTicketByNameAndIdCardPassengers(@Param("namePassenger") String namePassenger,
+                                                     @Param("idCardPassenger") String idCardPassenger);
     /**
      *method :used to create a new ticket when the user confirms the booking
      * created by :NamPC
@@ -34,4 +42,3 @@ public interface ITicketRepository extends JpaRepository<Ticket ,Long> {
             ,nativeQuery = true)
     void createNewTicket(@Param("ticket")Ticket ticket);
 }
-
