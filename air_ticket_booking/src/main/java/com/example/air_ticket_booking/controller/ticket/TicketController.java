@@ -17,11 +17,46 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/ticket")
 @CrossOrigin("*")
+@RequestMapping("/tickets")
 public class TicketController {
+
     @Autowired
-    private TicketService ticketService;
+    private ITicketService iTicketService;
+
+    /**
+     * method: used to create a new ticket when the user confirms the booking
+     * created by :NamPC
+     * date create: 10/08/2023
+     * @param ticketDto
+     * @param bindingResult
+     * @return httpStatus
+     */
+
+    @PostMapping()
+    public ResponseEntity<?> createNewTicket(@RequestBody TicketDto ticketDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        iTicketService.createNewTicket(ticketDto);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
+     * method :findTicketByNameAndIdCardPassengers()
+     * created by :KietNT
+     * date create: 10/08/2023
+     * @param namePassenger,idCardPassenger
+     * return List Ticket
+     */
+    @GetMapping("/search-ticket/{namePassenger}/{idCardPassenger}")
+    @ResponseBody
+    public ResponseEntity<?> findTicketByNameAndIdCardPassenger(@PathVariable String namePassenger,
+                                                                @PathVariable String idCardPassenger) {
+        return new ResponseEntity<>(iTicketService.findTicketByNameAndIdCard(namePassenger, idCardPassenger),
+                HttpStatus.OK);
+    }
+
     /**
      *Create by: VuDT
      *Date create: 10/08/2023
@@ -31,7 +66,7 @@ public class TicketController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Ticket> getTicketById(@PathVariable Long id){
-        Ticket ticket= this.ticketService.findByIdTicket(id);
+        Ticket ticket= this.iTicketService.findByIdTicket(id);
         if(ticket == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -52,7 +87,7 @@ public class TicketController {
             return ResponseEntity.badRequest().body("Lỗi validation");
         }
 
-        Ticket existingTicket = ticketService.findByIdTicket(id);
+        Ticket existingTicket = iTicketService.findByIdTicket(id);
         if (existingTicket == null) {
             return ResponseEntity.notFound().build();
         }
@@ -71,9 +106,7 @@ public class TicketController {
         Seat seat = ticketDto.getSeat();
         Customer customer = ticketDto.getCustomer();
 
-        ticketService.updateTicket(id, price, flag, name, gender, email, tel, idCard, dateBooking, typeTicket, luggage, typePassenger, seat, customer);
-
+        iTicketService.updateTicket(id, price, flag, name, gender, email, tel, idCard, dateBooking, typeTicket, luggage, typePassenger, seat, customer);
         return ResponseEntity.ok("Cập nhật vé thành công");
     }
-
 }

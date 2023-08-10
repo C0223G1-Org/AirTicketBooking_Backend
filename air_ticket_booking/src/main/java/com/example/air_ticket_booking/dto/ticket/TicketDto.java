@@ -5,52 +5,44 @@ import com.example.air_ticket_booking.model.luggage.Luggage;
 import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
 import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+/**
+ *class : class use verify the validity of the data
+ * created by :NamPC
+ * date create: 10/08/2023
+ */
 
-public class TicketDto implements Validator {
-    /**
-     *Create by: VuDT
-     *Date create: 10/08/2023
-     * class :TicketDto()
-     * @Param: ticketDto
-     * @Return: validation
-     */
-    @NotBlank
-
+public class TicketDto {
     private Long idTicket;
-    @NotBlank
     private Long priceTicket;
-    @NotBlank
     private Boolean flagTicket;
-    @NotBlank
-    @Size(min = 2, max = 40)
+    @NotBlank(message = "Không được để trống")
+    @Size(max = 50,message = "Tên không vượt quá 50 ký tự")
+    @Size(min = 10, message = "Tên ít nhất 10 ký tự")
+    @Pattern(regexp = "^([A-Z][a-z]{0,7}\\s){1,5}[A-Z][a-z]{0,7}$",message = "Tên không đúng định dạng")
     private String namePassenger;
+    @NotBlank(message = "Không được để trống")
     private Boolean genderPassenger;
+    @Pattern(regexp = "/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6})*$/\n",message = "Email không đúng định dạng")
     private String emailPassenger;
-    private String telPassenger;
+    @Pattern(regexp = "^(84|0)(3|5|7|8|9)[0-9]{8}$",message = "Số điện thoại phải đúng định dạng")
+    private  String telPassenger;
+    @Pattern(regexp = "^([0-9]{12})|([A-Z][0-9]{7})$",message = "12 số với CCCD, 8 số với Passport")
     private String idCardPassenger;
     private String dateBooking;
-
     private TypeTicket typeTicket;
-
     private Luggage luggage;
-
     private TypePassenger typePassenger;
-
     private Seat seat;
-    @Email
-    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",message = "Email không hợp lệ")
     private Customer customer;
 
-    public TicketDto() {
-    }
-
-    public TicketDto(Long idTicket, Long priceTicket, Boolean flagTicket, String namePassenger, Boolean genderPassenger, String emailPassenger, String telPassenger, String idCardPassenger, String dateBooking, TypeTicket typeTicket, Luggage luggage, TypePassenger typePassenger, Seat seat, Customer customer) {
+    public TicketDto(Long idTicket, Long priceTicket, Boolean flagTicket, String namePassenger, Boolean genderPassenger,
+                     String emailPassenger, String telPassenger, String idCardPassenger, String dateBooking,
+                     TypeTicket typeTicket, Luggage luggage, TypePassenger typePassenger, Seat seat, Customer customer) {
         this.idTicket = idTicket;
         this.priceTicket = priceTicket;
         this.flagTicket = flagTicket;
@@ -65,6 +57,9 @@ public class TicketDto implements Validator {
         this.typePassenger = typePassenger;
         this.seat = seat;
         this.customer = customer;
+    }
+
+    public TicketDto() {
     }
 
     public Long getIdTicket() {
@@ -177,15 +172,5 @@ public class TicketDto implements Validator {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return false;
-    }
-
-    @Override
-    public void validate(Object target, Errors errors) {
-
     }
 }
