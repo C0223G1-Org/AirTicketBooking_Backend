@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -78,10 +79,11 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
      * @Return: void
      */
     @Modifying
+    @Transactional
     @Query(value = "insert into customer(name_customer,gender_customer, email_customer, date_customer," +
             "id_card_customer, address_customer, flag_customer, img_customer, tel_customer,nationality_customer,account_id_account)" +
             "values (:#{#accountDto.nameCustomer},:#{#accountDto.genderCustomer},:#{#accountDto.emailCustomer},:#{#accountDto.dateCustomer}" +
-            ",:#{#accountDto.idCardCustomer},:#{#accountDto.addressCustomer},0,," +
+            ",:#{#accountDto.idCardCustomer},:#{#accountDto.addressCustomer},0,:#{#accountDto.flagCustomer}," +
             ":#{#accountDto.telCustomer},:#{#accountDto.nationalityCustomer},:idAccountNew)", nativeQuery = true)
     void createCustomer(@Param("accountDto")AccountDto accountDto,@Param("idAccountNew") Long idAccountNew);
 }

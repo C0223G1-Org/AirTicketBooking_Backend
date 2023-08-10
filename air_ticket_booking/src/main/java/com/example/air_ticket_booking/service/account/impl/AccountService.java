@@ -52,7 +52,9 @@ public class AccountService implements UserDetailsService,IAccountService {
     @Override
     public boolean signUp(AccountDto accountDto) {
         String email = accountDto.getEmailCustomer();
-        if(checkExistAccount(email) || checkExistCustomer(email)){
+        Boolean checkExistAccount = checkExistAccount(email);
+        Boolean checkExistCustomer = checkExistCustomer(email);
+        if(checkExistAccount || checkExistCustomer){
             return false;
         }
         String encoderPassword = passwordEncoder.encode(accountDto.getPassword());
