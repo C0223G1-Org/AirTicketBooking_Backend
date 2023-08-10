@@ -1,8 +1,10 @@
 package com.example.air_ticket_booking.service.post.impl;
 
+import com.example.air_ticket_booking.dto.post.PostDto;
 import com.example.air_ticket_booking.model.post.Post;
 import com.example.air_ticket_booking.repository.post.IPostRepository;
 import com.example.air_ticket_booking.service.post.IPostService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,14 +17,7 @@ public class PostService implements IPostService {
     @Autowired
     private IPostRepository iPostRepository;
 
-    /**
-     * Create by : TriPD
-     * Date created : 10/08/2023
-     * Function : createPost()
-     *
-     * @Param:postDto
-     * @Return: void
-     */
+
 
     /**
      * Author: SonTT
@@ -36,12 +31,17 @@ public class PostService implements IPostService {
         return iPostRepository.getListPostByFlag(pageable);
     }
 
+
+
+
+
     /**
-     * Author: SonTT
-     * Date create: 10/8/2023
-     * Handling:Get data from the call link to the corresponding repository to check if it exists or not, if not, return null otherwise, return the data received from the repository
-     * @param id
-     * @return Post
+     * Create by : TriPD
+     * Date created : 10/08/2023
+     * Function : createPost()
+     *
+     * @Param:postDto
+     * @Return: void
      */
     @Override
     public void createPost(PostDto postDTO) {
@@ -69,8 +69,8 @@ public class PostService implements IPostService {
      * @Return: Post
      */
     @Override
-    public Post findPostById(Long id) {
-        return iPostRepository.findPostById(id);
+    public Post findPostsById(Long id) {
+        return iPostRepository.findPostsById(id);
     }
 
 
@@ -87,7 +87,7 @@ public class PostService implements IPostService {
      */
     @Override
     public void savePost(PostDto postDto) {
-        Post post = iPostRepository.findPostById(postDto.getId());
+        Post post = iPostRepository.findPostsById(postDto.getId());
         post.setTitle(postDto.getTitle());
         post.setDatePost(postDto.getDatePost());
         post.setImage(postDto.getImage());
@@ -101,6 +101,16 @@ public class PostService implements IPostService {
                 post.getEmployee().getIdEmployee(),
                 post.getId()
         );
+    }
+
+        /**
+         * Author: SonTT
+         * Date create: 10/8/2023
+         * Handling:Get data from the call link to the corresponding repository to check if it exists or not, if not, return null otherwise, return the data received from the repository
+         * @param id
+         * @return Post
+         */
+
     public Post findPostById(Long id) {
         if (!iPostRepository.findPostById(id).isPresent()){
             return null;

@@ -15,14 +15,7 @@ import java.util.Optional;
 
 public interface IPostRepository extends JpaRepository<Post, Long> {
 
-    /**
-     * Create by : TriPD
-     * Date created : 10/08/2023
-     * Function : createPost()
-     *
-     * @Param:title,flagPost,datePost,image,content,employeeId
-     * @Return: void
-     */
+
 
     /**
      * Author: SonTT
@@ -35,6 +28,17 @@ public interface IPostRepository extends JpaRepository<Post, Long> {
 
     @Query(value = "SELECT * FROM Post JOIN Employee ON Employee.id_employee = Post.employee_id WHERE Post.flag_post = false and Post.id = :id",nativeQuery = true)
     Optional<Post> findPostById(@Param("id") Long id);
+
+
+
+    /**
+     * Create by : TriPD
+     * Date created : 10/08/2023
+     * Function : createPost()
+     *
+     * @Param:title,flagPost,datePost,image,content,employeeId
+     * @Return: void
+     */
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO post(title, flag_post, date_post, image, content, employee_id) " +
@@ -58,7 +62,7 @@ public interface IPostRepository extends JpaRepository<Post, Long> {
 
     @Transactional
     @Query(value = "select * from post where id= :id", nativeQuery = true)
-    Post findPostById(@Param("id") Long id);
+    Post findPostsById(@Param("id") Long id);
 
 
 

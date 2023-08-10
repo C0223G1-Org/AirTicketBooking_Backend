@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/api/post")
 @RestController
-@RequestMapping("/api/employee/post")
 @CrossOrigin("*")
 public class PostController {
     @Autowired
@@ -39,6 +38,10 @@ public class PostController {
     public ResponseEntity<?> createPosts(@Validated @RequestBody PostDto postDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
+        }
+        iPostService.createPost(postDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
     /**
      * Author: SonTT
      * handling:receive pagination data and find the service to perform the task, if empty,
@@ -53,8 +56,6 @@ public class PostController {
         if (this.iPostService.getListPost(pageable).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        iPostService.createPost(postDTO);
-        return new ResponseEntity<>(HttpStatus.CREATED);
         return new ResponseEntity<>(this.iPostService.getListPost(pageable), HttpStatus.ACCEPTED);
     }
 
@@ -70,7 +71,7 @@ public class PostController {
          */
     @GetMapping("/findPost/{id}")
     public ResponseEntity<PostDto> findPostById(@PathVariable Long id){
-        Post post = this.iPostService.findPostById(id);
+        Post post = this.iPostService.findPostsById(id);
         if (post == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -97,7 +98,6 @@ public class PostController {
         }
     }
 
-}
 
 
 

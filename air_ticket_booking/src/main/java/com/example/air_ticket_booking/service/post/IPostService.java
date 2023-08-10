@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 public interface IPostService {
     void createPost(PostDto postDTO);
 
-    Post findPostById(Long id);
+    Post findPostsById(Long id);
 
     void savePost(PostDto postDto);
     Page<Post> getListPost(Pageable pageable);
