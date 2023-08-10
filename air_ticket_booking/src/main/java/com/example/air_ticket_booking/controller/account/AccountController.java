@@ -4,6 +4,7 @@ import com.example.air_ticket_booking.config.JwtTokenUtil;
 import com.example.air_ticket_booking.config.JwtUserDetails;
 import com.example.air_ticket_booking.reponse.JwtRequest;
 import com.example.air_ticket_booking.reponse.JwtResponse;
+import com.example.air_ticket_booking.service.account.impl.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,10 +32,8 @@ public class AccountController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
-//    @Autowired
-//    private UsersService usersService;
-//    @Autowired
-//    private EmailService emailService;
+    @Autowired
+    private AccountService accountService;
 
     class ErrorInfo {
         private String error;
