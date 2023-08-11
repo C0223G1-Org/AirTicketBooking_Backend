@@ -85,6 +85,7 @@ public class EmployeeService implements IEmployeeService {
     }
 
 
+
     /**
      * Create by: HuyHD;
      * Date create: 10/08/2023
@@ -123,5 +124,10 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public Page<Employee> searchEmployee(Boolean gender, String name, Pageable pageable) {
         return employeeRepository.searchEmployee(gender, name, pageable);
+    }
+
+    @Override
+    public Employee getEmployeeById(Long id) {
+        return employeeRepository.findWithIdEmployee(id);
     }
 }

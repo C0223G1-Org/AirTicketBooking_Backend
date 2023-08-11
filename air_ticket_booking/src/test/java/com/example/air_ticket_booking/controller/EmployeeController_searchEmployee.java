@@ -18,9 +18,13 @@ public class EmployeeController_searchEmployee {
     @Autowired
     private MockMvc mockMvc;
 
-
+    /**
+     * Create by: HuyHD;
+     * Date create: 11/08/2023
+     * Test case searches for employees with incorrect "gender" and "name" parameters
+     */
     @Test
-    public void searchEmployee_10() throws Exception {
+    public void searchEmployee_7() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
                                 .get("/api/employee/search")
@@ -32,7 +36,45 @@ public class EmployeeController_searchEmployee {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Create by: HuyHD;
+     * Date create: 11/08/2023
+     * Test case searching for employees with incorrect "gender" parameter
+     */
+    @Test
+    public void searchEmployee_7_2() throws Exception {
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders
+                                .get("/api/employee/search")
+                                .param("gender", "aaaa")
+                                .param("page", "0")
+                                .param("size", "2"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
 
+    /**
+     * Create by: HuyHD;
+     * Date create: 11/08/2023
+     * Test case searching for employees with incorrect "name" parameter
+     */
+    @Test
+    public void searchEmployee_7_3() throws Exception {
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders
+                                .get("/api/employee/search")
+                                .param("name", "1111")
+                                .param("page", "0")
+                                .param("size", "2"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    /**
+     * Create by: HuyHD;
+     * Date create: 11/08/2023
+     * Function: Test case for searching employees with specific "gender" parameters and validating the response JSON.
+     */
     @Test
     public void searchEmployee_11_1() throws Exception {
         this.mockMvc.perform(
@@ -53,6 +95,11 @@ public class EmployeeController_searchEmployee {
                 .andExpect(jsonPath("content[1].emailEmployee").value("cccc@gmail.com"));
     }
 
+    /**
+     * Create by: HuyHD;
+     * Date create: 11/08/2023
+     * Function: Test case to search for employees with specific "name" parameters and validate response JSON.
+     */
     @Test
     public void searchEmployee_11_2() throws Exception {
         this.mockMvc.perform(
@@ -70,24 +117,11 @@ public class EmployeeController_searchEmployee {
                 .andExpect(jsonPath("content[0].emailEmployee").value("bbbbb@gmail.com"));
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * Create by: HuyHD;
+     * Date create: 11/08/2023
+     * Test case to search for employees with specific "gender" and "name" parameters and validate response JSON.
+     */
     @Test
     public void searchEmployee_11() throws Exception {
         this.mockMvc.perform(

@@ -17,6 +17,11 @@ public class EmployeeController_getListEmployee {
     @Autowired
     private MockMvc mockMvc;
 
+    /**
+     * Create by: HuyHD;
+     * Date create: 11/08/2023
+     * Test case for getting a list of employees with specific page and limit.
+     */
     @Test
     public void getListEmployee_5() throws Exception {
         this.mockMvc.perform(
@@ -25,6 +30,11 @@ public class EmployeeController_getListEmployee {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Create by: HuyHD;
+     * Date create: 11/08/2023
+     * Test case for getting a list of employees with specific page and limit, and validating the response JSON.
+     */
     @Test
     public void getListEmployee_6() throws Exception {
         this.mockMvc.perform(

@@ -127,8 +127,17 @@ public class EmployeeController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
-        this.employeeService.deleteEmployee(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        Employee employee = this.employeeService.getEmployeeById(id);
+        if (employee == null) {
+            return  new ResponseEntity<>("Không tìm thấy nhân viên" ,HttpStatus.NOT_FOUND);
+        }
+
+        try {
+            this.employeeService.deleteEmployee(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Đã xảy ra lỗi! Không thể xóa nhân viên này!", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**

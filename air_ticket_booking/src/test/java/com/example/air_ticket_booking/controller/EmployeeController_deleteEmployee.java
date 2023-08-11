@@ -15,5 +15,64 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class EmployeeController_deleteEmployee {
+    @Autowired
+    private MockMvc mockMvc;
 
+    /**
+     * Create by: HuyHD;
+     * Date create: 11/08/2023
+     * Test case to delete an existing employee by ID = null
+     * @throws Exception if an error occurs during the test
+     */
+    @Test
+    public void delete_Employee_25() throws Exception {
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.delete("/api/employee/"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    /**
+     * Create by: HuyHD;
+     * Date create: 11/08/2023
+     * Test case to delete an existing employee by ID = "".
+     * @throws Exception if an error occurs during the test
+     */
+    @Test
+    public void delete_Employee_26() throws Exception {
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.delete("/api/employee/{id}", ""))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    /**
+     * Create by: HuyHD;
+     * Date create: 11/08/2023
+     * Test case to delete an existing employee by ID no cos in data
+     * @throws Exception if an error occurs during the test
+     */
+    @Test
+    public void delete_Employee_27() throws Exception {
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.delete("/api/employee/{id}", 1000))
+
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    /**
+     * Create by: HuyHD;
+     * Date create: 11/08/2023
+     * Function: Test case for deleting an existing employee by ID.
+     * @throws Exception if an error occurs during the test
+     */
+
+    @Test
+    public void delete_Employee_28() throws Exception {
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.delete("/api/employee/{id}", 2))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+    }
 }
