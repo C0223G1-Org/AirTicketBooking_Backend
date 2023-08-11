@@ -8,6 +8,7 @@ import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
 import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
+import com.example.air_ticket_booking.projection.ITicketPassengerProjection;
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
 import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
@@ -35,8 +36,8 @@ public class TicketService implements ITicketService {
      * @param namePassenger,idCardPassenger return List Ticket
      */
     @Override
-    public List<Ticket> findTicketByNameAndIdCard(String namePassenger, String idCardPassenger) {
-        return ticketRepository.findTicketByNameAndIdCardPassengers(namePassenger, idCardPassenger);
+    public Page<ITicketPassengerProjection> findTicketByNameAndIdCard(String namePassenger, String idCardPassenger, Pageable pageable) {
+        return ticketRepository.findTicketByNameAndIdCardPassengers(namePassenger, idCardPassenger,pageable);
     }
 
     /**
