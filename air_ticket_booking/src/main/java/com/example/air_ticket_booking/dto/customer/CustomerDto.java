@@ -3,37 +3,38 @@ package com.example.air_ticket_booking.dto.customer;
 import com.example.air_ticket_booking.model.account.Account;
 
 import javax.validation.Validator;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 
 public class CustomerDto {
     private Long idCustomer;
     @NotBlank(message = "Không được để trống trường này")
-    @Size(max = 30)
+    @Size(max = 30, min = 3, message = "Họ và tên tối thiểu 3 ký tự và tối đa 30 ký tự ")
     @Pattern(regexp = "^[\\p{Lu}][\\p{Ll}]*([\\s][\\p{Lu}][\\p{Ll}]*)*$", message = "Bạn phải viết hoa chữ cái đầu của từng từ và có khoảng trắng giữa các từ")
     private String nameCustomer;
+    private boolean genderCustomer;
     @NotBlank(message = "Không được để trống trường này")
-    private Boolean genderCustomer;
-    @NotBlank(message = "Không được để trống trường này")
-    @Pattern(regexp = "^\\w+@\\w+(.\\w+)$", message = "Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt ")
+    @Email(message = "Nhập theo định dạng email")
+    @Size(min = 3, max = 50, message = "Email tối thiểu 3 ký tự và tối đa 50 ký tự")
     private String emailCustomer;
     @NotBlank(message = "Không được để trống trường này")
-    @Pattern(regexp = "^0[0-9]{9}", message = "Nhập theo định dạng 0xxxxxxxxx với x là ký tự số")
+    @Pattern(regexp = "^(\\+84|0)[1-9][0-9]{8}$", message = "Nhập theo định dạng +84xxxxxxxxx hoặc 0xxxxxxxxx với x là ký tự số")
+    @Size(min = 3, max = 20, message = "Số điện thoại tối thiểu 3 ký tự và tối đa 20 ký tự ")
     private String telCustomer;
     @NotBlank(message = "Không được để trống trường này")
+    @Size(min = 3,max = 100, message = "Địa chỉ tối thiểu 3 ký tự và tối đa 100 ký tự")
     private String addressCustomer;
-
+    @NotBlank(message = "Không được để trống trường này")
     private String imgCustomer;
     @NotBlank(message = "Không được để trống trường này")
     private String nationalityCustomer;
     @NotBlank(message = "Không được để trống trường này")
-    @Pattern(regexp = "^[0-9]{12}", message = "Nhập vào 12 ký tự số liên tiếp")
+    @Size(min = 6,max = 12, message = "CCCD/Passport tối thiểu 6 ký tự và tối đa 12 ký tự")
+    @Pattern(regexp = "^([A-Z]|[0-9])+$", message = "Nhập vào chữ viết hoa và ký tự")
     private String idCardCustomer;
     @NotBlank(message = "Không được để trống trường này")
     private String dateCustomer;
-    @NotBlank(message = "Không được để trống trường này")
+
     private Boolean flagCustomer;
     private Account account;
 
