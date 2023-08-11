@@ -1,8 +1,11 @@
 package com.example.air_ticket_booking.controller.employee;
 
 import com.example.air_ticket_booking.dto.employee.EmployeeDto;
+import com.example.air_ticket_booking.model.employee.Employee;
 import com.example.air_ticket_booking.service.employee.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -97,8 +100,7 @@ public class EmployeeController {
             }
         }
     }
-    @Autowired
-    private IEmployeeService employeeService;
+
     /**
      * Create by: HuyHD;
      * Date create: 10/08/2023
