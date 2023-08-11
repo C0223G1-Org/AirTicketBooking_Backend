@@ -13,7 +13,10 @@ public interface IPostService {
     Post findPostsById(Long id);
 
     void savePost(PostDto postDto);
+
     Page<Post> getListPost(Pageable pageable);
+
     Post findPostById(Long id);
+
     boolean deletePostById(Long id);
 }

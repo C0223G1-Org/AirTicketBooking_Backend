@@ -17,12 +17,11 @@ public class PostService implements IPostService {
     @Autowired
     private IPostRepository iPostRepository;
 
-
-
     /**
      * Author: SonTT
      * Date create: 10/8/2023
      * Handling: Get data from link, call repository corresponding to return data
+     *
      * @param pageable
      * @return Page<Post>
      */
@@ -30,10 +29,6 @@ public class PostService implements IPostService {
     public Page<Post> getListPost(Pageable pageable) {
         return iPostRepository.getListPostByFlag(pageable);
     }
-
-
-
-
 
     /**
      * Create by : TriPD
@@ -47,18 +42,8 @@ public class PostService implements IPostService {
     public void createPost(PostDto postDTO) {
         Post post = new Post();
         BeanUtils.copyProperties(postDTO, post);
-        iPostRepository.createPost(
-                post.getTitle(),
-                post.isFlagPost(),
-                post.getDatePost(),
-                post.getImage(),
-                post.getContent(),
-                post.getEmployee().getIdEmployee()
-        );
+        iPostRepository.createPost(post.getTitle(), post.isFlagPost(), post.getDatePost(), post.getImage(), post.getContent(), post.getEmployee().getIdEmployee());
     }
-
-
-
 
     /**
      * Create by : TriPD
@@ -72,10 +57,6 @@ public class PostService implements IPostService {
     public Post findPostsById(Long id) {
         return iPostRepository.findPostsById(id);
     }
-
-
-
-
 
     /**
      * Create by : TriPD
@@ -93,28 +74,22 @@ public class PostService implements IPostService {
         post.setImage(postDto.getImage());
         post.setContent(postDto.getContent());
         post.setEmployee(postDto.getEmployee());
-        iPostRepository.updatePost(
-                post.getTitle(),
-                post.getDatePost(),
-                post.getImage(),
-                post.getContent(),
-                post.getEmployee().getIdEmployee(),
-                post.getId()
-        );
+        iPostRepository.updatePost(post.getTitle(), post.getDatePost(), post.getImage(), post.getContent(), post.getEmployee().getIdEmployee(), post.getId());
     }
 
-        /**
-         * Author: SonTT
-         * Date create: 10/8/2023
-         * Handling:Get data from the call link to the corresponding repository to check if it exists or not, if not, return null otherwise, return the data received from the repository
-         * @param id
-         * @return Post
-         */
 
+    /**
+     * Author: SonTT
+     * Date create: 10/8/2023
+     * Handling:Get data from the call link to the corresponding repository to check if it exists or not, if not, return null otherwise, return the data received from the repository
+     *
+     * @param id
+     * @return Post
+     */
     public Post findPostById(Long id) {
-        if (!iPostRepository.findPostById(id).isPresent()){
+        if (!iPostRepository.findPostById(id).isPresent()) {
             return null;
-        }else {
+        } else {
             return iPostRepository.findPostById(id).get();
         }
     }
@@ -123,14 +98,15 @@ public class PostService implements IPostService {
      * Author: SonTT
      * Date create: 10/8/2023
      * Handling: get data from link call findPostById() method to check if null or not, return true otherwise, update flag returns false
+     *
      * @param id
      * @return boolean
      */
     @Override
     public boolean deletePostById(Long id) {
-        if (findPostById(id)==null){
+        if (findPostById(id) == null) {
             return true;
-        }else {
+        } else {
             iPostRepository.deletePostById(id);
             return false;
         }

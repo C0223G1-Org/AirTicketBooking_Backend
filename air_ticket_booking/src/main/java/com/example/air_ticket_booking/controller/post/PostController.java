@@ -16,15 +16,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
-
 @RequestMapping("/api/post")
 @RestController
 @CrossOrigin("*")
 public class PostController {
     @Autowired
     private IPostService iPostService;
-
-
 
     /**
      * Create by : TriPD
@@ -42,13 +39,15 @@ public class PostController {
         iPostService.createPost(postDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     /**
      * Author: SonTT
      * handling:receive pagination data and find the service to perform the task, if empty,
      * return NOT_FOUND status otherwise return page and status ACCEPTED
+     *
      * @param page
      * @param limit
-     * @return ResponseEntity<Page<Post>>
+     * @return ResponseEntity<Page < Post>>
      */
     @GetMapping("/{page}/{limit}")
     public ResponseEntity<Page<Post>> getListPost(@PathVariable(value = "page", required = false) Integer page, @PathVariable(value = "limit", required = false) Integer limit) {
@@ -59,18 +58,16 @@ public class PostController {
         return new ResponseEntity<>(this.iPostService.getListPost(pageable), HttpStatus.ACCEPTED);
     }
 
-
-
-        /**
-         * Create by : TriPD
-         * Date created : 10/08/2023
-         * Function : findPostById()
-         *
-         * @Param: id
-         * @Return: Post
-         */
+    /**
+     * Create by : TriPD
+     * Date created : 10/08/2023
+     * Function : findPostById()
+     *
+     * @Param: id
+     * @Return: Post
+     */
     @GetMapping("/findPost/{id}")
-    public ResponseEntity<PostDto> findPostById(@PathVariable Long id){
+    public ResponseEntity<PostDto> findPostById(@PathVariable Long id) {
         Post post = this.iPostService.findPostsById(id);
         if (post == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -84,6 +81,7 @@ public class PostController {
      * Author: SonTT
      * Handling:Get data from the link and check the execution process, if it is correct,
      * return the message "Not found the document you want to delete" and the status NOT_FOUND otherwise return the OK status and return the message "Post deleted"
+     *
      * @param id
      * @return message and status
      */
@@ -99,8 +97,6 @@ public class PostController {
     }
 
 
-
-
     /**
      * Create by : TriPD
      * Date created : 10/08/2023
@@ -110,7 +106,7 @@ public class PostController {
      * @Return: void
      */
     @PatchMapping("/updatePost")
-    public ResponseEntity<?> updatePost(@RequestBody PostDto postDto){
+    public ResponseEntity<?> updatePost(@RequestBody PostDto postDto) {
         try {
             iPostService.savePost(postDto);
             return ResponseEntity.ok(postDto);
