@@ -64,11 +64,11 @@ public class TicketController {
      */
     @GetMapping("/search-ticket/{namePassenger}/{idCardPassenger}")
     @ResponseBody
-    public ResponseEntity<Page<ITicketPassengerProjection>> findTicketByNameAndIdCardPassenger(@PageableDefault(size = 5) Pageable pageable, @PathVariable String namePassenger,
+    public ResponseEntity<Page<ITicketPassengerProjection>> findTicketByNameAndIdCardPassenger(@PageableDefault(size = 2) Pageable pageable, @PathVariable String namePassenger,
                                                                                                @PathVariable String idCardPassenger) {
 
         Page<ITicketPassengerProjection> ticket = this.iTicketService.findTicketByNameAndIdCard(namePassenger, idCardPassenger, pageable);
-        if (ticket.getTotalElements() == 0) {
+        if (ticket.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(ticket, HttpStatus.OK);
