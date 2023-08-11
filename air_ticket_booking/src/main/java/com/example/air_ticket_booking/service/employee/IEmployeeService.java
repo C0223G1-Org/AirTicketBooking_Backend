@@ -18,7 +18,7 @@ public interface IEmployeeService {
     /**
      * Create by: HuyHD;
      * Date create: 10/08/2023
-     * Function: delete employee;
+     * Function: delete employee with id;
      * @param id The ID of the employee to be deleted.
      */
     void deleteEmployee(Long id);

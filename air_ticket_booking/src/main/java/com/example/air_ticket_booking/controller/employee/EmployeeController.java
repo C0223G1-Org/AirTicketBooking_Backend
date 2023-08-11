@@ -55,7 +55,7 @@ public class EmployeeController {
      * @return : The list of new employees matches the parameters passed in.
      */
     @GetMapping("/search/{gender}/{name}")
-    public ResponseEntity<?> searchEmployee(@PathVariable Boolean gender, @PathVariable String name) {
+    public ResponseEntity<?> searchEmployee(@PathVariable(value = "gender", required = false) Boolean gender, @PathVariable(value = "name", required = false) String name) {
         List<Employee> employeeList = employeeService.searchEmployee(gender, name);
         if (employeeList.size() == 0) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -63,5 +63,4 @@ public class EmployeeController {
             return new ResponseEntity<>(employeeList, HttpStatus.OK);
         }
     }
-
 }
