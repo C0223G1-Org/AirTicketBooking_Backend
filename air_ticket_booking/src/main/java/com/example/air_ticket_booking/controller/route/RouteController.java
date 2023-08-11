@@ -26,13 +26,22 @@ public class RouteController {
     @GetMapping("/search-trips/{departure}/{destination}/{dateDeparture}")
 public ResponseEntity<List<RouteProjection>> searchTrips(@PathVariable String departure, @PathVariable String destination,
                                                          @PathVariable String dateDeparture){
-        return new ResponseEntity<>(routeService.showListRoute(departure,destination,dateDeparture), HttpStatus.OK);
+        List<RouteProjection> list;
+        try{
+            list = routeService.showListRoute(departure,destination,dateDeparture);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        if (list.size()==0){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
-    @Autowired
-    private IRouteService iRouteService;
+
     @GetMapping("/{id}")
     public ResponseEntity<Route>getRouteById(@PathVariable Long id){
-        Route route = iRouteService.findRouteById(id);
+        Route route = routeService.findRouteById(id);
         if (route==null){
             return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
 

@@ -25,5 +25,5 @@ public interface ITypeSeatRepository extends JpaRepository<TypeSeat,Long> {
      * get list of seat type
      */
     @Query(value = "select * from type_seat", nativeQuery = true)
-    List<TypeSeat> getListSeat ();
+    List<TypeSeat> getListTypeSeat ();
 }

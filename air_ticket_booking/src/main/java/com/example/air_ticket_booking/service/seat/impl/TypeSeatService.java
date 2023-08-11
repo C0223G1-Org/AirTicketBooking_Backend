@@ -18,8 +18,8 @@ public class TypeSeatService implements ITypeSeatService {
      * call method getListSeat() form ITypeSeatRepository
      */
     @Override
-    public List<TypeSeat> getListSeat() {
-        return typeSeatRepository.getListSeat();
+    public List<TypeSeat> getListTypeSeat() {
+        return typeSeatRepository.getListTypeSeat();
     }
 
     /**

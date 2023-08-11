@@ -12,7 +12,7 @@ public interface ITypeSeatService {
      * @return List TypeSeat
      * it is abstract method
      */
-    List<TypeSeat> getListSeat ();
+    List<TypeSeat> getListTypeSeat ();
     /**
      *method :find type seat in service
      * created by :NamPC

@@ -24,6 +24,15 @@ public class SeatController {
      */
     @GetMapping("/seat-empty/{idRoute}")
     public ResponseEntity<List<SeatProjection>> showListSeatEmptyByRoute (@PathVariable Long idRoute){
-        return new ResponseEntity<>(seatRepository.showListSeatEmptyByRoute(idRoute), HttpStatus.OK);
+        List<SeatProjection> list;
+        try{
+            list = seatRepository.showListSeatEmptyByRoute(idRoute);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        if (list.size()==0){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 }

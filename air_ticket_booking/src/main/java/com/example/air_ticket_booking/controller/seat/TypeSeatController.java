@@ -26,6 +26,6 @@ public class TypeSeatController {
      */
     @GetMapping("")
     public ResponseEntity<List<TypeSeat>> getListSeat(){
-        return new ResponseEntity<>(typeSeatService.getListSeat(), HttpStatus.OK);
+        return new ResponseEntity<>(typeSeatService.getListTypeSeat(), HttpStatus.OK);
     }
 }
