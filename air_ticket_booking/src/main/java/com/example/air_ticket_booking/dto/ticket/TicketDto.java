@@ -5,6 +5,8 @@ import com.example.air_ticket_booking.model.luggage.Luggage;
 import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
 import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -16,7 +18,7 @@ import javax.validation.constraints.Size;
  * date create: 10/08/2023
  */
 
-public class TicketDto {
+public class TicketDto implements Validator {
     private Long idTicket;
     private Long priceTicket;
     private Boolean flagTicket;
@@ -25,9 +27,9 @@ public class TicketDto {
     @Size(min = 10, message = "Tên ít nhất 10 ký tự")
     @Pattern(regexp = "^([A-Z][a-z]{0,7}\\s){1,5}[A-Z][a-z]{0,7}$",message = "Tên không đúng định dạng")
     private String namePassenger;
-    @NotBlank(message = "Không được để trống")
+//    @NotBlank(message = "Không được để trống")
     private Boolean genderPassenger;
-    @Pattern(regexp = "/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6})*$/\n",message = "Email không đúng định dạng")
+    @Pattern(regexp = "^\\w+@\\w+(.\\w+)$",message = "Email không đúng định dạng")
     private String emailPassenger;
     @Pattern(regexp = "^(84|0)(3|5|7|8|9)[0-9]{8}$",message = "Số điện thoại phải đúng định dạng")
     private  String telPassenger;
@@ -38,6 +40,7 @@ public class TicketDto {
     private Luggage luggage;
     private TypePassenger typePassenger;
     private Seat seat;
+
     private Customer customer;
 
     public TicketDto(Long idTicket, Long priceTicket, Boolean flagTicket, String namePassenger, Boolean genderPassenger,
@@ -172,5 +175,15 @@ public class TicketDto {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+
     }
 }

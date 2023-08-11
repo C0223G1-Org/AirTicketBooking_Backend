@@ -7,6 +7,7 @@ import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
 import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
+import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
 import com.example.air_ticket_booking.service.ticket.impl.TicketService;
 import org.springframework.beans.BeanUtils;
@@ -15,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @CrossOrigin("*")
@@ -80,11 +83,11 @@ public class TicketController {
      * @Return: ticket
      */
 
-    @PutMapping("/updateTicket/{id}")
-    public ResponseEntity<?> updateTicket(@PathVariable Long id,@RequestBody TicketDto ticketDto, BindingResult bindingResult ) {
+    @PatchMapping("/updateTicket/{id}")
+    public ResponseEntity<?> updateTicket(@PathVariable Long id,@Valid @RequestBody TicketDto ticketDto, BindingResult bindingResult ) {
         ticketDto.validate(ticketDto, bindingResult);
         if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body("Lỗi validation");
+            return ResponseEntity.badRequest().body("Lỗi Không Đúng Định Dạng");
         }
 
         Ticket existingTicket = iTicketService.findByIdTicket(id);

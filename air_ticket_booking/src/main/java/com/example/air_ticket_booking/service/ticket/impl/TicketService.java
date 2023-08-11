@@ -58,6 +58,7 @@ public class TicketService implements ITicketService {
          * @Return: void
          */
         @Transactional
+        @Override
         public void updateTicket(Long id, Long price, Boolean flag, String name, Boolean gender, String email, String tel, String idCard,
                                  String dateBooking, TypeTicket typeTicket, Luggage luggage, TypePassenger typePassenger, Seat seat, Customer customer) {
             ticketRepository.updateTicket(id, price, flag, name, gender, email, tel, idCard, dateBooking, typeTicket, luggage, typePassenger, seat, customer);
@@ -74,4 +75,6 @@ public class TicketService implements ITicketService {
 
             return ticketRepository.findTicketById(id);
         }
-    }
+
+
+}
