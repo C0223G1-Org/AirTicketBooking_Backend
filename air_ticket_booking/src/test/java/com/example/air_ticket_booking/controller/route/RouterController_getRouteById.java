@@ -76,7 +76,7 @@ public class RouterController_getRouteById {
                 .andExpect(jsonPath("idRoute").value(1))
                 .andExpect(jsonPath("dateArrival").value("2023-04-25"))
                 .andExpect(jsonPath("dateDeparture").value("2023-04-25"))
-                .andExpect(jsonPath("flagRoute").value(0))
+                .andExpect(jsonPath("flagRoute").value(false))
                 .andExpect(jsonPath("nameRoute").value("AL-0001"))
                 .andExpect(jsonPath("priceRoute").value(15000))
                 .andExpect(jsonPath("timeArrival").value("09:30:15"))
