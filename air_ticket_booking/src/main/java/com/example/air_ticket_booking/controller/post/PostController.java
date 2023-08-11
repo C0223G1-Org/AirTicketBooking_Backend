@@ -85,15 +85,18 @@ public class PostController {
      * @param id
      * @return message and status
      */
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deletePost(@PathVariable(value = "id", required = false) Long id) {
-        if (this.iPostService.deletePostById(id)) {
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deletePost(@RequestParam(value = "id", required = false) Long id) {
+        if (id==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else if (this.iPostService.deletePostById(id)) {
             String message = "Không tìm thấy tài Liệu muốn xoá ";
             return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
         } else {
             String message = "Đã xoá bài viết ";
             return new ResponseEntity<>(message, HttpStatus.OK);
         }
+
     }
 
 
