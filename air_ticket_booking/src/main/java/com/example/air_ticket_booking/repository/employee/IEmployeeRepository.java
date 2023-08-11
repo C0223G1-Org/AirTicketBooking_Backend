@@ -22,7 +22,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
      * @param id
      * @return HttpStatus.NOT_FOUND if result= null else then return employeeDto and HttpStatus.OK
      */
-    @Query(nativeQuery = true, value = "select * from employee where id = :id")
+    @Query(nativeQuery = true, value = "select * from employee where id_employee = :id")
     Employee findWithIdEmployee(@Param("id") Long id);
     /**
      * Create by: QuocNHA,
@@ -35,7 +35,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
      */
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO employee (`name`, birth_day, gender, image, tel_employee, email,id_account,flag_employee) " +
+    @Query(value = "INSERT INTO employee (name_employee, date_employee, gender, image, tel_employee, email_employee,account_id_account,flag_employee) " +
             "VALUES (:name, :birthDay, :gender,:image,:telEmployee, :email,:account,:flagEmployee)",
             nativeQuery = true)
     void addEmployee(@Param("name") String name,
@@ -59,9 +59,9 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
      */
     @Modifying
     @Transactional
-    @Query(value = "Update employee set `name`=:name,birth_day=:birthDay,gender=:gender,image=:image," +
-            "tel_employee=:telEmployee,email=:email,id_account=:account,flag_employee=:flagEmployee " +
-            "where id=:id", nativeQuery = true)
+    @Query(value = "Update employee set name_employee=:name,date_employee=:birthDay,gender=:gender,image=:image," +
+            "tel_employee=:telEmployee,email_employee=:email,account_id_account=:account,flag_employee=:flagEmployee " +
+            "where id_employee=:id", nativeQuery = true)
     void updateEmployee(@Param("id")Long id,
                         @Param("name") String name,
                         @Param("birthDay") String birthday,

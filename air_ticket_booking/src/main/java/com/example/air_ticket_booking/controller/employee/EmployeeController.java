@@ -79,7 +79,15 @@ public class EmployeeController {
         }
     }
 
-
+    /**
+     * Create by: QuocNHA,
+     * Date create : 10/08/2023
+     * Function : get ResponseEntity
+     * <p>
+     *
+     * @param bindingResult
+     * @return status update
+     */
     private void getResponseEntity(BindingResult bindingResult) {
         Map<String, String> map = new LinkedHashMap<>();
         List<FieldError> errors = bindingResult.getFieldErrors();

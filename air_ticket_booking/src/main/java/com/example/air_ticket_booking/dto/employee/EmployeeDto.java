@@ -8,29 +8,29 @@ import javax.validation.constraints.Size;
 
 public class EmployeeDto {
 
-    private Long id;
+    private Long idEmployee;
     @NotBlank(message = "Tên không đươc để trống.")
     @Size(min = 5, message = "Bạn cần nhập tối thiểu 5 ký tự")
     @Size(max = 20, message = "Bạn nhập quá 20 ký tự. Vui lòng kiểm tra lại")
-    private String name;
+    private String nameEmployee;
     @Size(min = 10, message = "Bạn cần nhập tối thiểu 10 ký tự")
     @Size(max = 12, message = "Bạn nhập quá 12 ký tự. Vui lòng kiểm tra lại")
     @NotBlank(message = "Ngày sinh không đươc để trống")
     @Pattern(regexp = "^(19|20)\\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[0-1])$",
             message = "Ngày sinh phải đúng định dạng DD/MM/YYYY.")
-    private String birthDay;
+    private String dateEmployee;
     @Size(min = 10, max = 10, message = "Bạn cần nhập 10 ký tự")
     @NotBlank(message = "Số điện thoại không được để trống.")
     @Pattern(message = "Số điện thoại không đúng định dạng.", regexp = "^(0[0-9]{9})$")
     private String telEmployee;
     private String image;
 
-    private int gender;
+    private boolean gender;
     @Size(min = 10, message = "Bạn cần nhập tối thiểu 10 ký tự")
     @Size(max = 50, message = "Bạn nhập quá 20 ký tự. Vui lòng kiểm tra lại")
     @NotBlank(message = "Email không được để trống.")
     @Email(message = "Email không đúng định dạng")
-    private String email;
+    private String emailEmployee;
     private Account account;
 
     private boolean flagEmployee;
@@ -38,39 +38,40 @@ public class EmployeeDto {
     public EmployeeDto() {
     }
 
-    public EmployeeDto(Long id, String name, String birthDay, String telEmployee, String image, int gender, String email, boolean flagEmployee) {
-        this.id = id;
-        this.name = name;
-        this.birthDay = birthDay;
+
+    public EmployeeDto(Long idEmployee, String nameEmployee, String dateEmployee, String telEmployee, String imageEmployee, boolean gender, String email, boolean flagEmployee) {
+        this.idEmployee = idEmployee;
+        this.nameEmployee = nameEmployee;
+        this.dateEmployee = dateEmployee;
         this.telEmployee = telEmployee;
-        this.image = image;
+        this.image = imageEmployee;
         this.gender = gender;
-        this.email = email;
+        this.emailEmployee = email;
         this.flagEmployee = flagEmployee;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdEmployee() {
+        return idEmployee;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdEmployee(Long idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
-    public String getName() {
-        return name;
+    public String getNameEmployee() {
+        return nameEmployee;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameEmployee(String nameEmployee) {
+        this.nameEmployee = nameEmployee;
     }
 
-    public String getBirthDay() {
-        return birthDay;
+    public String getDateEmployee() {
+        return dateEmployee;
     }
 
-    public void setBirthDay(String birthDay) {
-        this.birthDay = birthDay;
+    public void setDateEmployee(String dateEmployee) {
+        this.dateEmployee = dateEmployee;
     }
 
     public String getTelEmployee() {
@@ -81,6 +82,16 @@ public class EmployeeDto {
         this.telEmployee = telEmployee;
     }
 
+
+
+    public boolean getGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
     public String getImage() {
         return image;
     }
@@ -89,20 +100,12 @@ public class EmployeeDto {
         this.image = image;
     }
 
-    public int getGender() {
-        return gender;
+    public String getEmailEmployee() {
+        return emailEmployee;
     }
 
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmailEmployee(String emailEmployee) {
+        this.emailEmployee = emailEmployee;
     }
 
     public Account getAccount() {
