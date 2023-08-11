@@ -75,7 +75,7 @@ public class CustomerController {
      * @param id,customer
      * @return ResponseEntity<>
      */
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
         if (customerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
