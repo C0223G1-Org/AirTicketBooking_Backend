@@ -18,7 +18,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by: NhanDT
@@ -66,11 +72,23 @@ public class AccountController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signUp(@RequestBody AccountDto accountDto){
+    public ResponseEntity<?> signUp(@Valid @RequestBody AccountDto accountDto){
         if (accountService.signUp(accountDto)){
             return new ResponseEntity<>(HttpStatus.OK);
         }
 //        String encoderPassword = passwordEncoder.encode(accountDto.getPassword());
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
 }
