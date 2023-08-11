@@ -7,9 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
 
 @Repository
 public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
@@ -24,6 +22,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
      */
     @Query(nativeQuery = true, value = "select * from employee where id_employee = :id")
     Employee findWithIdEmployee(@Param("id") Long id);
+
     /**
      * Create by: QuocNHA,
      * Date create : 10/08/2023
@@ -62,7 +61,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
     @Query(value = "Update employee set name_employee=:name,date_employee=:birthDay,gender=:gender,image=:image," +
             "tel_employee=:telEmployee,email_employee=:email,account_id_account=:account,flag_employee=:flagEmployee " +
             "where id_employee=:id", nativeQuery = true)
-    void updateEmployee(@Param("id")Long id,
+    void updateEmployee(@Param("id") Long id,
                         @Param("name") String name,
                         @Param("birthDay") String birthday,
                         @Param("gender") boolean gender,

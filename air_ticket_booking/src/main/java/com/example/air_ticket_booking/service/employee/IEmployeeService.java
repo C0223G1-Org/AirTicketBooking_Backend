@@ -12,5 +12,5 @@ public interface IEmployeeService {
     void saveEmployee(EmployeeDto employee);
     void editEmployee(Long id,EmployeeDto employee);
 
-    EmployeeDto findByyId(Long id);
+    Employee findByyId(Long id);
 }

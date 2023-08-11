@@ -1,6 +1,7 @@
 package com.example.air_ticket_booking.controller.employee;
 
 import com.example.air_ticket_booking.dto.employee.EmployeeDto;
+import com.example.air_ticket_booking.model.employee.Employee;
 import com.example.air_ticket_booking.service.employee.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,7 +52,7 @@ public class EmployeeController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<?> findByIdEmployee(@PathVariable Long id) {
-        EmployeeDto employeeDto = employeeService.findByyId(id);
+        Employee employeeDto =employeeService.findByyId(id);
         if (employeeDto == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
@@ -67,7 +68,7 @@ public class EmployeeController {
      * @param employeeDto
      * @return status update
      */
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<?> editEmployee(@Validated @RequestBody EmployeeDto employeeDto,
                                           BindingResult bindingResult, @PathVariable Long id) {
         if (!bindingResult.hasErrors()) {

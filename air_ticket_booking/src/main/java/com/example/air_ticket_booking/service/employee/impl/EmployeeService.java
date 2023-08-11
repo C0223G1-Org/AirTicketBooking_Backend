@@ -73,10 +73,8 @@ public class EmployeeService implements IEmployeeService {
      * @return status find by employee
      */
     @Override
-    public EmployeeDto findByyId(Long id) {
-        Employee employee = employeeRepository.findWithIdEmployee(id);
-        EmployeeDto employeeDto = new EmployeeDto();
-        BeanUtils.copyProperties(employee, employeeDto);
-        return employeeDto;
+    public Employee findByyId(Long id) {
+       return employeeRepository.findWithIdEmployee(id);
+
     }
 }
