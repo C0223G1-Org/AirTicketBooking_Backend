@@ -1,5 +1,8 @@
 package com.example.air_ticket_booking.service.employee;
 
+import com.example.air_ticket_booking.dto.employee.EmployeeDto;
+import com.example.air_ticket_booking.model.employee.Employee;
+
 import com.example.air_ticket_booking.model.employee.Employee;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -7,6 +10,15 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface IEmployeeService {
+
+    /**
+     * Create by: QuocNHA,
+     * Date create : 10/08/2023
+     */
+    void saveEmployee(EmployeeDto employee);
+    void editEmployee(Long id,EmployeeDto employee);
+
+    EmployeeDto findByyId(Long id);
     /**
      * Create by: HuyHD;
      * Date create: 10/08/2023
