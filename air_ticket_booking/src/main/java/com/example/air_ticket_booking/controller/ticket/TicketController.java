@@ -6,7 +6,9 @@ import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
 
 @RestController
 @CrossOrigin("*")
@@ -133,9 +137,9 @@ public class TicketController {
      * @return HttpStatus and Page<Ticket>
      * @author Nhàn NA
      */
-    @GetMapping()
-    public ResponseEntity<Page<ITicketProjection>> showAllTickets(Pageable pageable){
-        System.out.println("nhan");
+    @GetMapping("/booked/{page}")
+    public ResponseEntity<Page<ITicketProjection>> showAllTickets(@PathVariable int page){
+        Pageable pageable= PageRequest.of(page,5);
         if(iTicketService.findAllTickets(pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }else {
@@ -146,6 +150,7 @@ public class TicketController {
     /**
      * task delete ticket value id
      * @Method deleteTicket
+     * date create: 10/08/2023
      * @param id
      * @return HttpStatus
      * @author Nhàn NA
@@ -161,13 +166,16 @@ public class TicketController {
     /**
      * task response search all ticket booked data to FE
      * @Method searchTickets
+     * date create: 10/08/2023
      * @param item,pageable
      * @return HttpStatus and Page<Ticket>
      * @author Nhàn NA
      */
-    @GetMapping("/search/{item}")
-    public ResponseEntity<Page<ITicketProjection>> searchTickets(@PathVariable String item,Pageable pageable){
-        String[] input = item.split(",");
+    @GetMapping("/search/{item}/{page}")
+    public ResponseEntity<Page<ITicketProjection>> searchTickets(@PathVariable("item") String item,@PathVariable("page") int page){
+        String[] input = item.split(",", -1);
+        System.out.println(Arrays.toString(input));
+        Pageable pageable = PageRequest.of(page,5);
         if(iTicketService.searchTicket(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -178,13 +186,14 @@ public class TicketController {
     /**
      * task response ticket unbooked  data to FE
      * @Method findAllTicketUnbooked
+     * date create: 10/08/2023
      * @param pageable
      * @return HttpStatus and Page<Ticket>
      * @author Nhàn NA
      */
-    @GetMapping("/unbooked")
-    public ResponseEntity<Page<ITicketUnbookedProjection>> findAllTicketUnbooked(Pageable pageable){
-        System.out.println("nhan");
+    @GetMapping("/unbooked/{page}")
+    public ResponseEntity<Page<ITicketUnbookedProjection>> findAllTicketUnbooked(@PathVariable int page){
+        Pageable pageable=PageRequest.of(page,5);
         if(iTicketService.findAllTicketUnbooked(pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }else {
@@ -194,13 +203,15 @@ public class TicketController {
     /**
      * task response search unbooked tickets   data to FE
      * @Method findAllTicketUnbooked
+     * date create: 10/08/2023
      * @param pageable
      * @return HttpStatus and Page<Ticket>
      * @author Nhàn NA
      */
-    @GetMapping("/search-unbooked/{item}")
-    public ResponseEntity<Page<ITicketUnbookedProjection>> searchTicketsUnBooked(@PathVariable String item,Pageable pageable){
-        String[] input = item.split(",");
+    @GetMapping("/search-unbooked/{item}/{page}")
+    public ResponseEntity<Page<ITicketUnbookedProjection>> searchTicketsUnBooked(@PathVariable("item") String item, @PathVariable("page") int page){
+        String[] input = item.split(",", -1);
+        Pageable pageable= PageRequest.of(page,5);
         if(iTicketService.searchTicketUnbooked(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
