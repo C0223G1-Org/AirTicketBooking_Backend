@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
 public class AccountDto implements Validator {
@@ -32,6 +33,7 @@ public class AccountDto implements Validator {
     @Pattern(regexp = "^([A-Z][0-9]{6,12})|([0-9]{12})$", message = "Nhập theo định dạng (7 ký tự đối với hộ chiếu và 12 ký tự đối với CCCD)")
     private String idCardCustomer;
     @NotBlank(message = "Không được để trống trường này")
+
     private String dateCustomer;
     private Boolean flagCustomer = false;
     @NotBlank(message = "Không được để trống trường này")
@@ -160,18 +162,26 @@ public class AccountDto implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
 
+//        LocalDate birthday = LocalDate.of(2000, 1, 1); // Ngày sinh của người cần kiểm tra
+//
+//        LocalDate currentDate = LocalDate.now();
+//        Period age = Period.between(birthday, currentDate);
+//
+//        int years = age.getYears();
+
         AccountDto accountDto = (AccountDto) target;
         String date = accountDto.dateCustomer;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate dateOfBirth = LocalDate.parse(date, formatter);
         LocalDate today = LocalDate.now();
-        int age = today.getYear() - dateOfBirth.getYear();
-        if (today.getMonthValue() < dateOfBirth.getMonthValue()
-                || (today.getMonthValue() == dateOfBirth.getMonthValue() && today.getDayOfMonth() < dateOfBirth.getDayOfMonth())) {
-            age--; //Age reduction if the birthday is not reached in the current year
-
-        }
-        if (age >= 18) {
+        Period age = Period.between(dateOfBirth, today);
+        int years = age.getYears();
+//        if (today.getMonthValue() < dateOfBirth.getMonthValue()
+//                || (today.getMonthValue() == dateOfBirth.getMonthValue() && today.getDayOfMonth() < dateOfBirth.getDayOfMonth())) {
+//            age--; //Age reduction if the birthday is not reached in the current year
+//
+//        }
+        if (years <= 18) {
             errors.rejectValue("dateCustomer", "dateCustomer", "Khách hàng phải trên 18 tuổi");
         }
 

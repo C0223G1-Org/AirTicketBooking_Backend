@@ -34,7 +34,7 @@ public class AccountController_signup {
     public void signUp_email_13() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer(null);
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Đỗ Thành Nhân");
         accountDto.setDateCustomer("02/02/2000");
@@ -50,17 +50,6 @@ public class AccountController_signup {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
-//     this.nameCustomer = nameCustomer;
-//        this.genderCustomer = genderCustomer;
-//        this.emailCustomer = emailCustomer;
-//        this.telCustomer = telCustomer;
-//        this.addressCustomer = addressCustomer;
-//        this.imgCustomer = imgCustomer;
-//        this.nationalityCustomer = nationalityCustomer;
-//        this.idCardCustomer = idCardCustomer;
-//        this.dateCustomer = dateCustomer;
-//        this.flagCustomer = flagCustomer;
-//        this.password = password;
 
     /**
      * Created by: NhanDT
@@ -102,7 +91,7 @@ public class AccountController_signup {
     public void signUp_phoneNumber_13() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan123@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer(null);
         accountDto.setNameCustomer("Đỗ Thành Nhân");
         accountDto.setDateCustomer("02/02/2000");
@@ -130,7 +119,7 @@ public class AccountController_signup {
     public void signUp_name_13() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan123@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer(null);
         accountDto.setDateCustomer("02/02/2000");
@@ -158,7 +147,7 @@ public class AccountController_signup {
     public void signUp_dayOfBirth_13() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan123@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Đỗ Thành Nhân");
         accountDto.setDateCustomer(null);
@@ -186,7 +175,7 @@ public class AccountController_signup {
     public void signUp_idCard_13() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan123@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Đỗ Thành Nhân");
         accountDto.setDateCustomer("02/02/2000");
@@ -215,7 +204,7 @@ public class AccountController_signup {
     public void signUp_nationality_13() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan123@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Đỗ Thành Nhân");
         accountDto.setDateCustomer("02/02/2000");
@@ -243,7 +232,7 @@ public class AccountController_signup {
     public void signUp_email_14() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Đỗ Thành Nhân");
         accountDto.setDateCustomer("02/02/2000");
@@ -300,7 +289,7 @@ public class AccountController_signup {
     public void signUp_phoneNumber_14() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan123@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("");
         accountDto.setNameCustomer("Đỗ Thành Nhân");
         accountDto.setDateCustomer("02/02/2000");
@@ -328,7 +317,7 @@ public class AccountController_signup {
     public void signUp_name_14() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan123@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("");
         accountDto.setDateCustomer("02/02/2000");
@@ -356,7 +345,7 @@ public class AccountController_signup {
     public void signUp_dayOfBirth_14() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan123@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Đỗ Thành Nhân");
         accountDto.setDateCustomer("");
@@ -384,7 +373,7 @@ public class AccountController_signup {
     public void signUp_idCard_14() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan123@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Đỗ Thành Nhân");
         accountDto.setDateCustomer("02/02/2000");
@@ -413,7 +402,7 @@ public class AccountController_signup {
     public void signUp_nationality_14() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan123@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Đỗ Thành Nhân");
         accountDto.setDateCustomer("02/02/2000");
@@ -440,8 +429,8 @@ public class AccountController_signup {
     @Test
     public void signUp_all_item_18() throws Exception {
         AccountDto accountDto = new AccountDto();
-        accountDto.setEmailCustomer("nhan7@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setEmailCustomer("nhan36@gmail.com");
+        accountDto.setPassword("123456A78");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Đỗ Thành Nhân");
         accountDto.setDateCustomer("02/02/2000");
@@ -470,7 +459,7 @@ public class AccountController_signup {
     public void signUp_name_not_capitalize_15() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan7@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("1234567A8");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("do thanh nhan");
         accountDto.setDateCustomer("02/02/2000");
@@ -498,7 +487,7 @@ public class AccountController_signup {
     public void signUp_name_no_space_15() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan7@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("DoThanhNhan");
         accountDto.setDateCustomer("02/02/2000");
@@ -527,7 +516,7 @@ public class AccountController_signup {
     public void signUp_name_have_special_15() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan7@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Do Thanh Nhan $");
         accountDto.setDateCustomer("02/02/2000");
@@ -559,7 +548,7 @@ public class AccountController_signup {
     public void signUp_email_15() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan7mail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Đỗ Thành Nhân");
         accountDto.setDateCustomer("02/02/2000");
@@ -587,8 +576,64 @@ public class AccountController_signup {
     public void signUp_phoneNumber_only_number_15() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan7@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("023456789a");
+        accountDto.setNameCustomer("Phan An Khang");
+        accountDto.setDateCustomer("02/02/2000");
+        accountDto.setAddressCustomer("Đà Nẵng");
+        accountDto.setGenderCustomer(false);
+        accountDto.setNationalityCustomer("Việt Nam");
+        accountDto.setIdCardCustomer("120123456789");
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .post("/api/account/signup")
+                        .content(this.objectMapper.writeValueAsString(accountDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    /**
+     * Created by: NhanDT
+     * Date created: 11/08/2023
+     *
+     * Check case format phoneNumber (not format 0123456789)
+     * @throws Exception
+     */
+    @Test
+    public void signUp_phoneNumber_0123456789_15() throws Exception {
+        AccountDto accountDto = new AccountDto();
+        accountDto.setEmailCustomer("nhan7@gmail.com");
+        accountDto.setPassword("12345678A");
+        accountDto.setTelCustomer("1234567890");
+        accountDto.setNameCustomer("Phan An Khang");
+        accountDto.setDateCustomer("02/02/2000");
+        accountDto.setAddressCustomer("Đà Nẵng");
+        accountDto.setGenderCustomer(false);
+        accountDto.setNationalityCustomer("Việt Nam");
+        accountDto.setIdCardCustomer("120123456789");
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .post("/api/account/signup")
+                        .content(this.objectMapper.writeValueAsString(accountDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    /**
+     * Created by: NhanDT
+     * Date created: 11/08/2023
+     *
+     * Check case format phoneNumber (not format +84123456789)
+     * @throws Exception
+     */
+    @Test
+    public void signUp_phoneNumber_84123456789_15() throws Exception {
+        AccountDto accountDto = new AccountDto();
+        accountDto.setEmailCustomer("nhan7@gmail.com");
+        accountDto.setPassword("12345678A");
+        accountDto.setTelCustomer("1234567890");
         accountDto.setNameCustomer("Phan An Khang");
         accountDto.setDateCustomer("02/02/2000");
         accountDto.setAddressCustomer("Đà Nẵng");
@@ -615,7 +660,7 @@ public class AccountController_signup {
     public void signUp_idCard_15() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan7@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Phan Khang");
         accountDto.setDateCustomer("02/02/2000");
@@ -643,7 +688,7 @@ public class AccountController_signup {
     public void signUp_name_16() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan7@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Nhan");
         accountDto.setDateCustomer("02/02/2000");
@@ -671,7 +716,7 @@ public class AccountController_signup {
     public void signUp_name_17() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhan7@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Nhan Nhan Nhan Nhan Nhan Nhan Nhan Nhan Nhan Nhan Nhan Nhan");
         accountDto.setDateCustomer("02/02/2000");
@@ -699,7 +744,7 @@ public class AccountController_signup {
     public void signUp_email_16() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("n7@l.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Nhan");
         accountDto.setDateCustomer("02/02/2000");
@@ -727,7 +772,7 @@ public class AccountController_signup {
     public void signUp_email_17() throws Exception {
         AccountDto accountDto = new AccountDto();
         accountDto.setEmailCustomer("nhannhannhan7@gmail.com");
-        accountDto.setPassword("12345678");
+        accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Nhan Nhan Nhan Nhan Nhan Nhan Nhan Nhan Nhan Nhan Nhan Nhan");
         accountDto.setDateCustomer("02/02/2000");
@@ -758,7 +803,7 @@ public class AccountController_signup {
         accountDto.setEmailCustomer("nhan7@gmail.com");
         accountDto.setPassword("1234567");
         accountDto.setTelCustomer("0123456789");
-        accountDto.setNameCustomer("Nhan");
+        accountDto.setNameCustomer("Nhan Do Thanh");
         accountDto.setDateCustomer("02/02/2000");
         accountDto.setAddressCustomer("Đà Nẵng");
         accountDto.setGenderCustomer(false);
@@ -786,8 +831,36 @@ public class AccountController_signup {
         accountDto.setEmailCustomer("nhan7@gmail.com");
         accountDto.setPassword("123456781234567812345678");
         accountDto.setTelCustomer("0123456789");
-        accountDto.setNameCustomer("Nhan Nhan Nhan Nhan Nhan Nhan Nhan Nhan Nhan Nhan Nhan Nhan");
+        accountDto.setNameCustomer("Nhan Nhan Nhan");
         accountDto.setDateCustomer("02/02/2000");
+        accountDto.setAddressCustomer("Đà Nẵng");
+        accountDto.setGenderCustomer(false);
+        accountDto.setNationalityCustomer("Việt Nam");
+        accountDto.setIdCardCustomer("120123456789");
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .post("/api/account/signup")
+                        .content(this.objectMapper.writeValueAsString(accountDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    /**
+     * Created by: NhanDT
+     * Date created: 11/08/2023
+     *
+     * Check case format dayOfBirth (age>18)
+     * @throws Exception
+     */
+    @Test
+    public void signUp_dayOfBirth_18_15() throws Exception {
+        AccountDto accountDto = new AccountDto();
+        accountDto.setEmailCustomer("nhan101@gmail.com");
+        accountDto.setPassword("12345678A");
+        accountDto.setTelCustomer("0123456789");
+        accountDto.setNameCustomer("Nhan Nhan Nhan");
+        accountDto.setDateCustomer("02/02/2010");
         accountDto.setAddressCustomer("Đà Nẵng");
         accountDto.setGenderCustomer(false);
         accountDto.setNationalityCustomer("Việt Nam");
