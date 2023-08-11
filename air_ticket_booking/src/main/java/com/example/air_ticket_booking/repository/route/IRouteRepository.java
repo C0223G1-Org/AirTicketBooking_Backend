@@ -14,12 +14,12 @@ public interface IRouteRepository extends JpaRepository<Route,Long> {
      * return flight route
      */
 
-    @Query(value = "select rt.id_route ,rt.date_arrival, rt.date_departure, rt.name_route, rt.price_route, rt.time_arrival, rt.time_departure, ac.name_air_craft, dt.name_destination, dp.name_departure\n" +
-            "from route rt\n" +
-            "join air_craft ac on rt.id_air_craft = ac.id_air_craft\n" +
-            "join departure dp on rt.id_departure = dp.id_departure\n" +
-            "join destination dt on rt.id_destination = dt.id_destination\n" +
-            "where rt.id_route =:id",nativeQuery = true)
+    @Query(value = "select rt.id_route ,rt.date_arrival, rt.date_departure, rt.name_route, rt.price_route, rt.time_arrival, rt.time_departure, ac.name_air_craft, d2.name_destination, d.name_departure" +
+            "from route rt join air_craft ac on rt.id_air_craft = ac.id_air_craft" +
+            "join departure d on rt.id_departure = d.id_departure" +
+            "join destination d2 on rt.id_destination = d2.id_destination" +
+            "where rt.id_route=:id"
+            ,nativeQuery = true)
      Route findRouteById(@Param("id") Long id);
 
 }

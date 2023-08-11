@@ -1,18 +1,18 @@
 package com.example.air_ticket_booking.controller.ticket;
 
 import com.example.air_ticket_booking.dto.ticket.TicketDto;
-import com.example.air_ticket_booking.model.luggage.Luggage;
-import com.example.air_ticket_booking.model.ticket.Ticket;
-import com.example.air_ticket_booking.service.luggage.ILuggageService;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
@@ -31,7 +31,7 @@ public class TicketController {
      */
 
     @PostMapping()
-    public ResponseEntity<?> createNewTicket(@RequestBody TicketDto ticketDto, BindingResult bindingResult) {
+    public ResponseEntity<?> createNewTicket(@Valid  @RequestBody TicketDto ticketDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -51,5 +51,17 @@ public class TicketController {
                                                                 @PathVariable String idCardPassenger) {
         return new ResponseEntity<>(iTicketService.findTicketByNameAndIdCard(namePassenger, idCardPassenger),
                 HttpStatus.OK);
+    }
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
 }
