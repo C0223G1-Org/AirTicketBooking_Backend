@@ -95,23 +95,6 @@ public interface ICustomerRepository extends JpaRepository<Customer,Long> {
             ":#{#customer.telCustomer},:#{#customer.nationalityCustomer},:#{#customer.account.idAccount})", nativeQuery = true)
     void saveCustomer(@Param("customer") Customer customer);
 
-//    /**
-//     * Create by: HungLV
-//     * Date create: 10/08/2023
-//     * Function:get data from service and update fields of customers into database following id
-//     *
-//     * @Param: customer
-//     * @Return: void
-//     */
-
-//    @Modifying
-//    @Query(value = "update customer set name_customer =:#{#customer.nameCustomer} ,gender_customer = :#{#customer.genderCustomer}," +
-//            " email_customer =:#{#customer.emailCustomer} , date_customer =:#{#customer.dateCustomer} ," +
-//            "id_card_customer=:#{#customer.idCardCustomer} , address_customer =:#{#customer.addressCustomer} , flag_customer= :#{#customer.flagCustomer}" +
-//            ", img_customer =:#{#customer.imgCustomer} , tel_customer =:#{#customer.telCustomer} ,nationality_customer = :#{#customer.nationalityCustomer}," +
-//            "account_id_account = :#{#customer.account.idAccount} where id_customer = :#{#customer.idCustomer}"
-//            , nativeQuery = true)
-//    void updateCustomer(@Param("customer") Customer customer);
 
 
 }

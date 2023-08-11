@@ -75,7 +75,7 @@ public class CustomerController {
      * @param id,customer
      * @return ResponseEntity<>
      */
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
         if (customerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -92,27 +92,10 @@ public class CustomerController {
      * @param id
      * @return customer
      */
-    @GetMapping("/details/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> customerDetails(@PathVariable Long id) {
         return new ResponseEntity<>(customerService.findCustomerById(id), HttpStatus.OK);
     }
-//    /**
-//     * Create by: HungLV
-//     * Date create: 10/08/2023
-//     * Function: get data from front-end and check id, if get customer = null, return status not found, else update customer return status success
-//     *
-//     * @Param: customer, id
-//     * @Return: ResponseEntity
-//     */
-
-//    @PutMapping("/{id}")
-//    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
-//        if (customerService.findCustomerById(id) == null) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        customerService.updateCustomer(customer);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
 
     /**
      * Create by: HungLV
