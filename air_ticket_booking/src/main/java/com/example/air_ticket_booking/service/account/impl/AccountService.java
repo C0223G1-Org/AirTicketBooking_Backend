@@ -66,6 +66,17 @@ public class AccountService implements UserDetailsService,IAccountService {
         this.customerService.createCustomer(accountDto,accountNew.getIdAccount());
         return checkExistAccount(email) == checkExistCustomer(email);
     }
+
+    @Override
+    public void updatePasswordForCustomer(String newPass, String oldPass, Long idCustomer) {
+
+    }
+
+    @Override
+    public void updatePasswordForEmployee(String newPass, String oldPass, Long idEmployee) {
+
+    }
+
     private boolean checkExistAccount(String email){
         List<Account> accountList = accountRepository.findAllByUsername(email);
         return accountList.size() > 0;
