@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import com.example.air_ticket_booking.dto.ticket.TicketDto;
 import com.example.air_ticket_booking.model.ticket.Ticket;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ITicketService {
@@ -38,4 +39,15 @@ public interface ITicketService {
     Page<ITicketProjection> searchTicket(Long idTypeTicket,String namePassenger, String nameRoute,  String nameDeparture, String nameDestination, Pageable pageable);
     Page<ITicketUnbookedProjection> findAllTicketUnbooked(Pageable pageable);
     Page<ITicketUnbookedProjection> searchTicketUnbooked(Long idTypeSeat,String positionSeat,String nameRoute, String nameDeparture,String nameDestination,Pageable pageable);
+
+    /**
+     *Create by: ThanhVh
+     *Date create: 11/08/2023
+     * Function:getListHistoryPayment()
+     * @param id,pageable
+     * @return Page<Ticket>
+     **/
+    Page<Ticket> findAllListPaymentByCustomerById(Long id, Pageable pageable);
+
+    void updateTicketByIdTicket(Long id);
 }

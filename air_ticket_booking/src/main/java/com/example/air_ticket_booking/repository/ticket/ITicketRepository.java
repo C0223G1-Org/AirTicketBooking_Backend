@@ -18,6 +18,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -159,24 +160,29 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
     /**
      *Create by: ThanhVH
      *Date create: 10/08/2023
-     * Function:getListPaymentHistory()
-     * @Param: ticketDto
-     * @Return: void
+     * Function:getListPaymentHistory
+     * @param id,pageable
+     * @return Page<Ticket>
      */
 
-    @Modifying
     @Query(nativeQuery = true, value = "select * from ticket " +
-            "join customer on customer.id_customer = ticket.id_customer" +
-            "join seat on seat.id_seat = ticket.id_seat" +
-            "join route on route.id_route = seat.id_route" +
-            "join air_craft on air_craft.id_air_craft = route.id_air_craft" +
-            "join destination on destination.id_destination = route.id_destination" +
-            "join departure on departure.id_departure = route.id_departure" +
-            "join type_seat on seat.id_type_seat = type_seat.id_type_seat" +
-            "join lugguage on lugguage.id_lugguage = ticket.id_lugguage" +
-            "join type_ticket on type_ticket.id_type_ticket = ticket.id_type_ticket" +
-            "join type_passenger on type_passenger.id_type_passenger = ticket.id_type_passenger" +
+            "join customer on customer.id_customer = ticket.customer_id_customer \n" +
+            "join seat on seat.id_seat = ticket.seat_id_seat \n" +
+            "join route on route.id_route = seat.id_route \n "+
+            "join air_craft on air_craft.id_air_craft = route.id_air_craft\n"+
+            "join destination on destination.id_destination = route.id_destination \n" +
+            "join departure on departure.id_departure = route.id_departure \n" +
+            "join type_seat on seat.id_type_seat = type_seat.id_type_seat \n" +
+            "join luggage on luggage.id_luggage = ticket.luggage_id_luggage \n" +
+            "join type_ticket on type_ticket.id_type_ticket = ticket.type_ticket_id_type_ticket \n" +
+            "join type_passenger on type_passenger.id_type_passenger = ticket.type_passenger_id_type_passenger \n" +
             "where customer.id_customer = :id")
-    List<Ticket> getListHistoryPayment(@Param("id") Long id);
+    Page<Ticket> findAllListPaymentByCustomerById(@Param("id") Long id, Pageable pageable);
+
+    @Query(nativeQuery = true, value = "UPDATE ticket " +
+            "SET ticket.flag_ticket = true " +
+            "WHERE ticket.id_ticket = :id")
+    void updateTicketByIdTicket(@Param("id") Long id);
+
 
 }

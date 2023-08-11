@@ -176,4 +176,20 @@ public class TicketService implements ITicketService {
             throw new RuntimeException("Lỗi khi truy vấn dữ liệu từ database", e);
         }
     }
+    /**
+     *Create by: ThanhVh
+     *Date create: 11/08/2023
+     * Function:getListHistoryPayment()
+     * @param id,pageable
+     * @return Page<Ticket>
+     **/
+    @Override
+    public Page<Ticket> findAllListPaymentByCustomerById(Long id, Pageable pageable) {
+        return ticketRepository.findAllListPaymentByCustomerById(id,pageable);
+    }
+
+    @Override
+    public void updateTicketByIdTicket(Long id) {
+        ticketRepository.updateTicketByIdTicket(id);
+    }
 }
