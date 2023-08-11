@@ -1,4 +1,5 @@
 package com.example.air_ticket_booking.dto.account;
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -14,11 +15,11 @@ public class AccountDto implements Validator {
     @Size(max = 50, min = 10, message = "Họ và tên phải hơn 10 ký tự và dưới 50 ký tự")
     @Pattern(regexp = "^[\\p{Lu}][\\p{Ll}]*([\\s][\\p{Lu}][\\p{Ll}]*)*$", message = "Bạn phải viết hoa chữ cái đầu của từng từ, có khoảng trắng giữa các từ và không có ký tự đặc biệt")
     private String nameCustomer;
-//    @NotBlank(message = "Không được để trống trường này")
+    //    @NotBlank(message = "Không được để trống trường này")
     private Boolean genderCustomer;
     @NotBlank(message = "Không được để trống trường này")
     @Pattern(regexp = "^\\w+@\\w+(.\\w+)$", message = "Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt ")
-    @Size(max = 50,min = 12,message = "Email tối đa 50 ký tự, ít nhất 12 ký tự")
+    @Size(max = 50, min = 12, message = "Email tối đa 50 ký tự, ít nhất 12 ký tự")
     private String emailCustomer;
     @NotBlank(message = "Không được để trống trường này")
     @Pattern(regexp = "^(\\+84|0)[1-9][0-9]{8}$", message = "Nhập theo định dạng +84xxxxxxxxx hoặc 0xxxxxxxxx với x là ký tự số")
@@ -41,7 +42,7 @@ public class AccountDto implements Validator {
 //    @Size(min = 8, max = 20, message = "Mật khẩu phải từ 8 ký tự và ít hơn 20 ký tự")
     private String password;
 
-    public AccountDto( String nameCustomer, Boolean genderCustomer, String emailCustomer, String telCustomer, String addressCustomer, String imgCustomer, String nationalityCustomer, String idCardCustomer, String dateCustomer, Boolean flagCustomer, String password) {
+    public AccountDto(String nameCustomer, Boolean genderCustomer, String emailCustomer, String telCustomer, String addressCustomer, String imgCustomer, String nationalityCustomer, String idCardCustomer, String dateCustomer, Boolean flagCustomer, String password) {
 
         this.nameCustomer = nameCustomer;
         this.genderCustomer = genderCustomer;
@@ -154,8 +155,9 @@ public class AccountDto implements Validator {
 
     /**
      * Create by: NhanDT
-     *  Date create: 11/08/2023
-     *  Function: validate age of customer must be over 18 years old
+     * Date create: 11/08/2023
+     * Function: validate age of customer must be over 18 years old
+     *
      * @param target
      * @return errors
      */
@@ -171,7 +173,7 @@ public class AccountDto implements Validator {
 
         AccountDto accountDto = (AccountDto) target;
         String date = accountDto.dateCustomer;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate dateOfBirth = LocalDate.parse(date, formatter);
         LocalDate today = LocalDate.now();
         Period age = Period.between(dateOfBirth, today);
@@ -181,9 +183,26 @@ public class AccountDto implements Validator {
 //            age--; //Age reduction if the birthday is not reached in the current year
 //
 //        }
-        if (years <= 18) {
-            errors.rejectValue("dateCustomer", "dateCustomer", "Khách hàng phải trên 18 tuổi");
+        if (years < 18 || years > 150) {
+            errors.rejectValue("dateCustomer", "dateCustomer", "Khách hàng phải trên 18 tuổi và nh hơn 150 tuổi");
         }
 
+    }
+
+    public static void main(String[] args) {
+//        LocalDate birthday = LocalDate.of(2010, 1, 1); // Ngày sinh của người cần kiểm tra
+        String date = "2000-02-02";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate currentDate = LocalDate.now();
+        LocalDate birthday = LocalDate.parse(date, formatter);
+        Period age = Period.between(birthday, currentDate);
+        int years = age.getYears();
+
+        if (years > 18) {
+            System.out.println("Người này lớn hơn 18 tuổi" + currentDate);
+//            System.out.println(currentDate);
+        } else {
+            System.out.println("Người này không lớn hơn 18 tuổi" + currentDate);
+        }
     }
 }
