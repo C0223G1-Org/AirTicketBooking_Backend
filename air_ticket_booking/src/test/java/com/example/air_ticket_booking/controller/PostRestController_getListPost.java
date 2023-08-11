@@ -18,12 +18,24 @@ public class PostRestController_getListPost {
     @Autowired
     private MockMvc mockMvc;
 
+    /**
+     * SonTT
+     * Date create: 11/08/2023
+     * handling: Get List have out-of-data pagination
+     * @throws Exception
+     */
     @Test
     public void getListPost_5() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/api/post/{page}/{limit}", 1, 5))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+    /**
+     * SonTT
+     * Date create: 11/08/2023
+     * handling: Get List
+     * @throws Exception
+     */
     @Test
     public void getListPost_6() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/api/post/{page}/{limit}", 0, 5))
