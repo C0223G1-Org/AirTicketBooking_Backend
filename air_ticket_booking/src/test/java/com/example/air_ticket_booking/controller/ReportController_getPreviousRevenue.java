@@ -80,7 +80,7 @@ public class ReportController_getPreviousRevenue {
     @Test
     public void getPreviousRevenue_98() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/admin/report/previous-revenue?timeRange=''"))
+                        .get("/api/admin/report/previous-revenue?timeRange="))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }

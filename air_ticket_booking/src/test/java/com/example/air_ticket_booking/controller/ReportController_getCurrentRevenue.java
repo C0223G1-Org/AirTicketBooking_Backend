@@ -79,7 +79,7 @@ public class ReportController_getCurrentRevenue {
     @Test
     public void getCurrentRevenue_98() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/admin/report/current-revenue?timeRange=''"))
+                        .get("/api/admin/report/current-revenue?timeRange="))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
