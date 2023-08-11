@@ -3,7 +3,6 @@ package com.example.air_ticket_booking.service.employee;
 import com.example.air_ticket_booking.dto.employee.EmployeeDto;
 import com.example.air_ticket_booking.model.employee.Employee;
 
-import com.example.air_ticket_booking.model.employee.Employee;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -39,9 +38,11 @@ public interface IEmployeeService {
      * Create by: HuyHD;
      * Date create: 10/08/2023
      * Function: Searches for employees based on the provided gender and name parameters.
-     * @param gender The gender of the employee to search for
-     * @param name The name or part of the name of the employee to search for
+     *
+     * @param gender   The gender of the employee to search for
+     * @param name     The name or part of the name of the employee to search for
+     * @param pageable
      * @return A list of employees matching the specified gender and name criteria
      */
-    List<Employee> searchEmployee(Boolean gender, String name);
+    Page<Employee> searchEmployee(Boolean gender, String name, Pageable pageable);
 }

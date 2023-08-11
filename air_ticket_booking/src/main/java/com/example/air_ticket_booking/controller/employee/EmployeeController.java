@@ -4,6 +4,7 @@ import com.example.air_ticket_booking.dto.employee.EmployeeDto;
 import com.example.air_ticket_booking.model.employee.Employee;
 import com.example.air_ticket_booking.service.employee.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -137,10 +138,14 @@ public class EmployeeController {
      * @param : gender (employee's gender), name(name of employee you want to find);
      * @return : The list of new employees matches the parameters passed in.
      */
-    @GetMapping("/search/{gender}/{name}")
-    public ResponseEntity<?> searchEmployee(@PathVariable(value = "gender", required = false) Boolean gender, @PathVariable(value = "name", required = false) String name) {
-        List<Employee> employeeList = employeeService.searchEmployee(gender, name);
-        if (employeeList.size() == 0) {
+    @GetMapping("/search")
+    public ResponseEntity<?> searchEmployee(@RequestParam( required = false) Boolean gender,
+                                            @RequestParam( required = false) String name,
+                                            @RequestParam(required = false) Integer page,
+                                            @RequestParam(required = false) Integer size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Employee> employeeList = employeeService.searchEmployee(gender, name,pageable );
+        if (employeeList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(employeeList, HttpStatus.OK);

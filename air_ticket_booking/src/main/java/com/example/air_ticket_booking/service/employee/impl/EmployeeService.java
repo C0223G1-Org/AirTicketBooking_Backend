@@ -11,8 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class EmployeeService implements IEmployeeService {
     @Autowired
@@ -117,12 +115,13 @@ public class EmployeeService implements IEmployeeService {
      * Date create: 10/08/2023
      * Function: Searches for employees based on the provided gender and name parameters.
      *
-     * @param gender The gender of the employee to search for
-     * @param name   The name or part of the name of the employee to search for
+     * @param gender   The gender of the employee to search for
+     * @param name     The name or part of the name of the employee to search for
+     * @param pageable
      * @return A list of employees matching the specified gender and name criteria
      */
     @Override
-    public List<Employee> searchEmployee(Boolean gender, String name) {
-        return employeeRepository.searchEmployee(gender, name);
+    public Page<Employee> searchEmployee(Boolean gender, String name, Pageable pageable) {
+        return employeeRepository.searchEmployee(gender, name, pageable);
     }
 }
