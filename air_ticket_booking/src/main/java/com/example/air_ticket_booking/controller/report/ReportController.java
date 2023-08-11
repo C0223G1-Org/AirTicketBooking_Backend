@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/admin/report")
 @CrossOrigin("*")
 public class ReportController {
     @Autowired
@@ -58,8 +58,9 @@ public class ReportController {
      * @param endDate
      * @return revenue data
      */
-    @GetMapping("/revenue")
-    public ResponseEntity<List<IReport>> getRevenue(@RequestParam("startDate")String startDate,@RequestParam("endDate")String endDate) {
+    @GetMapping("/about-revenue")
+    public ResponseEntity<List<IReport>> getAboutRevenue(@RequestParam(value = "startDate", defaultValue = "")String startDate,
+                                                    @RequestParam(value = "endDate", defaultValue = "")String endDate) {
         List<IReport> reportList = reportService.getRevenue(startDate,endDate);
         if (reportList.size() == 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

@@ -66,7 +66,6 @@ public class ReportServiceImpl implements IReportService {
                 break;
             default:
                 reports = new ArrayList<>();
-                break;
         }
 
         return reports;
@@ -119,7 +118,7 @@ public class ReportServiceImpl implements IReportService {
                 reports = reportRepository.getCurrentRevenue(startDate, endDate);
                 break;
             default:
-                return null;
+                 reports = new ArrayList<>();
         }
 
         return reports;

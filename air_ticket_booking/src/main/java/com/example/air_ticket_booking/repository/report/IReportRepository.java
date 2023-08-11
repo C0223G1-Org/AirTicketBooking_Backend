@@ -20,9 +20,10 @@ public interface IReportRepository extends JpaRepository<Ticket, Long> {
      * @return revenue data
      */
     @Query(value = "SELECT t.date_booking as dateBooking, SUM(t.price_ticket) AS priceTicket\n" +
-            "FROM ticket as t\n" +
-            "WHERE t.date_booking BETWEEN :startDate AND :endDate\n" +
-            "GROUP BY date_booking", nativeQuery = true)
+            "            FROM ticket as t\n" +
+            "            WHERE t.flag_ticket=false\n" +
+            "            AND t.date_booking BETWEEN :startDate AND :endDate\n" +
+            "            GROUP BY date_booking", nativeQuery = true)
     List<IReport> getCurrentRevenue(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
 
@@ -35,16 +36,15 @@ public interface IReportRepository extends JpaRepository<Ticket, Long> {
      * @param endDate
      * @return revenue data
      */
-    @Query(value = "SELECT t.date_booking as dateBooking, SUM(t.price_ticket) AS priceTicket\n" +
-            "FROM ticket as t\n" +
-            "WHERE t.date_booking \n" +
-            "  and case\n" +
-            "          WHEN :startDate = '' and :endDate = '' THEN t.date_booking LIKE '%%'\n" +
-            "          WHEN :startDate = '' THEN t.date_booking LIKE concat('%', :endDate, '%')\n" +
-            "          WHEN :endDate = '' THEN t.date_booking LIKE concat('%', :startDate, '%')\n" +
-            "          WHEN :startDate != '' and :endDate != ''\n" +
-            "              then t.date_booking between COALESCE(:startDate, t.date_booking) and COALESCE(:endDate, t.date_booking)\n" +
-            "    END\n" +
-            "GROUP BY date_booking", nativeQuery = true)
+    @Query(value = "SELECT t.date_booking AS dateBooking, SUM(t.price_ticket) AS priceTicket\n" +
+            "FROM ticket AS t\n" +
+            "WHERE t.flag_ticket = false\n" +
+            "AND (\n" +
+            "    (:startDate = '' AND :endDate = '' AND t.date_booking LIKE '%%')\n" +
+            "    OR (:startDate = '' AND t.date_booking LIKE CONCAT('%', :endDate, '%'))\n" +
+            "    OR (:endDate = '' AND t.date_booking LIKE CONCAT('%', :startDate, '%'))\n" +
+            "    OR (t.date_booking BETWEEN COALESCE(:startDate, t.date_booking) AND COALESCE(:endDate, t.date_booking))\n" +
+            ")\n" +
+            "GROUP BY t.date_booking;", nativeQuery = true)
     List<IReport> getRevenue(@Param("startDate") String startDate, @Param("endDate") String endDate);
 }
