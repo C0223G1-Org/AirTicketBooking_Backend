@@ -6,15 +6,20 @@ import com.example.air_ticket_booking.service.ticket.ITypeTicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class TypeTicketService implements ITypeTicketService {
     @Autowired
-    private ITypeTicketRepository typeTicketRepository;
+    private ITypeTicketRepository iTypeTicketRepository;
+    /**
+     *method :find  type ticket by id in service
+     * created by :NamPC
+     * date create: 10/08/2023
+     * @param id
+     * return Type ticket
+     */
 
     @Override
-    public List<TypeTicket> showListTypeTicket() {
-        return typeTicketRepository.findAllTypeTicket();
+    public TypeTicket findTypeTicketById(Long id) {
+        return iTypeTicketRepository.findTypeTicketById(id);
     }
 }
