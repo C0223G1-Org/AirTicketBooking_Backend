@@ -133,13 +133,17 @@ public class TicketController {
     /**
      * task response data ticket booked to FE
      * @Method showAllTickets
-     * @param pageable
+     * @param page
      * @return HttpStatus and Page<Ticket>
      * @author Nhàn NA
      */
     @GetMapping("/booked/{page}")
     public ResponseEntity<Page<ITicketProjection>> showAllTickets(@PathVariable int page){
+        if(page<0){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         Pageable pageable= PageRequest.of(page,5);
+
         if(iTicketService.findAllTickets(pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }else {
@@ -157,6 +161,7 @@ public class TicketController {
      */
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteTicket(@PathVariable Long id){
+
         if(iTicketService.deleteTicket(id)) {
             return new ResponseEntity<>(HttpStatus.OK);
         }else {
@@ -176,6 +181,9 @@ public class TicketController {
         String[] input = item.split(",", -1);
         System.out.println(Arrays.toString(input));
         Pageable pageable = PageRequest.of(page,5);
+        if(!input[0].matches("^[0-9]+$")||input.length!=5){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if(iTicketService.searchTicket(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -187,12 +195,15 @@ public class TicketController {
      * task response ticket unbooked  data to FE
      * @Method findAllTicketUnbooked
      * date create: 10/08/2023
-     * @param pageable
+     * @param page
      * @return HttpStatus and Page<Ticket>
      * @author Nhàn NA
      */
     @GetMapping("/unbooked/{page}")
     public ResponseEntity<Page<ITicketUnbookedProjection>> findAllTicketUnbooked(@PathVariable int page){
+        if(page<0){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         Pageable pageable=PageRequest.of(page,5);
         if(iTicketService.findAllTicketUnbooked(pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -204,7 +215,7 @@ public class TicketController {
      * task response search unbooked tickets   data to FE
      * @Method findAllTicketUnbooked
      * date create: 10/08/2023
-     * @param pageable
+     * @param item,page
      * @return HttpStatus and Page<Ticket>
      * @author Nhàn NA
      */
