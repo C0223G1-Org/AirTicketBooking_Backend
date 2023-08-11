@@ -3,6 +3,7 @@ package com.example.air_ticket_booking.controller.account;
 import com.example.air_ticket_booking.config.JwtTokenUtil;
 import com.example.air_ticket_booking.config.JwtUserDetails;
 import com.example.air_ticket_booking.dto.account.AccountDto;
+import com.example.air_ticket_booking.dto.account.JwtRequestDto;
 import com.example.air_ticket_booking.model.customer.Customer;
 import com.example.air_ticket_booking.reponse.JwtRequest;
 import com.example.air_ticket_booking.reponse.JwtResponse;
@@ -44,8 +45,6 @@ public class AccountController {
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private AccountService accountService;
-    @Autowired
-    private ICustomerService customerService;
 
 
     class ErrorInfo {
@@ -54,7 +53,7 @@ public class AccountController {
 
 
     }
-    @PostMapping("/authenticate")
+    @PostMapping("/login")
     public ResponseEntity<?> loginAuthentication(@RequestBody JwtRequest authenticationRequest) throws Exception {
         try {
             Authentication authentication = authenticationManager.authenticate(
