@@ -71,6 +71,20 @@ public class TicketController_showAllTickets {
                 .andExpect(status().is4xxClientError());
     }
     /**
+     * check  showAllTickets
+     * input page is a larger number
+     * date create: 11/08/2023
+     * @return void
+     * @author Nhàn NA
+     * @throws Exception
+     */
+    @Test
+    public void showAllTickets_page_35() throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/tickets/booked/{page}", 1000000000L))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+    /**
      * check  deleteTicket
      * input id ""
      * date create: 11/08/2023
@@ -109,6 +123,20 @@ public class TicketController_showAllTickets {
     @Test
     public void deleteTicket_page_27() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.delete("/tickets/{id}",-1))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+    /**
+     * check  deleteTicket
+     * input id is a larger number
+     * date create: 11/08/2023
+     * @return void
+     * @author Nhàn NA
+     * @throws Exception
+     */
+    @Test
+    public void deleteTicket_page_35() throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.delete("/tickets/{id}",10000000000L))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -230,6 +258,21 @@ public class TicketController_showAllTickets {
                 .andExpect(status().is4xxClientError());
     }
     /**
+     * check request String "number,string,string" is decimal
+     * @Method searchTickets
+     * date create: 11/08/2023
+     * output data
+     * input "1,a,a,a," ,page=10000000000
+     * @author Nhàn NA
+     * @throws Exception
+     */
+    @Test
+    public void searchTickets_item_page_35() throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/tickets/search/{item}/{page}", ",'','','',''",10000000000L))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+    /**
      * check data ticket unbooked
      * @Method findAllTicketUnbooked
      * date create: 11/08/2023
@@ -271,6 +314,21 @@ public class TicketController_showAllTickets {
     @Test
     public void findAllTicketUnbooked_page_2() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/tickets/unbooked/{page}", ""))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+    /**
+     * check data ticket unbooked
+     * @Method findAllTicketUnbooked
+     * date create: 11/08/2023
+     * output data
+     * input page larger number
+     * @author Nhàn NA
+     * @throws Exception
+     */
+    @Test
+    public void findAllTicketUnbooked_page_35() throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/tickets/unbooked/{page}", 100000000000L))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }

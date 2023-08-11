@@ -139,6 +139,10 @@ public class TicketController {
      */
     @GetMapping("/booked/{page}")
     public ResponseEntity<Page<ITicketProjection>> showAllTickets(@PathVariable int page){
+        String idString= String.valueOf(page);
+        if(!idString.matches("^[0-9]{1,8}$")){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if(page<0){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -161,7 +165,10 @@ public class TicketController {
      */
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteTicket(@PathVariable Long id){
-
+        String idString= String.valueOf(id);
+        if(!idString.matches("^[0-9]{1,8}$")){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if(iTicketService.deleteTicket(id)) {
             return new ResponseEntity<>(HttpStatus.OK);
         }else {
@@ -178,10 +185,11 @@ public class TicketController {
      */
     @GetMapping("/search/{item}/{page}")
     public ResponseEntity<Page<ITicketProjection>> searchTickets(@PathVariable("item") String item,@PathVariable("page") int page){
+        String idString= String.valueOf(page);
         String[] input = item.split(",", -1);
         System.out.println(Arrays.toString(input));
         Pageable pageable = PageRequest.of(page,5);
-        if(!input[0].matches("^[0-9]+$")||input.length!=5){
+        if(!input[0].matches("^[0-9]{1,8}$")||input.length!=5||!idString.matches("^[0-9]{1,8}$")){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         if(iTicketService.searchTicket(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable).isEmpty()){
@@ -201,7 +209,8 @@ public class TicketController {
      */
     @GetMapping("/unbooked/{page}")
     public ResponseEntity<Page<ITicketUnbookedProjection>> findAllTicketUnbooked(@PathVariable int page){
-        if(page<0){
+        String idString= String.valueOf(page);
+        if(page<0||!idString.matches("^[0-9]{1,8}$")){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         Pageable pageable=PageRequest.of(page,5);
@@ -223,6 +232,10 @@ public class TicketController {
     public ResponseEntity<Page<ITicketUnbookedProjection>> searchTicketsUnBooked(@PathVariable("item") String item, @PathVariable("page") int page){
         String[] input = item.split(",", -1);
         Pageable pageable= PageRequest.of(page,5);
+        String idString= String.valueOf(page);
+        if(page<0||!idString.matches("^[0-9]{1,8}$")||!input[0].matches("^[0-9]{1,8}$")){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if(iTicketService.searchTicketUnbooked(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
