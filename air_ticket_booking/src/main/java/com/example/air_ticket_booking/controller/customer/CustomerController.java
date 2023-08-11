@@ -86,10 +86,10 @@ public class CustomerController {
      */
     @PutMapping("/{id}")
     public ResponseEntity<?> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto) {
+        Customer customer56=customerService.findCustomerById(id);
         if (customerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
         Customer customer=new Customer();
         BeanUtils.copyProperties(customerDto,customer);
         customerService.updateCustomer(customer);

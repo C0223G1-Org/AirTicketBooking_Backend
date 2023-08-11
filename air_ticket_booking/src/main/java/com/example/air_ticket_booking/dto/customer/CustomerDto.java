@@ -197,7 +197,7 @@ public class CustomerDto implements Validator {
             age--; //Age reduction if the birthday is not reached in the current year
 
         }
-        if (age >= 18) {
+        if (age <= 18) {
             errors.rejectValue("dateCustomer", "dateCustomer", "Khách hàng phải trên 18 tuổi");
         }
 

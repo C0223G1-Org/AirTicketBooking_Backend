@@ -29,6 +29,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_name_19() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer(null);
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
@@ -52,6 +54,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_name_20() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
@@ -75,6 +79,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_name_21() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Hoa123");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
@@ -98,6 +104,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_name_22() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Ho");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
@@ -121,6 +129,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_name_23() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Hoaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
@@ -144,6 +154,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_name_24() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
@@ -169,6 +181,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_emailCustomer_19() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer(null);
@@ -192,6 +206,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_emailCustomer_20() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("");
@@ -215,6 +231,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_emailCustomer_21() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31");
@@ -238,6 +256,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_emailCustomer_22() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("h@gmail.com");
@@ -261,6 +281,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_emailCustomer_23() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.commmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
@@ -284,6 +306,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_emailCustomer_24() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
@@ -308,6 +332,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_telCustomer_19() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
@@ -331,6 +357,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_telCustomer_20() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
@@ -354,6 +382,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_telCustomer_21() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gmail.com");
@@ -377,6 +407,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_telCustomer_22() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
@@ -400,6 +432,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_telCustomer_23() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
@@ -423,6 +457,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_telCustomer_24() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
@@ -447,6 +483,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_addressCustomer_19() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
@@ -470,6 +508,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_addressCustomer_20() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
@@ -493,6 +533,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_addressCustomer_22() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
@@ -516,6 +558,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_addressCustomer_23() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
@@ -539,11 +583,13 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_addressCustomer_24() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
         customerDto.setTelCustomer("0397215463");
-        customerDto.setAddressCustomer("Quang Nam");
+        customerDto.setAddressCustomer("Dai Loc,Quang Nam");
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
@@ -555,7 +601,7 @@ public class CustomerController_updateCustomer {
                 .perform(MockMvcRequestBuilders
                         .put("/customers/{id}","1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE).characterEncoding("UTF-8"))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
@@ -564,11 +610,13 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_nationalityCustomer_19() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
         customerDto.setTelCustomer("0397215463");
-        customerDto.setAddressCustomer("Quang Nam");
+        customerDto.setAddressCustomer("Dai Loc,Quang Nam");
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer(null);
         customerDto.setIdCardCustomer("012345678974");
@@ -587,11 +635,13 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_nationalityCustomer_20() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
         customerDto.setTelCustomer("0397215463");
-        customerDto.setAddressCustomer("Quang Nam");
+        customerDto.setAddressCustomer("Dai Loc,Quang Nam");
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("");
         customerDto.setIdCardCustomer("012345678974");
@@ -612,11 +662,13 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_nationalityCustomer_24() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
         customerDto.setTelCustomer("0397215463");
-        customerDto.setAddressCustomer("Quang Nam");
+        customerDto.setAddressCustomer("Dai Loc,Quang Nam");
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
@@ -636,11 +688,13 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_idCardCustomer_19() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
         customerDto.setTelCustomer("0397215463");
-        customerDto.setAddressCustomer("Quang Nam");
+        customerDto.setAddressCustomer("Dai Loc,Quang Nam");
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer(null);
@@ -659,11 +713,13 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_idCardCustomer_20() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
         customerDto.setTelCustomer("0397215463");
-        customerDto.setAddressCustomer("Quang Nam");
+        customerDto.setAddressCustomer("Dai Loc,Quang Nam");
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("");
@@ -682,11 +738,13 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_idCardCustomer_21() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gmail.com");
         customerDto.setTelCustomer("0397215463");
-        customerDto.setAddressCustomer("Quang Nam");
+        customerDto.setAddressCustomer("Dai Loc,Quang Nam");
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("123456asc");
@@ -705,11 +763,13 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_idCardCustomer_22() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
         customerDto.setTelCustomer("0397215463");
-        customerDto.setAddressCustomer("Quang Nam");
+        customerDto.setAddressCustomer("Dai Loc,Quang Nam");
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("01234578");
@@ -728,11 +788,13 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_idCardCustomer_23() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
         customerDto.setTelCustomer("0397215463");
-        customerDto.setAddressCustomer("Quang Nam");
+        customerDto.setAddressCustomer("Dai Loc,Quang Nam");
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("0123456789741");
@@ -751,11 +813,13 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_idCardCustomer_24() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
         customerDto.setTelCustomer("0397215463");
-        customerDto.setAddressCustomer("Quang Nam");
+        customerDto.setAddressCustomer("Dai Loc, Quang Nam");
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
@@ -775,11 +839,13 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_dateOfBirthCustomer_19() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
         customerDto.setTelCustomer("0397215463");
-        customerDto.setAddressCustomer("Quang Nam");
+        customerDto.setAddressCustomer("Dai Loc,Quang Nam");
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
@@ -795,11 +861,13 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_dateOfBirthCustomer_20() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
         customerDto.setTelCustomer("0397215463");
-        customerDto.setAddressCustomer("Quang Nam");
+        customerDto.setAddressCustomer("Dai Loc,Quang Nam");
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
@@ -818,6 +886,8 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_dateOfBirthCustomer_21() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gmail.com");
@@ -841,11 +911,13 @@ public class CustomerController_updateCustomer {
     @Test
     public void updateCustomer_dateOfBirthCustomer_24() throws Exception {
         CustomerDto customerDto=new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setFlagCustomer(false);
         customerDto.setNameCustomer("Lê Thị Yến Hoa");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("lsyh31@gamil.com");
         customerDto.setTelCustomer("0397215463");
-        customerDto.setAddressCustomer("Quang Nam");
+        customerDto.setAddressCustomer("Dai Loc,Quang Nam");
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
