@@ -1,15 +1,24 @@
 package com.example.air_ticket_booking.controller.customer;
 
+import com.example.air_ticket_booking.dto.customer.CustomerDto;
 import com.example.air_ticket_booking.model.customer.Customer;
 import com.example.air_ticket_booking.service.customer.ICustomerService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 @CrossOrigin("*")
 @RestController
@@ -75,11 +84,14 @@ public class CustomerController {
      * @param id,customer
      * @return ResponseEntity<>
      */
-    @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto, BindingResult bindingResult) {
         if (customerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
+        Customer customer=new Customer();
+        BeanUtils.copyProperties(customerDto,customer);
         customerService.updateCustomer(customer);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -93,26 +105,13 @@ public class CustomerController {
      * @return customer
      */
     @GetMapping("/details/{id}")
-    public ResponseEntity<?> customerDetails(@PathVariable Long id) {
+    public ResponseEntity<?> getCustomerDetails(@PathVariable Long id) {
+        if (customerService.findCustomerById(id) == null) {
+            return new ResponseEntity<>("Không tìm thấy khách hàng này",HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(customerService.findCustomerById(id), HttpStatus.OK);
     }
-//    /**
-//     * Create by: HungLV
-//     * Date create: 10/08/2023
-//     * Function: get data from front-end and check id, if get customer = null, return status not found, else update customer return status success
-//     *
-//     * @Param: customer, id
-//     * @Return: ResponseEntity
-//     */
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
-//        if (customerService.findCustomerById(id) == null) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        customerService.updateCustomer(customer);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
 
     /**
      * Create by: HungLV
@@ -127,6 +126,19 @@ public class CustomerController {
     public ResponseEntity<?> saveCustomer(@RequestBody Customer customer) {
         customerService.saveCustomer(customer);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
 }
     

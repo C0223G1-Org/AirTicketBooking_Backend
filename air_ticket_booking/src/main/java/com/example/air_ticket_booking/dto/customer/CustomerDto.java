@@ -14,33 +14,48 @@ import java.time.format.DateTimeFormatter;
 public class CustomerDto implements Validator {
     private Long idCustomer;
     @NotBlank(message = "Không được để trống trường này")
-    @Size(max = 30)
-    @Pattern(regexp = "^[\\p{Lu}][\\p{Ll}]*([\\s][\\p{Lu}][\\p{Ll}]*)*$", message = "Bạn phải viết hoa chữ cái đầu của từng từ và có khoảng trắng giữa các từ")
+    @Size(max = 30,min = 3,message = "Họ và tên tối thiểu 3 ký tự và tối đa 30 ký tự ")
+    @Pattern(regexp = "^[\\p{Lu}][\\p{Ll}]*([\\s][\\p{Lu}][\\p{Ll}]*)*$", message = "Bạn phải viết hoa chữ cái đầu của từng từ và có khoảng trắng giữa các từ và không chứa các kí tự đặc biệt hoặc số")
     private String nameCustomer;
     //    @NotBlank(message = "Không được để trống trường này")
     private Boolean genderCustomer;
     @NotBlank(message = "Không được để trống trường này")
-    @Pattern(regexp = "^\\w+@\\w+(.\\w+)$", message = "Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt ")
+    @Size(min = 12,max = 50,message = "Email tối thiểu 12 ký tự và tối đa 50 ký tự")
+    @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt ")
     private String emailCustomer;
     @NotBlank(message = "Không được để trống trường này")
-    @Pattern(regexp = "^0[0-9]{9}", message = "Nhập theo định dạng 0xxxxxxxxx với x là ký tự số")
+    @Pattern(regexp = "^(\\+84|0)[1-9][0-9]{8}$", message = "Nhập theo định dạng +84xxxxxxxxx hoặc 0xxxxxxxxx với x là ký tự số")
     private String telCustomer;
     @NotBlank(message = "Không được để trống trường này")
+    @Size(min = 10,max = 100,message = "Địa chỉ tối thiểu 10 kí tự và tối đa chỉ 100 kí tự")
     private String addressCustomer;
 
     private String imgCustomer;
     @NotBlank(message = "Không được để trống trường này")
     private String nationalityCustomer;
     @NotBlank(message = "Không được để trống trường này")
-    @Pattern(regexp = "^[0-9]{12}", message = "Nhập vào 12 ký tự số liên tiếp")
+    @Size(max = 20,message = "CCCD/Pasport tối đa 20 kí tự")
+    @Pattern(regexp = "^([A-Z][0-9]{6,12})|([0-9]{12})$", message = "CCCD/Password tối đa 12 kí tự và không chứa kí tự đặc biệt")
     private String idCardCustomer;
     @NotBlank(message = "Không được để trống trường này")
     private String dateCustomer;
-    @NotBlank(message = "Không được để trống trường này")
+
     private Boolean flagCustomer;
     private Account account;
 
     public CustomerDto() {
+    }
+
+    public CustomerDto(String nameCustomer, Boolean genderCustomer, String emailCustomer, String telCustomer, String addressCustomer, String imgCustomer, String nationalityCustomer, String idCardCustomer, String dateCustomer) {
+        this.nameCustomer = nameCustomer;
+        this.genderCustomer = genderCustomer;
+        this.emailCustomer = emailCustomer;
+        this.telCustomer = telCustomer;
+        this.addressCustomer = addressCustomer;
+        this.imgCustomer = imgCustomer;
+        this.nationalityCustomer = nationalityCustomer;
+        this.idCardCustomer = idCardCustomer;
+        this.dateCustomer = dateCustomer;
     }
 
     public CustomerDto(Long idCustomer, String nameCustomer, Boolean genderCustomer, String emailCustomer, String telCustomer, String addressCustomer, String imgCustomer, String nationalityCustomer, String idCardCustomer, String dateCustomer, Boolean flagCustomer, Account account) {
@@ -183,7 +198,7 @@ public class CustomerDto implements Validator {
 
         }
         if (age >= 18) {
-            errors.rejectValue("dateCustomer", "dateCustomer", "Hành khách phải trên 18 tuổi");
+            errors.rejectValue("dateCustomer", "dateCustomer", "Khách hàng phải trên 18 tuổi");
         }
 
     }
