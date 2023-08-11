@@ -1,9 +1,11 @@
 package com.example.air_ticket_booking.service.customer;
 
+import com.example.air_ticket_booking.dto.account.AccountDto;
 import com.example.air_ticket_booking.model.customer.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 public interface ICustomerService {
     /**
@@ -61,5 +63,24 @@ public interface ICustomerService {
      */
 
     void updateCustomer(Customer customer);
+    /**
+     * Create by: NhanDT
+     * Date create: 10/08/2023
+     * Function: declare function for use
+     *
+     * @Param: id
+     * @Return: List<Customer>
+     */
+    List<Customer> findAllByEmail(String email);
 
+
+    /**
+     * Create by: NhanDT
+     * Date create: 10/08/2023
+     * Function: declare function for use
+     *
+     * @Param: id
+     * @Return: List<Customer>
+     */
+    void createCustomer(AccountDto accountDto, Long idAccountNew);
 }

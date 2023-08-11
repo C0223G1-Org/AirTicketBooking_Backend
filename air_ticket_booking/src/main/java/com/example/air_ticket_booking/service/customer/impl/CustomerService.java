@@ -1,5 +1,6 @@
 package com.example.air_ticket_booking.service.customer.impl;
 
+import com.example.air_ticket_booking.dto.account.AccountDto;
 import com.example.air_ticket_booking.model.customer.Customer;
 import com.example.air_ticket_booking.repository.customer.ICustomerRepository;
 import com.example.air_ticket_booking.service.customer.ICustomerService;
@@ -8,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-
+import java.util.List;
 
 @Service
 public class CustomerService implements ICustomerService {
@@ -86,7 +87,28 @@ public class CustomerService implements ICustomerService {
     public void saveCustomer(Customer customer) {
         customerRepository.saveCustomer(customer);
     }
-
-
-
+    /**
+     * Create by: NhanDT
+     * Date create: 10/08/2023
+     * Function: declare function for use
+     *
+     * @Param: id
+     * @Return: List<Customer>
+     */
+    @Override
+    public List<Customer> findAllByEmail(String email) {
+        return customerRepository.findAllByEmail(email);
+    }
+    /**
+     * Create by: NhanDT
+     * Date create: 10/08/2023
+     * Function: declare function for use
+     *
+     * @Param: id
+     * @Return: List<Customer>
+     */
+    @Override
+    public void createCustomer(AccountDto accountDto, Long idAccountNew) {
+        this.customerRepository.createCustomer(accountDto, idAccountNew);
+    }
 }
