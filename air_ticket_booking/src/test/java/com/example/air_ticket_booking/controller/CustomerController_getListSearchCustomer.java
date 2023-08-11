@@ -284,6 +284,19 @@ public class CustomerController_getListSearchCustomer {
                 .andExpect(status().is4xxClientError());
 
     }
+    /**
+     * Create by: TàiMP
+     * Date create: 11/08/2023
+     * Method: get all data in list have number page < 0 return status 4xx
+     * @throws Exception
+     */
+    @Test
+    public void getListCustomer_86() throws Exception {
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.get("/customers/list?page=-12"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
 
 }
 

@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Max;
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/customers")
@@ -26,8 +28,18 @@ public class CustomerController {
      * Create by: TàiMP
      * Date create: 10/08/2023
      */
-    @GetMapping(value = {"/" , "/list"})
-    public ResponseEntity<Page<Customer>> getListCustomers(@PageableDefault(size = 5) Pageable pageable) {
+    @GetMapping(value = {"/", "/list"})
+    public ResponseEntity<Page<Customer>> getListCustomers(@PageableDefault(size = 5) Pageable pageable, @RequestParam("page") String page) {
+        int currentPage;
+        try {
+            currentPage = Integer.parseInt(page);
+            if (currentPage < 0) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (NumberFormatException n) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         Page<Customer> getListCustomer = customerService.getListCustomer(pageable);
         if (!getListCustomer.isEmpty()) {
             return new ResponseEntity<>(getListCustomer, HttpStatus.OK);
@@ -44,7 +56,21 @@ public class CustomerController {
      */
     @GetMapping("/search")
     public ResponseEntity<Page<Customer>> getListSearchCustomer(@PageableDefault(size = 5) Pageable pageable, @RequestParam("email") String email,
-                                                                @RequestParam("name") String name, @RequestParam("nationality") String nationality) {
+                                                                @RequestParam("name") String name, @RequestParam("nationality") String nationality,@RequestParam("page")String page) {
+
+        int currentPage;
+        try {
+            currentPage = Integer.parseInt(page);
+            if (currentPage < 0) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }else if (email.length()>100||name.length()>100||nationality.length()>20){
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+            }
+        } catch (NumberFormatException n) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         Page<Customer> getListSearch = customerService.getListSearchCustomer(pageable, email, name, nationality);
         if (!getListSearch.isEmpty()) {
             return new ResponseEntity<>(getListSearch, HttpStatus.OK);
@@ -61,12 +87,12 @@ public class CustomerController {
      */
     @PutMapping("/delete/{id}")
     public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable("id") Long id) {
-            if (customerService.findCustomerById(id) != null) {
-                customerService.deleteCustomer(id);
-                return new ResponseEntity<>(HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
+        if (customerService.findCustomerById(id) != null) {
+            customerService.deleteCustomer(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     /**
