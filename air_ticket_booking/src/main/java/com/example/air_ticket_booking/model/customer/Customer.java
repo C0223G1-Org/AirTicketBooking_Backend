@@ -26,6 +26,19 @@ public class Customer {
     public Customer() {
     }
 
+    public Customer( String nameCustomer, Boolean genderCustomer, String emailCustomer, String telCustomer, String addressCustomer, String imgCustomer, String nationalityCustomer, String idCardCustomer, String dateCustomer, Boolean flagCustomer) {
+        this.nameCustomer = nameCustomer;
+        this.genderCustomer = genderCustomer;
+        this.emailCustomer = emailCustomer;
+        this.telCustomer = telCustomer;
+        this.addressCustomer = addressCustomer;
+        this.imgCustomer = imgCustomer;
+        this.nationalityCustomer = nationalityCustomer;
+        this.idCardCustomer = idCardCustomer;
+        this.dateCustomer = dateCustomer;
+        this.flagCustomer = flagCustomer;
+    }
+
     public Customer(Long idCustomer, String nameCustomer, Boolean genderCustomer, String emailCustomer, String telCustomer, String addressCustomer, String imgCustomer, String nationalityCustomer, String idCardCustomer, String dateCustomer, Boolean flagCustomer, Account account) {
         this.idCustomer = idCustomer;
         this.nameCustomer = nameCustomer;
@@ -38,6 +51,19 @@ public class Customer {
         this.idCardCustomer = idCardCustomer;
         this.dateCustomer = dateCustomer;
         this.flagCustomer = flagCustomer;
+        this.account = account;
+    }public Customer(Long idCustomer, String nameCustomer, Boolean genderCustomer, String emailCustomer, String telCustomer, String addressCustomer, String imgCustomer, String nationalityCustomer, String idCardCustomer, String dateCustomer, Account account) {
+        this.idCustomer = idCustomer;
+        this.nameCustomer = nameCustomer;
+        this.genderCustomer = genderCustomer;
+        this.emailCustomer = emailCustomer;
+        this.telCustomer = telCustomer;
+        this.addressCustomer = addressCustomer;
+        this.imgCustomer = imgCustomer;
+        this.nationalityCustomer = nationalityCustomer;
+        this.idCardCustomer = idCardCustomer;
+        this.dateCustomer = dateCustomer;
+
         this.account = account;
     }
 
