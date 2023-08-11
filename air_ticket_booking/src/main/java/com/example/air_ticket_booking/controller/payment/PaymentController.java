@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
+// ThanhVH
 @RestController
 public class PaymentController {
 
@@ -24,16 +24,19 @@ public class PaymentController {
     @PostMapping("/paypal/capture")
     public ResponseEntity<String> capturePayPalOrder(@RequestBody String orderId) {
         try {
+            // định nghĩa môi trường và thông tin xác thực để giao tiếp với PayPal = clientId, clientSecret
             PayPalEnvironment environment = new PayPalEnvironment.Sandbox(clientId, clientSecret);
+            //sử dụng để gửi yêu cầu API đến PayPal.
             PayPalHttpClient client = new PayPalHttpClient(environment);
 
+            //yêu cầu OrdersCaptureRequest với orderId của đơn hàng cần được capture.
             OrdersCaptureRequest request = new OrdersCaptureRequest(orderId);
             HttpResponse<Order> response = client.execute(request);
-
+           //Lấy thông tin đơn hàng và trạng thái
             Order order = response.result();
             String status = order.status();
 
-            // Xử lý thông tin và trạng thái của đơn hàng PayPal ở đây
+            //  trạng thái của đơn hàng PayPal
 
             return ResponseEntity.ok("\n" +
                     "Thanh toán thành công.\n" +
