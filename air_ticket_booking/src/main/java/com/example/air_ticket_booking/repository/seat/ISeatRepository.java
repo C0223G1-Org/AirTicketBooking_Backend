@@ -35,4 +35,3 @@ public interface ISeatRepository extends JpaRepository<Seat,Long> {
     List<SeatProjection> showListSeatEmptyByRoute(@Param("idRoute") Long idRoute );
 
 }
-
