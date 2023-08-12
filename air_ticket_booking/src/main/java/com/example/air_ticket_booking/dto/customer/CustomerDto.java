@@ -8,10 +8,13 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 
 public class CustomerDto implements Validator {
+
     private Long idCustomer;
     @NotBlank(message = "Không được để trống trường này")
     @Size(max = 30,min = 3,message = "Họ và tên tối thiểu 3 ký tự và tối đa 30 ký tự ")
@@ -185,21 +188,23 @@ public class CustomerDto implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
 
-        CustomerDto customerDto = (CustomerDto) target;
-        String date = customerDto.dateCustomer;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate dateOfBirth = LocalDate.parse(date, formatter);
-        LocalDate today = LocalDate.now();
-        int age = today.getYear() - dateOfBirth.getYear();
-
-        if (today.getMonthValue() < dateOfBirth.getMonthValue()
-                || (today.getMonthValue() == dateOfBirth.getMonthValue() && today.getDayOfMonth() < dateOfBirth.getDayOfMonth())) {
-            age--; //Age reduction if the birthday is not reached in the current year
-
+        try {
+            CustomerDto customerDto = (CustomerDto) target;
+            String date = customerDto.dateCustomer;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate dateOfBirth = LocalDate.parse(date, formatter);
+            LocalDate today = LocalDate.now();
+            Period period = Period.between(dateOfBirth, today);
+            if (period.getYears() < 18) {
+                errors.rejectValue("dateCustomer", "dateCustomer", "Khách hàng phải trên 18 tuổi");
+            } else if (period.getYears() == 18) {
+                if (period.getMonths() < 0 || period.getDays() < 0) {
+                    errors.rejectValue("dateCustomer", "dateCustomer", "Khách hàng phải trên 18 tuổi");
+                }
+            }
+        }catch (DateTimeParseException e){
+//            e.printStackTrace();
+            errors.rejectValue("dateCustomer", "dateCustomer", "Không đúng định dạng dd/MM/yyyy");
         }
-        if (age <= 18) {
-            errors.rejectValue("dateCustomer", "dateCustomer", "Khách hàng phải trên 18 tuổi");
-        }
-
     }
 }

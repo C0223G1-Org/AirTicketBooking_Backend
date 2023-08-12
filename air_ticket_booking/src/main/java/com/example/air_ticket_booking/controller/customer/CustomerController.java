@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,10 +87,13 @@ public class CustomerController {
      * @return ResponseEntity<>
      */
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto) {
-        Customer customer56=customerService.findCustomerById(id);
+    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto,BindingResult bindingResult) {
         if (customerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        new CustomerDto().validate(customerDto,bindingResult);
+        if(bindingResult.hasErrors()){
+            return new ResponseEntity<>(bindingResult.getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST);
         }
         Customer customer=new Customer();
         BeanUtils.copyProperties(customerDto,customer);
@@ -106,10 +111,18 @@ public class CustomerController {
      */
     @GetMapping("/details/{id}")
     public ResponseEntity<?> getCustomerDetails(@PathVariable Long id) {
-        if (customerService.findCustomerById(id) == null) {
-            return new ResponseEntity<>("Không tìm thấy khách hàng này",HttpStatus.NOT_FOUND);
+        try{
+            if(ObjectUtils.isEmpty(id)){
+                return new ResponseEntity<>("Không tìm thấy khách hàng này",HttpStatus.NOT_FOUND);
+            }
+            if (customerService.findCustomerById(id) == null) {
+                return new ResponseEntity<>("Không tìm thấy khách hàng này",HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(customerService.findCustomerById(id), HttpStatus.OK);
+        }catch (IllegalArgumentException  e){
+            return new ResponseEntity<>("ID không thể chứa chữ hoặc kí tự đặc biệt",HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(customerService.findCustomerById(id), HttpStatus.OK);
+
     }
 
 
@@ -117,7 +130,6 @@ public class CustomerController {
      * Create by: HungLV
      * Date create: 10/08/2023
      * Function:get data from front-end and save data in database and return status success
-     *
      * @Param: customer
      * @Return: ResponseEntity
      */

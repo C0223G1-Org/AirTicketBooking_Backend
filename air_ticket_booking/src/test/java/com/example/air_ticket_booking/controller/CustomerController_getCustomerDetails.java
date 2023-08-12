@@ -16,6 +16,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class CustomerController_getCustomerDetails {
     @Autowired
     private MockMvc mockMvc;
+
+    /**
+     * Create by: HoaLTY
+     * Date create: 11/08/2023
+     * Function: test id parameter is null
+     * @throws Exception
+     */
     @Test
     public void getCustomerDetails_id_1() throws Exception {
         this.mockMvc.perform(
@@ -24,6 +31,13 @@ public class CustomerController_getCustomerDetails {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * Create by: HoaLTY
+     * Date create: 11/08/2023
+     * Function: test id parameter is empty
+     * @throws Exception
+     */
     @Test
     public void getCustomerDetails_id_2() throws Exception {
         this.mockMvc.perform(
@@ -33,6 +47,12 @@ public class CustomerController_getCustomerDetails {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Create by: HoaLTY
+     * Date create: 11/08/2023
+     * Function: test id parameter doesn't exist
+     * @throws Exception
+     */
     @Test
     public void getCustomerDetails_id_3() throws Exception {
         this.mockMvc.perform(
@@ -41,6 +61,13 @@ public class CustomerController_getCustomerDetails {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * Create by: HoaLTY
+     * Date create: 11/08/2023
+     * Function: test id parameter exist
+     * @throws Exception
+     */
     @Test
     public void getCustomerDetails_id_4() throws Exception {
         this.mockMvc.perform(
@@ -49,16 +76,31 @@ public class CustomerController_getCustomerDetails {
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("idCustomer").value(1))
-                .andExpect(jsonPath("nameCustomer").value("Hoa"))
+                .andExpect(jsonPath("nameCustomer").value("Lê Thị Yến Hoa"))
                 .andExpect(jsonPath("genderCustomer").value("true"))
-                .andExpect(jsonPath("emailCustomer").value("hoa@gmail.com"))
-                .andExpect(jsonPath("telCustomer").value("434343434"))
-                .andExpect(jsonPath("addressCustomer").value("31hjh"))
-                .andExpect(jsonPath("imgCustomer").value("23"))
-                .andExpect(jsonPath("nationalityCustomer").value("VN"))
-                .andExpect(jsonPath("idCardCustomer").value("7676731"))
+                .andExpect(jsonPath("emailCustomer").value("lsyh31@gmail.com"))
+                .andExpect(jsonPath("telCustomer").value("0397215463"))
+                .andExpect(jsonPath("addressCustomer").value("Dai Loc,Quang Nam"))
+                .andExpect(jsonPath("imgCustomer").value(""))
+                .andExpect(jsonPath("nationalityCustomer").value("Viet Nam"))
+                .andExpect(jsonPath("idCardCustomer").value("012345678974"))
                 .andExpect(jsonPath("flagCustomer").value("false"))
                 .andExpect(jsonPath("dateCustomer").value("31/01/2000"));
+    }
+
+    /**
+     * Create by: HoaLTY
+     * Date create: 11/08/2023
+     * Function: test id parameter invalid
+     * @throws Exception
+     */
+    @Test
+    public void getCustomerDetails_id() throws Exception {
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders
+                                .get("/customers/details/{id}", "a"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
     }
 
 }
