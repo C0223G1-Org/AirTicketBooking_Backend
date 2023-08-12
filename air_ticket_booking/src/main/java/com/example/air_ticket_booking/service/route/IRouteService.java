@@ -1,5 +1,9 @@
 package com.example.air_ticket_booking.service.route;
 
+import com.example.air_ticket_booking.model.route.Route;
+
+import java.util.List;
+
 import com.example.air_ticket_booking.model.projection_tdns.RouteProjection;
 
 import java.util.List;
@@ -7,6 +11,8 @@ import java.util.List;
 import com.example.air_ticket_booking.model.route.Route;
 
 public interface IRouteService {
+    List<Route> findTop10RouteCheapest();
+
     /**
      * create by : SangTDN
      * @param departure
