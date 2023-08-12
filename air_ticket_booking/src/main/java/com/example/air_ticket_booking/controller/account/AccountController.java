@@ -53,6 +53,14 @@ public class AccountController {
 
 
     }
+    /**
+     * Created by: NhanDT
+     * Date created: 10/08/2023
+     * Function: Login , SignUp
+     *
+     * @param
+     * @return
+     */
     @PostMapping("/login")
     public ResponseEntity<?> loginAuthentication(@RequestBody JwtRequest authenticationRequest) throws Exception {
         try {
@@ -69,7 +77,14 @@ public class AccountController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Đăng nhập thất bại!!!");
         }
     }
-
+    /**
+     * Created by: NhanDT
+     * Date created: 10/08/2023
+     * Function: Login , SignUp
+     *
+     * @param
+     * @return
+     */
     @PostMapping("/signup")
     public ResponseEntity<?> signUp(@Valid @RequestBody AccountDto accountDto){
         if (accountService.signUp(accountDto)){
@@ -78,6 +93,13 @@ public class AccountController {
 //        String encoderPassword = passwordEncoder.encode(accountDto.getPassword());
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+    /**
+     * Created by: NhanDT
+     * Date created: 11/08/2023
+     *
+     * @param
+     * @return
+     */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(

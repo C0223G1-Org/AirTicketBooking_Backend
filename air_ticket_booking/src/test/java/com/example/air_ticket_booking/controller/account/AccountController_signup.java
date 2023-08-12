@@ -850,17 +850,17 @@ public class AccountController_signup {
      * Created by: NhanDT
      * Date created: 11/08/2023
      *
-     * Check case format dayOfBirth (age>18)
+     * Check case format dayOfBirth (age<18)
      * @throws Exception
      */
     @Test
     public void signUp_dayOfBirth_18_15() throws Exception {
         AccountDto accountDto = new AccountDto();
-        accountDto.setEmailCustomer("nhan101@gmail.com");
+        accountDto.setEmailCustomer("khang4@gmail.com");
         accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Nhan Nhan Nhan");
-        accountDto.setDateCustomer("02/02/2010");
+        accountDto.setDateCustomer("2010-02-02");
         accountDto.setAddressCustomer("Đà Nẵng");
         accountDto.setGenderCustomer(false);
         accountDto.setNationalityCustomer("Việt Nam");
@@ -873,6 +873,36 @@ public class AccountController_signup {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * Created by: NhanDT
+     * Date created: 11/08/2023
+     *
+     * Check case format dayOfBirth (age>150)
+     * @throws Exception
+     */
+    @Test
+    public void signUp_dayOfBirth_150_15() throws Exception {
+        AccountDto accountDto = new AccountDto();
+        accountDto.setEmailCustomer("khang1@gmail.com");
+        accountDto.setPassword("12345678A");
+        accountDto.setTelCustomer("0123456789");
+        accountDto.setNameCustomer("Nhan Nhan Nhan");
+        accountDto.setDateCustomer("1850-02-02");
+        accountDto.setAddressCustomer("Đà Nẵng");
+        accountDto.setGenderCustomer(false);
+        accountDto.setNationalityCustomer("Việt Nam");
+        accountDto.setIdCardCustomer("120123456789");
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .post("/api/account/signup")
+                        .content(this.objectMapper.writeValueAsString(accountDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+
 
 
 }
