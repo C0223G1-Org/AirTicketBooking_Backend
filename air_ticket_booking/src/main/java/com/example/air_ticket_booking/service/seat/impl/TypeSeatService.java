@@ -12,15 +12,6 @@ public class TypeSeatService implements ITypeSeatService {
     @Autowired
     private ITypeSeatRepository typeSeatRepository;
 
-    /**
-     * create by : SangTDN
-     * @return List TypeSeat
-     * call method getListSeat() form ITypeSeatRepository
-     */
-    @Override
-    public List<TypeSeat> getListTypeSeat() {
-        return typeSeatRepository.getListTypeSeat();
-    }
 
     /**
      *method :find  type seat  by id in service

@@ -13,26 +13,5 @@ import java.util.List;
 @CrossOrigin("*")
 @RequestMapping("/seat")
 public class SeatController {
-    @Autowired
-    private ISeatRepository seatRepository;
 
-    /**
-     * create by: SangTDN
-     * @param idRoute
-     * @return array Json SeatProjection,status
-     * Upload data to API
-     */
-    @GetMapping("/seat-empty/{idRoute}")
-    public ResponseEntity<List<SeatProjection>> showListSeatEmptyByRoute (@PathVariable Long idRoute){
-        List<SeatProjection> list;
-        try{
-            list = seatRepository.showListSeatEmptyByRoute(idRoute);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        if (list.size()==0){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(list, HttpStatus.OK);
-    }
 }

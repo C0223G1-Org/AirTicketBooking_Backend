@@ -16,16 +16,5 @@ import java.util.List;
 @CrossOrigin("*")
 @RequestMapping("/type-seat")
 public class TypeSeatController {
-    @Autowired
-    private ITypeSeatService typeSeatService;
 
-    /**
-     * create by : SangTDN
-     * @return arr Json TypeSeat , status
-     * Upload data to API
-     */
-    @GetMapping("")
-    public ResponseEntity<List<TypeSeat>> getListSeat(){
-        return new ResponseEntity<>(typeSeatService.getListTypeSeat(), HttpStatus.OK);
-    }
 }

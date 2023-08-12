@@ -2,8 +2,10 @@ package com.example.air_ticket_booking.controller.account;
 
 import com.example.air_ticket_booking.config.JwtTokenUtil;
 import com.example.air_ticket_booking.config.JwtUserDetails;
+import com.example.air_ticket_booking.dto.account.AccountChangeDTO;
 import com.example.air_ticket_booking.dto.account.AccountDto;
 import com.example.air_ticket_booking.dto.account.JwtRequestDto;
+import com.example.air_ticket_booking.model.account.Account;
 import com.example.air_ticket_booking.model.customer.Customer;
 import com.example.air_ticket_booking.reponse.JwtRequest;
 import com.example.air_ticket_booking.reponse.JwtResponse;
@@ -45,6 +47,8 @@ public class AccountController {
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     class ErrorInfo {
@@ -53,6 +57,25 @@ public class AccountController {
 
 
     }
+
+    /**
+     * create by : SangTDN
+     * @param id
+     * @param accountChangeDTO
+     * @return status
+     */
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updateAccount(@Valid @RequestBody AccountChangeDTO accountChangeDTO, @PathVariable Long id) {
+        Account account = accountService.findAccountById(id);
+        boolean flag = passwordEncoder.matches(accountChangeDTO.getOldPassword(), account.getPassword());
+        if (flag) {
+            String encoderNewPassword = passwordEncoder.encode(accountChangeDTO.getNewPassword());
+            accountService.updatePasswordForId(encoderNewPassword, id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     @PostMapping("/login")
     public ResponseEntity<?> loginAuthentication(@RequestBody JwtRequest authenticationRequest) throws Exception {
         try {
@@ -71,13 +94,14 @@ public class AccountController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signUp(@Valid @RequestBody AccountDto accountDto){
-        if (accountService.signUp(accountDto)){
+    public ResponseEntity<?> signUp(@Valid @RequestBody AccountDto accountDto) {
+        if (accountService.signUp(accountDto)) {
             return new ResponseEntity<>(HttpStatus.OK);
         }
 //        String encoderPassword = passwordEncoder.encode(accountDto.getPassword());
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(
