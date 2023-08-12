@@ -14,23 +14,12 @@ public class AccountService implements IAccountService {
      * create by : SangTDN
      * @param newPass
      * @param oldPass
-     * @param idCustomer
+     * @param idAccount
      * call method updatePasswordForCustomer() from IAccountRepository
      */
     @Override
-    public void updatePasswordForCustomer(String newPass, String oldPass, Long idCustomer) {
-        accountRepository.updatePasswordForCustomer(newPass,oldPass,idCustomer);
+    public void updatePasswordForId(String newPass, String oldPass, Long idAccount) {
+        accountRepository.updatePasswordForId(newPass,oldPass,idAccount);
     }
 
-    /**
-     * create by : SangTDN
-     * @param newPass
-     * @param oldPass
-     * @param idEmployee
-     * call method updatePasswordForEmployee() from IAccountRepository
-     */
-    @Override
-    public void updatePasswordForEmployee(String newPass, String oldPass, Long idEmployee) {
-        accountRepository.updatePasswordForEmployee(newPass,oldPass,idEmployee);
-    }
 }

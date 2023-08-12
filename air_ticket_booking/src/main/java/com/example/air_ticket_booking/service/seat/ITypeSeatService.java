@@ -8,12 +8,6 @@ import com.example.air_ticket_booking.model.seat.TypeSeat;
 
 public interface ITypeSeatService {
     /**
-     * create by : SangTDN
-     * @return List TypeSeat
-     * it is abstract method
-     */
-    List<TypeSeat> getListTypeSeat ();
-    /**
      *method :find type seat in service
      * created by :NamPC
      * date create: 10/08/2023

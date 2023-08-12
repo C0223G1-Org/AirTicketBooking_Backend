@@ -43,9 +43,9 @@ public class AccountController {
      * @return status
      */
     @PatchMapping("/change-pass-employee/{newPass}/{oldPass}/{idEmployee}")
-    public ResponseEntity<?> updatePasswordForEmployee (@PathVariable String newPass, @PathVariable String oldPass,
+    public ResponseEntity<?> updatePasswordForEmployee (@Valid @PathVariable PassDto newPass, @PathVariable String oldPass,
                                                         @PathVariable Long idEmployee){
-        accountService.updatePasswordForEmployee(newPass,oldPass,idEmployee);
+        accountService.updatePasswordForEmployee(newPass.getPassword(),oldPass,idEmployee);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

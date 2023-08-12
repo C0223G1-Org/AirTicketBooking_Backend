@@ -19,11 +19,4 @@ public interface ITypeSeatRepository extends JpaRepository<TypeSeat,Long> {
     @Query(value = "select * from type_seat where id_type_seat = :id", nativeQuery = true)
     TypeSeat findTypeSeatById(@Param("id") Long id);
 
-    /**
-     * create by : SangTDN
-     * @return List TypeSeat
-     * get list of seat type
-     */
-    @Query(value = "select * from type_seat", nativeQuery = true)
-    List<TypeSeat> getListTypeSeat ();
 }
