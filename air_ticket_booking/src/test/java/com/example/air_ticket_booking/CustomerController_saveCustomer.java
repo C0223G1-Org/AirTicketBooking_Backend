@@ -25,7 +25,7 @@ public class CustomerController_saveCustomer {
     /**
      * Create by: HungLV
      * Date create: 11/08/2023
-     * Function: get object from front-end and check case field name is null
+     * Function: get object from front-end and check case field name_customer is null
      *
      * @Param: not Param
      * @Return: void
@@ -61,7 +61,7 @@ public class CustomerController_saveCustomer {
     /**
      * Create by: HungLV
      * Date create: 11/08/2023
-     * Function: get object from front-end and check case field name is empty
+     * Function: get object from front-end and check case field name_customer is empty
      *
      * @Param: not Param
      * @Return: void
@@ -97,7 +97,7 @@ public class CustomerController_saveCustomer {
     /**
      * Create by: HungLV
      * Date create: 11/08/2023
-     * Function: get object from front-end and check case field name is not formatted
+     * Function: get object from front-end and check case field name_customer is not formatted
      *
      * @Param: not Param
      * @Return: void
@@ -133,7 +133,7 @@ public class CustomerController_saveCustomer {
     /**
      * Create by: HungLV
      * Date create: 11/08/2023
-     * Function: get object from front-end and check case field name has character less than min
+     * Function: get object from front-end and check case field name_customer has character less than min
      *
      * @Param: not Param
      * @Return: void
@@ -170,7 +170,7 @@ public class CustomerController_saveCustomer {
     /**
      * Create by: HungLV
      * Date create: 11/08/2023
-     * Function: get object from front-end and check case field name has character greater than max
+     * Function: get object from front-end and check case field name_customer has character greater than max
      *
      * @Param: not Param
      * @Return: void
@@ -208,7 +208,7 @@ public class CustomerController_saveCustomer {
     /**
      * Create by: HungLV
      * Date create: 11/08/2023
-     * Function: get object from front-end and check case field name is right format
+     * Function: get object from front-end and check case field name_customer is right format
      *
      * @Param: not Param
      * @Return: void
@@ -241,6 +241,15 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field email_customer is null
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
     @Test
     public void saveCustomer_email_object_13() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -268,6 +277,15 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field email_customer is empty
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
     @Test
     public void saveCustomer_email_object_14() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -295,6 +313,16 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field email_customer is not formatted
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
     @Test
     public void saveCustomer_email_object_15() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -322,6 +350,16 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field email_customer has character less than min
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
     @Test
     public void saveCustomer_email_object_16() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -349,6 +387,16 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field email_customer has character greater than max
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
+
     @Test
     public void saveCustomer_email_object_17() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -383,6 +431,15 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field email_customer is right format
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
     @Test
     public void saveCustomer_email_object_18() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -410,6 +467,15 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field tel_customer is null
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
     @Test
     public void saveCustomer_tel_object_13() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -437,6 +503,16 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field tel_customer is empty
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
     @Test
     public void saveCustomer_tel_object_14() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -464,6 +540,15 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field tel_customer is not formatted
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
     @Test
     public void saveCustomer_tel_object_15() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -491,6 +576,16 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field tel_customer has character less than min
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
+
     @Test
     public void saveCustomer_tel_object_16() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -518,6 +613,15 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field tel_customer has character greater than max
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
     @Test
     public void saveCustomer_tel_object_17() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -545,6 +649,15 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field tel_customer is right format
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
     @Test
     public void saveCustomer_tel_object_18() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -572,6 +685,15 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field address_customer is null
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
     @Test
     public void saveCustomer_address_object_13() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -599,6 +721,15 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field address_customer is empty
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
     @Test
     public void saveCustomer_address_object_14() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -626,6 +757,15 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field address_customer has character less than min
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
     @Test
     public void saveCustomer_address_object_16() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -653,7 +793,15 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
-
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field address_customer has character greater than max
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
     @Test
     public void saveCustomer_address_object_17() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -688,6 +836,15 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field address_customer is right format
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
     @Test
     public void saveCustomer_address_object_18() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -715,6 +872,15 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field img_customer is null
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
     @Test
     public void saveCustomer_img_object_13() throws Exception {
         CustomerDto customerDto = new CustomerDto();
@@ -742,6 +908,15 @@ public class CustomerController_saveCustomer {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+    /**
+     * Create by: HungLV
+     * Date create: 11/08/2023
+     * Function: get object from front-end and check case field img_customer is empty
+     *
+     * @Param: not Param
+     * @Return: void
+     * @throws Exception
+     */
     @Test
     public void saveCustomer_img_object_14() throws Exception {
         CustomerDto customerDto = new CustomerDto();

@@ -24,7 +24,7 @@ public class CustomerDto {
     @NotBlank(message = "Không được để trống trường này")
     @Size(min = 3,max = 100, message = "Địa chỉ tối thiểu 3 ký tự và tối đa 100 ký tự")
     private String addressCustomer;
-    @NotBlank(message = "Không được để trống trường này")
+//    @NotBlank(message = "Không được để trống trường này")
     private String imgCustomer;
     @NotBlank(message = "Không được để trống trường này")
     private String nationalityCustomer;

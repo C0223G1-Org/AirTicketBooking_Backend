@@ -1,7 +1,9 @@
 package com.example.air_ticket_booking.controller.customer;
 
 import com.example.air_ticket_booking.dto.customer.CustomerDto;
+import com.example.air_ticket_booking.model.account.Account;
 import com.example.air_ticket_booking.model.customer.Customer;
+import com.example.air_ticket_booking.service.account.IAccountService;
 import com.example.air_ticket_booking.service.customer.ICustomerService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ import java.util.Map;
 public class CustomerController {
     @Autowired
     private ICustomerService customerService;
+
+    @Autowired
+    private IAccountService accountService;
 
     /**
      * Create by: HungLV
@@ -58,8 +63,22 @@ public class CustomerController {
     public ResponseEntity<?> saveCustomer(@Valid @RequestBody CustomerDto customerdto) {
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerdto,customer);
+        Long idAccount = (long) (accountService.getList().size()+1);
+        Account account = customer.getAccount();
+        account.setIdAccount(idAccount);
+        accountService.saveAccount(account);
+        customer.setAccount(account);
         customerService.saveCustomer(customer);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getCustomerById(@PathVariable Long id ){
+        Customer customer = customerService.findCustomerById(id);
+        if(customer==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
