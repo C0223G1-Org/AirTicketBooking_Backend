@@ -3,6 +3,7 @@ package com.example.air_ticket_booking.controller.ticket;
 import com.example.air_ticket_booking.dto.ticket.TicketDto;
 import com.example.air_ticket_booking.model.customer.Customer;
 import com.example.air_ticket_booking.model.luggage.Luggage;
+import com.example.air_ticket_booking.model.route.Route;
 import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
@@ -10,6 +11,7 @@ import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
 import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
 import com.example.air_ticket_booking.service.ticket.impl.TicketService;
+import com.sun.tools.javac.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,7 @@ public class TicketController {
 
     @Autowired
     private ITicketService iTicketService;
+
 
     /**
      * method: used to create a new ticket when the user confirms the booking
@@ -88,11 +91,11 @@ public class TicketController {
      */
 
     @PatchMapping("/updateTicket/{id}")
-    public ResponseEntity<?> updateTicket(@PathVariable Long id,@Valid @RequestBody TicketDto ticketDto, BindingResult bindingResult ) {
-        ticketDto.validate(ticketDto, bindingResult);
-        if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body("Lỗi Không Đúng Định Dạng");
-        }
+    public ResponseEntity<?> updateTicket(@PathVariable Long id,@Valid @RequestBody TicketDto ticketDto) {
+//        ticketDto.validate(ticketDto, bindingResult);
+//        if (bindingResult.hasErrors()) {
+//            return ResponseEntity.badRequest().body("Lỗi Không Đúng Định Dạng");
+//        }
 
         Ticket existingTicket = iTicketService.findByIdTicket(id);
         if (existingTicket == null) {
