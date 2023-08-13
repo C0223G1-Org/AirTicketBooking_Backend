@@ -17,8 +17,8 @@ public class CustomerDto implements Validator {
 
     private Long idCustomer;
     @NotBlank(message = "Không được để trống trường này")
-    @Size(max = 30,min = 3,message = "Họ và tên tối thiểu 3 ký tự và tối đa 30 ký tự ")
-    @Pattern(regexp = "^[\\p{Lu}][\\p{Ll}]*([\\s][\\p{Lu}][\\p{Ll}]*)*$", message = "Bạn phải viết hoa chữ cái đầu của từng từ và có khoảng trắng giữa các từ và không chứa các kí tự đặc biệt hoặc số")
+    @Size(max = 30, min = 3, message = "Họ và tên tối thiểu 3 ký tự và tối đa 30 ký tự ")
+    @Pattern(regexp = "^[\\p{Lu}][\\p{Ll}]*([\\s][\\p{Lu}][\\p{Ll}]*)*$", message = "Bạn phải viết hoa chữ cái đầu của từng từ và có khoảng trắng giữa các từ")
     private String nameCustomer;
     //    @NotBlank(message = "Không được để trống trường này")
     private Boolean genderCustomer;
@@ -28,6 +28,7 @@ public class CustomerDto implements Validator {
     private String emailCustomer;
     @NotBlank(message = "Không được để trống trường này")
     @Pattern(regexp = "^(\\+84|0)[1-9][0-9]{8}$", message = "Nhập theo định dạng +84xxxxxxxxx hoặc 0xxxxxxxxx với x là ký tự số")
+    @Size(min = 3, max = 20, message = "Số điện thoại tối thiểu 3 ký tự và tối đa 20 ký tự ")
     private String telCustomer;
     @NotBlank(message = "Không được để trống trường này")
     @Size(min = 10,max = 100,message = "Địa chỉ tối thiểu 10 kí tự và tối đa chỉ 100 kí tự")
@@ -37,8 +38,8 @@ public class CustomerDto implements Validator {
     @NotBlank(message = "Không được để trống trường này")
     private String nationalityCustomer;
     @NotBlank(message = "Không được để trống trường này")
-    @Size(max = 20,message = "CCCD/Pasport tối đa 20 kí tự")
-    @Pattern(regexp = "^([A-Z][0-9]{6,12})|([0-9]{12})$", message = "CCCD/Password tối đa 12 kí tự và không chứa kí tự đặc biệt")
+    @Size(min = 6,max = 12, message = "CCCD/Passport tối thiểu 6 ký tự và tối đa 12 ký tự")
+    @Pattern(regexp = "^([A-Z]|[0-9])+$", message = "Nhập vào chữ viết hoa và ký tự")
     private String idCardCustomer;
     @NotBlank(message = "Không được để trống trường này")
     private String dateCustomer;

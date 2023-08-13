@@ -1,14 +1,16 @@
 package com.example.air_ticket_booking.controller.customer;
 
 import com.example.air_ticket_booking.dto.customer.CustomerDto;
+import com.example.air_ticket_booking.model.account.Account;
 import com.example.air_ticket_booking.model.customer.Customer;
+import com.example.air_ticket_booking.service.account.IAccountService;
 import com.example.air_ticket_booking.service.customer.ICustomerService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
@@ -18,30 +20,41 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.awt.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/customers")
+@CrossOrigin("*")
 public class CustomerController {
     @Autowired
     private ICustomerService customerService;
-
+    @Autowired
+    private IAccountService accountService;
     /**
      * @param pageable
      * @return if getListCustomer have data return getListCustomer and status OK else return status NO_CONTENT
      * Create by: TàiMP
      * Date create: 10/08/2023
      */
-    @GetMapping("")
-    public ResponseEntity<Page<Customer>> getListCustomers(Pageable pageable) {
+    @GetMapping(value = {"/", "/list"})
+    public ResponseEntity<Page<Customer>> getListCustomers(@PageableDefault(size = 5) Pageable pageable, @RequestParam("page") String page) {
+        int currentPage;
+        try {
+            currentPage = Integer.parseInt(page);
+            if (currentPage < 0) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (NumberFormatException n) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         Page<Customer> getListCustomer = customerService.getListCustomer(pageable);
-        if (getListCustomer.getTotalElements() != 0) {
+        if (!getListCustomer.isEmpty()) {
             return new ResponseEntity<>(getListCustomer, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -51,14 +64,28 @@ public class CustomerController {
      * Create by: TàiMP
      * Date create: 10/08/2023
      */
-    @GetMapping("search/name={name}/nationality={nationality}/email={email}")
-    public ResponseEntity<Page<Customer>> getListSearchCustomer(Pageable pageable, @PathVariable("email") String email,
-                                                                @PathVariable("name") String name, @PathVariable("nationality") String nationality) {
+    @GetMapping("/search")
+    public ResponseEntity<Page<Customer>> getListSearchCustomer(@PageableDefault(size = 5) Pageable pageable, @RequestParam("email") String email,
+                                                                @RequestParam("name") String name, @RequestParam("nationality") String nationality,@RequestParam("page")String page) {
+
+        int currentPage;
+        try {
+            currentPage = Integer.parseInt(page);
+            if (currentPage < 0) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }else if (email.length()>100||name.length()>100||nationality.length()>20){
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+            }
+        } catch (NumberFormatException n) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         Page<Customer> getListSearch = customerService.getListSearchCustomer(pageable, email, name, nationality);
-        if (getListSearch.getTotalElements() != 0) {
+        if (!getListSearch.isEmpty()) {
             return new ResponseEntity<>(getListSearch, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -79,7 +106,7 @@ public class CustomerController {
     }
 
     /**
-     * Create by: HoaLTY,HungLV/
+     * Create by: HoaLTY,HungLV
      * Date create: 10/08/2023
      * Function: get data from front-end and check id, if get customer = null, return status not found, else update customer return status success
      *
@@ -87,7 +114,7 @@ public class CustomerController {
      * @return ResponseEntity<>
      */
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto,BindingResult bindingResult) {
+    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto, BindingResult bindingResult) {
         if (customerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -125,20 +152,36 @@ public class CustomerController {
 
     }
 
-
     /**
      * Create by: HungLV
      * Date create: 10/08/2023
      * Function:get data from front-end and save data in database and return status success
+     *
      * @Param: customer
      * @Return: ResponseEntity
      */
 
     @PostMapping("")
-    public ResponseEntity<?> saveCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<?> saveCustomer(@Valid @RequestBody CustomerDto customerdto) {
+        Customer customer = new Customer();
+        BeanUtils.copyProperties(customerdto,customer);
+        Long idAccount = (long) (accountService.getList().size()+1);
+        Account account = customer.getAccount();
+        account.setIdAccount(idAccount);
+        accountService.saveAccount(account);
+        customer.setAccount(account);
         customerService.saveCustomer(customer);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+//    @GetMapping("/{id}")
+//    public ResponseEntity<?> getCustomerById(@PathVariable Long id ){
+//        Customer customer = customerService.findCustomerById(id);
+//        if(customer==null){
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(customer, HttpStatus.OK);
+//    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -153,6 +196,3 @@ public class CustomerController {
         return errors;
     }
 }
-    
-
-
