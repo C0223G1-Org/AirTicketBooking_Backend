@@ -1,21 +1,32 @@
 package com.example.air_ticket_booking.controller.customer;
 
+import com.example.air_ticket_booking.dto.customer.CustomerDto;
+import com.example.air_ticket_booking.model.account.Account;
 import com.example.air_ticket_booking.model.customer.Customer;
+import com.example.air_ticket_booking.service.account.IAccountService;
 import com.example.air_ticket_booking.service.customer.ICustomerService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("*")
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/customers")
+@CrossOrigin("*")
 public class CustomerController {
     @Autowired
     private ICustomerService customerService;
@@ -94,7 +105,6 @@ public class CustomerController {
         }
     }
 
-
     /**
      * Create by: HoaLTY,HungLV
      * Date create: 10/08/2023
@@ -104,7 +114,7 @@ public class CustomerController {
      * @return ResponseEntity<>
      */
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto,BindingResult bindingResult) {
+    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto, BindingResult bindingResult) {
         if (customerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -126,7 +136,7 @@ public class CustomerController {
      * @param id
      * @return customer
      */
-    @GetMapping("/details/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getCustomerDetails(@PathVariable Long id) {
         try{
             if(ObjectUtils.isEmpty(id)){
@@ -163,6 +173,16 @@ public class CustomerController {
         customerService.saveCustomer(customer);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+//    @GetMapping("/{id}")
+//    public ResponseEntity<?> getCustomerById(@PathVariable Long id ){
+//        Customer customer = customerService.findCustomerById(id);
+//        if(customer==null){
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(customer, HttpStatus.OK);
+//    }
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(
@@ -176,4 +196,3 @@ public class CustomerController {
         return errors;
     }
 }
-
