@@ -1,26 +1,21 @@
 package com.example.air_ticket_booking.controller.customer;
 
-import com.example.air_ticket_booking.dto.customer.CustomerDto;
-import com.example.air_ticket_booking.model.account.Account;
 import com.example.air_ticket_booking.model.customer.Customer;
-import com.example.air_ticket_booking.service.account.IAccountService;
 import com.example.air_ticket_booking.service.customer.ICustomerService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/customers")
-@CrossOrigin("*")
 public class CustomerController {
     @Autowired
     private ICustomerService customerService;
@@ -99,6 +94,7 @@ public class CustomerController {
         }
     }
 
+
     /**
      * Create by: HoaLTY,HungLV
      * Date create: 10/08/2023
@@ -108,11 +104,15 @@ public class CustomerController {
      * @return ResponseEntity<>
      */
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateCustomer(@PathVariable Long id,@Valid @RequestBody CustomerDto customerDto){
+    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto,BindingResult bindingResult) {
         if (customerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        Customer customer = new Customer();
+        new CustomerDto().validate(customerDto,bindingResult);
+        if(bindingResult.hasErrors()){
+            return new ResponseEntity<>(bindingResult.getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST);
+        }
+        Customer customer=new Customer();
         BeanUtils.copyProperties(customerDto,customer);
         customerService.updateCustomer(customer);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -126,9 +126,20 @@ public class CustomerController {
      * @param id
      * @return customer
      */
-    @GetMapping("/{id}")
-    public ResponseEntity<?> customerDetails(@PathVariable Long id) {
-        return new ResponseEntity<>(customerService.findCustomerById(id), HttpStatus.OK);
+    @GetMapping("/details/{id}")
+    public ResponseEntity<?> getCustomerDetails(@PathVariable Long id) {
+        try{
+            if(ObjectUtils.isEmpty(id)){
+                return new ResponseEntity<>("Không tìm thấy khách hàng này",HttpStatus.NOT_FOUND);
+            }
+            if (customerService.findCustomerById(id) == null) {
+                return new ResponseEntity<>("Không tìm thấy khách hàng này",HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(customerService.findCustomerById(id), HttpStatus.OK);
+        }catch (IllegalArgumentException  e){
+            return new ResponseEntity<>("ID không thể chứa chữ hoặc kí tự đặc biệt",HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     /**
@@ -152,16 +163,6 @@ public class CustomerController {
         customerService.saveCustomer(customer);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getCustomerById(@PathVariable Long id ){
-        Customer customer = customerService.findCustomerById(id);
-        if(customer==null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(customer, HttpStatus.OK);
-    }
-
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(
@@ -175,3 +176,4 @@ public class CustomerController {
         return errors;
     }
 }
+
