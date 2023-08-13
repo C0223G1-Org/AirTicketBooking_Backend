@@ -191,7 +191,7 @@ public class CustomerDto implements Validator {
         try {
             CustomerDto customerDto = (CustomerDto) target;
             String date = customerDto.dateCustomer;
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate dateOfBirth = LocalDate.parse(date, formatter);
             LocalDate today = LocalDate.now();
             Period period = Period.between(dateOfBirth, today);

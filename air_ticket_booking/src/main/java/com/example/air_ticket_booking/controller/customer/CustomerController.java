@@ -79,7 +79,7 @@ public class CustomerController {
     }
 
     /**
-     * Create by: HoaLTY,HungLV
+     * Create by: HoaLTY,HungLV/
      * Date create: 10/08/2023
      * Function: get data from front-end and check id, if get customer = null, return status not found, else update customer return status success
      *
