@@ -1,13 +1,13 @@
 package com.example.air_ticket_booking.controller.seat;
 
-
-import com.example.air_ticket_booking.model.luggage.Luggage;
 import com.example.air_ticket_booking.model.seat.TypeSeat;
 import com.example.air_ticket_booking.service.seat.ITypeSeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin("*")

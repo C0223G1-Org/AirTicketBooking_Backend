@@ -19,16 +19,16 @@ public interface IRouteRepository extends JpaRepository<Route,Long> {
      */
 
     @Query(value = "select * from route where id_route=:id "
-            ,nativeQuery = true)
+            , nativeQuery = true)
     Route findRouteById(@Param("id") Long id);
 
 
     /**
      * Create by: SangTDN
+     *
      * @param departure
      * @param destination
-     * @param dateDeparture
-     * function that retrieves flights according to the input request
+     * @param dateDeparture function that retrieves flights according to the input request
      * @return List RouteProjection (RouteProjection is interface to collect attributes from many related tables)
      */
     @Query(value = "select rt.id_route as idRoute ,rt.date_arrival as dateArrival, rt.date_departure as dateDeparture, " +
@@ -47,11 +47,13 @@ public interface IRouteRepository extends JpaRepository<Route,Long> {
 
     /**
      * method dùng để lấy danh sách top 10 chuyến bay giá rẻ nhất
+     *
+     * @return List<Route>
      * @author ThaiVV
      * @since 10/08/2023
-     * @return List<Route>
      */
     @Query(nativeQuery = true, value = "select * from route order by price_route desc limit 10")
     List<Route> getTop10RouteCheapest();
+}
 
 
