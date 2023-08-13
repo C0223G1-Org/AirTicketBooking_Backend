@@ -20,7 +20,7 @@ import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
 import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
 import com.example.air_ticket_booking.service.ticket.impl.TicketService;
-import com.sun.tools.javac.util.List;
+//import com.sun.tools.javac.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -80,7 +80,7 @@ public class TicketController {
      *Date create: 10/08/2023
      * Function:getTicketById()
      * @Param: Long id
-     * @Return: ticket
+     * @Return:  if found and then return a ticket, otherwise it will return error not found.
      */
     @GetMapping("/{id}")
     public ResponseEntity<Ticket> getTicketById(@PathVariable Long id){
@@ -95,7 +95,8 @@ public class TicketController {
      *Date create: 10/08/2023
      * Function: updateTicket()
      * @Param: ticketDto
-     * @Return: ticket
+     * @Return:  If  idTicket is found then enter the correct format,
+     * the ticket will be updated. otherwise it will throw an error
      */
 
     @PatchMapping("/updateTicket/{id}")

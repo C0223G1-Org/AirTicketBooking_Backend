@@ -80,11 +80,11 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
      * @return Page<Ticket>
      * @author Nhàn NA
      */
-    @Query(value = "select id_ticket as id, date_booking as dateBooking, name_passenger as namePassenger, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture,price_ticket as priceTicket  from ticket t \n" +
+    @Query(value = "select id_ticket as id, date_booking as dateBooking, name_passenger as namePassenger, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture,price_ticket as priceTicket,email_customer as emailCustomer  from ticket t \n" +
             "join type_ticket tt on t.type_ticket_id_type_ticket = tt.id_type_ticket\n" +
             "join luggage l on l.id_luggage=t.luggage_id_luggage\n" +
             "join type_passenger tp on tp.id_type_passenger = t.type_passenger_id_type_passenger\n" +
-            "join customer c on c.id_customer = t.customer_id_customer\n" +
+            "INNER join customer c on c.id_customer = t.customer_id_customer\n" +
             "join seat s on s.id_seat=t.seat_id_seat\n" +
             "join type_seat ts on ts.id_type_seat=s.id_type_seat\n" +
             "join route r on r.id_route=s.id_route\n" +
