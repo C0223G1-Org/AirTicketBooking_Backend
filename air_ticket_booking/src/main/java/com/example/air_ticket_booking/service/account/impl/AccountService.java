@@ -85,4 +85,13 @@ public class AccountService implements UserDetailsService,IAccountService {
         List<Customer> customerList = customerService.findAllByEmail(email);
         return customerList.size() > 0;
     }
+    @Override
+    public List<Account> getList() {
+        return accountRepository.findAll();
+    }
+
+    @Override
+    public void saveAccount(Account account) {
+        accountRepository.save(account);
+    }
 }

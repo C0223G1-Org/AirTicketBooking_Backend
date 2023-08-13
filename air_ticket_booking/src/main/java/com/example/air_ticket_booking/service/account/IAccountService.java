@@ -2,7 +2,10 @@ package com.example.air_ticket_booking.service.account;
 
 import com.example.air_ticket_booking.dto.account.AccountDto;
 
+import com.example.air_ticket_booking.model.account.Account;
 import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 public interface IAccountService {
     boolean signUp(AccountDto accountDto);
@@ -23,4 +26,6 @@ public interface IAccountService {
      * @Return void
      */
     void updatePasswordForEmployee (String newPass,String oldPass,Long idEmployee);
+    List<Account> getList();
+    void saveAccount(Account account);
 }
