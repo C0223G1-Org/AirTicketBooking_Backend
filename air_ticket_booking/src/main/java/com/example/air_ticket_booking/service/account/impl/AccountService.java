@@ -28,7 +28,7 @@ import java.util.List;
  * @return
  */
 @Service
-public class AccountService implements UserDetailsService,IAccountService {
+public class AccountService implements UserDetailsService, IAccountService {
     @Autowired
     private IAccountRepository accountRepository;
     @Autowired
@@ -46,7 +46,7 @@ public class AccountService implements UserDetailsService,IAccountService {
         String role = account.getRole().getNameRole();
         authorities.add(new SimpleGrantedAuthority(role));
 
-        return new JwtUserDetails(account.getIdAccount(),account.getUsername(), account.getPassword(), authorities);
+        return new JwtUserDetails(account.getIdAccount(), account.getUsername(), account.getPassword(), authorities);
     }
 
     @Override
@@ -54,17 +54,27 @@ public class AccountService implements UserDetailsService,IAccountService {
         String email = accountDto.getEmailCustomer();
         Boolean checkExistAccount = checkExistAccount(email);
         Boolean checkExistCustomer = checkExistCustomer(email);
-        if(checkExistAccount || checkExistCustomer){
+        if (checkExistAccount || checkExistCustomer) {
             return false;
         }
         String encoderPassword = passwordEncoder.encode(accountDto.getPassword());
-        this.accountRepository.saveAccount(accountDto.getEmailCustomer(),encoderPassword);
+        this.accountRepository.saveAccount(accountDto.getEmailCustomer(), encoderPassword);
         Account accountNew = accountRepository.findByUsername(email);
-        if(accountNew == null){
+        if (accountNew == null) {
             return false;
         }
-        this.customerService.createCustomer(accountDto,accountNew.getIdAccount());
+        this.customerService.createCustomer(accountDto, accountNew.getIdAccount());
         return checkExistAccount(email) == checkExistCustomer(email);
+    }
+
+    private boolean checkExistAccount(String email) {
+        List<Account> accountList = accountRepository.findAllByUsername(email);
+        return accountList.size() > 0;
+    }
+
+    private boolean checkExistCustomer(String email) {
+        List<Customer> customerList = customerService.findAllByEmail(email);
+        return customerList.size() > 0;
     }
 
     @Override
@@ -77,12 +87,4 @@ public class AccountService implements UserDetailsService,IAccountService {
 
     }
 
-    private boolean checkExistAccount(String email){
-        List<Account> accountList = accountRepository.findAllByUsername(email);
-        return accountList.size() > 0;
-    }
-    private boolean checkExistCustomer(String email){
-        List<Customer> customerList = customerService.findAllByEmail(email);
-        return customerList.size() > 0;
-    }
 }
