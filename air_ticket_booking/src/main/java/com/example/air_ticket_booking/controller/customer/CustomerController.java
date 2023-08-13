@@ -21,8 +21,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = {"*"})
 @RequestMapping("/customers")
-@CrossOrigin("*")
 public class CustomerController {
     @Autowired
     private ICustomerService customerService;
@@ -38,7 +38,6 @@ public class CustomerController {
      * @Param: customer, id
      * @Return: ResponseEntity
      */
-
     @PutMapping("/{id}")
     public ResponseEntity<?> updateCustomer(@PathVariable Long id,@Valid @RequestBody CustomerDto customerDto){
         if (customerService.findCustomerById(id) == null) {
