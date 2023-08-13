@@ -109,7 +109,7 @@ public class CustomerController {
      * @param id
      * @return customer
      */
-    @GetMapping("/details/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getCustomerDetails(@PathVariable Long id) {
         try{
             if(ObjectUtils.isEmpty(id)){
