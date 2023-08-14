@@ -19,24 +19,11 @@ public class RouteRestController_searchTrips {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
-    public void searchTrips_departure_7() throws  Exception{
-        this.mockMvc.perform(
-                MockMvcRequestBuilders.get("/route/search-trips/{departure}/{destination}/{dateDeparture}",
-                        null,"Hà Nội (HAN)","2023-08-20"))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
-
-    @Test
-    public void searchTrips_destination_7() throws  Exception{
-        this.mockMvc.perform(
-                        MockMvcRequestBuilders.get("/route/search-trips/{departure}/{destination}/{dateDeparture}",
-                                "Tp. Hồ Chí Minh (SGN)",null,"2023-08-20"))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
-
+    /**
+     * create by: SangTDN
+     * check null properties: dateDeparture
+     * @throws Exception
+     */
     @Test
     public void searchTrips_dateDeparture_7() throws  Exception{
         this.mockMvc.perform(
@@ -46,24 +33,11 @@ public class RouteRestController_searchTrips {
                 .andExpect(status().is4xxClientError());
     }
 
-    @Test
-    public void searchTrips_departure_8() throws  Exception{
-        this.mockMvc.perform(
-                        MockMvcRequestBuilders.get("/route/search-trips/{departure}/{destination}/{dateDeparture}",
-                                "","Hà Nội (HAN)","2023-08-20"))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
-
-    @Test
-    public void searchTrips_destination_8() throws  Exception{
-        this.mockMvc.perform(
-                        MockMvcRequestBuilders.get("/route/search-trips/{departure}/{destination}/{dateDeparture}",
-                                "Tp. Hồ Chí Minh (SGN)","","2023-08-20"))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
-
+    /**
+     * create by: SangTDN
+     * check empty properties: dateDeparture
+     * @throws Exception
+     */
     @Test
     public void searchTrips_dateDeparture_8() throws  Exception{
         this.mockMvc.perform(
@@ -125,7 +99,7 @@ public class RouteRestController_searchTrips {
                                 "Tp. Hồ Chí Minh (SGN)","Hà Nội (HAN)","2023-08-20"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(jsonPath("[0].priceRoute").value(500000))
+                .andExpect(jsonPath("[0].priceRoute").value(1400000))
                 .andExpect(jsonPath("[0].nameAirCraft").value("Airbus A.320"))
                 .andExpect(jsonPath("[0].nameDeparture").value("Tp. Hồ Chí Minh (SGN)"))
                 .andExpect(jsonPath("[0].nameDestination").value("Hà Nội (HAN)"))
@@ -135,6 +109,15 @@ public class RouteRestController_searchTrips {
                 .andExpect(jsonPath("[0].idRoute").value(1))
                 .andExpect(jsonPath("[0].dateDeparture").value("2023-08-20"))
                 .andExpect(jsonPath("[0].timeDeparture").value("08:30:00"))
+                .andExpect(jsonPath("[0].nameDestination").value("Hà Nội (HAN)"))
+                .andExpect(jsonPath("[0].priceExtraBussiness").value(1.7))
+                .andExpect(jsonPath("[0].priceExtraSkyboss").value(1.5))
+                .andExpect(jsonPath("[0].priceExtraVeluxe").value(1.2))
+                .andExpect(jsonPath("[0].seatsEcoRemaining").value(5))
+                .andExpect(jsonPath("[0].seatsSkybossRemaining").value(5))
+                .andExpect(jsonPath("[0].seatsVeluxeRemaining").value(5))
+                .andExpect(jsonPath("[0].seatsBussinessRemaining").value(4))
+                .andExpect(jsonPath("[0].priceExtraEco").value(1))
 
                 .andExpect(jsonPath("[1].priceRoute").value(600000))
                 .andExpect(jsonPath("[1].nameAirCraft").value("Boeing 787-3"))
@@ -145,12 +128,22 @@ public class RouteRestController_searchTrips {
                 .andExpect(jsonPath("[1].nameRoute").value("BF245"))
                 .andExpect(jsonPath("[1].idRoute").value(3))
                 .andExpect(jsonPath("[1].dateDeparture").value("2023-08-20"))
-                .andExpect(jsonPath("[1].timeDeparture").value("16:00:00"));
+                .andExpect(jsonPath("[1].timeDeparture").value("16:00:00"))
+                .andExpect(jsonPath("[1].nameDestination").value("Hà Nội (HAN)"))
+                .andExpect(jsonPath("[1].priceExtraBussiness").value(1.7))
+                .andExpect(jsonPath("[1].priceExtraSkyboss").value(1.5))
+                .andExpect(jsonPath("[1].priceExtraVeluxe").value(1.2))
+                .andExpect(jsonPath("[1].seatsEcoRemaining").value(5))
+                .andExpect(jsonPath("[1].seatsSkybossRemaining").value(5))
+                .andExpect(jsonPath("[1].seatsVeluxeRemaining").value(5))
+                .andExpect(jsonPath("[1].seatsBussinessRemaining").value(5))
+                .andExpect(jsonPath("[1].priceExtraEco").value(1));
 
 
     }
 
     /**
+     * SangTDN
      * check the case of entering a flight date in the past
      * @throws Exception
      */
@@ -162,4 +155,43 @@ public class RouteRestController_searchTrips {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    @Test
+    public void searchTrips_departure_7() throws  Exception{
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.get("/route/search-trips/{departure}/{destination}/{dateDeparture}",
+                                null,"Hà Nội (HAN)","2023-08-20"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void searchTrips_destination_7() throws  Exception{
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.get("/route/search-trips/{departure}/{destination}/{dateDeparture}",
+                                "Tp. Hồ Chí Minh (SGN)",null,"2023-08-20"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void searchTrips_departure_8() throws  Exception{
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.get("/route/search-trips/{departure}/{destination}/{dateDeparture}",
+                                "","Hà Nội (HAN)","2023-08-20"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void searchTrips_destination_8() throws  Exception{
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.get("/route/search-trips/{departure}/{destination}/{dateDeparture}",
+                                "Tp. Hồ Chí Minh (SGN)","","2023-08-20"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
 }
+
+
