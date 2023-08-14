@@ -46,7 +46,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -78,7 +78,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -110,7 +110,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -142,7 +142,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -174,7 +174,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -206,7 +206,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -240,7 +240,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -272,7 +272,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -304,7 +304,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -336,7 +336,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -368,7 +368,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -400,7 +400,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -433,7 +433,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -465,7 +465,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -497,7 +497,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -529,7 +529,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -561,7 +561,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -593,7 +593,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -626,7 +626,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -658,7 +658,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -690,7 +690,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -722,7 +722,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -754,7 +754,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -788,7 +788,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer(null);
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -820,7 +820,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -852,7 +852,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -885,7 +885,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer(null);
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -917,7 +917,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -949,7 +949,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("123456asc");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -981,7 +981,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("01234578");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -1013,7 +1013,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("0123456789741");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -1045,7 +1045,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -1139,7 +1139,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("01/01/2008");
+        customerDto.setDateCustomer("2008-01-01");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -1171,7 +1171,7 @@ public class CustomerController_updateCustomer {
         customerDto.setImgCustomer("");
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
-        customerDto.setDateCustomer("31/01/2000");
+        customerDto.setDateCustomer("2000-01-31");
         Account account = new Account();
         account.setIdAccount(1L);
         customerDto.setAccount(account);
@@ -1204,8 +1204,8 @@ public class CustomerController_updateCustomer {
         customerDto.setNationalityCustomer("Viet Nam");
         customerDto.setIdCardCustomer("012345678974");
         customerDto.setDateCustomer("2000/01/01");
-        Account account = new Account();
-        account.setIdAccount(1L);
+        Account account = null;
+//        account.setIdAccount(1L);
         customerDto.setAccount(account);
         this.mockMvc
                 .perform(MockMvcRequestBuilders

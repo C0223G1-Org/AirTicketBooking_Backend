@@ -27,7 +27,7 @@ public class CustomerController_getCustomerDetails {
     public void getCustomerDetails_id_1() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/customers/details/{id}", "null"))
+                                .get("/customers/{id}", "null"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -42,7 +42,7 @@ public class CustomerController_getCustomerDetails {
     public void getCustomerDetails_id_2() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/customers/details/{id}", ""))
+                                .get("/customers/{id}", ""))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -72,7 +72,7 @@ public class CustomerController_getCustomerDetails {
     public void getCustomerDetails_id_4() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/customers/details/{id}", "1"))
+                                .get("/customers/{id}", "1"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("idCustomer").value(1))
@@ -98,7 +98,7 @@ public class CustomerController_getCustomerDetails {
     public void getCustomerDetails_id() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/customers/details/{id}", "a"))
+                                .get("/customers/{id}", "a"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }

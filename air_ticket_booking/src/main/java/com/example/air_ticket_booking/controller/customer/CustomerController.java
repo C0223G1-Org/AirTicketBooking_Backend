@@ -142,6 +142,7 @@ public class CustomerController {
             if(ObjectUtils.isEmpty(id)){
                 return new ResponseEntity<>("Không tìm thấy khách hàng này",HttpStatus.NOT_FOUND);
             }
+
             if (customerService.findCustomerById(id) == null) {
                 return new ResponseEntity<>("Không tìm thấy khách hàng này",HttpStatus.NOT_FOUND);
             }
