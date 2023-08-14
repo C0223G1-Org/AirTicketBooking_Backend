@@ -13,17 +13,5 @@ import java.util.List;
 @CrossOrigin("*")
 @RequestMapping("/seat")
 public class SeatController {
-    @Autowired
-    private ISeatRepository seatRepository;
 
-    /**
-     * create by: SangTDN
-     * @param idRoute
-     * @return array Json SeatProjection,status
-     * Upload data to API
-     */
-    @GetMapping("/seat-empty/{idRoute}")
-    public ResponseEntity<List<SeatProjection>> showListSeatEmptyByRoute (@PathVariable Long idRoute){
-        return new ResponseEntity<>(seatRepository.showListSeatEmptyByRoute(idRoute), HttpStatus.OK);
-    }
 }

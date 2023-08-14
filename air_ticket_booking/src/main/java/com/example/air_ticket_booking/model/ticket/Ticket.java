@@ -12,7 +12,7 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTicket;
-    private Long priceTicket;
+    private double priceTicket;
     private Boolean flagTicket;
     private String namePassenger;
     private Boolean genderPassenger;
@@ -62,11 +62,11 @@ public class Ticket {
         return idTicket;
     }
 
-    public Long getPriceTicket() {
+    public double getPriceTicket() {
         return priceTicket;
     }
 
-    public void setPriceTicket(Long priceTicket) {
+    public void setPriceTicket(double priceTicket) {
         this.priceTicket = priceTicket;
     }
 
