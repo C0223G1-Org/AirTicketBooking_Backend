@@ -33,7 +33,7 @@ public class TypeSeatController_findTypeSeatById {
      */
     @Test
     public void findTypeSeatById_id_1() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/type-seat/{id}","null"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/type-seat/detail/"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
 
@@ -46,7 +46,7 @@ public class TypeSeatController_findTypeSeatById {
      */
     @Test
     public void findTypeSeatById_id_2() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/type-seat/{id}",""))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/type-seat/detail/{id}",""))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
 
@@ -54,12 +54,12 @@ public class TypeSeatController_findTypeSeatById {
     }
     /**
      * check case id of type seat not exits in database
-     * input :" "
+     * input :20
      * @throws Exception
      */
     @Test
     public void findTypeSeatById_id_3() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/type-seat/{id}","20"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/type-seat/detail/{id}","20"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
 
@@ -73,7 +73,7 @@ public class TypeSeatController_findTypeSeatById {
 
     @Test
     public void findTypeSeatById_id_4() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/type-seat/{id}","2"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/type-seat/detail/{id}","2"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("idTypeSeat").value(2))

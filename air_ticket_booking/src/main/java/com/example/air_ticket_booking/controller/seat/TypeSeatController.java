@@ -23,7 +23,7 @@ public class TypeSeatController {
      * @param id
      * return HttpStatus, TypeSeat
      */
-    @GetMapping("/{id}")
+    @GetMapping("detail/{id}")
     public ResponseEntity<TypeSeat> findTypeSeatById(@PathVariable Long id){
         TypeSeat typeSeat = typeSeatService.findTypeSeatById(id);
         if (typeSeat==null){

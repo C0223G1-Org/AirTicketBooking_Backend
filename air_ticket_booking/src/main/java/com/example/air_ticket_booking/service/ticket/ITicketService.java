@@ -26,7 +26,7 @@ public interface ITicketService {
     /**
      * task get Ticket by id
      *  date create: 10/08/2023
-     * @param id
+     * @param
      * @return Ticket or null
      * @Method findByTicket
      * @author Nhàn NA

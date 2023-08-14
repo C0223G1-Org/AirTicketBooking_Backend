@@ -32,7 +32,7 @@ public class RouterController_getRouteById {
      */
     @Test
     public void getRouterById_id_1() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/routes/{id}","null"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/route/{id}"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
 
@@ -45,7 +45,7 @@ public class RouterController_getRouteById {
      */
     @Test
     public void getRouterById_id_2() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/routes/{id}",""))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/route/{id}",""))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
 
@@ -53,12 +53,12 @@ public class RouterController_getRouteById {
     }
     /**
      * check case id of router not exits in database
-     * input :" "
+     * input :3
      * @throws Exception
      */
     @Test
     public void getRouterById_id_3() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/routes/{id}","3"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/route/{id}","3"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
 
@@ -70,7 +70,7 @@ public class RouterController_getRouteById {
      */
     @Test
     public void getRouterById_id_4() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/routes/{id}","1"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/route/{id}","1"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("idRoute").value(1))
