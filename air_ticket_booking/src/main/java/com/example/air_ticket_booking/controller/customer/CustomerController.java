@@ -39,18 +39,22 @@ public class CustomerController {
      * Date create: 10/08/2023
      */
     @GetMapping(value = {"/", "/list"})
-    public ResponseEntity<Page<Customer>> getListCustomers(@PageableDefault(size = 5) Pageable pageable, @RequestParam("page") String page) {
+    public ResponseEntity<Page<Customer>> getListCustomers(@PageableDefault(size = 2) Pageable pageable, @RequestParam("page") String page, @RequestParam("email") String email,
+                                                               @RequestParam("name") String name, @RequestParam("nationality") String nationality) {
         int currentPage;
         try {
             currentPage = Integer.parseInt(page);
             if (currentPage < 0) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }else if (email.length()>100||name.length()>100||nationality.length()>20){
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
             }
         } catch (NumberFormatException n) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        Page<Customer> getListCustomer = customerService.getListCustomer(pageable);
+        Page<Customer> getListCustomer = customerService.getListSearchCustomer(pageable, email, name, nationality);
         if (!getListCustomer.isEmpty()) {
             return new ResponseEntity<>(getListCustomer, HttpStatus.OK);
         } else {
@@ -65,7 +69,7 @@ public class CustomerController {
      * Date create: 10/08/2023
      */
     @GetMapping("/search")
-    public ResponseEntity<Page<Customer>> getListSearchCustomer(@PageableDefault(size = 5) Pageable pageable, @RequestParam("email") String email,
+    public ResponseEntity<Page<Customer>> getListSearchCustomer(@PageableDefault(size = 1) Pageable pageable, @RequestParam("email") String email,
                                                                 @RequestParam("name") String name, @RequestParam("nationality") String nationality,@RequestParam("page")String page) {
 
         int currentPage;

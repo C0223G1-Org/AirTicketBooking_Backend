@@ -67,10 +67,5 @@ public class CustomerController_deleteCustomer {
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
-    /**
-     * Create by: TàiMP
-     * Date create: 11/08/2023
-     * Method: get all data in list have page 0 and have 5 data
-     * @throws Exception
-     */
+
 }
