@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,22 +34,30 @@ public class PaymentController {
 //    @Value("${paypal.clientSecret}")
 //    private String clientSecret;
     /**
-     *Create by: ThanhVh
+     *Create by: ThanhVH
      *Date create: 11/08/2023
      * Function:getListHistoryPayment() , updateTicketByIdTicket
      * @param id,pageable
      * @return Page<Ticket> , void
      **/
     @GetMapping("/history/{id}")
-    public ResponseEntity<Page<Ticket>>  getListHistoryPayment(@PathVariable Long id, Pageable pageable) {
+    public ResponseEntity<Page<Ticket>>  getListHistoryPayment(@PathVariable Long id,@PageableDefault(size = 5)Pageable pageable) {
         if (iCustomerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else {
             return new ResponseEntity<>(iTicketService.findAllListPaymentByCustomerById(id,pageable),HttpStatus.OK);
         }
     }
+    @GetMapping("/payment/{id}")
+    public ResponseEntity<Ticket> getTicketById(@PathVariable Long id) {
+        if (iTicketService.findByIdTicket(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(iTicketService.findByIdTicket(id),HttpStatus.OK);
+    }
 
-    @PutMapping("/callback/{id}")
+
+    @PatchMapping("/callback/{id}")
     public ResponseEntity<String> updateTicketByIdTicket(@PathVariable Long id) {
 //        Chuyển đổi JSON thành đối tượng Java
         Gson gson = new Gson();
@@ -67,6 +76,7 @@ public class PaymentController {
             if ("COMPLETED".equals(paymentStatus)) {
                 // Thanh toán đã hoàn thành
                 iTicketService.updateTicketByIdTicket(id);
+
                 return new ResponseEntity<>(HttpStatus.OK);
             } else if ("CANCELLED".equals(paymentStatus)) {
                 return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);

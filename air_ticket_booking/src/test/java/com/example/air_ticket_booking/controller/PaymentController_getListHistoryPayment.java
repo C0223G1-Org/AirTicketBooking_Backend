@@ -14,7 +14,11 @@ import static org.assertj.core.internal.bytebuddy.implementation.FixedValue.null
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+/**
+ *Create by: ThanhVH
+ *Date create: 11/08/2023
+ * Function:getListHistoryPayment()
+ **/
 @SpringBootTest
 @AutoConfigureMockMvc
 public class PaymentController_getListHistoryPayment {

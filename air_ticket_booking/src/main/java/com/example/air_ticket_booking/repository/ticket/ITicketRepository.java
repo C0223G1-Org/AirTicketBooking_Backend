@@ -178,7 +178,7 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             "join type_passenger on type_passenger.id_type_passenger = ticket.type_passenger_id_type_passenger \n" +
             "where customer.id_customer = :id")
     Page<Ticket> findAllListPaymentByCustomerById(@Param("id") Long id, Pageable pageable);
-
+@Modifying
     @Query(nativeQuery = true, value = "UPDATE ticket " +
             "SET ticket.flag_ticket = true " +
             "WHERE ticket.id_ticket = :id")
