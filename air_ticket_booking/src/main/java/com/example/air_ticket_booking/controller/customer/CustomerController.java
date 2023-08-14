@@ -50,7 +50,7 @@ public class CustomerController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
             }
-        } catch (NumberFormatException n) {
+        } catch (NumberFormatException num) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
