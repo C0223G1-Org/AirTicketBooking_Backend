@@ -1,5 +1,6 @@
 package com.example.air_ticket_booking.repository.route;
 
+
 import com.example.air_ticket_booking.model.projection_tdns.RouteProjection;
 import com.example.air_ticket_booking.model.route.Route;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,20 +18,17 @@ public interface IRouteRepository extends JpaRepository<Route,Long> {
      * @param id return flight route
      */
 
-    @Query(value = "select rt.id_route ,rt.date_arrival, rt.date_departure, rt.name_route, rt.price_route, rt.time_arrival, rt.time_departure, ac.name_air_craft, dt.name_destination, dp.name_departure\n" +
-            "from route rt\n" +
-            "join air_craft ac on rt.id_air_craft = ac.id_air_craft\n" +
-            "join departure dp on rt.id_departure = dp.id_departure\n" +
-            "join destination dt on rt.id_destination = dt.id_destination\n" +
-            "where rt.id_route =:id", nativeQuery = true)
+    @Query(value = "select * from route where id_route=:id "
+            , nativeQuery = true)
     Route findRouteById(@Param("id") Long id);
+
 
     /**
      * Create by: SangTDN
+     *
      * @param departure
      * @param destination
-     * @param dateDeparture
-     * function that retrieves flights according to the input request
+     * @param dateDeparture function that retrieves flights according to the input request
      * @return List RouteProjection (RouteProjection is interface to collect attributes from many related tables)
      */
     @Query(value = "select rt.id_route as idRoute ,rt.date_arrival as dateArrival, rt.date_departure as dateDeparture, " +
@@ -49,12 +47,13 @@ public interface IRouteRepository extends JpaRepository<Route,Long> {
 
     /**
      * method dùng để lấy danh sách top 10 chuyến bay giá rẻ nhất
+     *
+     * @return List<Route>
      * @author ThaiVV
      * @since 10/08/2023
-     * @return List<Route>
      */
     @Query(nativeQuery = true, value = "select * from route order by price_route desc limit 10")
     List<Route> getTop10RouteCheapest();
-
-
 }
+
+

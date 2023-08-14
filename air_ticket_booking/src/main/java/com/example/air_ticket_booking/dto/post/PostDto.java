@@ -19,7 +19,7 @@ public class PostDto {
     private String image;
     @NotBlank
     private String datePost;
-   @NotNull
+    @NotNull
     private Employee employee;
     public PostDto() {
     }
