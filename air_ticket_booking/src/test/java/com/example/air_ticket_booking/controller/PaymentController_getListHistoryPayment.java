@@ -26,25 +26,45 @@ public class PaymentController_getListHistoryPayment {
     @Autowired
     private MockMvc mockMvc;
 
-
+    /**
+     *Create by: ThanhVH
+     *Date create: 11/08/2023
+     * description: test id = null
+     **/
     @Test
     public void getListHistoryPayment_1() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/payment/history/{id}", (Object) null))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+    /**
+     *Create by: ThanhVH
+     *Date create: 11/08/2023
+     * description: test id is empty
+     **/
     @Test
     public void getListHistoryPayment_2() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/payment/history/{id}", ""))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+    /**
+     *Create by: ThanhVH
+     *Date create: 11/08/2023
+     * description: test id not exits
+     **/
     @Test
     public void getListHistoryPayment_3() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/payment/history/{id}", "10"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     *Create by: ThanhVH
+     *Date create: 11/08/2023
+     * description: test true
+     **/
     @Test
     public void getListHistoryPayment_4() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/payment/history/{id}", "1"))
@@ -60,7 +80,5 @@ public class PaymentController_getListHistoryPayment {
                 .andExpect(jsonPath("$.content[0].seat.route.dateDeparture").value("2023-04-25"))
                 .andExpect(jsonPath("$.content[0].dateBooking").value("2023-03-29"))
                 .andExpect(jsonPath("$.content[0].priceTicket").value("1600000"));
-
-
     }
 }
