@@ -1,6 +1,5 @@
 package com.example.air_ticket_booking.repository.post;
 
-import com.example.air_ticket_booking.model.employee.Employee;
 import com.example.air_ticket_booking.model.post.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 public interface IPostRepository extends JpaRepository<Post, Long> {
@@ -99,6 +98,24 @@ public interface IPostRepository extends JpaRepository<Post, Long> {
     @Query(value = "UPDATE Post SET Post.flag_post = true WHERE Post.id = :id", nativeQuery = true)
     void deletePostById(@Param("id") Long id);
 
+    /**
+     * Author: SonTT
+     * Date create: 14/08/2023
+     * Handling: Get data via query with data input and return one page with post
+     * @param title
+     * @return List Post
+     */
+    @Query(value = "SELECT * FROM Post WHERE title LIKE CONCAT('%',:title,'%')",nativeQuery = true)
+    List<Post> searchPostByTitles(@Param("title") String title);
+
+    /**
+     * Author: SonTT
+     * Date create: 14/08/2023
+     * Handling:  Get data via query with data input and return one page with post
+     * @return
+     */
+    @Query(value = "SELECT * FROM Post WHERE Post.flag_post = false and date_post BETWEEN CURDATE() - INTERVAL 10 DAY AND CURDATE() ", nativeQuery = true)
+    List<Post> getListPostHotNews();
 
 }
 

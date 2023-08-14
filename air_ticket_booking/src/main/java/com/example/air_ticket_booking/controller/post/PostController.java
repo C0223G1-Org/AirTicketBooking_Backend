@@ -15,6 +15,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RequestMapping("/api/post")
 @RestController
@@ -59,6 +61,20 @@ public class PostController {
     }
 
     /**
+     * Author: SonTT
+     * Date create: 14/08/2023
+     * Handling: Get data by calling service
+     * @return
+     */
+    @GetMapping("/hot-news")
+    public ResponseEntity<List<Post>> HotNewList(){
+        if (this.iPostService.getListPostHotNews().isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<>(this.iPostService.getListPostHotNews(),HttpStatus.OK);
+        }
+    }
+    /**
      * Create by : TriPD
      * Date created : 10/08/2023
      * Function : findPostById()
@@ -85,16 +101,16 @@ public class PostController {
      * @param id
      * @return message and status
      */
-    @DeleteMapping("/delete")
-    public ResponseEntity<?> deletePost(@RequestParam(value = "id", required = false) Long id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deletePost(@PathVariable(value = "id",required = false) Long id) {
         if (id==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else if (this.iPostService.deletePostById(id)) {
             String message = "Không tìm thấy tài Liệu muốn xoá ";
-            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
         } else {
             String message = "Đã xoá bài viết ";
-            return new ResponseEntity<>(message, HttpStatus.OK);
+            return new ResponseEntity<>( HttpStatus.OK);
         }
 
     }
@@ -117,4 +133,19 @@ public class PostController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(".....");
         }
     }
-}
+
+    /**
+     * Author: SonTT
+     * Date create: 14/08/2023
+     * Handling: Get param title get data by calling service
+     * @param title
+     * @return
+     */
+    @GetMapping("/search")
+    public ResponseEntity<List<Post>> searchPost(@RequestParam(value = "title",required = false) String title){
+        if (iPostService.searchPostByTitle(title).isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(iPostService.searchPostByTitle(title),HttpStatus.OK);
+    }
+ }
