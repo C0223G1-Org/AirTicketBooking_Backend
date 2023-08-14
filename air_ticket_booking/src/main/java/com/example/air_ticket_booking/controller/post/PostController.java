@@ -110,11 +110,17 @@ public class PostController {
      * @Return: void
      */
     @PatchMapping("/updatePost")
-    public ResponseEntity<?> updatePost(@Validated @RequestBody PostDto postDto,BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+    public ResponseEntity<?> updatePost(@Validated @RequestBody PostDto postDto,BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         iPostService.savePost(postDto);
-        return new ResponseEntity<>(postDto, HttpStatus.OK);
+        return new ResponseEntity<>(postDto,HttpStatus.OK);
+//        try {
+//            iPostService.savePost(postDto);
+//            return ResponseEntity.ok(postDto);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(".....");
+//        }
     }
 }
