@@ -39,7 +39,7 @@ public class CustomerController {
      * Date create: 10/08/2023
      */
     @GetMapping(value = {"/", "/list"})
-    public ResponseEntity<Page<Customer>> getListCustomers(@PageableDefault(size = 2) Pageable pageable, @RequestParam("page") String page, @RequestParam("email") String email,
+    public ResponseEntity<Page<Customer>> getListCustomers(@PageableDefault(size = 5) Pageable pageable, @RequestParam("page") String page, @RequestParam("email") String email,
                                                                @RequestParam("name") String name, @RequestParam("nationality") String nationality) {
         int currentPage;
         try {
@@ -61,7 +61,25 @@ public class CustomerController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+//    @GetMapping(value = {"/", "/list"})
+//    public ResponseEntity<Page<Customer>> getListCustomers(@PageableDefault(size = 5) Pageable pageable, @RequestParam("page") String page) {
+//        int currentPage;
+//        try {
+//            currentPage = Integer.parseInt(page);
+//            if (currentPage < 0) {
+//                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//            }
+//        } catch (NumberFormatException n) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//
+//        Page<Customer> getListCustomer = customerService.getListCustomer(pageable);
+//        if (!getListCustomer.isEmpty()) {
+//            return new ResponseEntity<>(getListCustomer, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
     /**
      * @param pageable, name, nationality, email
      * @return if getListSearch have data return getListSearch and status OK else return status NO_CONTENT
@@ -69,7 +87,7 @@ public class CustomerController {
      * Date create: 10/08/2023
      */
     @GetMapping("/search")
-    public ResponseEntity<Page<Customer>> getListSearchCustomer(@PageableDefault(size = 1) Pageable pageable, @RequestParam("email") String email,
+    public ResponseEntity<Page<Customer>> getListSearchCustomer(@PageableDefault(size = 5) Pageable pageable, @RequestParam("email") String email,
                                                                 @RequestParam("name") String name, @RequestParam("nationality") String nationality,@RequestParam("page")String page) {
 
         int currentPage;
