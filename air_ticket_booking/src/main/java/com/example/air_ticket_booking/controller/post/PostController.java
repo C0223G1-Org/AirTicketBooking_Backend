@@ -46,7 +46,6 @@ public class PostController {
      * Author: SonTT
      * handling:receive pagination data and find the service to perform the task, if empty,
      * return NOT_FOUND status otherwise return page and status ACCEPTED
-     *
      * @param page
      * @param limit
      * @return ResponseEntity<Page < Post>>
