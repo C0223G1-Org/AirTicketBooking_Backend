@@ -46,7 +46,7 @@ public interface ITicketService {
      */
     Ticket findByIdTicket(Long id);
 
-
+    Customer findCustomerById(Long id);
     /**
      *Create by: VuDT
      *Date create: 10/08/2023

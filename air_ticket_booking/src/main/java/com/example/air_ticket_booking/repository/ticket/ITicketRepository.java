@@ -63,11 +63,13 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
          * @Return: update Ticket
          */
 
-    @Modifying
-    @Query("UPDATE Ticket t SET  t.namePassenger = :name, t.emailPassenger = :email WHERE t.idTicket = :id")
-    void updateTicket(@Param("id") Long id , @Param("name") String name,@Param("email") String email);
-
-
+        @Modifying
+        @Query(value = "UPDATE ticket  JOIN customer on ticket.customer_id_customer= customer.id_customer  " +
+                "SET ticket.name_passenger = :name, customer.email_customer = :email " +
+                "WHERE ticket.id_ticket = :id", nativeQuery = true)
+        void updateTicket(@Param("id") Long id, @Param("name") String name, @Param("email") String email);
+    @Query(value = "select * from customer where id_customer = :id",nativeQuery = true)
+    Customer findCustomerById(@Param("id") Long id);
 
     /**
      * task take  data from database

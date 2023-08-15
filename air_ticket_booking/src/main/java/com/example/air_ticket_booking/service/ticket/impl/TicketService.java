@@ -102,6 +102,10 @@ public class TicketService implements ITicketService {
         return null;
     }
 
+    @Override
+    public Customer findCustomerById(Long id) {
+        return ticketRepository.findCustomerById(id);
+    }
 
 
     /**

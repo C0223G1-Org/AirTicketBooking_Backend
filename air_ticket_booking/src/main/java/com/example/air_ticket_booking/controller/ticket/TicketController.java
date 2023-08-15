@@ -116,7 +116,7 @@ public class TicketController {
         }
 
         String name = ticketDto.getNamePassenger();
-        String email= ticketDto.getEmailPassenger();
+        String email= ticketDto.getCustomer().getEmailCustomer();
         iTicketService.updateTicket(id, name, email);
         return ResponseEntity.ok("Cập nhật vé thành công");
     }
