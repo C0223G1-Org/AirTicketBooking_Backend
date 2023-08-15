@@ -11,24 +11,31 @@ import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 public interface IPostRepository extends JpaRepository<Post, Long> {
 
 
-
     /**
      * Author: SonTT
      * Handling method: run method with query and connect database to get data
+     *
      * @param pageable
      * @return Page<T>
      */
-    @Query(value = "SELECT * FROM Post WHERE Post.flag_post = false",nativeQuery = true)
-    Page<Post> getListPostByFlag(Pageable pageable );
+    @Query(value = "SELECT * FROM Post WHERE Post.flag_post = false", nativeQuery = true)
+    Page<Post> getListPostByFlag(Pageable pageable);
 
-    @Query(value = "SELECT * FROM Post JOIN Employee ON Employee.id_employee = Post.employee_id WHERE Post.flag_post = false and Post.id = :id",nativeQuery = true)
+    /**
+     * Author: SonTT
+     * Date create: 10/08/2023
+     * Handling: Get data with condition to be parameter transmission in
+     * @param id
+     * @return Optional
+     */
+    @Query(value = "SELECT * FROM Post JOIN Employee ON Employee.id_employee = Post.employee_id WHERE Post.flag_post = false and Post.id = :id", nativeQuery = true)
     Optional<Post> findPostById(@Param("id") Long id);
-
 
 
     /**
@@ -59,12 +66,9 @@ public interface IPostRepository extends JpaRepository<Post, Long> {
      * @Param: id
      * @Return: Post
      */
-
     @Transactional
     @Query(value = "select * from post where id= :id", nativeQuery = true)
     Post findPostsById(@Param("id") Long id);
-
-
 
 
     /**
@@ -72,7 +76,7 @@ public interface IPostRepository extends JpaRepository<Post, Long> {
      * Date created : 10/08/2023
      * Function : updatePost()
      *
-     * @Param: title,datePost,image,content,employeeId,id
+     * @Param: title, datePost, image, content, employeeId, id
      * @Return: void
      */
     @Modifying
@@ -84,8 +88,35 @@ public interface IPostRepository extends JpaRepository<Post, Long> {
                     @Param("content") String content,
                     @Param("employee_id") Long employeeId,
                     @Param("id") Long id);
-    @Query(value = "UPDATE Post SET Post.flag_post = true WHERE Post.id = :id",nativeQuery = true)
+
+    /**
+     * Author: SonTT
+     * Date create: 10/08/2023
+     * Handling: Perform update Post.flag_post = true
+     * @param id
+     */
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Post SET Post.flag_post = true WHERE Post.id = :id", nativeQuery = true)
     void deletePostById(@Param("id") Long id);
 
+    /**
+     * Author: SonTT
+     * Date create: 14/08/2023
+     * Handling: Get data via query with data input and return one page with post
+     * @param title
+     * @return List Post
+     */
+    @Query(value = "SELECT * FROM Post WHERE title LIKE CONCAT('%',:title,'%')",nativeQuery = true)
+    List<Post> searchPostByTitles(@Param("title") String title);
+
+    /**
+     * Author: SonTT
+     * Date create: 14/08/2023
+     * Handling:  Get data via query with data input and return one page with post
+     * @return
+     */
+    @Query(value = "SELECT * FROM Post WHERE Post.flag_post = false and date_post BETWEEN CURDATE() - INTERVAL 10 DAY AND CURDATE() ", nativeQuery = true)
+    List<Post> getListPostHotNews();
 
 }

@@ -155,7 +155,6 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             "and date_departure like  :#{#ticketSearch.departureDate} ",nativeQuery = true)
     Page<ITicketProjection> searchRouteTicket(@Param("ticketSearch")TicketSearch ticketSearch, Pageable pageable);
     /**
-     * and name_passenger like concat('%',:namePassenger,'%') and name_route like concat('%',:nameRoute,'%') and name_destination like concat('%',:nameDeparture,'%') and name_destination like concat('%',:nameDestination,'%')
      * task get all tickets  unbooked from database
      * @Method findAllTicketUnbooked
      * @param pageable
@@ -221,7 +220,8 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             "where customer.id_customer = :id " +
             "and  name_departure like concat('%',:departure, '%')" +
             "and name_destination like concat('%',:destination,'%')" +
-            "and flag_ticket = false")
+            "and flag_ticket = true \n" +
+            "order by date_booking desc")
     Page<Ticket> searchAllListPaymentByCustomerById(@Param("id") Long id, Pageable pageable,
                                                     @Param("departure") String departure, @Param("destination") String destination);
 @Modifying

@@ -5,6 +5,8 @@ import com.example.air_ticket_booking.dto.account.AccountDto;
 import com.example.air_ticket_booking.model.account.Account;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface IAccountService {
     boolean signUp(AccountDto accountDto);
     /**
@@ -16,5 +18,6 @@ public interface IAccountService {
     void updatePasswordForId(String newPass,Long idCustomer);
 
     Account findAccountById (Long id);
-
+    List<Account> getList();
+    void saveAccount(Account account);
 }
