@@ -53,7 +53,7 @@ public class ReportController_getCurrentRevenue {
     /**
      * Create by :KhangPVA
      * Date create: 11/08/2023
-     * Gets the sales of each day in the selected current period
+     *  Gets the sales of each day in the selected current period
      *
      * @return Return FieldError error content in REST
      * @throws Exception
