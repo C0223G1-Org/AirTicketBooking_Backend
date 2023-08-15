@@ -35,7 +35,7 @@ public class PostController {
      * @Param:postDto
      * @Return: void
      */
-    @PostMapping("")
+    @PostMapping()
     public ResponseEntity<?> createPosts(@Validated @RequestBody PostDto postDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
@@ -59,6 +59,7 @@ public class PostController {
         }
         return new ResponseEntity<>(this.iPostService.getListPost(pageable), HttpStatus.ACCEPTED);
     }
+
 
 
 
