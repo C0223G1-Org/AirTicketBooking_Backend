@@ -28,7 +28,7 @@ import java.util.List;
  * @return
  */
 @Service
-public class AccountService implements UserDetailsService,IAccountService {
+public class AccountService implements UserDetailsService, IAccountService {
     @Autowired
     private IAccountRepository accountRepository;
     @Autowired
