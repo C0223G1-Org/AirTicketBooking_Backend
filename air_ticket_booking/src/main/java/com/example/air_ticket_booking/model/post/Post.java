@@ -17,6 +17,7 @@ public class Post {
     private boolean flagPost;
     @Column(columnDefinition = "LongText")
     private String image;
+
     private String datePost;
     @ManyToOne
     @JoinColumn(name = "employee_id")
