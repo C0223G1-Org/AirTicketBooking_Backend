@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
 import javax.transaction.Transactional;
 
 @Repository
@@ -37,8 +38,8 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
      */
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO employee (name_employee, date_employee, gender, image, tel_employee, email_employee,account_id_account,flag_employee) " +
-            "VALUES (:name, :birthDay, :gender,:image,:telEmployee, :email,:account,:flagEmployee)",
+    @Query(value = "INSERT INTO employee (name_employee, date_employee, gender, image, tel_employee, email_employee,password_employee,type_employee_id_type_employee,flag_employee) " +
+            "VALUES (:name, :birthDay, :gender,:image,:telEmployee, :email,:passwordEmployee,:typeEmployee,:flagEmployee)",
             nativeQuery = true)
     void addEmployee(@Param("name") String name,
                      @Param("birthDay") String birthDay,
@@ -46,7 +47,8 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
                      @Param("image") String image,
                      @Param("telEmployee") String telEmployee,
                      @Param("email") String email,
-                     @Param("account") Long accountId,
+                     @Param("typeEmployee") Long typeEmployee,
+                     @Param("passwordEmployee") String passwordEmployee,
                      @Param("flagEmployee") boolean flagEmployee
     );
 
@@ -62,7 +64,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
     @Modifying
     @Transactional
     @Query(value = "Update employee set name_employee=:name,date_employee=:birthDay,gender=:gender,image=:image," +
-            "tel_employee=:telEmployee,email_employee=:email,account_id_account=:account,flag_employee=:flagEmployee " +
+            "tel_employee=:telEmployee,email_employee=:email,type_employee_id_type_employee=:typeEmployee,password_employee:passwordEmployee,flag_employee=:flagEmployee " +
             "where id_employee=:id", nativeQuery = true)
     void updateEmployee(@Param("id") Long id,
                         @Param("name") String name,
@@ -71,7 +73,8 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
                         @Param("image") String image,
                         @Param("telEmployee") String telEmployee,
                         @Param("email") String email,
-                        @Param("account") Long account,
+                        @Param("passwordEmployee") String password_employee,
+                        @Param("typeEmployee") Long typeEmployee,
                         @Param("flagEmployee") boolean flagEmployee
     );
 
@@ -111,9 +114,9 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
 //    @Transactional
 //    @Modifying
     @Query("SELECT e FROM Employee e WHERE (:gender IS NULL OR e.gender = :gender) AND (:name IS NULL OR e.nameEmployee LIKE %:name%) AND e.flagEmployee = false")
-   Page<Employee> searchEmployee(
+    Page<Employee> searchEmployee(
             @Param("gender") Boolean gender,
             @Param("name") String name,
             Pageable pageable
-            );
+    );
 }

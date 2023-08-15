@@ -7,12 +7,6 @@ z
 Jsrc/main/java/com/example/air_ticket_booking/dto/customer/CustomerDto.java,d\f\dffbc8dc5579e85b40336e0c794ae6b68970b0b4
 Ä
 Psrc/main/java/com/example/air_ticket_booking/controller/post/PostController.java,4\8\48d31fa007440a1244a26c2a6466ad44c1df585e
-à
-Xsrc/main/java/com/example/air_ticket_booking/controller/customer/CustomerController.java,7\0\70b866ef9ece65b09a49680d491e68155e5cbd40
-Å
-Qsrc/main/java/com/example/air_ticket_booking/repository/post/IPostRepository.java,0\6\060c30cdbfcfa9d2ee165a0527f5e4a09f715405
-â
-Ysrc/main/java/com/example/air_ticket_booking/repository/customer/ICustomerRepository.java,0\0\00f0a41b9769aa66d7977640ccc1ab3fc0ba57ed
 Ä
 Psrc/main/java/com/example/air_ticket_booking/controller/seat/SeatController.java,4\d\4dadec1f4a97f6cf2642b05bd617004a17f7dd9c
 Ñ
@@ -35,11 +29,3 @@ y
 Isrc/main/java/com/example/air_ticket_booking/model/customer/Customer.java,d\1\d1c566bb2762c0fd515e5b39f4a5f6b82cd0a301
 á
 Wsrc/main/java/com/example/air_ticket_booking/service/customer/impl/CustomerService.java,d\e\de10fa0083f8f0fd9c3d01da9cde1fdb1c43ce59
-<
-build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-y
-Isrc/main/java/com/example/air_ticket_booking/model/employee/Employee.java,4\b\4bff61355645c90664054dd68af2ccaef696801f
-t
-Dsrc/main/java/com/example/air_ticket_booking/model/account/Role.java,5\4\5447930cf0b17ba46d2875331d01aeb916b3f2ed
-w
-Gsrc/main/java/com/example/air_ticket_booking/model/account/Account.java,c\4\c4e958876a9e4c917ed28eead2848e11df4993f5

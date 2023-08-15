@@ -32,7 +32,6 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public void saveEmployee(EmployeeDto employeeDto) {
         Employee employee = new Employee();
-        Account account = accountRepository.findByUsername(employeeDto.getAccount().getUsername());
         BeanUtils.copyProperties(employeeDto, employee);
         employeeRepository.addEmployee(
                 employee.getNameEmployee(),
@@ -41,7 +40,8 @@ public class EmployeeService implements IEmployeeService {
                 employee.getImage(),
                 employee.getTelEmployee(),
                 employee.getEmailEmployee(),
-                employee.getAccount().getIdAccount(),
+                employee.getTypeEmployee().getIdTypeEmployee(),
+                employee.getPasswordEmployee(),
                 employee.getFlagEmployee()
         );
     }
@@ -56,7 +56,7 @@ public class EmployeeService implements IEmployeeService {
      * @return status update
      */
     @Override
-    public void editEmployee(Long id,EmployeeDto employeeDto) {
+    public void editEmployee(Long id, EmployeeDto employeeDto) {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDto, employee);
         employeeRepository.updateEmployee(
@@ -67,7 +67,8 @@ public class EmployeeService implements IEmployeeService {
                 employee.getImage(),
                 employee.getTelEmployee(),
                 employee.getEmailEmployee(),
-                employee.getAccount().getIdAccount(),
+                employee.getPasswordEmployee(),
+                employee.getTypeEmployee().getIdTypeEmployee(),
                 employee.getFlagEmployee()
         );
     }
@@ -100,7 +101,10 @@ public class EmployeeService implements IEmployeeService {
      */
     @Override
     public void deleteEmployee(Long id) {
-        employeeRepository.deleteEmployee(id);
+//        employeeRepository.deleteEmployee(id);
+        Employee employee = employeeRepository.findById(id).get();
+        employee.setFlagEmployee(true);
+        employeeRepository.save(employee);
     }
 
     /**

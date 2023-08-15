@@ -6,9 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-@Repository
+
 public interface IRoleRepository extends JpaRepository<Role,Integer> {
-    @Query(value ="select * from role",nativeQuery = true)
-    List<Role> findByRole();
+
 
 }

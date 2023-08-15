@@ -13,11 +13,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/role")
 @CrossOrigin("*")
 public class RoleController {
-    @Autowired
-    private IRoleService roleService;
-
-    @GetMapping("")
-    public ResponseEntity<?> findByRole() {
-        return new ResponseEntity<>(roleService.findByRole(), HttpStatus.OK);
-    }
 }
+
