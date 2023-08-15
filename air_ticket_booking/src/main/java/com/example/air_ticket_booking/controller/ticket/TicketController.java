@@ -74,6 +74,7 @@ public class TicketController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(ticket, HttpStatus.OK);
+        console.log("abc");
     }
 
     @GetMapping("/search-ticket-result/{namePassenger}/{idCardPassenger}")
