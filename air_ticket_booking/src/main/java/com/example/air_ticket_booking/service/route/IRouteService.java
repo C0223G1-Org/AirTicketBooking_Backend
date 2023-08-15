@@ -9,9 +9,10 @@ import com.example.air_ticket_booking.model.projection_tdns.RouteProjection;
 import java.util.List;
 
 import com.example.air_ticket_booking.model.route.Route;
+import com.example.air_ticket_booking.projection.IRouteCheapestProjection;
 
 public interface IRouteService {
-    List<Route> findTop10RouteCheapest();
+    List<IRouteCheapestProjection> findTop10RouteCheapest();
 
     /**
      * create by : SangTDN

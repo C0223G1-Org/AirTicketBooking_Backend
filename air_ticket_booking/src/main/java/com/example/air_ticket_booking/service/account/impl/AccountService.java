@@ -67,6 +67,21 @@ public class AccountService implements UserDetailsService, IAccountService {
         return checkExistAccount(email) == checkExistCustomer(email);
     }
 
+    /**
+     * create by : SangTDN
+     * @param newPass
+     * @param idCustomer
+     */
+    @Override
+    public void updatePasswordForId(String newPass, Long idCustomer) {
+        accountRepository.updatePasswordById(newPass, idCustomer);
+    }
+
+    @Override
+    public Account findAccountById(Long id) {
+        return accountRepository.findAccountById(id);
+    }
+
     private boolean checkExistAccount(String email) {
         List<Account> accountList = accountRepository.findAllByUsername(email);
         return accountList.size() > 0;
@@ -75,16 +90,6 @@ public class AccountService implements UserDetailsService, IAccountService {
     private boolean checkExistCustomer(String email) {
         List<Customer> customerList = customerService.findAllByEmail(email);
         return customerList.size() > 0;
-    }
-
-    @Override
-    public void updatePasswordForCustomer(String newPass, String oldPass, Long idCustomer) {
-
-    }
-
-    @Override
-    public void updatePasswordForEmployee(String newPass, String oldPass, Long idEmployee) {
-
     }
 
 }
