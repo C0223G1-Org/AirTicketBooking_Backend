@@ -36,10 +36,13 @@ public interface IAccountService {
      * @param idEmployee
      * @Return void
      */
-    void updatePasswordForEmployee (String newPass,String oldPass,Long idEmployee);
-    List<Account> getList();
-    void saveAccount(Account account);
     void updatePasswordForEmployee(String newPass, String oldPass, Long idEmployee);
+
+    List<Account> getList();
+
+    void saveAccount(Account account);
+
+
     /**
      * Created by: NhanDT
      * Date created: 14/08/2023

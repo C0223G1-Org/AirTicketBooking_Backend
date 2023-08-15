@@ -114,10 +114,10 @@ public class AccountController {
             return new ResponseEntity<>(bindingResult.getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST);
         }
         if (accountService.signUp(accountDto)) {
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok(accountDto.getEmailCustomer());
         }
 //        String encoderPassword = passwordEncoder.encode(accountDto.getPassword());
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Đăng ký tài khoản không thành công");
     }
 
     /**
@@ -137,7 +137,6 @@ public class AccountController {
             } else {
                 ErrorInfo errorInfo = new ErrorInfo("Xác nhận mã thất bại!!", account.getUsername());
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorInfo);
-
             }
         } catch (Exception e) {
             ErrorInfo errorInfo = new ErrorInfo("Xác nhận mã thất bại!!", account.getUsername());

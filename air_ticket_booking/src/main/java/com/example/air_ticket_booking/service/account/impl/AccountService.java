@@ -72,9 +72,8 @@ public class AccountService implements UserDetailsService, IAccountService {
     @Override
     public boolean signUp(AccountDto accountDto) {
         String email = accountDto.getEmailCustomer();
-        String idCard = accountDto.getIdCardCustomer();
         Boolean checkExistAccount = checkExistAccount(email);
-        Boolean checkExistCustomer = checkExistCustomer(email, idCard);
+        Boolean checkExistCustomer = checkExistCustomer(email);
         if (checkExistAccount || checkExistCustomer) {
             return false;
         }
@@ -91,12 +90,12 @@ public class AccountService implements UserDetailsService, IAccountService {
                 "Sđt: 0383767463\n" +
                 "Email: codegymairC0223G1@gmail.com\n" +
                 "Địa chỉ: 280 Trần Hưng Đạo, Sơn Trà, Đà Nẵng");
-        Account accountNew = accountRepository.getByUserNameAndStatusFalse(email);
+        Account accountNew = accountRepository.getByUserNameAndStatusTrue(email);
         if (accountNew == null) {
             return false;
         }
         this.customerService.createCustomer(accountDto, accountNew.getIdAccount());
-        return checkExistAccount(email) == checkExistCustomer(email, idCard);
+        return true;
     }
 
     private boolean checkExistAccount(String email) {
@@ -104,8 +103,8 @@ public class AccountService implements UserDetailsService, IAccountService {
         return accountList.size() > 0;
     }
 
-    private boolean checkExistCustomer(String email, String idCard) {
-        List<Customer> customerList = customerService.findAllByEmailOrIdCard(email, idCard);
+    private boolean checkExistCustomer(String email) {
+        List<Customer> customerList = customerService.findAllByEmailOrIdCard(email);
         return customerList.size() > 0;
     }
 

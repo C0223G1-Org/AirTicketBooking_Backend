@@ -96,8 +96,8 @@ public class CustomerService implements ICustomerService {
      * @Return: List<Customer>
      */
     @Override
-    public List<Customer> findAllByEmailOrIdCard(String email, String idCard) {
-        return customerRepository.findAllByEmailOrIdCard(email, idCard);
+    public List<Customer> findAllByEmailOrIdCard(String email) {
+        return customerRepository.findAllByEmailOrIdCard(email);
     }
     /**
      * Create by: NhanDT

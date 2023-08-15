@@ -20,12 +20,11 @@ public class AccountDto implements Validator {
     private Boolean genderCustomer;
     @NotBlank(message = "Không được để trống trường này")
     @Pattern(regexp = "^\\w+@\\w+(.\\w+)$", message = "Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt ")
-    @Size(max = 50, min = 12, message = "EmailService tối đa 50 ký tự, ít nhất 12 ký tự")
+    @Size(max = 50, min = 12, message = "Email tối đa 50 ký tự, ít nhất 12 ký tự")
     private String emailCustomer;
     @NotBlank(message = "Không được để trống trường này")
     @Pattern(regexp = "^(\\+84|0)[1-9][0-9]{8}$", message = "Nhập theo định dạng +84xxxxxxxxx hoặc 0xxxxxxxxx với x là ký tự số")
     private String telCustomer;
-    @NotBlank(message = "Không được để trống trường này")
     private String addressCustomer;
 
     private String imgCustomer;
@@ -35,13 +34,13 @@ public class AccountDto implements Validator {
     @Pattern(regexp = "^([A-Z][0-9]{6,12})|([0-9]{12})$", message = "Nhập theo định dạng (7 ký tự đối với hộ chiếu và 12 ký tự đối với CCCD)")
     private String idCardCustomer;
     @NotBlank(message = "Không được để trống trường này")
-
     private String dateCustomer;
     private Boolean flagCustomer = false;
     @NotBlank(message = "Không được để trống trường này")
     @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9]).{8,20}$", message = "Mật khẩu phải từ 8 ký tự và ít hơn 20 ký tự, có chứa ký ự in hoa và ký tự số")
 //    @Size(min = 8, max = 20, message = "Mật khẩu phải từ 8 ký tự và ít hơn 20 ký tự")
     private String password;
+    private String passwordAgain;
 
     public AccountDto(String nameCustomer, Boolean genderCustomer, String emailCustomer, String telCustomer, String addressCustomer, String imgCustomer, String nationalityCustomer, String idCardCustomer, String dateCustomer, Boolean flagCustomer, String password) {
 
@@ -56,6 +55,29 @@ public class AccountDto implements Validator {
         this.dateCustomer = dateCustomer;
         this.flagCustomer = flagCustomer;
         this.password = password;
+    }
+
+    public AccountDto(String nameCustomer, Boolean genderCustomer, String emailCustomer, String telCustomer, String addressCustomer, String imgCustomer, String nationalityCustomer, String idCardCustomer, String dateCustomer, Boolean flagCustomer, String password, String passwordAgain) {
+        this.nameCustomer = nameCustomer;
+        this.genderCustomer = genderCustomer;
+        this.emailCustomer = emailCustomer;
+        this.telCustomer = telCustomer;
+        this.addressCustomer = addressCustomer;
+        this.imgCustomer = imgCustomer;
+        this.nationalityCustomer = nationalityCustomer;
+        this.idCardCustomer = idCardCustomer;
+        this.dateCustomer = dateCustomer;
+        this.flagCustomer = flagCustomer;
+        this.password = password;
+        this.passwordAgain = passwordAgain;
+    }
+
+    public String getPasswordAgain() {
+        return passwordAgain;
+    }
+
+    public void setPasswordAgain(String passwordAgain) {
+        this.passwordAgain = passwordAgain;
     }
 
     public AccountDto() {
