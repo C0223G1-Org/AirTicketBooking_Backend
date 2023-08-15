@@ -32,13 +32,5 @@ public class TypeSeatController {
             return new ResponseEntity<>(typeSeat,HttpStatus.OK);
         }
     }
-    /**
-     * create by : SangTDN
-     * @return arr Json TypeSeat , status
-     * Upload data to API
-     */
-    @GetMapping("")
-    public ResponseEntity<List<TypeSeat>> getListSeat(){
-        return new ResponseEntity<>(typeSeatService.getListSeat(), HttpStatus.OK);
-    }
+
 }
