@@ -47,12 +47,12 @@ public class AccountController {
     private AccountService accountService;
 
 
-//    class ErrorInfo {
-//        private String error;
-//        private Long id;
-//
-//
-//    }
+    class ErrorInfo {
+        private String error;
+        private Long id;
+
+
+    }
     /**
      * Created by: NhanDT
      * Date created: 10/08/2023
