@@ -2,8 +2,10 @@ package com.example.air_ticket_booking.controller.account;
 
 import com.example.air_ticket_booking.config.JwtTokenUtil;
 import com.example.air_ticket_booking.config.JwtUserDetails;
+import com.example.air_ticket_booking.dto.account.AccountChangeDTO;
 import com.example.air_ticket_booking.dto.account.AccountDto;
 import com.example.air_ticket_booking.dto.account.JwtRequestDto;
+import com.example.air_ticket_booking.model.account.Account;
 import com.example.air_ticket_booking.model.customer.Customer;
 import com.example.air_ticket_booking.reponse.JwtRequest;
 import com.example.air_ticket_booking.reponse.JwtResponse;
@@ -45,6 +47,8 @@ public class AccountController {
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     class ErrorInfo {
@@ -53,6 +57,25 @@ public class AccountController {
 
 
     }
+
+    /**
+     * create by : SangTDN
+     * @param id
+     * @param accountChangeDTO
+     * @return status
+     */
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updateAccount(@Valid @RequestBody AccountChangeDTO accountChangeDTO, @PathVariable Long id) {
+        Account account = accountService.findAccountById(id);
+        boolean flag = passwordEncoder.matches(accountChangeDTO.getOldPassword(), account.getPassword());
+        if (flag) {
+            String encoderNewPassword = passwordEncoder.encode(accountChangeDTO.getNewPassword());
+            accountService.updatePasswordForId(encoderNewPassword, id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     /**
      * Created by: NhanDT
      * Date created: 10/08/2023

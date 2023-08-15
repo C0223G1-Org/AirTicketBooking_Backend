@@ -17,6 +17,7 @@ import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
 import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ITicketService {
@@ -97,4 +98,15 @@ public interface ITicketService {
      * @author Nhàn NA
      */
     Page<ITicketUnbookedProjection> searchTicketUnbooked(Long idTypeSeat,String positionSeat,String nameRoute, String nameDeparture,String nameDestination,Pageable pageable);
+
+    /**
+     *Create by: ThanhVh
+     *Date create: 11/08/2023
+     * Function:getListHistoryPayment()
+     * @param id,pageable
+     * @return Page<Ticket>
+     **/
+    Page<Ticket> searchAllListPaymentByCustomerById(Long id, Pageable pageable, String departure, String destination);
+
+    void updateTicketByIdTicket(Long id);
 }

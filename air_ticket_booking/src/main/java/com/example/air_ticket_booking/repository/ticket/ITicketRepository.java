@@ -3,7 +3,6 @@ package com.example.air_ticket_booking.repository.ticket;
 
 import com.example.air_ticket_booking.model.customer.Customer;
 import com.example.air_ticket_booking.model.luggage.Luggage;
-import com.example.air_ticket_booking.model.route.Route;
 import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TicketSearch;
@@ -174,7 +173,6 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
     /**
      * task get search all tickets unbooked from database
      * @Method searchTicketUnbooked
-     * date create: 10/08/2023
      * @param pageable,idTypeSeat,positionSeat,nameRoute,nameDeparture,timeDeparture
      * @return Page<Ticket>
      * @author Nhàn NA
@@ -191,3 +189,46 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             "where s.flag_seat=0 and ts.id_type_seat=:idTypeSeat and position_seat Like concat('%',:positionSeat,'%') and name_route like concat('%',:nameRoute,'%') and name_departure like concat('%',:nameDeparture,'%') and name_destination like concat('%',:nameDestination,'%')",nativeQuery = true)
     Page<ITicketUnbookedProjection> searchTicketUnbooked(@Param("idTypeSeat")Long idTypeSeat,@Param("positionSeat")String positionSeat,@Param("nameRoute")String nameRoute,@Param("nameDeparture") String nameDeparture,@Param("nameDestination")String nameDestination,Pageable pageable);
     }
+//    @Query(value = "select id_seat as id ,position_seat as positionSeat,name_type_seat as typeSeat, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture  from seat s\n" +
+//            "join type_seat ts on ts.id_type_seat=s.id_type_seat\n" +
+//            "join route r on r.id_route=s.id_route\n" +
+//            "join destination d on d.id_destination = r.id_destination\n" +
+//            "join air_craft ac on ac.id_air_craft = r.id_air_craft\n" +
+//            "join departure de on de.id_departure=r.id_departure\n" +
+//            "where s.flag_seat=0 and ts.id_type_seat=:idTypeSeat and position_seat Like concat('%',:positionSeat,'%') and name_route like concat('%',:nameRoute,'%') and name_departure like concat('%',:nameDeparture,'%') and name_destination like concat('%',nameDestination,'%')",nativeQuery = true)
+//    Page<ITicketUnbookedProjection> searchTicketUnbooked(@Param("idTypeSeat")Long idTypeSeat,@Param("positionSeat")String positionSeat,@Param("nameRoute")String nameRoute,@Param("nameDeparture") String nameDeparture,@Param("nameDestination")String nameDestination,Pageable pageable);
+
+
+    /**
+     *Create by: ThanhVH
+     *Date create: 10/08/2023
+     * Function:getListPaymentHistory
+     * @param id,pageable
+     * @return Page<Ticket>
+     */
+
+    @Query(nativeQuery = true, value = "select * from ticket " +
+            "join customer on customer.id_customer = ticket.customer_id_customer \n" +
+            "join seat on seat.id_seat = ticket.seat_id_seat \n" +
+            "join route on route.id_route = seat.id_route \n "+
+            "join air_craft on air_craft.id_air_craft = route.id_air_craft\n"+
+            "join destination on destination.id_destination = route.id_destination \n" +
+            "join departure on departure.id_departure = route.id_departure \n" +
+            "join type_seat on seat.id_type_seat = type_seat.id_type_seat \n" +
+            "join luggage on luggage.id_luggage = ticket.luggage_id_luggage \n" +
+            "join type_ticket on type_ticket.id_type_ticket = ticket.type_ticket_id_type_ticket \n" +
+            "join type_passenger on type_passenger.id_type_passenger = ticket.type_passenger_id_type_passenger \n" +
+            "where customer.id_customer = :id " +
+            "and  name_departure like concat('%',:departure, '%')" +
+            "and name_destination like concat('%',:destination,'%')" +
+            "and flag_ticket = false")
+    Page<Ticket> searchAllListPaymentByCustomerById(@Param("id") Long id, Pageable pageable,
+                                                    @Param("departure") String departure, @Param("destination") String destination);
+@Modifying
+    @Query(nativeQuery = true, value = "UPDATE ticket " +
+            "SET ticket.flag_ticket = true " +
+            "WHERE ticket.id_ticket = :id")
+    void updateTicketByIdTicket(@Param("id") Long id);
+
+
+}

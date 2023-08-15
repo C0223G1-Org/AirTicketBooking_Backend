@@ -12,7 +12,6 @@ import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
 import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
-import com.example.air_ticket_booking.repository.ticket.ITypeTicketRepository;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -184,5 +183,21 @@ public class TicketService implements ITicketService {
             e.printStackTrace();
             throw new RuntimeException("Lỗi khi truy vấn dữ liệu từ database", e);
         }
+    }
+    /**
+     *Create by: ThanhVh
+     *Date create: 11/08/2023
+     * Function:getListHistoryPayment()
+     * @param id,pageable
+     * @return Page<Ticket>
+     **/
+    @Override
+    public Page<Ticket> searchAllListPaymentByCustomerById(Long id, Pageable pageable,String departure,String destination) {
+        return ticketRepository.searchAllListPaymentByCustomerById(id,pageable,departure, destination);
+    }
+
+    @Override
+    public void updateTicketByIdTicket(Long id) {
+        ticketRepository.updateTicketByIdTicket(id);
     }
 }

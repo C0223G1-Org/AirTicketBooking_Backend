@@ -23,6 +23,9 @@ public class DepartureController {
      */
     @GetMapping()
     public ResponseEntity<?> getAll() {
+        if (departureService.getAll().size() == 0) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(departureService.getAll(), HttpStatus.OK);
     }
 }
