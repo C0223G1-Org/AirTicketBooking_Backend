@@ -144,9 +144,10 @@ public class PostController {
      */
     @GetMapping("/search")
     public ResponseEntity<List<Post>> searchPost(@RequestParam(value = "title",required = false) String title){
-        if (iPostService.searchPostByTitle(title).isEmpty()){
+        String titles = title.toString().trim();
+        if (iPostService.searchPostByTitle(titles).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(iPostService.searchPostByTitle(title),HttpStatus.OK);
+        return new ResponseEntity<>(iPostService.searchPostByTitle(titles),HttpStatus.OK);
     }
  }
