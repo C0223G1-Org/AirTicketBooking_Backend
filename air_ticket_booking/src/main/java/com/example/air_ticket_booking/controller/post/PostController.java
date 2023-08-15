@@ -73,6 +73,7 @@ public class PostController {
             return new ResponseEntity<>(this.iPostService.getListPostHotNews(),HttpStatus.OK);
         }
     }
+
     /**
      * Create by : TriPD
      * Date created : 10/08/2023
