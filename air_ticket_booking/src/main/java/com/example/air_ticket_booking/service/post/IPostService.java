@@ -20,6 +20,7 @@ public interface IPostService {
     Post findPostById(Long id);
 
     boolean deletePostById(Long id);
+
     List<Post> searchPostByTitle(String title);
     List<Post> getListPostHotNews();
 }

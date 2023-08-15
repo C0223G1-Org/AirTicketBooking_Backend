@@ -1,5 +1,6 @@
 package com.example.air_ticket_booking.repository.post;
 
+import com.example.air_ticket_booking.model.employee.Employee;
 import com.example.air_ticket_booking.model.post.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 

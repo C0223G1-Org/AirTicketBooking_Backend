@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class PostService implements IPostService {
@@ -21,7 +22,6 @@ public class PostService implements IPostService {
      * Author: SonTT
      * Date create: 10/8/2023
      * Handling: Get data from link, call repository corresponding to return data
-     *
      * @param pageable
      * @return Page<Post>
      */
@@ -42,8 +42,18 @@ public class PostService implements IPostService {
     public void createPost(PostDto postDTO) {
         Post post = new Post();
         BeanUtils.copyProperties(postDTO, post);
-        iPostRepository.createPost(post.getTitle(), post.isFlagPost(), post.getDatePost(), post.getImage(), post.getContent(), post.getEmployee().getIdEmployee());
+        iPostRepository.createPost(
+                post.getTitle(),
+                post.isFlagPost(),
+                post.getDatePost(),
+                post.getImage(),
+                post.getContent(),
+                post.getEmployee().getIdEmployee()
+        );
     }
+
+
+
 
     /**
      * Create by : TriPD
@@ -57,6 +67,10 @@ public class PostService implements IPostService {
     public Post findPostsById(Long id) {
         return iPostRepository.findPostsById(id);
     }
+
+
+
+
 
     /**
      * Create by : TriPD
@@ -74,9 +88,15 @@ public class PostService implements IPostService {
         post.setImage(postDto.getImage());
         post.setContent(postDto.getContent());
         post.setEmployee(postDto.getEmployee());
-        iPostRepository.updatePost(post.getTitle(), post.getDatePost(), post.getImage(), post.getContent(), post.getEmployee().getIdEmployee(), post.getId());
+        iPostRepository.updatePost(
+                post.getTitle(),
+                post.getDatePost(),
+                post.getImage(),
+                post.getContent(),
+                post.getEmployee().getIdEmployee(),
+                post.getId()
+        );
     }
-
 
     /**
      * Author: SonTT
@@ -137,3 +157,4 @@ public class PostService implements IPostService {
         return this.iPostRepository.getListPostHotNews();
     }
 }
+
