@@ -2,12 +2,13 @@ package com.example.air_ticket_booking.service.route.impl;
 
 import com.example.air_ticket_booking.model.projection_tdns.RouteProjection;
 import com.example.air_ticket_booking.model.route.Route;
+import com.example.air_ticket_booking.projection.IRouteCheapestProjection;
 import com.example.air_ticket_booking.repository.route.IRouteRepository;
 import com.example.air_ticket_booking.service.route.IRouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -49,8 +50,10 @@ public class RouteService implements IRouteService {
      * @since 10/08/2023
      */
     @Override
-    public List<Route> findTop10RouteCheapest() {
-        return routeRepository.getTop10RouteCheapest();
+    public List<IRouteCheapestProjection> findTop10RouteCheapest() {
+        LocalDate localDate = LocalDate.now();
+        LocalTime localTime = LocalTime.now();
+        return routeRepository.getTop10RouteCheapest(localDate, localTime);
     }
 
 }

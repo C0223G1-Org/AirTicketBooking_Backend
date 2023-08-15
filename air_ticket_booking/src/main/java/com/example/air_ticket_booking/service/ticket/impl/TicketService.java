@@ -11,7 +11,6 @@ import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
 import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
-import com.example.air_ticket_booking.repository.ticket.ITypeTicketRepository;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,14 +63,13 @@ public class TicketService implements ITicketService {
      * @Return: void
      */
     @Transactional
-    public void updateTicket(Long id, Long price, Boolean flag, String name, Boolean gender, String email, String tel, String idCard,
-                             String dateBooking, TypeTicket typeTicket, Luggage luggage, TypePassenger typePassenger, Seat seat, Customer customer) {
-        ticketRepository.updateTicket(id, price, flag, name, gender, email, tel, idCard, dateBooking, typeTicket, luggage, typePassenger, seat, customer);
+    public void updateTicket(Long id, String name, String email) {
+        ticketRepository.updateTicket(id,name, email);
     }
 
     /**
      * task get all Ticket booked
-     *
+     *date create: 10/08/2023
      * @param pageable
      * @return Page<Ticket>
      * @Method findAllTickets
@@ -89,7 +87,7 @@ public class TicketService implements ITicketService {
 
     /**
      * task get Ticket by id
-     *
+     *  date create: 10/08/2023
      * @param id
      * @return Ticket or null
      * @Method findByTicket
@@ -103,9 +101,15 @@ public class TicketService implements ITicketService {
         return null;
     }
 
+    @Override
+    public Customer findCustomerById(Long id) {
+        return ticketRepository.findCustomerById(id);
+    }
+
+
     /**
      * task delete ticket
-     *
+     *  date create: 10/08/2023
      * @param id
      * @return boolean
      * @Method findByTicket
@@ -123,7 +127,7 @@ public class TicketService implements ITicketService {
 
     /**
      * task search ticket
-     *
+     *  date create: 10/08/2023
      * @param idTypeTicket, namePassenger, nameRoute,  nameDeparture, nameDestination,pageable
      * @return Page<Ticket>
      * @Method searchTicket
@@ -132,8 +136,7 @@ public class TicketService implements ITicketService {
     @Override
     public Page<ITicketProjection> searchTicket(Long idTypeTicket, String namePassenger, String nameRoute, String nameDeparture, String nameDestination, Pageable pageable) {
         try {
-//            return ticketRepository.searchTicket(idTypeTicket, namePassenger, nameRoute, nameDeparture, nameDestination, pageable);
-            return null;
+            return ticketRepository.searchTicket(idTypeTicket, namePassenger, nameRoute, nameDeparture, nameDestination, pageable);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Lỗi khi truy vấn dữ liệu từ database", e);
@@ -142,7 +145,7 @@ public class TicketService implements ITicketService {
 
     /**
      * task get all ticket unbooked
-     *
+     *  date create: 10/08/2023
      * @param pageable
      * @return Page<Ticket>
      * @Method findAllTicketUnbooked
@@ -160,7 +163,7 @@ public class TicketService implements ITicketService {
 
     /**
      * task search ticket unbooked
-     *
+     *  date create: 10/08/2023
      * @param idTypeSeat,positionSeat,nameRoute,nameDeparture,nameDestination,pageable
      * @return Page<Ticket>
      * @Method searchTicketUnbooked
@@ -169,8 +172,8 @@ public class TicketService implements ITicketService {
     @Override
     public Page<ITicketUnbookedProjection> searchTicketUnbooked(Long idTypeSeat, String positionSeat, String nameRoute, String nameDeparture, String nameDestination, Pageable pageable) {
         try {
-//            return ticketRepository.searchTicketUnbooked(idTypeSeat, positionSeat, nameRoute, nameDeparture, nameDestination, pageable);
-            return null;
+            return ticketRepository.searchTicketUnbooked(idTypeSeat, positionSeat, nameRoute, nameDeparture, nameDestination, pageable);
+
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Lỗi khi truy vấn dữ liệu từ database", e);

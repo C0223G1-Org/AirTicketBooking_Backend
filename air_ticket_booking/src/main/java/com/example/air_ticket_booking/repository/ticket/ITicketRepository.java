@@ -18,7 +18,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,18 +59,17 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
          *Date create: 10/08/2023
          * Function:updateTicket()
          * @Param: ticketDto
-         * @Return: void
+         * @Return: update Ticket
          */
 
         @Modifying
-        @Query("UPDATE Ticket t SET t.priceTicket = :price, t.flagTicket = :flag, t.namePassenger = :name, t.genderPassenger = :gender," +
-                " t.emailPassenger = :email, t.telPassenger = :tel, t.idCardPassenger = :idCard, t.dateBooking = :dateBooking, " +
-                "t.typeTicket = :typeTicket, t.luggage = :luggage, t.typePassenger = :typePassenger, t.seat = :seat, " +
-                "t.customer = :customer WHERE t.idTicket = :id")
-        void updateTicket(@Param("id") Long id, @Param("price") Long price, @Param("flag") Boolean flag, @Param("name") String name,
-                          @Param("gender") Boolean gender, @Param("email") String email, @Param("tel") String tel, @Param("idCard") String idCard, @Param("dateBooking") String dateBooking, @Param("typeTicket") TypeTicket typeTicket, @Param("luggage") Luggage luggage, @Param("typePassenger") TypePassenger typePassenger, @Param("seat") Seat seat, @Param("customer") Customer customer);
-        @Query(value = "select * from ticket where id_ticket = :id ", nativeQuery = true)
-        Ticket findTicketById(@Param("id") Long id);
+        @Query(value = "UPDATE ticket  JOIN customer on ticket.customer_id_customer= customer.id_customer  " +
+                "SET ticket.name_passenger = :name, customer.email_customer = :email " +
+                "WHERE ticket.id_ticket = :id", nativeQuery = true)
+        void updateTicket(@Param("id") Long id, @Param("name") String name, @Param("email") String email);
+    @Query(value = "select * from customer where id_customer = :id",nativeQuery = true)
+    Customer findCustomerById(@Param("id") Long id);
+
     /**
      * task take  data from database
      * @Method findAllTickets
@@ -110,21 +108,22 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
      * @return
      * @author Nhàn NA
      */
-    @Query(value = "select  * from ticket where ticket.flag_ticket =0 and ticket.id_ticket=:id ",nativeQuery = true)
+    @Query(value = "select  * from ticket where ticket.flag_ticket=0 and ticket.id_ticket=:id ",nativeQuery = true)
     Optional<Ticket> findByTicket(@Param("id")Long id);
-//    @Query(value = "select id_ticket as id, date_booking as dateBooking, name_passenger as namePassenger, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture,price_ticket as priceTicket  from ticket t \n" +
-//            "join type_ticket tt on t.type_ticket_id_type_ticket = tt.id_type_ticket\n" +
-//            "join luggage l on l.id_luggage=t.luggage_id_luggage\n" +
-//            "join type_passenger tp on tp.id_type_passenger = t.type_passenger_id_type_passenger\n" +
-//            "join customer c on c.id_customer = t.customer_id_customer\n" +
-//            "join seat s on s.id_seat=t.seat_id_seat\n" +
-//            "join type_seat ts on ts.id_type_seat=s.id_type_seat\n" +
-//            "join route r on r.id_route=s.id_route\n" +
-//            "join destination d on d.id_destination = r.id_destination\n" +
-//            "join air_craft ac on ac.id_air_craft = r.id_air_craft\n" +
-//            "join departure de on de.id_departure=r.id_departure\n" +
-//            "where t.flag_ticket=0 and tt.id_type_ticket=:idTypeTicket and name_passenger Like concat('%',:namePassenger,'%') and name_route like concat('%',:nameRoute,'%') and name_departure like concat('%',:nameDeparture,'%') and name_destination like concat('%',:nameDestination,'%')",nativeQuery = true)
-//    Page<ITicketProjection> searchTicket(@Param("idTypeTicket")Long idTypeTicket,@Param("namePassenger")String namePassenger,@Param("nameRoute")String nameRoute,@Param("nameDeparture") String nameDeparture,@Param("nameDestination")String nameDestination,Pageable pageable);
+
+    @Query(value = "select id_ticket as id, date_booking as dateBooking, name_passenger as namePassenger, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture,price_ticket as priceTicket  from ticket t \n" +
+            "join type_ticket tt on t.type_ticket_id_type_ticket = tt.id_type_ticket\n" +
+            "join luggage l on l.id_luggage=t.luggage_id_luggage\n" +
+            "join type_passenger tp on tp.id_type_passenger = t.type_passenger_id_type_passenger\n" +
+            "join customer c on c.id_customer = t.customer_id_customer\n" +
+            "join seat s on s.id_seat=t.seat_id_seat\n" +
+            "join type_seat ts on ts.id_type_seat=s.id_type_seat\n" +
+            "join route r on r.id_route=s.id_route\n" +
+            "join destination d on d.id_destination = r.id_destination\n" +
+            "join air_craft ac on ac.id_air_craft = r.id_air_craft\n" +
+            "join departure de on de.id_departure=r.id_departure\n" +
+            "where t.flag_ticket=0 and tt.id_type_ticket=:idTypeTicket and name_passenger like concat('%',:namePassenger,'%') and name_route like concat('%',:nameRoute,'%') and name_destination like concat('%',:nameDeparture,'%') and name_destination like concat('%',:nameDestination,'%')",nativeQuery = true)
+    Page<ITicketProjection> searchTicket(@Param("idTypeTicket")Long idTypeTicket,@Param("namePassenger")String namePassenger,@Param("nameRoute")String nameRoute,@Param("nameDeparture") String nameDeparture,@Param("nameDestination")String nameDestination,Pageable pageable);
     /**
      * task get all tickets  unbooked from database
      * @Method findAllTicketUnbooked
@@ -147,6 +146,18 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
      * @return Page<Ticket>
      * @author Nhàn NA
      */
+
+
+
+    @Query(value = "select id_seat as id ,position_seat as positionSeat,name_type_seat as typeSeat, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture  from seat s\n" +
+            "join type_seat ts on ts.id_type_seat=s.id_type_seat\n" +
+            "join route r on r.id_route=s.id_route\n" +
+            "join destination d on d.id_destination = r.id_destination\n" +
+            "join air_craft ac on ac.id_air_craft = r.id_air_craft\n" +
+            "join departure de on de.id_departure=r.id_departure\n" +
+            "where s.flag_seat=0 and ts.id_type_seat=:idTypeSeat and position_seat Like concat('%',:positionSeat,'%') and name_route like concat('%',:nameRoute,'%') and name_departure like concat('%',:nameDeparture,'%') and name_destination like concat('%',:nameDestination,'%')",nativeQuery = true)
+    Page<ITicketUnbookedProjection> searchTicketUnbooked(@Param("idTypeSeat")Long idTypeSeat,@Param("positionSeat")String positionSeat,@Param("nameRoute")String nameRoute,@Param("nameDeparture") String nameDeparture,@Param("nameDestination")String nameDestination,Pageable pageable);
+    }
 //    @Query(value = "select id_seat as id ,position_seat as positionSeat,name_type_seat as typeSeat, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture  from seat s\n" +
 //            "join type_seat ts on ts.id_type_seat=s.id_type_seat\n" +
 //            "join route r on r.id_route=s.id_route\n" +

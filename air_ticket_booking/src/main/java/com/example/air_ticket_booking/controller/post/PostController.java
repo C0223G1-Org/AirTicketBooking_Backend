@@ -61,14 +61,14 @@ public class PostController {
 
 
 
-        /**
-         * Create by : TriPD
-         * Date created : 10/08/2023
-         * Function : findPostById()
-         *
-         * @Param: id
-         * @Return: Post
-         */
+    /**
+     * Create by : TriPD
+     * Date created : 10/08/2023
+     * Function : findPostById()
+     *
+     * @Param: id
+     * @Return: Post
+     */
     @GetMapping("/findPost/{id}")
     public ResponseEntity<PostDto> findPostById(@PathVariable Long id){
         Post post = this.iPostService.findPostsById(id);

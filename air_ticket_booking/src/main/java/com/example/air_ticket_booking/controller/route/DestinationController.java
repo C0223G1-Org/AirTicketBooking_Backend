@@ -24,6 +24,9 @@ public class DestinationController {
      */
     @GetMapping()
     public ResponseEntity<?> findAll() {
+        if (destinationService.getAll().size() == 0) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(destinationService.getAll(), HttpStatus.OK);
     }
 }

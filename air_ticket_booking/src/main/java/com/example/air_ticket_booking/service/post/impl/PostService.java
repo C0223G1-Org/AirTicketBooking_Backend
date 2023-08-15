@@ -103,13 +103,13 @@ public class PostService implements IPostService {
         );
     }
 
-        /**
-         * Author: SonTT
-         * Date create: 10/8/2023
-         * Handling:Get data from the call link to the corresponding repository to check if it exists or not, if not, return null otherwise, return the data received from the repository
-         * @param id
-         * @return Post
-         */
+    /**
+     * Author: SonTT
+     * Date create: 10/8/2023
+     * Handling:Get data from the call link to the corresponding repository to check if it exists or not, if not, return null otherwise, return the data received from the repository
+     * @param id
+     * @return Post
+     */
 
     public Post findPostById(Long id) {
         if (!iPostRepository.findPostById(id).isPresent()){
@@ -136,3 +136,4 @@ public class PostService implements IPostService {
         }
     }
 }
+

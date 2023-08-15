@@ -89,6 +89,3 @@ public interface IPostRepository extends JpaRepository<Post, Long> {
 
 
 }
-
-
-

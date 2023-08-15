@@ -6,7 +6,9 @@ import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,19 +19,32 @@ import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
 import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
+import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
+import com.example.air_ticket_booking.service.ticket.ITicketService;
+import com.example.air_ticket_booking.service.ticket.impl.TicketService;
+//import com.sun.tools.javac.util.List;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
+
+import java.util.Arrays;
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/tickets")
 public class TicketController {
-    
 
     @Autowired
     private ITicketService iTicketService;
-
-    @Autowired
-    private ITicketRepository ticketRepository;
 
     /**
      * method: used to create a new ticket when the user confirms the booking
@@ -69,7 +84,7 @@ public class TicketController {
      *Date create: 10/08/2023
      * Function:getTicketById()
      * @Param: Long id
-     * @Return: ticket
+     * @Return:  if found and then return a ticket, otherwise it will return error not found.
      */
     @GetMapping("/{id}")
     public ResponseEntity<Ticket> getTicketById(@PathVariable Long id){
@@ -84,49 +99,65 @@ public class TicketController {
      *Date create: 10/08/2023
      * Function: updateTicket()
      * @Param: ticketDto
-     * @Return: ticket
+     * @Return:  If  idTicket is found then enter the correct format,
+     * the ticket will be updated. otherwise it will throw an error
      */
 
-    @PutMapping("/updateTicket/{id}")
-    public ResponseEntity<?> updateTicket(@PathVariable Long id,@RequestBody TicketDto ticketDto, BindingResult bindingResult ) {
-        ticketDto.validate(ticketDto, bindingResult);
-        if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body("Lỗi validation");
-        }
+    @PatchMapping("/updateTicket/{id}")
+    public ResponseEntity<?> updateTicket(@PathVariable Long id,@Valid @RequestBody TicketDto ticketDto) {
+//        ticketDto.validate(ticketDto, bindingResult);
+//        if (bindingResult.hasErrors()) {
+//            return ResponseEntity.badRequest().body("Lỗi Không Đúng Định Dạng");
+//        }
 
         Ticket existingTicket = iTicketService.findByIdTicket(id);
         if (existingTicket == null) {
             return ResponseEntity.notFound().build();
         }
 
-        Long price = ticketDto.getPriceTicket();
-        Boolean flag = ticketDto.getFlagTicket();
         String name = ticketDto.getNamePassenger();
-        Boolean gender = ticketDto.getGenderPassenger();
-        String email = ticketDto.getEmailPassenger();
-        String tel = ticketDto.getTelPassenger();
-        String idCard = ticketDto.getIdCardPassenger();
-        String dateBooking = ticketDto.getDateBooking();
-        TypeTicket typeTicket = ticketDto.getTypeTicket();
-        Luggage luggage = ticketDto.getLuggage();
-        TypePassenger typePassenger = ticketDto.getTypePassenger();
-        Seat seat = ticketDto.getSeat();
-        Customer customer = ticketDto.getCustomer();
-
-        ticketRepository.updateTicket(id, price, flag, name, gender, email, tel, idCard, dateBooking, typeTicket, luggage, typePassenger, seat, customer);
+        String email= ticketDto.getCustomer().getEmailCustomer();
+        iTicketService.updateTicket(id, name, email);
         return ResponseEntity.ok("Cập nhật vé thành công");
+    }
+    /**
+     * task validate data ticket to BE
+     * @Method handleValidationExceptions
+     * @return throw errors;
+     * @author VuDt
+     */
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
 
     /**
      * task response data ticket booked to FE
      * @Method showAllTickets
-     * @param pageable
+     * @param page
      * @return HttpStatus and Page<Ticket>
      * @author Nhàn NA
      */
-    @GetMapping()
-    public ResponseEntity<Page<ITicketProjection>> showAllTickets(Pageable pageable){
-        System.out.println("nhan");
+    @GetMapping("/booked/{page}")
+    public ResponseEntity<Page<ITicketProjection>> showAllTickets(@PathVariable int page){
+        String idString= String.valueOf(page);
+        if(!idString.matches("^[0-9]{1,8}$")){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if(page<0){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Pageable pageable= PageRequest.of(page,5);
+
         if(iTicketService.findAllTickets(pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }else {
@@ -137,12 +168,17 @@ public class TicketController {
     /**
      * task delete ticket value id
      * @Method deleteTicket
+     * date create: 10/08/2023
      * @param id
      * @return HttpStatus
      * @author Nhàn NA
      */
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteTicket(@PathVariable Long id){
+        String idString= String.valueOf(id);
+        if(!idString.matches("^[0-9]{1,8}$")){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if(iTicketService.deleteTicket(id)) {
             return new ResponseEntity<>(HttpStatus.OK);
         }else {
@@ -152,13 +188,20 @@ public class TicketController {
     /**
      * task response search all ticket booked data to FE
      * @Method searchTickets
+     * date create: 10/08/2023
      * @param item,pageable
      * @return HttpStatus and Page<Ticket>
      * @author Nhàn NA
      */
-    @GetMapping("/search/{item}")
-    public ResponseEntity<Page<ITicketProjection>> searchTickets(@PathVariable String item,Pageable pageable){
-        String[] input = item.split(",");
+    @GetMapping("/search/{item}/{page}")
+    public ResponseEntity<Page<ITicketProjection>> searchTickets(@PathVariable("item") String item,@PathVariable("page") int page){
+        String idString= String.valueOf(page);
+        String[] input = item.split(",", -1);
+        System.out.println(Arrays.toString(input));
+        Pageable pageable = PageRequest.of(page,5);
+        if(!input[0].matches("^[0-9]{1,8}$")||input.length!=5||!idString.matches("^[0-9]{1,8}$")){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if(iTicketService.searchTicket(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -169,13 +212,18 @@ public class TicketController {
     /**
      * task response ticket unbooked  data to FE
      * @Method findAllTicketUnbooked
-     * @param pageable
+     * date create: 10/08/2023
+     * @param page
      * @return HttpStatus and Page<Ticket>
      * @author Nhàn NA
      */
-    @GetMapping("/unbooked")
-    public ResponseEntity<Page<ITicketUnbookedProjection>> findAllTicketUnbooked(Pageable pageable){
-        System.out.println("nhan");
+    @GetMapping("/unbooked/{page}")
+    public ResponseEntity<Page<ITicketUnbookedProjection>> findAllTicketUnbooked(@PathVariable int page){
+        String idString= String.valueOf(page);
+        if(page<0||!idString.matches("^[0-9]{1,8}$")){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Pageable pageable=PageRequest.of(page,5);
         if(iTicketService.findAllTicketUnbooked(pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }else {
@@ -185,13 +233,19 @@ public class TicketController {
     /**
      * task response search unbooked tickets   data to FE
      * @Method findAllTicketUnbooked
-     * @param pageable
+     * date create: 10/08/2023
+     * @param item,page
      * @return HttpStatus and Page<Ticket>
      * @author Nhàn NA
      */
-    @GetMapping("/search-unbooked/{item}")
-    public ResponseEntity<Page<ITicketUnbookedProjection>> searchTicketsUnBooked(@PathVariable String item,Pageable pageable){
-        String[] input = item.split(",");
+    @GetMapping("/search-unbooked/{item}/{page}")
+    public ResponseEntity<Page<ITicketUnbookedProjection>> searchTicketsUnBooked(@PathVariable("item") String item, @PathVariable("page") int page){
+        String[] input = item.split(",", -1);
+        Pageable pageable= PageRequest.of(page,5);
+        String idString= String.valueOf(page);
+        if(page<0||!idString.matches("^[0-9]{1,8}$")||!input[0].matches("^[0-9]{1,8}$")){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if(iTicketService.searchTicketUnbooked(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
