@@ -3,13 +3,17 @@ package com.example.air_ticket_booking.controller.customer;
 import com.example.air_ticket_booking.model.customer.Customer;
 import com.example.air_ticket_booking.service.customer.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.Max;
 
 @CrossOrigin("*")
 @RestController
@@ -24,13 +28,23 @@ public class CustomerController {
      * Create by: TàiMP
      * Date create: 10/08/2023
      */
-    @GetMapping("")
-    public ResponseEntity<Page<Customer>> getListCustomers(Pageable pageable) {
+    @GetMapping(value = {"/", "/list"})
+    public ResponseEntity<Page<Customer>> getListCustomers(@PageableDefault(size = 5) Pageable pageable, @RequestParam("page") String page) {
+        int currentPage;
+        try {
+            currentPage = Integer.parseInt(page);
+            if (currentPage < 0) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (NumberFormatException n) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         Page<Customer> getListCustomer = customerService.getListCustomer(pageable);
-        if (getListCustomer.getTotalElements() != 0) {
+        if (!getListCustomer.isEmpty()) {
             return new ResponseEntity<>(getListCustomer, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -40,14 +54,28 @@ public class CustomerController {
      * Create by: TàiMP
      * Date create: 10/08/2023
      */
-    @GetMapping("search/name={name}/nationality={nationality}/email={email}")
-    public ResponseEntity<Page<Customer>> getListSearchCustomer(Pageable pageable, @PathVariable("email") String email,
-                                                                @PathVariable("name") String name, @PathVariable("nationality") String nationality) {
+    @GetMapping("/search")
+    public ResponseEntity<Page<Customer>> getListSearchCustomer(@PageableDefault(size = 5) Pageable pageable, @RequestParam("email") String email,
+                                                                @RequestParam("name") String name, @RequestParam("nationality") String nationality,@RequestParam("page")String page) {
+
+        int currentPage;
+        try {
+            currentPage = Integer.parseInt(page);
+            if (currentPage < 0) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }else if (email.length()>100||name.length()>100||nationality.length()>20){
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+            }
+        } catch (NumberFormatException n) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         Page<Customer> getListSearch = customerService.getListSearchCustomer(pageable, email, name, nationality);
-        if (getListSearch.getTotalElements() != 0) {
+        if (!getListSearch.isEmpty()) {
             return new ResponseEntity<>(getListSearch, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
