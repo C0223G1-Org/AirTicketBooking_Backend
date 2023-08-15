@@ -23,4 +23,3 @@ public interface ISeatRepository extends JpaRepository<Seat,Long> {
 
 
 }
-

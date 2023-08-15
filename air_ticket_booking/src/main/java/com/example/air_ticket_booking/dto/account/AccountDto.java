@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class AccountDto implements Validator {
     @NotBlank(message = "Không được để trống trường này")
@@ -164,29 +165,34 @@ public class AccountDto implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
 
-//        LocalDate birthday = LocalDate.of(2000, 1, 1); // Ngày sinh của người cần kiểm tra
-//
-//        LocalDate currentDate = LocalDate.now();
-//        Period age = Period.between(birthday, currentDate);
-//
-//        int years = age.getYears();
-
         AccountDto accountDto = (AccountDto) target;
-        String date = accountDto.dateCustomer;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        LocalDate dateOfBirth = LocalDate.parse(date, formatter);
-        LocalDate today = LocalDate.now();
-        Period age = Period.between(dateOfBirth, today);
-        int years = age.getYears();
-//        if (today.getMonthValue() < dateOfBirth.getMonthValue()
-//                || (today.getMonthValue() == dateOfBirth.getMonthValue() && today.getDayOfMonth() < dateOfBirth.getDayOfMonth())) {
-//            age--; //Age reduction if the birthday is not reached in the current year
-//
-//        }
-        if (years < 18 || years > 150) {
-            errors.rejectValue("dateCustomer", "dateCustomer", "Khách hàng phải trên 18 tuổi và nh hơn 150 tuổi");
+        String date = accountDto.getDateCustomer();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try{
+            LocalDate currentDate = LocalDate.now();
+            LocalDate birthday = LocalDate.parse(date, formatter);
+            Period age = Period.between(birthday, currentDate);
+            int years = age.getYears();
+            if (years < 18 || years > 150) {
+                errors.rejectValue("dateCustomer", "", "Khách hàng phải trên 18 tuổi và nh hơn 150 tuổi");
+            }
+        }catch (DateTimeParseException e){
+            errors.rejectValue("dateCustomer", "","Định dạng ngày không hợp lệ, vui lòng kiểm tra lại");
+
         }
 
+
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        try {
+//            LocalDate age = LocalDate.parse(userDTO.birthDay, formatter);
+//            LocalDate now = LocalDate.now();
+//            int yearOld = Period.between(age, now).getYears();
+//            if (yearOld < 18 || yearOld > 89) {
+//                errors.rejectValue("birthDay", "","Tuổi tối thiểu là 18, tối đa là 89 vui lòng kiểm tra lại");
+//            }
+//        } catch (DateTimeParseException e) {
+//            errors.rejectValue("birthDay", "","Định dạng ngày không hợp lệ, vui lòng kiểm tra lại");
+//        }
     }
 
     public static void main(String[] args) {

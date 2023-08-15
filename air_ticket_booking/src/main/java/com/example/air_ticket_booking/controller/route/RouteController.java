@@ -16,6 +16,21 @@ public class RouteController {
     private IRouteService routeService;
 
     /**
+     * method dùng để lấy danh sách top 10 chuyến bay giá rẻ nhất
+     * @return ResponseEntity
+     * @author ThaiVV
+     * @since 10/08/2023
+     */
+    @GetMapping("/top10")
+    public ResponseEntity<?> getTop10Cheapest() {
+        if (routeService.findTop10RouteCheapest().size() == 0) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else if (routeService.findTop10RouteCheapest().size() < 10) {
+            return new ResponseEntity<>(routeService.findTop10RouteCheapest(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(routeService.findTop10RouteCheapest(), HttpStatus.OK);
+    }
+    /**
      * Create by: SangTDN
      * @param departure
      * @param destination
@@ -38,7 +53,13 @@ public ResponseEntity<List<RouteProjection>> searchTrips(@PathVariable String de
 //        }
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
-
+    /**
+     *method :find a flight route by id
+     * created by :NamPC
+     * date create: 10/08/2023
+     * @param id
+     * return Route
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Route>getRouteById(@PathVariable Long id){
         Route route = routeService.findRouteById(id);
