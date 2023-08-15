@@ -71,7 +71,7 @@ public class EmployeeController {
      * @param employeeDto
      * @return status update
      */
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<?> editEmployee(@Validated @RequestBody EmployeeDto employeeDto,
                                           BindingResult bindingResult, @PathVariable Long id) {
         if (!bindingResult.hasErrors()) {

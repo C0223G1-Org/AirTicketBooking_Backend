@@ -10,12 +10,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
-import java.util.List;
 
-
+@Repository
 public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
     /**
      * Create by: QuocNHA,
@@ -49,7 +46,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
                      @Param("image") String image,
                      @Param("telEmployee") String telEmployee,
                      @Param("email") String email,
-                     @Param("account") Account account,
+                     @Param("account") Long accountId,
                      @Param("flagEmployee") boolean flagEmployee
     );
 
@@ -74,7 +71,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
                         @Param("image") String image,
                         @Param("telEmployee") String telEmployee,
                         @Param("email") String email,
-                        @Param("account") Account account,
+                        @Param("account") Long account,
                         @Param("flagEmployee") boolean flagEmployee
     );
 

@@ -3,6 +3,7 @@ package com.example.air_ticket_booking.service.employee;
 import com.example.air_ticket_booking.dto.employee.EmployeeDto;
 import com.example.air_ticket_booking.model.employee.Employee;
 
+import com.example.air_ticket_booking.model.employee.Employee;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -47,4 +48,5 @@ public interface IEmployeeService {
     Page<Employee> searchEmployee(Boolean gender, String name, Pageable pageable);
 
 //    Employee getEmployeeById(Long id);
+    Employee findByyId(Long id);
 }

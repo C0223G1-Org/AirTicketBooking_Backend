@@ -13,20 +13,18 @@ public class Post {
     private Long id;
     private String title;
     private String content;
-    private boolean flagPost;
     private String image;
-    private String datePost;
+    private LocalDateTime datePost;
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
     public Post() {
     }
 
-    public Post(Long id, String title, String content, boolean flagPost, String image, String datePost, Employee employee) {
+    public Post(Long id, String title, String content, String image, LocalDateTime datePost, Employee employee) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.flagPost = flagPost;
         this.image = image;
         this.datePost = datePost;
         this.employee = employee;
@@ -65,11 +63,11 @@ public class Post {
     }
 
 
-    public String getDatePost() {
+    public LocalDateTime getDatePost() {
         return datePost;
     }
 
-    public void setDatePost(String datePost) {
+    public void setDatePost(LocalDateTime datePost) {
         this.datePost = datePost;
     }
 
@@ -79,13 +77,5 @@ public class Post {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
-    }
-
-    public boolean isFlagPost() {
-        return flagPost;
-    }
-
-    public void setFlagPost(boolean flagPost) {
-        this.flagPost = flagPost;
     }
 }
