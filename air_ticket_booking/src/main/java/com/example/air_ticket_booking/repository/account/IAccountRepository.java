@@ -13,17 +13,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Repository
 public interface IAccountRepository extends JpaRepository<Account, Long> {
     /**
      * create by : SangTDN
-     *
      * @param newPass
      * @param oldPass
-     * @param idCustomer update password when user is customer
+     * @param idCustomer
+     *update password when user is customer
      */
     @Transactional
     @Modifying
@@ -33,15 +32,15 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
             "select account_id_account \n" +
             "from customer \n" +
             "where id_customer = :idCustomer)", nativeQuery = true)
-    void updatePasswordForCustomer(@Param("newPass") String newPass, @Param("oldPass") String oldPass,
-                                   @Param("idCustomer") Long idCustomer);
+    void updatePasswordForCustomer (@Param("newPass") String newPass, @Param("oldPass") String oldPass,
+                                    @Param("idCustomer") Long idCustomer );
 
     /**
      * create by : SangTDN
-     *
      * @param newPass
      * @param oldPass
-     * @param idEmployee update password when user is employee
+     * @param idEmployee
+     * update password when user is employee
      */
     @Transactional
     @Modifying

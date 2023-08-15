@@ -8,10 +8,8 @@ import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+
 /**
  *class : class use verify the validity of the data
  * created by :NamPC
@@ -27,9 +25,9 @@ public class TicketDto implements Validator {
     @Size(min = 10, message = "Tên ít nhất 10 ký tự")
     @Pattern(regexp = "^([A-Z][a-z]{0,7}\\s){1,5}[A-Z][a-z]{0,7}$",message = "Tên không đúng định dạng")
     private String namePassenger;
-    @NotBlank(message = "Không được để trống")
+    @NotNull(message = "Không được để trống")
     private Boolean genderPassenger;
-    @Pattern(regexp = "/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6})*$/\n",message = "EmailService không đúng định dạng")
+    @Pattern(regexp = "\\w+@\\w{2,5}(.\\w{1,5}){1,2}$",message = "Email không đúng định dạng")
     private String emailPassenger;
     @Pattern(regexp = "^(84|0)(3|5|7|8|9)[0-9]{8}$",message = "Số điện thoại phải đúng định dạng")
     private  String telPassenger;
