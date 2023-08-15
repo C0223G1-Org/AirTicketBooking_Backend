@@ -118,14 +118,14 @@ public class CustomerController {
      * @return ResponseEntity<>
      */
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto, BindingResult bindingResult) {
+    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto) {
         if (customerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        new CustomerDto().validate(customerDto,bindingResult);
-        if(bindingResult.hasErrors()){
-            return new ResponseEntity<>(bindingResult.getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST);
-        }
+//        new CustomerDto().validate(customerDto,bindingResult);
+//        if(bindingResult.hasErrors()){
+//            return new ResponseEntity<>(bindingResult.getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST);
+//        }
         Customer customer=new Customer();
         BeanUtils.copyProperties(customerDto,customer);
         customerService.updateCustomer(customer);
