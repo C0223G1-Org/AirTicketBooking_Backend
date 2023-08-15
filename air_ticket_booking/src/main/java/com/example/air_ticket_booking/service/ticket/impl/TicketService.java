@@ -64,9 +64,8 @@ public class TicketService implements ITicketService {
      * @Return: void
      */
     @Transactional
-    public void updateTicket(Long id, Long price, Boolean flag, String name, Boolean gender, String email, String tel, String idCard,
-                             String dateBooking, TypeTicket typeTicket, Luggage luggage, TypePassenger typePassenger, Seat seat, Customer customer) {
-        ticketRepository.updateTicket(id, price, flag, name, gender, email, tel, idCard, dateBooking, typeTicket, luggage, typePassenger, seat, customer);
+    public void updateTicket(Long id, String name, String email) {
+        ticketRepository.updateTicket(id,name, email);
     }
 
     /**
@@ -102,6 +101,8 @@ public class TicketService implements ITicketService {
         }
         return null;
     }
+
+
 
     /**
      * task delete ticket

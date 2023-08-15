@@ -37,8 +37,17 @@ public interface ITicketService {
      * @Return: void
      */
     Ticket findByIdTicket(Long id);
-    void updateTicket(Long id, Long price, Boolean flag, String name, Boolean gender, String email, String tel, String idCard,
-                      String dateBooking, TypeTicket typeTicket, Luggage luggage, TypePassenger typePassenger, Seat seat, Customer customer);
+
+
+    /**
+     *Create by: VuDT
+     *Date create: 10/08/2023
+     * Function:updateTicket()
+     * @Param: ticket
+     * @Return: void
+     */
+
+    void updateTicket(Long id, String name,String email);
 
 
     Page<ITicketProjection> findAllTickets(Pageable pageable);

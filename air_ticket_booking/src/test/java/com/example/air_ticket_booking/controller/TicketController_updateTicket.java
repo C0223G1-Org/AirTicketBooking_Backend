@@ -37,28 +37,20 @@ public class TicketController_updateTicket {
     @Test
     public void updateTicket_namePassenger_20() throws Exception{
         TicketDto ticketDto= new TicketDto();
-        Customer customer= new Customer();
-        customer.setIdCustomer(1L);
-        ticketDto.setCustomer(customer);
+        ticketDto.setIdCustomer(1L);
         ticketDto.setDateBooking("04-12-2023");
         ticketDto.setPriceTicket(123111111111111111L);
         ticketDto.setEmailPassenger("tuanvu@gmail.com");
         ticketDto.setGenderPassenger(true);
-        TypeTicket typeTicket= new TypeTicket();
-        typeTicket.setIdTypeTicket(1L);
-        ticketDto.setTypeTicket(typeTicket);
+        ticketDto.setIdTypeTicket(1L);
         Luggage luggage= new Luggage();
         luggage.setIdLuggage(1L);
-        ticketDto.setLuggage(luggage);
+        ticketDto.setIdLuggage(1L);
         ticketDto.setIdCardPassenger("01234567");
         ticketDto.setNamePassenger("");
         ticketDto.setTelPassenger("0867041299");
-        Seat seat= new Seat();
-        seat.setIdSeat(1L);
-        ticketDto.setSeat(seat);
-        TypePassenger typePassenger= new TypePassenger();
-        typePassenger.setIdTypePassenger(1L);
-        ticketDto.setTypePassenger(typePassenger);
+        ticketDto.setIdSeat(1L);
+        ticketDto.setIdTypePassenger(1L);
 
 
         this.mockMvc.perform(MockMvcRequestBuilders.patch("/tickets/updateTicket/{id}","1")
@@ -78,28 +70,18 @@ public class TicketController_updateTicket {
     @Test
     public void updateTicket_namePassenger_22() throws Exception{
         TicketDto ticketDto= new TicketDto();
-        Customer customer= new Customer();
-        customer.setIdCustomer(1L);
-        ticketDto.setCustomer(customer);
+        ticketDto.setIdCustomer(1L);
         ticketDto.setDateBooking("04-12-2023");
         ticketDto.setPriceTicket(123111111111111111L);
         ticketDto.setEmailPassenger("tuanvu@gmail.com");
         ticketDto.setGenderPassenger(true);
-        TypeTicket typeTicket= new TypeTicket();
-        typeTicket.setIdTypeTicket(1L);
-        ticketDto.setTypeTicket(typeTicket);
-        Luggage luggage= new Luggage();
-        luggage.setIdLuggage(1L);
-        ticketDto.setLuggage(luggage);
+        ticketDto.setIdTypeTicket(1L);
+        ticketDto.setIdLuggage(1L);
         ticketDto.setIdCardPassenger("01234567");
         ticketDto.setNamePassenger("Tuan Vu");
         ticketDto.setTelPassenger("0867041299");
-        Seat seat= new Seat();
-        seat.setIdSeat(1L);
-        ticketDto.setSeat(seat);
-        TypePassenger typePassenger= new TypePassenger();
-        typePassenger.setIdTypePassenger(1L);
-        ticketDto.setTypePassenger(typePassenger);
+        ticketDto.setIdSeat(1L);
+        ticketDto.setIdTypePassenger(1L);
 
 
         this.mockMvc.perform(MockMvcRequestBuilders.patch("/tickets/updateTicket/{id}","1")
@@ -118,28 +100,18 @@ public class TicketController_updateTicket {
     @Test
     public void updateTicket_namePassenger_23() throws Exception{
         TicketDto ticketDto= new TicketDto();
-        Customer customer= new Customer();
-        customer.setIdCustomer(1L);
-        ticketDto.setCustomer(customer);
+        ticketDto.setIdCustomer(1L);
         ticketDto.setDateBooking("04-12-2023");
         ticketDto.setPriceTicket(123111111111111111L);
         ticketDto.setEmailPassenger("tuanvu@gmail.com");
         ticketDto.setGenderPassenger(true);
-        TypeTicket typeTicket= new TypeTicket();
-        typeTicket.setIdTypeTicket(1L);
-        ticketDto.setTypeTicket(typeTicket);
-        Luggage luggage= new Luggage();
-        luggage.setIdLuggage(1L);
-        ticketDto.setLuggage(luggage);
+        ticketDto.setIdTypeTicket(1L);
+        ticketDto.setIdLuggage(1L);
         ticketDto.setIdCardPassenger("01234567");
-        ticketDto.setNamePassenger("Dang Tuan Vuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+        ticketDto.setNamePassenger("Tuan Vuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
         ticketDto.setTelPassenger("0867041299");
-        Seat seat= new Seat();
-        seat.setIdSeat(1L);
-        ticketDto.setSeat(seat);
-        TypePassenger typePassenger= new TypePassenger();
-        typePassenger.setIdTypePassenger(1L);
-        ticketDto.setTypePassenger(typePassenger);
+        ticketDto.setIdSeat(1L);
+        ticketDto.setIdTypePassenger(1L);
 
 
         this.mockMvc.perform(MockMvcRequestBuilders.patch("/tickets/updateTicket/{id}","1")
@@ -158,28 +130,18 @@ public class TicketController_updateTicket {
     @Test
     public void updateTicket_emailCustomer_21() throws Exception{
         TicketDto ticketDto= new TicketDto();
-        Customer customer= new Customer();
-        customer.setEmailCustomer("@12341223");
-        ticketDto.setCustomer(customer);
+        ticketDto.setIdCustomer(1L);
         ticketDto.setDateBooking("04-12-2023");
         ticketDto.setPriceTicket(123111111111111111L);
         ticketDto.setEmailPassenger("tuanvu@gmail.com");
         ticketDto.setGenderPassenger(true);
-        TypeTicket typeTicket= new TypeTicket();
-        typeTicket.setIdTypeTicket(1L);
-        ticketDto.setTypeTicket(typeTicket);
-        Luggage luggage= new Luggage();
-        luggage.setIdLuggage(1L);
-        ticketDto.setLuggage(luggage);
+        ticketDto.setIdTypeTicket(1L);
+        ticketDto.setIdLuggage(1L);
         ticketDto.setIdCardPassenger("01234567");
         ticketDto.setNamePassenger("");
         ticketDto.setTelPassenger("0867041299");
-        Seat seat= new Seat();
-        seat.setIdSeat(1L);
-        ticketDto.setSeat(seat);
-        TypePassenger typePassenger= new TypePassenger();
-        typePassenger.setIdTypePassenger(1L);
-        ticketDto.setTypePassenger(typePassenger);
+        ticketDto.setIdSeat(1L);
+        ticketDto.setIdTypePassenger(1L);
 
 
         this.mockMvc.perform(MockMvcRequestBuilders.patch("/tickets/updateTicket/{id}","1")
@@ -199,28 +161,18 @@ public class TicketController_updateTicket {
     @Test
     public void updateTicket_emailCustomer_19() throws Exception{
         TicketDto ticketDto= new TicketDto();
-        Customer customer= new Customer();
-        customer.setEmailCustomer(null);
-        ticketDto.setCustomer(customer);
+        ticketDto.setIdCustomer(null);
         ticketDto.setDateBooking("04-12-2023");
         ticketDto.setPriceTicket(123111111111111111L);
         ticketDto.setEmailPassenger("tuanvu@gmail.com");
         ticketDto.setGenderPassenger(true);
-        TypeTicket typeTicket= new TypeTicket();
-        typeTicket.setIdTypeTicket(1L);
-        ticketDto.setTypeTicket(typeTicket);
-        Luggage luggage= new Luggage();
-        luggage.setIdLuggage(1L);
-        ticketDto.setLuggage(luggage);
+        ticketDto.setIdTypeTicket(1L);
+        ticketDto.setIdLuggage(1L);
         ticketDto.setIdCardPassenger("01234567");
-        ticketDto.setNamePassenger("");
+        ticketDto.setNamePassenger("Tuan Vu");
         ticketDto.setTelPassenger("0867041299");
-        Seat seat= new Seat();
-        seat.setIdSeat(1L);
-        ticketDto.setSeat(seat);
-        TypePassenger typePassenger= new TypePassenger();
-        typePassenger.setIdTypePassenger(1L);
-        ticketDto.setTypePassenger(typePassenger);
+        ticketDto.setIdSeat(1L);
+        ticketDto.setIdTypePassenger(1L);
 
 
         this.mockMvc.perform(MockMvcRequestBuilders.patch("/tickets/updateTicket/{id}","1")
@@ -241,28 +193,22 @@ public class TicketController_updateTicket {
     public void updateTicket_24() throws Exception{
         TicketDto ticketDto= new TicketDto();
         Customer customer= new Customer();
-        customer.setIdCustomer(1L);
-        ticketDto.setCustomer(customer);
+        ticketDto.setIdCustomer( customer.getIdCustomer());
         ticketDto.setDateBooking("04-12-2023");
         ticketDto.setPriceTicket(123111111111111111L);
         ticketDto.setEmailPassenger("tuanvu0412@gmail.com");
         ticketDto.setGenderPassenger(true);
         TypeTicket typeTicket= new TypeTicket();
-        typeTicket.setIdTypeTicket(1L);
-        ticketDto.setTypeTicket(typeTicket);
-        Luggage luggage= new Luggage();
-        luggage.setIdLuggage(1L);
-        ticketDto.setLuggage(luggage);
-        ticketDto.setIdCardPassenger("001234567111");
+        ticketDto.setIdTypeTicket(typeTicket.getIdTypeTicket());
+        Luggage luggage = new Luggage();
+        ticketDto.setIdLuggage( luggage.getIdLuggage());
+        ticketDto.setIdCardPassenger("012345678911");
         ticketDto.setNamePassenger("Dang Tuan Vu");
         ticketDto.setTelPassenger("0867041299");
         Seat seat= new Seat();
-        seat.setIdSeat(1L);
-        ticketDto.setSeat(seat);
+        ticketDto.setIdSeat(seat.getIdSeat());
         TypePassenger typePassenger= new TypePassenger();
-        typePassenger.setIdTypePassenger(1L);
-        ticketDto.setTypePassenger(typePassenger);
-
+        ticketDto.setIdTypePassenger(typePassenger.getIdTypePassenger());
 
         this.mockMvc.perform(MockMvcRequestBuilders.patch("/tickets/updateTicket/{id}","1")
                         .content(this.objectMapper.writeValueAsString(ticketDto))

@@ -111,21 +111,9 @@ public class TicketController {
             return ResponseEntity.notFound().build();
         }
 
-        Long price = ticketDto.getPriceTicket();
-        Boolean flag = ticketDto.getFlagTicket();
         String name = ticketDto.getNamePassenger();
-        Boolean gender = ticketDto.getGenderPassenger();
-        String email = ticketDto.getEmailPassenger();
-        String tel = ticketDto.getTelPassenger();
-        String idCard = ticketDto.getIdCardPassenger();
-        String dateBooking = ticketDto.getDateBooking();
-        TypeTicket typeTicket = ticketDto.getTypeTicket();
-        Luggage luggage = ticketDto.getLuggage();
-        TypePassenger typePassenger = ticketDto.getTypePassenger();
-        Seat seat = ticketDto.getSeat();
-        Customer customer = ticketDto.getCustomer();
-
-        iTicketService.updateTicket(id, price, flag, name, gender, email, tel, idCard, dateBooking, typeTicket, luggage, typePassenger, seat, customer);
+        String email= ticketDto.getEmailPassenger();
+        iTicketService.updateTicket(id, name, email);
         return ResponseEntity.ok("Cập nhật vé thành công");
     }
     /**

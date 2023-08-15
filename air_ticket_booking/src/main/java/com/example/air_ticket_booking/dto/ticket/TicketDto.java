@@ -5,6 +5,7 @@ import com.example.air_ticket_booking.model.luggage.Luggage;
 import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
 import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -36,16 +37,157 @@ public class TicketDto implements Validator {
     @Pattern(regexp = "^([0-9]{12})|([A-Z][0-9]{7})$",message = "12 số với CCCD, 8 số với Passport")
     private String idCardPassenger;
     private String dateBooking;
-    private TypeTicket typeTicket;
-    private Luggage luggage;
-    private TypePassenger typePassenger;
-    private Seat seat;
 
-    private Customer customer;
+//    private TypeTicket typeTicket;
+//    private Luggage luggage;
+//    private TypePassenger typePassenger;
+//    private Seat seat;
 
-    public TicketDto(Long idTicket, Long priceTicket, Boolean flagTicket, String namePassenger, Boolean genderPassenger,
-                     String emailPassenger, String telPassenger, String idCardPassenger, String dateBooking,
-                     TypeTicket typeTicket, Luggage luggage, TypePassenger typePassenger, Seat seat, Customer customer) {
+    private Long idTypePassenger;
+    private Long idSeat;
+    private Long idTypeTicket;
+    private Long idLuggage;
+    private Long idCustomer;
+//    private Customer customer;
+
+//    public TicketDto(Long idTicket, Long priceTicket, Boolean flagTicket, String namePassenger, Boolean genderPassenger,
+//                     String emailPassenger, String telPassenger, String idCardPassenger, String dateBooking,
+//                     TypeTicket typeTicket, Luggage luggage, TypePassenger typePassenger, Seat seat, Customer customer) {
+//        this.idTicket = idTicket;
+//        this.priceTicket = priceTicket;
+//        this.flagTicket = flagTicket;
+//        this.namePassenger = namePassenger;
+//        this.genderPassenger = genderPassenger;
+//        this.emailPassenger = emailPassenger;
+//        this.telPassenger = telPassenger;
+//        this.idCardPassenger = idCardPassenger;
+//        this.dateBooking = dateBooking;
+//        this.typeTicket = typeTicket;
+//        this.luggage = luggage;
+//        this.typePassenger = typePassenger;
+//        this.seat = seat;
+//        this.customer = customer;
+//    }
+//
+//    public TicketDto() {
+//    }
+//
+//    public Long getIdTicket() {
+//        return idTicket;
+//    }
+//
+//    public void setIdTicket(Long idTicket) {
+//        this.idTicket = idTicket;
+//    }
+//
+//    public Long getPriceTicket() {
+//        return priceTicket;
+//    }
+//
+//    public void setPriceTicket(Long priceTicket) {
+//        this.priceTicket = priceTicket;
+//    }
+//
+//    public Boolean getFlagTicket() {
+//        return flagTicket;
+//    }
+//
+//    public void setFlagTicket(Boolean flagTicket) {
+//        this.flagTicket = flagTicket;
+//    }
+//
+//    public String getNamePassenger() {
+//        return namePassenger;
+//    }
+//
+//    public void setNamePassenger(String namePassenger) {
+//        this.namePassenger = namePassenger;
+//    }
+//
+//    public Boolean getGenderPassenger() {
+//        return genderPassenger;
+//    }
+//
+//    public void setGenderPassenger(Boolean genderPassenger) {
+//        this.genderPassenger = genderPassenger;
+//    }
+//
+//    public String getEmailPassenger() {
+//        return emailPassenger;
+//    }
+//
+//    public void setEmailPassenger(String emailPassenger) {
+//        this.emailPassenger = emailPassenger;
+//    }
+//
+//    public String getTelPassenger() {
+//        return telPassenger;
+//    }
+//
+//    public void setTelPassenger(String telPassenger) {
+//        this.telPassenger = telPassenger;
+//    }
+//
+//    public String getIdCardPassenger() {
+//        return idCardPassenger;
+//    }
+//
+//    public void setIdCardPassenger(String idCardPassenger) {
+//        this.idCardPassenger = idCardPassenger;
+//    }
+//
+//    public String getDateBooking() {
+//        return dateBooking;
+//    }
+//
+//    public void setDateBooking(String dateBooking) {
+//        this.dateBooking = dateBooking;
+//    }
+//
+//    public TypeTicket getTypeTicket() {
+//        return typeTicket;
+//    }
+//
+//    public void setTypeTicket(TypeTicket typeTicket) {
+//        this.typeTicket = typeTicket;
+//    }
+//
+//    public Luggage getLuggage() {
+//        return luggage;
+//    }
+//
+//    public void setLuggage(Luggage luggage) {
+//        this.luggage = luggage;
+//    }
+//
+//    public TypePassenger getTypePassenger() {
+//        return typePassenger;
+//    }
+//
+//    public void setTypePassenger(TypePassenger typePassenger) {
+//        this.typePassenger = typePassenger;
+//    }
+//
+//    public Seat getSeat() {
+//        return seat;
+//    }
+//
+//    public void setSeat(Seat seat) {
+//        this.seat = seat;
+//    }
+//
+//    public Customer getCustomer() {
+//        return customer;
+//    }
+//
+//    public void setCustomer(Customer customer) {
+//        this.customer = customer;
+//    }
+
+    public TicketDto() {
+    }
+
+    public TicketDto(Long idTicket, Long priceTicket, Boolean flagTicket, String namePassenger, Boolean genderPassenger, String emailPassenger, String telPassenger, String idCardPassenger, String dateBooking, Long idTypePassenger, Long idSeat, Long idTypeTicket, Long idLuggage, Long idCustomer) {
         this.idTicket = idTicket;
         this.priceTicket = priceTicket;
         this.flagTicket = flagTicket;
@@ -55,14 +197,11 @@ public class TicketDto implements Validator {
         this.telPassenger = telPassenger;
         this.idCardPassenger = idCardPassenger;
         this.dateBooking = dateBooking;
-        this.typeTicket = typeTicket;
-        this.luggage = luggage;
-        this.typePassenger = typePassenger;
-        this.seat = seat;
-        this.customer = customer;
-    }
-
-    public TicketDto() {
+        this.idTypePassenger = idTypePassenger;
+        this.idSeat = idSeat;
+        this.idTypeTicket = idTypeTicket;
+        this.idLuggage = idLuggage;
+        this.idCustomer = idCustomer;
     }
 
     public Long getIdTicket() {
@@ -137,44 +276,44 @@ public class TicketDto implements Validator {
         this.dateBooking = dateBooking;
     }
 
-    public TypeTicket getTypeTicket() {
-        return typeTicket;
+    public Long getIdTypePassenger() {
+        return idTypePassenger;
     }
 
-    public void setTypeTicket(TypeTicket typeTicket) {
-        this.typeTicket = typeTicket;
+    public void setIdTypePassenger(Long idTypePassenger) {
+        this.idTypePassenger = idTypePassenger;
     }
 
-    public Luggage getLuggage() {
-        return luggage;
+    public Long getIdSeat() {
+        return idSeat;
     }
 
-    public void setLuggage(Luggage luggage) {
-        this.luggage = luggage;
+    public void setIdSeat(Long idSeat) {
+        this.idSeat = idSeat;
     }
 
-    public TypePassenger getTypePassenger() {
-        return typePassenger;
+    public Long getIdTypeTicket() {
+        return idTypeTicket;
     }
 
-    public void setTypePassenger(TypePassenger typePassenger) {
-        this.typePassenger = typePassenger;
+    public void setIdTypeTicket(Long idTypeTicket) {
+        this.idTypeTicket = idTypeTicket;
     }
 
-    public Seat getSeat() {
-        return seat;
+    public Long getIdLuggage() {
+        return idLuggage;
     }
 
-    public void setSeat(Seat seat) {
-        this.seat = seat;
+    public void setIdLuggage(Long idLuggage) {
+        this.idLuggage = idLuggage;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Long getIdCustomer() {
+        return idCustomer;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setIdCustomer(Long idCustomer) {
+        this.idCustomer = idCustomer;
     }
 
     @Override

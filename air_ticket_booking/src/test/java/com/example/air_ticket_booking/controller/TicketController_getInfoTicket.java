@@ -29,7 +29,7 @@ public class TicketController_getInfoTicket {
     public void getInfoTicker_id_2() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/studentRest/detail/{id}", ""))
+                                .get("/tickets/{id}", ""))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -45,7 +45,7 @@ public class TicketController_getInfoTicket {
     public void getInfoTicker_id_1() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/studentRest/detail/{id}", (Object) null))
+                                .get("/tickets/{id}", (Object) null))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
