@@ -27,7 +27,7 @@ public class LuggageController {
     public ResponseEntity<List<Luggage>> getAllLuggage(){
         List<Luggage> luggageList=iLuggageService.getAllLuggage();
         if (luggageList.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         else {
             return new ResponseEntity<>(luggageList,HttpStatus.OK);

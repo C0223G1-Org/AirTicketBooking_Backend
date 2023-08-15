@@ -1,5 +1,4 @@
 package com.example.air_ticket_booking.controller.route;
-
 import com.example.air_ticket_booking.model.projection_tdns.RouteProjection;
 
 import com.example.air_ticket_booking.model.route.Route;
@@ -8,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/route")
@@ -33,10 +30,8 @@ public class RouteController {
         }
         return new ResponseEntity<>(routeService.findTop10RouteCheapest(), HttpStatus.OK);
     }
-
     /**
      * Create by: SangTDN
-     *
      * @param departure
      * @param destination
      * @return list RouteProjection , status
@@ -44,26 +39,25 @@ public class RouteController {
      * then Upload data to API
      */
     @GetMapping("/search-trips/{departure}/{destination}/{dateDeparture}")
-    public ResponseEntity<List<RouteProjection>> searchTrips(@PathVariable String departure, @PathVariable String destination,
-                                                             @PathVariable String dateDeparture) {
-        return new ResponseEntity<>(routeService.showListRoute(departure, destination, dateDeparture), HttpStatus.OK);
+public ResponseEntity<List<RouteProjection>> searchTrips(@PathVariable String departure, @PathVariable String destination,
+                                                         @PathVariable String dateDeparture){
+        return new ResponseEntity<>(routeService.showListRoute(departure,destination,dateDeparture), HttpStatus.OK);
     }
-
     /**
-     * method :find a flight route by id
+     *method :find a flight route by id
      * created by :NamPC
      * date create: 10/08/2023
-     *
-     * @param id return Route
+     * @param id
+     * return Route
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Route> getRouteById(@PathVariable Long id) {
+    public ResponseEntity<Route>getRouteById(@PathVariable Long id){
         Route route = routeService.findRouteById(id);
-        if (route == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (route==null){
+            return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-        } else {
-            return new ResponseEntity<>(route, HttpStatus.OK);
+        }else {
+            return  new ResponseEntity<>(route,HttpStatus.OK);
         }
     }
 }
