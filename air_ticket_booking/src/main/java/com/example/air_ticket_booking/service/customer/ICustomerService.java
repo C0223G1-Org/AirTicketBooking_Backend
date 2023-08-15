@@ -71,7 +71,7 @@ public interface ICustomerService {
      * @Param: id
      * @Return: List<Customer>
      */
-    List<Customer> findAllByEmail(String email);
+    List<Customer> findAllByEmailOrIdCard(String email, String idCard);
 
 
     /**

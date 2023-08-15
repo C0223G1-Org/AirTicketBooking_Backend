@@ -4,9 +4,11 @@ import com.example.air_ticket_booking.config.JwtTokenUtil;
 import com.example.air_ticket_booking.config.JwtUserDetails;
 import com.example.air_ticket_booking.dto.account.AccountDto;
 import com.example.air_ticket_booking.dto.account.JwtRequestDto;
+import com.example.air_ticket_booking.model.account.Account;
 import com.example.air_ticket_booking.model.customer.Customer;
 import com.example.air_ticket_booking.reponse.JwtRequest;
 import com.example.air_ticket_booking.reponse.JwtResponse;
+import com.example.air_ticket_booking.service.account.IAccountService;
 import com.example.air_ticket_booking.service.account.impl.AccountService;
 import com.example.air_ticket_booking.service.customer.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -44,15 +47,34 @@ public class AccountController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
-    private AccountService accountService;
+    private IAccountService accountService;
 
 
     class ErrorInfo {
         private String error;
-        private Long id;
+        private String useName;
+        public ErrorInfo(String error, String useName) {
+            this.error = error;
+            this.useName = useName;
+        }
 
+        public String getError() {
+            return error;
+        }
 
+        public void setError(String error) {
+            this.error = error;
+        }
+
+        public String getId() {
+            return useName;
+        }
+
+        public void setId(String useName) {
+            this.useName = useName;
+        }
     }
+
     /**
      * Created by: NhanDT
      * Date created: 10/08/2023
@@ -71,12 +93,12 @@ public class AccountController {
             JwtUserDetails principal = (JwtUserDetails) authentication.getPrincipal();
             GrantedAuthority authority = principal.getAuthorities().stream().findFirst().orElse(null);
             final String token = jwtTokenUtil.generateToken(principal.getUsername());
-
             return ResponseEntity.ok(new JwtResponse(token, principal.getUsername(), authority != null ? authority.getAuthority() : null));
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Đăng nhập thất bại!!!");
         }
     }
+
     /**
      * Created by: NhanDT
      * Date created: 10/08/2023
@@ -86,13 +108,46 @@ public class AccountController {
      * @return
      */
     @PostMapping("/signup")
-    public ResponseEntity<?> signUp(@Valid @RequestBody AccountDto accountDto){
-        if (accountService.signUp(accountDto)){
+    public ResponseEntity<?> signUp(@Valid @RequestBody AccountDto accountDto, BindingResult bindingResult) {
+        new AccountDto().validate(accountDto,bindingResult);
+        if(bindingResult.hasErrors()){
+            return new ResponseEntity<>(bindingResult.getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST);
+        }
+        if (accountService.signUp(accountDto)) {
             return new ResponseEntity<>(HttpStatus.OK);
         }
 //        String encoderPassword = passwordEncoder.encode(accountDto.getPassword());
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
+    /**
+     * Created by: NhanDT
+     * Date created: 14/08/2023
+     * Function: checkCode
+     *
+     * @param account
+     * @return boolean
+     */
+    @PostMapping("/checkCode")
+    public ResponseEntity<?> checkCode(@RequestBody Account account) {
+        boolean check = accountService.checkCode(account);
+        try {
+            if (check) {
+                return ResponseEntity.ok(account.getUsername());
+            } else {
+                ErrorInfo errorInfo = new ErrorInfo("Xác nhận mã thất bại!!", account.getUsername());
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorInfo);
+
+            }
+        } catch (Exception e) {
+            ErrorInfo errorInfo = new ErrorInfo("Xác nhận mã thất bại!!", account.getUsername());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorInfo);
+        }
+
+    }
+
+
+
     /**
      * Created by: NhanDT
      * Date created: 11/08/2023

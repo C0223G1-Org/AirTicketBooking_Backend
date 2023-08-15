@@ -111,8 +111,8 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
      */
 
     @Modifying
-    @Query(nativeQuery = true,value = "select * from customer where email_customer = :email")
-    List<Customer> findAllByEmail(@Param("email") String email);
+    @Query(nativeQuery = true,value = "select * from customer where email_customer = :email or id_card_customer = :idCard")
+    List<Customer> findAllByEmailOrIdCard(@Param("email") String email, @Param("idCard") String idCard);
 
     /**
      * Create by: NhanDT
