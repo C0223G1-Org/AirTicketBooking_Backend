@@ -57,14 +57,6 @@ public class AccountController {
 
 
     }
-    /**
-     * Created by: NhanDT
-     * Date created: 10/08/2023
-     * Function: Login , SignUp
-     *
-     * @param
-     * @return
-     */
 
     /**
      * create by : SangTDN
@@ -84,6 +76,14 @@ public class AccountController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Created by: NhanDT
+     * Date created: 10/08/2023
+     * Function: Login , SignUp
+     *
+     * @param
+     * @return
+     */
     @PostMapping("/login")
     public ResponseEntity<?> loginAuthentication(@RequestBody JwtRequest authenticationRequest) throws Exception {
         try {
@@ -109,8 +109,8 @@ public class AccountController {
      * @return
      */
     @PostMapping("/signup")
-    public ResponseEntity<?> signUp(@Valid @RequestBody AccountDto accountDto) {
-        if (accountService.signUp(accountDto)) {
+    public ResponseEntity<?> signUp(@Valid @RequestBody AccountDto accountDto){
+        if (accountService.signUp(accountDto)){
             return new ResponseEntity<>(HttpStatus.OK);
         }
 //        String encoderPassword = passwordEncoder.encode(accountDto.getPassword());
@@ -123,7 +123,6 @@ public class AccountController {
      * @param
      * @return
      */
-
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(
