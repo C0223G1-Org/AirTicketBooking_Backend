@@ -16,7 +16,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AirTicketBookingController_findTicketByNameAndIdCardPassenger {
     @Autowired
     private MockMvc mockMvc;
-
     /**
      * method : search leaves 1 field [idCardPassenger] blank
      * created by :KietNT
@@ -112,9 +111,10 @@ public class AirTicketBookingController_findTicketByNameAndIdCardPassenger {
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("totalPages").value(1))
                 .andExpect(jsonPath("totalElements").value(2))
-                .andExpect(jsonPath("content[0].id").value("1"))
+                .andExpect(jsonPath("content[0].id").value("3"))
                 .andExpect(jsonPath("content[0].priceTicket").value("1600000"))
                 .andExpect(jsonPath("content[0].namePassenger").value("Nguyễn Anh Nhàn"))
+                .andExpect(jsonPath("content[0].telPassenger").value("0965702079"))
                 .andExpect(jsonPath("content[0].idCardPassenger").value("201923248"))
                 .andExpect(jsonPath("content[0].dateBooking").value("2023-03-29"))
                 .andExpect(jsonPath("content[0].nameTypePassenger").value("Khách phổ thông"))
@@ -130,15 +130,16 @@ public class AirTicketBookingController_findTicketByNameAndIdCardPassenger {
                 .andExpect(jsonPath("content[0].nameDestination").value("Hà Nội"))
                 .andExpect(jsonPath("content[0].nameDeparture").value("Hải Phong"))
                 .andExpect(jsonPath("content[0].nameAirCraft").value("Airbus A320neo"))
-                .andExpect(jsonPath("content[1].id").value("3"))
-                .andExpect(jsonPath("content[1].priceTicket").value("1600000"))
+                .andExpect(jsonPath("content[1].id").value("1"))
+                .andExpect(jsonPath("content[1].priceTicket").value("999999"))
                 .andExpect(jsonPath("content[1].namePassenger").value("Nguyễn Anh Nhàn"))
                 .andExpect(jsonPath("content[1].idCardPassenger").value("201923248"))
+                .andExpect(jsonPath("content[1].telPassenger").value("0393554072"))
                 .andExpect(jsonPath("content[1].dateBooking").value("2023-03-29"))
-                .andExpect(jsonPath("content[1].nameTypePassenger").value("Khách phổ thông"))
-                .andExpect(jsonPath("content[1].nameLuggage").value("Hành lý phổ thông"))
-                .andExpect(jsonPath("content[1].nameTypeTicket").value("Một chiều"))
-                .andExpect(jsonPath("content[1].positionSeat").value("A-01"))
+                .andExpect(jsonPath("content[1].nameTypePassenger").value("Kinh doanh"))
+                .andExpect(jsonPath("content[1].nameLuggage").value("Hành lý đặt biệt"))
+                .andExpect(jsonPath("content[1].nameTypeTicket").value("Khứ hồi"))
+                .andExpect(jsonPath("content[1].positionSeat").value("A-02"))
                 .andExpect(jsonPath("content[1].nameTypeSeat").value("Hạng Thương Gia"))
                 .andExpect(jsonPath("content[1].nameRoute").value("AL-0001"))
                 .andExpect(jsonPath("content[1].timeArrival").value("09:30:15"))

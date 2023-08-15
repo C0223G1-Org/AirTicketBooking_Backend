@@ -33,7 +33,7 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
      * @param namePassenger,idCardPassenger return List Ticket
      */
     @Query(nativeQuery = true,
-            value = "select t.id_ticket as id,t.price_ticket as priceTicket,t.name_passenger as namePassenger," +
+            value = "select t.id_ticket as id,t.tel_passenger as telPassenger,t.price_ticket as priceTicket,t.name_passenger as namePassenger," +
                     "t.id_card_passenger as idCardPassenger,t.date_booking as dateBooking," +
                     "tp.name_type_passenger as nameTypePassenger,l.name_luggage as nameLuggage," +
                     "tt.name_type_ticket as nameTypeTicket,s.position_seat as positionSeat,ts.name_type_seat as nameTypeSeat," +

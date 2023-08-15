@@ -21,6 +21,6 @@ public interface ITicketPassengerProjection {
 
     String getNameAirCraft();
 
-
+String getTelPassenger();
 
 }

@@ -29,7 +29,6 @@ import java.util.List;
 @RequestMapping("/tickets")
 public class TicketController {
 
-
     @Autowired
     private ITicketService iTicketService;
 
@@ -64,12 +63,31 @@ public class TicketController {
      */
     @GetMapping("/search-ticket/{namePassenger}/{idCardPassenger}")
     @ResponseBody
-    public ResponseEntity<Page<ITicketPassengerProjection>> findTicketByNameAndIdCardPassenger(@PageableDefault(size = 2) Pageable pageable, @PathVariable String namePassenger,
+    public ResponseEntity<Page<ITicketPassengerProjection>> findTicketByNameAndIdCardPassenger(@PageableDefault() Pageable pageable, @PathVariable String namePassenger,
+
+
                                                                                                @PathVariable String idCardPassenger) {
+
+        System.out.println(pageable.getPageSize());
+        Page<ITicketPassengerProjection> ticket = this.iTicketService.findTicketByNameAndIdCard(namePassenger, idCardPassenger, pageable);
+        if (ticket.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(ticket, HttpStatus.OK);
+    }
+
+    @GetMapping("/search-ticket-result/{namePassenger}/{idCardPassenger}")
+    @ResponseBody
+    public ResponseEntity<Page<ITicketPassengerProjection>> findTicketByNameAndIdCardPassengerResult(@PageableDefault(size = 1) Pageable pageable, @PathVariable String namePassenger,
+                                                                                                     @PathVariable String idCardPassenger) {
+
 
         Page<ITicketPassengerProjection> ticket = this.iTicketService.findTicketByNameAndIdCard(namePassenger, idCardPassenger, pageable);
         if (ticket.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        if (ticket == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(ticket, HttpStatus.OK);
     }
