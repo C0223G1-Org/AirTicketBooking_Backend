@@ -58,7 +58,7 @@ public class TicketController {
      * method :findTicketByNameAndIdCardPassengers()
      * created by :KietNT
      * date create: 10/08/2023
-     *
+     * a bc
      * @param namePassenger,idCardPassenger return List Ticket
      */
     @GetMapping("/search-ticket/{namePassenger}/{idCardPassenger}")
