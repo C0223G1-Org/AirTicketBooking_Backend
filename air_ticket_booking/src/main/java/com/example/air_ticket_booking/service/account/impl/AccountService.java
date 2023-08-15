@@ -139,4 +139,13 @@ public class AccountService implements UserDetailsService, IAccountService {
     }
 
 
+    @Override
+    public List<Account> getList() {
+        return accountRepository.findAll();
+    }
+
+    @Override
+    public void saveAccount(Account account) {
+        accountRepository.save(account);
+    }
 }
