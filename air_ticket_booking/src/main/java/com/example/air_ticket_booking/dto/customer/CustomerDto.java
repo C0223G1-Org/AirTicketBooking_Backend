@@ -8,58 +8,39 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 
 public class CustomerDto implements Validator {
-
     private Long idCustomer;
     @NotBlank(message = "Không được để trống trường này")
-    @Size(max = 30, min = 3, message = "Họ và tên tối thiểu 3 ký tự và tối đa 30 ký tự ")
+    @Size(max = 30)
     @Pattern(regexp = "^[\\p{Lu}][\\p{Ll}]*([\\s][\\p{Lu}][\\p{Ll}]*)*$", message = "Bạn phải viết hoa chữ cái đầu của từng từ và có khoảng trắng giữa các từ")
     private String nameCustomer;
     //    @NotBlank(message = "Không được để trống trường này")
     private Boolean genderCustomer;
     @NotBlank(message = "Không được để trống trường này")
-    @Size(min = 12,max = 50,message = "Email tối thiểu 12 ký tự và tối đa 50 ký tự")
-    @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt ")
+    @Pattern(regexp = "^\\w+@\\w+(.\\w+)$", message = "Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt ")
     private String emailCustomer;
     @NotBlank(message = "Không được để trống trường này")
-    @Pattern(regexp = "^(\\+84|0)[1-9][0-9]{8}$", message = "Nhập theo định dạng +84xxxxxxxxx hoặc 0xxxxxxxxx với x là ký tự số")
-    @Size(min = 3, max = 20, message = "Số điện thoại tối thiểu 3 ký tự và tối đa 20 ký tự ")
+    @Pattern(regexp = "^0[0-9]{9}", message = "Nhập theo định dạng 0xxxxxxxxx với x là ký tự số")
     private String telCustomer;
     @NotBlank(message = "Không được để trống trường này")
-    @Size(min = 10,max = 100,message = "Địa chỉ tối thiểu 10 kí tự và tối đa chỉ 100 kí tự")
     private String addressCustomer;
 
     private String imgCustomer;
     @NotBlank(message = "Không được để trống trường này")
     private String nationalityCustomer;
     @NotBlank(message = "Không được để trống trường này")
-    @Size(min = 6,max = 12, message = "CCCD/Passport tối thiểu 6 ký tự và tối đa 12 ký tự")
-    @Pattern(regexp = "^([A-Z]|[0-9])+$", message = "Nhập vào chữ viết hoa và ký tự")
+    @Pattern(regexp = "^[0-9]{12}", message = "Nhập vào 12 ký tự số liên tiếp")
     private String idCardCustomer;
     @NotBlank(message = "Không được để trống trường này")
     private String dateCustomer;
-
+    @NotBlank(message = "Không được để trống trường này")
     private Boolean flagCustomer;
     private Account account;
 
     public CustomerDto() {
-    }
-
-    public CustomerDto(String nameCustomer, Boolean genderCustomer, String emailCustomer, String telCustomer, String addressCustomer, String imgCustomer, String nationalityCustomer, String idCardCustomer, String dateCustomer) {
-        this.nameCustomer = nameCustomer;
-        this.genderCustomer = genderCustomer;
-        this.emailCustomer = emailCustomer;
-        this.telCustomer = telCustomer;
-        this.addressCustomer = addressCustomer;
-        this.imgCustomer = imgCustomer;
-        this.nationalityCustomer = nationalityCustomer;
-        this.idCardCustomer = idCardCustomer;
-        this.dateCustomer = dateCustomer;
     }
 
     public CustomerDto(Long idCustomer, String nameCustomer, Boolean genderCustomer, String emailCustomer, String telCustomer, String addressCustomer, String imgCustomer, String nationalityCustomer, String idCardCustomer, String dateCustomer, Boolean flagCustomer, Account account) {
@@ -189,24 +170,22 @@ public class CustomerDto implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
 
-        try {
-            CustomerDto customerDto = (CustomerDto) target;
-            String date = customerDto.dateCustomer;
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate dateOfBirth = LocalDate.parse(date, formatter);
-            LocalDate today = LocalDate.now();
-            Period period = Period.between(dateOfBirth, today);
-            if (period.getYears() < 18) {
-                errors.rejectValue("dateCustomer", "dateCustomer", "Khách hàng phải trên 18 tuổi");
-            } else if (period.getYears() == 18) {
-                if (period.getMonths() < 0 || period.getDays() < 0) {
-                    errors.rejectValue("dateCustomer", "dateCustomer", "Khách hàng phải trên 18 tuổi");
-                }
-            }
-        }catch (DateTimeParseException e){
-//            e.printStackTrace();
-            errors.rejectValue("dateCustomer", "dateCustomer", "Không đúng định dạng dd/MM/yyyy");
+        CustomerDto customerDto = (CustomerDto) target;
+        String date = customerDto.dateCustomer;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate dateOfBirth = LocalDate.parse(date, formatter);
+        LocalDate today = LocalDate.now();
+        int age = today.getYear() - dateOfBirth.getYear();
+
+        if (today.getMonthValue() < dateOfBirth.getMonthValue()
+                || (today.getMonthValue() == dateOfBirth.getMonthValue() && today.getDayOfMonth() < dateOfBirth.getDayOfMonth())) {
+            age--; //Age reduction if the birthday is not reached in the current year
+
         }
+        if (age >= 18) {
+            errors.rejectValue("dateCustomer", "dateCustomer", "Hành khách phải trên 18 tuổi");
+        }
+
     }
 }
 

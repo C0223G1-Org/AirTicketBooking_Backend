@@ -18,8 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Random;
 
 /**
  * Created by: NhanDT
@@ -37,20 +35,10 @@ public class AccountService implements UserDetailsService, IAccountService {
     private ICustomerService customerService;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Autowired
-    private EmailService emailService;
 
-    /**
-     * Created by: NhanDT
-     * Date created: 10/08/2023
-     * Function: Login , SignUp
-     *
-     * @param
-     * @return
-     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account account = accountRepository.getByUserNameAndStatusFalse(username);
+        Account account = accountRepository.findByUsername(username);
         if (account == null) {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
@@ -61,14 +49,6 @@ public class AccountService implements UserDetailsService, IAccountService {
         return new JwtUserDetails(account.getIdAccount(), account.getUsername(), account.getPassword(), authorities);
     }
 
-    /**
-     * Created by: NhanDT
-     * Date created: 10/08/2023
-     * Function: Login , SignUp
-     *
-     * @param
-     * @return
-     */
     @Override
     public boolean signUp(AccountDto accountDto) {
         String email = accountDto.getEmailCustomer();
@@ -78,24 +58,28 @@ public class AccountService implements UserDetailsService, IAccountService {
             return false;
         }
         String encoderPassword = passwordEncoder.encode(accountDto.getPassword());
-        Random random = new Random();
-        int randomNumber = random.nextInt(900000) + 100000;
-        this.accountRepository.saveAccount(accountDto.getEmailCustomer(), encoderPassword, randomNumber);
-        this.emailService.sendMail(email, "Mã xác nhận đăng ký", "Chào bạn, mã xác nhận đăng ký tài khoản của bạn là: \n " + randomNumber + "." +
-                "\n" +
-                "\n" +
-                "\n" +
-                "---------------------------------------" + "\n" +
-                "CodeGymAirLines\n" +
-                "Sđt: 0383767463\n" +
-                "Email: codegymairC0223G1@gmail.com\n" +
-                "Địa chỉ: 280 Trần Hưng Đạo, Sơn Trà, Đà Nẵng");
-        Account accountNew = accountRepository.getByUserNameAndStatusTrue(email);
+        this.accountRepository.saveAccount(accountDto.getEmailCustomer(), encoderPassword);
+        Account accountNew = accountRepository.findByUsername(email);
         if (accountNew == null) {
             return false;
         }
         this.customerService.createCustomer(accountDto, accountNew.getIdAccount());
-        return true;
+        return checkExistAccount(email) == checkExistCustomer(email);
+    }
+
+    /**
+     * create by : SangTDN
+     * @param newPass
+     * @param idCustomer
+     */
+    @Override
+    public void updatePasswordForId(String newPass, Long idCustomer) {
+        accountRepository.updatePasswordById(newPass, idCustomer);
+    }
+
+    @Override
+    public Account findAccountById(Long id) {
+        return accountRepository.findAccountById(id);
     }
 
     private boolean checkExistAccount(String email) {
@@ -104,47 +88,8 @@ public class AccountService implements UserDetailsService, IAccountService {
     }
 
     private boolean checkExistCustomer(String email) {
-        List<Customer> customerList = customerService.findAllByEmailOrIdCard(email);
+        List<Customer> customerList = customerService.findAllByEmail(email);
         return customerList.size() > 0;
     }
 
-    /**
-     * Created by: NhanDT
-     * Date created: 10/08/2023
-     * Function: Login , SignUp
-     *
-     * @param
-     * @return
-     */
-    @Override
-    public boolean checkCode(Account account) {
-        Account accountCheck = accountRepository.getByUserNameAndStatusTrue(account.getUsername());
-        if (Objects.equals(account.getVerificationCode(), accountCheck.getVerificationCode())) {
-            this.accountRepository.setStatusToFalse(accountCheck.getIdAccount());
-            this.accountRepository.setCodeToFalse(accountCheck.getIdAccount());
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public void updatePasswordForCustomer(String newPass, String oldPass, Long idCustomer) {
-
-    }
-
-    @Override
-    public void updatePasswordForEmployee(String newPass, String oldPass, Long idEmployee) {
-
-    }
-
-
-    @Override
-    public List<Account> getList() {
-        return accountRepository.findAll();
-    }
-
-    @Override
-    public void saveAccount(Account account) {
-        accountRepository.save(account);
-    }
 }
