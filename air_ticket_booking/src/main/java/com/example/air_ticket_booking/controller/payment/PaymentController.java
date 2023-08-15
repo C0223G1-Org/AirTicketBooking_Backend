@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,8 +57,8 @@ public class PaymentController {
         }
         return new ResponseEntity<>(iTicketService.findByIdTicket(id),HttpStatus.OK);
     }
-    @PatchMapping("/callback/{id}/")
-    public ResponseEntity<String> updateTicketByIdTicket(@PathVariable Long id, @RequestParam("message") String paymentStatus) {
+    @PatchMapping("/callback/{id}/{message}")
+    public ResponseEntity<String> updateTicketByIdTicket(@PathVariable Long id, @PathVariable("message") String paymentStatus) {
         Ticket ticket = iTicketService.findByIdTicket(id);
         if (ticket == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
