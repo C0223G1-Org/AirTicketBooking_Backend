@@ -98,6 +98,21 @@ public class AccountService implements UserDetailsService, IAccountService {
         return true;
     }
 
+    /**
+     * create by : SangTDN
+     * @param newPass
+     * @param idCustomer
+     */
+    @Override
+    public void updatePasswordForId(String newPass, Long idCustomer) {
+        accountRepository.updatePasswordById(newPass, idCustomer);
+    }
+
+    @Override
+    public Account findAccountById(Long id) {
+        return accountRepository.findAccountById(id);
+    }
+
     private boolean checkExistAccount(String email) {
         List<Account> accountList = accountRepository.findAllByUsername(email);
         return accountList.size() > 0;

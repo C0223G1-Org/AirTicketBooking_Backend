@@ -1,5 +1,6 @@
 package com.example.air_ticket_booking.controller.ticket;
 
+import com.example.air_ticket_booking.model.ticket.TicketSearch;
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
 import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
@@ -19,21 +20,32 @@ import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
 import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
+import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
+import com.example.air_ticket_booking.service.ticket.ITicketService;
+import com.example.air_ticket_booking.service.ticket.impl.TicketService;
+//import com.sun.tools.javac.util.List;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 import java.util.Arrays;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:3000/")
 @RequestMapping("/tickets")
 public class TicketController {
-    
 
     @Autowired
     private ITicketService iTicketService;
-
-    @Autowired
-    private ITicketRepository ticketRepository;
 
     /**
      * method: used to create a new ticket when the user confirms the booking
@@ -73,7 +85,7 @@ public class TicketController {
      *Date create: 10/08/2023
      * Function:getTicketById()
      * @Param: Long id
-     * @Return: ticket
+     * @Return:  if found and then return a ticket, otherwise it will return error not found.
      */
     @GetMapping("/{id}")
     public ResponseEntity<Ticket> getTicketById(@PathVariable Long id){
@@ -88,37 +100,45 @@ public class TicketController {
      *Date create: 10/08/2023
      * Function: updateTicket()
      * @Param: ticketDto
-     * @Return: ticket
+     * @Return:  If  idTicket is found then enter the correct format,
+     * the ticket will be updated. otherwise it will throw an error
      */
 
-    @PutMapping("/updateTicket/{id}")
-    public ResponseEntity<?> updateTicket(@PathVariable Long id,@RequestBody TicketDto ticketDto, BindingResult bindingResult ) {
-        ticketDto.validate(ticketDto, bindingResult);
-        if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body("Lỗi validation");
-        }
+    @PatchMapping("/updateTicket/{id}")
+    public ResponseEntity<?> updateTicket(@PathVariable Long id,@Valid @RequestBody TicketDto ticketDto) {
+//        ticketDto.validate(ticketDto, bindingResult);
+//        if (bindingResult.hasErrors()) {
+//            return ResponseEntity.badRequest().body("Lỗi Không Đúng Định Dạng");
+//        }
 
         Ticket existingTicket = iTicketService.findByIdTicket(id);
         if (existingTicket == null) {
             return ResponseEntity.notFound().build();
         }
 
-        Long price = ticketDto.getPriceTicket();
-        Boolean flag = ticketDto.getFlagTicket();
         String name = ticketDto.getNamePassenger();
-        Boolean gender = ticketDto.getGenderPassenger();
-        String email = ticketDto.getEmailPassenger();
-        String tel = ticketDto.getTelPassenger();
-        String idCard = ticketDto.getIdCardPassenger();
-        String dateBooking = ticketDto.getDateBooking();
-        TypeTicket typeTicket = ticketDto.getTypeTicket();
-        Luggage luggage = ticketDto.getLuggage();
-        TypePassenger typePassenger = ticketDto.getTypePassenger();
-        Seat seat = ticketDto.getSeat();
-        Customer customer = ticketDto.getCustomer();
-
-        ticketRepository.updateTicket(id, price, flag, name, gender, email, tel, idCard, dateBooking, typeTicket, luggage, typePassenger, seat, customer);
+        String email= ticketDto.getCustomer().getEmailCustomer();
+        iTicketService.updateTicket(id, name, email);
         return ResponseEntity.ok("Cập nhật vé thành công");
+    }
+    /**
+     * task validate data ticket to BE
+     * @Method handleValidationExceptions
+     * @return throw errors;
+     * @author VuDt
+     */
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
 
     /**
@@ -170,24 +190,23 @@ public class TicketController {
      * task response search all ticket booked data to FE
      * @Method searchTickets
      * date create: 10/08/2023
-     * @param item,pageable
+     * @param
      * @return HttpStatus and Page<Ticket>
      * @author Nhàn NA
      */
-    @GetMapping("/search/{item}/{page}")
-    public ResponseEntity<Page<ITicketProjection>> searchTickets(@PathVariable("item") String item,@PathVariable("page") int page){
+    @GetMapping ("/search/{page}")
+    public ResponseEntity<Page<ITicketProjection>> searchTickets(@ModelAttribute TicketSearch ticketSearch, @PathVariable("page") int page){
+        System.out.println("nhan");
         String idString= String.valueOf(page);
-        String[] input = item.split(",", -1);
-        System.out.println(Arrays.toString(input));
         Pageable pageable = PageRequest.of(page,5);
-        if(!input[0].matches("^[0-9]{1,8}$")||input.length!=5||!idString.matches("^[0-9]{1,8}$")){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        if(iTicketService.searchTicket(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable).isEmpty()){
+        System.out.println(ticketSearch.getSeatCode());
+        System.out.println(ticketSearch.getDeparture());
+        if(iTicketService.searchTicket(ticketSearch,pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         else {
-            return new ResponseEntity<>(iTicketService.searchTicket(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable),HttpStatus.OK);
+            System.out.println(iTicketService.searchTicket(ticketSearch,pageable).getContent().get(0).getNameRoute());
+            return new ResponseEntity<>(iTicketService.searchTicket(ticketSearch,pageable),HttpStatus.OK);
         }
     }
     /**
