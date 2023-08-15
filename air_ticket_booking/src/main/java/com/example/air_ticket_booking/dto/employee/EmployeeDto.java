@@ -1,10 +1,8 @@
 package com.example.air_ticket_booking.dto.employee;
 
 import com.example.air_ticket_booking.model.account.Account;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+
+import javax.validation.constraints.*;
 
 public class EmployeeDto {
 
@@ -12,6 +10,8 @@ public class EmployeeDto {
     @NotBlank(message = "Tên không đươc để trống.")
     @Size(min = 5, message = "Bạn cần nhập tối thiểu 5 ký tự")
     @Size(max = 20, message = "Bạn nhập quá 20 ký tự. Vui lòng kiểm tra lại")
+//    @Pattern(regexp = "^[a-zA-ZÀ-ỹ\\s ]*$", message = "Tên không được nhập số và ký tự đặc biệt.")
+
     private String nameEmployee;
     @Size(min = 10, message = "Bạn cần nhập tối thiểu 10 ký tự")
     @Size(max = 12, message = "Bạn nhập quá 12 ký tự. Vui lòng kiểm tra lại")
@@ -23,14 +23,18 @@ public class EmployeeDto {
     @NotBlank(message = "Số điện thoại không được để trống.")
     @Pattern(message = "Số điện thoại không đúng định dạng.", regexp = "^(0[0-9]{9})$")
     private String telEmployee;
+    @NotBlank(message = "Không được để trống")
     private String image;
 
+    @NotNull(message = "Chọn 1 trong 2")
     private boolean gender;
-    @Size(min = 10, message = "Bạn cần nhập tối thiểu 10 ký tự")
-    @Size(max = 50, message = "Bạn nhập quá 20 ký tự. Vui lòng kiểm tra lại")
-    @NotBlank(message = "EmailService không được để trống.")
-    @Email(message = "EmailService không đúng định dạng")
+    @Size(min = 15, message = "Bạn cần nhập tối thiểu 15 ký tự")
+    @Size(max = 50, message = "Bạn nhập quá 50 ký tự. Vui lòng kiểm tra lại")
+    @NotBlank(message = "Email không được để trống.")
+    @Email(message = "Email không đúng định dạng")
     private String emailEmployee;
+
+    @NotNull(message = "Không được để trống")
     private Account account;
 
     private boolean flagEmployee;
@@ -83,7 +87,6 @@ public class EmployeeDto {
     }
 
 
-
     public boolean getGender() {
         return gender;
     }
@@ -122,6 +125,10 @@ public class EmployeeDto {
 
     public void setFlagEmployee(boolean flagEmployee) {
         this.flagEmployee = flagEmployee;
+    }
+
+    public boolean isGender() {
+        return gender;
     }
 }
 
