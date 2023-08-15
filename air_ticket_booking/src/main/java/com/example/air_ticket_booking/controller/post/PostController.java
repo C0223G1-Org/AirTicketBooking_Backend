@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 
 @RequestMapping("/api/post")
@@ -122,5 +123,36 @@ public class PostController {
 //        } catch (Exception e) {
 //            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(".....");
 //        }
+    }
+    /**
+     * Author: SonTT
+     * Date create: 14/08/2023
+     * Handling: Get param title get data by calling service
+     * @param title
+     * @return
+     */
+    @GetMapping("/search")
+    public ResponseEntity<List<Post>> searchPost(@RequestParam(value = "title",required = false) String title){
+        if (iPostService.searchPostByTitle(title).isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(iPostService.searchPostByTitle(title),HttpStatus.OK);
+    }
+
+
+
+    /**
+     * Author: SonTT
+     * Date create: 14/08/2023
+     * Handling: Get data by calling service
+     * @return
+     */
+    @GetMapping("/hot-news")
+    public ResponseEntity<List<Post>> HotNewList(){
+        if (this.iPostService.getListPostHotNews().isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<>(this.iPostService.getListPostHotNews(),HttpStatus.OK);
+        }
     }
 }

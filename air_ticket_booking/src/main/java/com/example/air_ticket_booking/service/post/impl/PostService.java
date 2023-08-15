@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -135,4 +136,29 @@ public class PostService implements IPostService {
             return false;
         }
     }
+
+    /**
+     * Author: SonTT
+     * Date create: 15/08/2023
+     * Handling: Get input param title and pageable later return paging Post with param gave
+     *
+     * @param title
+     * @return Page<Post>
+     */
+    @Override
+    public List<Post> searchPostByTitle(String title) {
+        return this.iPostRepository.searchPostByTitles(title);
+    }
+    /**
+     * Author: SonTT
+     * Date create: 14/08/2023
+     * Handling: Get data by calling repository
+     *
+     * @return
+     */
+    @Override
+    public List<Post> getListPostHotNews() {
+        return this.iPostRepository.getListPostHotNews();
+    }
 }
+
