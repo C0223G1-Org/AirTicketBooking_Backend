@@ -1,5 +1,6 @@
 package com.example.air_ticket_booking.controller.ticket;
 
+import com.example.air_ticket_booking.model.ticket.TicketSearch;
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
 import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
@@ -33,7 +34,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:3000/")
 @RequestMapping("/tickets")
 public class TicketController {
     
@@ -179,24 +180,23 @@ public class TicketController {
      * task response search all ticket booked data to FE
      * @Method searchTickets
      * date create: 10/08/2023
-     * @param item,pageable
+     * @param
      * @return HttpStatus and Page<Ticket>
      * @author Nhàn NA
      */
-    @GetMapping("/search/{item}/{page}")
-    public ResponseEntity<Page<ITicketProjection>> searchTickets(@PathVariable("item") String item,@PathVariable("page") int page){
+    @GetMapping ("/search/{page}")
+    public ResponseEntity<Page<ITicketProjection>> searchTickets(@ModelAttribute TicketSearch ticketSearch, @PathVariable("page") int page){
+        System.out.println("nhan");
         String idString= String.valueOf(page);
-        String[] input = item.split(",", -1);
-        System.out.println(Arrays.toString(input));
         Pageable pageable = PageRequest.of(page,5);
-        if(!input[0].matches("^[0-9]{1,8}$")||input.length!=5||!idString.matches("^[0-9]{1,8}$")){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        if(iTicketService.searchTicket(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable).isEmpty()){
+        System.out.println(ticketSearch.getSeatCode());
+        System.out.println(ticketSearch.getDeparture());
+        if(iTicketService.searchTicket(ticketSearch,pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         else {
-            return new ResponseEntity<>(iTicketService.searchTicket(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable),HttpStatus.OK);
+            System.out.println(iTicketService.searchTicket(ticketSearch,pageable).getContent().get(0).getNameRoute());
+            return new ResponseEntity<>(iTicketService.searchTicket(ticketSearch,pageable),HttpStatus.OK);
         }
     }
     /**
