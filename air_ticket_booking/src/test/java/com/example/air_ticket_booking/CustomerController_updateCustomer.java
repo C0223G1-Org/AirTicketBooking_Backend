@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CustomerController_saveCustomer {
+public class CustomerController_updateCustomer {
     @Autowired
     private MockMvc mockMvc;
     @Autowired
@@ -32,8 +32,10 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_name_object_13() throws Exception {
+    public void updateCustomer_name_object_19() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer(null);
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -52,7 +54,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -68,8 +70,10 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_name_object_14() throws Exception {
+    public void updateCustomer_name_object_20() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer(" ");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -88,7 +92,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -104,8 +108,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_name_object_15() throws Exception {
+    public void updateCustomer_name_object_21() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê 123");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -124,7 +129,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -140,8 +145,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_name_object_16() throws Exception {
+    public void updateCustomer_name_object_22() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -160,7 +166,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -178,8 +184,9 @@ public class CustomerController_saveCustomer {
      */
 
     @Test
-    public void saveCustomer_name_object_17() throws Exception {
+    public void updateCustomer_name_object_23() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng Lê Văn Hưng Lê Văn Hưng Lê Văn Hưng Lê Văn Hưng Lê Văn Hưng Lê Văn Hưng\" +\n" +
                 "                \" Lê Văn Hưng Lê Văn Hưng Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
@@ -199,7 +206,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -215,8 +222,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_name_object_18() throws Exception {
+    public void updateCustomer_name_object_24() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -225,7 +233,7 @@ public class CustomerController_saveCustomer {
         customerDto.setImgCustomer("1");
         customerDto.setNationalityCustomer("Mỹ");
         customerDto.setIdCardCustomer("123456789879");
-        customerDto.setDateCustomer("02-03-2000");
+        customerDto.setDateCustomer("2000-03-20");
         customerDto.setFlagCustomer(false);
 
         Account account = new Account();
@@ -235,7 +243,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -251,8 +259,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_email_object_13() throws Exception {
+    public void updateCustomer_email_object_19() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer(null);
@@ -271,7 +280,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -287,8 +296,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_email_object_14() throws Exception {
+    public void updateCustomer_email_object_20() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer(" ");
@@ -307,7 +317,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -324,8 +334,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_email_object_15() throws Exception {
+    public void updateCustomer_email_object_21() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hung123+-*/");
@@ -344,7 +355,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -361,11 +372,12 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_email_object_16() throws Exception {
+    public void updateCustomer_email_object_22() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
-        customerDto.setEmailCustomer("hu@g.com");
+        customerDto.setEmailCustomer("hu.com");
         customerDto.setTelCustomer("0909000999");
         customerDto.setAddressCustomer("Đà Nẵng Đà Nẵng");
         customerDto.setImgCustomer("1");
@@ -381,7 +393,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -398,8 +410,9 @@ public class CustomerController_saveCustomer {
      */
 
     @Test
-    public void saveCustomer_email_object_17() throws Exception {
+    public void updateCustomer_email_object_23() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hunghunghunghunghunghunghunghunghunghunghunghunghunghunghunghunghunghunghunghungh" +
@@ -425,7 +438,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -441,8 +454,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_email_object_18() throws Exception {
+    public void updateCustomer_email_object_24() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -461,7 +475,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -477,8 +491,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_tel_object_13() throws Exception {
+    public void updateCustomer_tel_object_19() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -497,7 +512,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -514,8 +529,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_tel_object_14() throws Exception {
+    public void updateCustomer_tel_object_20() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -534,7 +550,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -550,8 +566,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_tel_object_15() throws Exception {
+    public void updateCustomer_tel_object_21() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -570,7 +587,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -587,8 +604,9 @@ public class CustomerController_saveCustomer {
      */
 
     @Test
-    public void saveCustomer_tel_object_16() throws Exception {
+    public void updateCustomer_tel_object_22() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -607,7 +625,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -623,8 +641,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_tel_object_17() throws Exception {
+    public void updateCustomer_tel_object_23() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -643,7 +662,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -659,8 +678,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_tel_object_18() throws Exception {
+    public void updateCustomer_tel_object_24() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -679,7 +699,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -695,8 +715,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_address_object_13() throws Exception {
+    public void updateCustomer_address_object_19() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -715,7 +736,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -731,8 +752,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_address_object_14() throws Exception {
+    public void updateCustomer_address_object_20() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -751,7 +773,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -767,8 +789,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_address_object_16() throws Exception {
+    public void updateCustomer_address_object_22() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -787,7 +810,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -803,8 +826,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_address_object_17() throws Exception {
+    public void updateCustomer_address_object_23() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -830,7 +854,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -846,8 +870,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_address_object_18() throws Exception {
+    public void updateCustomer_address_object_24() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -866,7 +891,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -882,8 +907,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_nationality_object_13() throws Exception {
+    public void updateCustomer_nationality_object_19() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -902,7 +928,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -918,8 +944,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_nationality_object_14() throws Exception {
+    public void updateCustomer_nationality_object_20() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -938,7 +965,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -954,8 +981,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_nationality_object_18() throws Exception {
+    public void updateCustomer_nationality_object_24() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -974,7 +1002,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -990,8 +1018,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_id_card_object_13() throws Exception {
+    public void updateCustomer_id_card_object_19() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -1010,7 +1039,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1027,8 +1056,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_id_card_object_14() throws Exception {
+    public void updateCustomer_id_card_object_20() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -1047,7 +1077,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1063,8 +1093,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_id_card_object_15() throws Exception {
+    public void updateCustomer_id_card_object_21() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -1083,7 +1114,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1099,8 +1130,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_id_card_object_16() throws Exception {
+    public void updateCustomer_id_card_object_22() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -1119,7 +1151,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1135,8 +1167,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_id_card_object_17() throws Exception {
+    public void updateCustomer_id_card_object_23() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -1155,7 +1188,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1172,8 +1205,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_id_card_object_18() throws Exception {
+    public void updateCustomer_id_card_object_24() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -1192,7 +1226,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1208,8 +1242,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_date_object_13() throws Exception {
+    public void updateCustomer_date_object_19() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -1228,7 +1263,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1244,8 +1279,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_date_object_14() throws Exception {
+    public void updateCustomer_date_object_20() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -1264,7 +1300,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/1")
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1280,8 +1316,9 @@ public class CustomerController_saveCustomer {
      * @throws Exception
      */
     @Test
-    public void saveCustomer_date_object_18() throws Exception {
+    public void updateCustomer_date_object_24() throws Exception {
         CustomerDto customerDto = new CustomerDto();
+        customerDto.setIdCustomer(1L);
         customerDto.setNameCustomer("Lê Văn Hưng");
         customerDto.setGenderCustomer(true);
         customerDto.setEmailCustomer("hungle@123.com");
@@ -1300,7 +1337,7 @@ public class CustomerController_saveCustomer {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/customers")
+                        .put("/customers/{id}",1)
                         .content(this.objectMapper.writeValueAsString(customerDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())

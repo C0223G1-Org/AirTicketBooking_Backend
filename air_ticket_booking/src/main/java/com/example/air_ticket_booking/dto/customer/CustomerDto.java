@@ -31,7 +31,7 @@ public class CustomerDto implements Validator {
     @Size(min = 3, max = 20, message = "Số điện thoại tối thiểu 3 ký tự và tối đa 20 ký tự ")
     private String telCustomer;
     @NotBlank(message = "Không được để trống trường này")
-    @Size(min = 10,max = 100,message = "Địa chỉ tối thiểu 10 kí tự và tối đa chỉ 100 kí tự")
+    @Size(min = 10,max = 255,message = "Địa chỉ tối thiểu 10 kí tự và tối đa chỉ 255 kí tự")
     private String addressCustomer;
 
     private String imgCustomer;
