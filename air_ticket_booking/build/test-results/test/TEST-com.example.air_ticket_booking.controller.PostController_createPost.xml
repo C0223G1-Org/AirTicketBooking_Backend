@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.air_ticket_booking.controller.PostController_createPost" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-08-14T06:52:00" hostname="DESKTOP-68H6MAE" time="0.645">
+  <properties/>
+  <testcase name="createPost_datePost_13()" classname="com.example.air_ticket_booking.controller.PostController_createPost" time="0.645"/>
+  <system-out><![CDATA[13:51:51.321 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+13:51:51.334 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+13:51:51.375 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.example.air_ticket_booking.controller.PostController_createPost] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+13:51:51.398 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.air_ticket_booking.controller.PostController_createPost], using SpringBootContextLoader
+13:51:51.403 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.example.air_ticket_booking.controller.PostController_createPost]: class path resource [com/example/air_ticket_booking/controller/PostController_createPost-context.xml] does not exist
+13:51:51.403 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.example.air_ticket_booking.controller.PostController_createPost]: class path resource [com/example/air_ticket_booking/controller/PostController_createPostContext.groovy] does not exist
+13:51:51.403 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.example.air_ticket_booking.controller.PostController_createPost]: no resource found for suffixes {-context.xml, Context.groovy}.
+13:51:51.404 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.air_ticket_booking.controller.PostController_createPost]: PostController_createPost does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+13:51:51.482 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.example.air_ticket_booking.controller.PostController_createPost]
+13:51:51.557 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [D:\C0222G1_TriPD\AirTicketBooking_Backend\air_ticket_booking\build\classes\java\main\com\example\air_ticket_booking\AirTicketBookingApplication.class]
+13:51:51.560 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.air_ticket_booking.AirTicketBookingApplication for test class com.example.air_ticket_booking.controller.PostController_createPost
+13:51:51.718 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.example.air_ticket_booking.controller.PostController_createPost]: using defaults.
+13:51:51.719 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+13:51:51.752 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@2c1dc8e, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@b273a59, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@4e7095ac, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@251ebf23, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@29b732a2, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1b70203f, org.springframework.test.context.transaction.TransactionalTestExecutionListener@51671b08, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@15051a0, org.springframework.test.context.event.EventPublishingTestExecutionListener@1162410a, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@b09fac1, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@62df0ff3, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@61019f59, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@62e8f862, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@26f3d90c, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@3c49fab6]
+13:51:51.759 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@71ea1fda testClass = PostController_createPost, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@62b3df3a testClass = PostController_createPost, locations = '{}', classes = '{class com.example.air_ticket_booking.AirTicketBookingApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@4de41af9, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@4b3fa0b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@1433046b, [ImportsContextCustomizer@420745d7 key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@42f3156d, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@34625ccd, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@55787112, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@27e47833], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v2.7.14)
+
+2023-08-14 13:51:52.313  INFO 11224 --- [    Test worker] c.e.a.c.PostController_createPost        : Starting PostController_createPost using Java 17.0.5 on DESKTOP-68H6MAE with PID 11224 (started by ADMIN in D:\C0222G1_TriPD\AirTicketBooking_Backend\air_ticket_booking)
+2023-08-14 13:51:52.317  INFO 11224 --- [    Test worker] c.e.a.c.PostController_createPost        : No active profile set, falling back to 1 default profile: "default"
+2023-08-14 13:51:53.286  INFO 11224 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-14 13:51:53.507  INFO 11224 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 203 ms. Found 15 JPA repository interfaces.
+2023-08-14 13:51:54.107  INFO 11224 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$5efbba6c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-08-14 13:51:54.253  INFO 11224 --- [    Test worker] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2023-08-14 13:51:54.599  INFO 11224 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-14 13:51:54.708  INFO 11224 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-08-14 13:51:55.008  INFO 11224 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-08-14 13:51:55.151  INFO 11224 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-08-14 13:51:55.159  WARN 11224 --- [    Test worker] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-08-14 13:51:55.646  INFO 11224 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-08-14 13:51:55.678  INFO 11224 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+Hibernate: alter table account add constraint FK9pbnm9levk9yjtdx8ihxja8ei foreign key (role_id_role) references role (id_role)
+Hibernate: alter table customer add constraint FKsvltrp0v6swwnwwjittqcoxh8 foreign key (account_id_account) references account (id_account)
+Hibernate: alter table employee add constraint FKdj1dw61h7w0s2t29f9cank7xi foreign key (account_id_account) references account (id_account)
+Hibernate: alter table post add constraint FK18s6ve2mw2p0w3kth5wt2n4hj foreign key (employee_id) references employee (id_employee)
+Hibernate: alter table route add constraint FKfaw6n25ueugnmnxs59ok672iy foreign key (id_air_craft) references air_craft (id_air_craft)
+Hibernate: alter table route add constraint FKhgycblcw4ojds47bsclvr9ljb foreign key (id_departure) references departure (id_departure)
+Hibernate: alter table route add constraint FKbe0l5h5smvbpsojja1fxkquda foreign key (id_destination) references destination (id_destination)
+Hibernate: alter table seat add constraint FKk135xd0jppmv62kdyhrrcid8c foreign key (id_route) references route (id_route)
+Hibernate: alter table seat add constraint FK28kyfo0ys52noa3gtkolnb7jd foreign key (id_type_seat) references type_seat (id_type_seat)
+Hibernate: alter table ticket add constraint FK7wn2vjkvy4gh7wl7041uury09 foreign key (customer_id_customer) references customer (id_customer)
+Hibernate: alter table ticket add constraint FKm24drthm088e9cy4g28xdtupp foreign key (luggage_id_luggage) references luggage (id_luggage)
+Hibernate: alter table ticket add constraint FK3nwpv090qmb2m985ya575q8ys foreign key (seat_id_seat) references seat (id_seat)
+Hibernate: alter table ticket add constraint FKhiku6sb9mklri5018qrs3y2v8 foreign key (type_passenger_id_type_passenger) references type_passenger (id_type_passenger)
+Hibernate: alter table ticket add constraint FKsn2xg2u42vebggjqk0cdlr4ph foreign key (type_ticket_id_type_ticket) references type_ticket (id_type_ticket)
+2023-08-14 13:51:57.487  INFO 11224 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-14 13:51:57.502  INFO 11224 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-14 13:51:59.093  WARN 11224 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-14 13:51:59.966  INFO 11224 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-08-14 13:51:59.967  INFO 11224 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-08-14 13:51:59.969  INFO 11224 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2023-08-14 13:52:00.020  INFO 11224 --- [    Test worker] c.e.a.c.PostController_createPost        : Started PostController_createPost in 8.204 seconds (JVM running for 10.039)
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /api/post
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"332"]
+             Body = {"id":null,"title":"Gía r? b?t ng?","content":"Tha h? bay mà không lo v? giá v?i Air plan","flagPost":false,"image":"airplan.jpg","datePost":null,"employee":{"idEmployee":1,"nameEmployee":null,"dateEmployee":null,"telEmployee":null,"image":null,"emailEmployee":null,"gender":null,"flagEmployee":null,"account":null}}
+    Session Attrs = {}
+
+Handler:
+             Type = com.example.air_ticket_booking.controller.post.PostController
+           Method = com.example.air_ticket_booking.controller.post.PostController#createPosts(PostDto, BindingResult)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", Content-Type:"application/json"]
+     Content type = application/json
+             Body = [{"codes":["NotBlank.postDto.datePost","NotBlank.datePost","NotBlank.java.lang.String","NotBlank"],"arguments":[{"codes":["postDto.datePost","datePost"],"arguments":null,"defaultMessage":"datePost","code":"datePost"}],"defaultMessage":"must not be blank","objectName":"postDto","field":"datePost","rejectedValue":null,"bindingFailure":false,"code":"NotBlank"}]
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  <system-err><![CDATA[Loading class `com.mysql.jdbc.Driver'. This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver'. The driver is automatically registered via the SPI and manual loading of the driver class is generally unnecessary.
+]]></system-err>
+</testsuite>
