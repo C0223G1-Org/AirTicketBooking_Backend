@@ -106,10 +106,8 @@ public class PostController {
         if (id==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else if (this.iPostService.deletePostById(id)) {
-            String message = "Không tìm thấy tài Liệu muốn xoá ";
             return new ResponseEntity<>( HttpStatus.NOT_FOUND);
         } else {
-            String message = "Đã xoá bài viết ";
             return new ResponseEntity<>( HttpStatus.OK);
         }
 
@@ -125,13 +123,18 @@ public class PostController {
      * @Return: void
      */
     @PatchMapping("/updatePost")
-    public ResponseEntity<?> updatePost(@RequestBody PostDto postDto) {
-        try {
-            iPostService.savePost(postDto);
-            return ResponseEntity.ok(postDto);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(".....");
+    public ResponseEntity<?> updatePost(@Validated @RequestBody PostDto postDto,BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        iPostService.savePost(postDto);
+        return new ResponseEntity<>(postDto,HttpStatus.OK);
+//        try {
+//            iPostService.savePost(postDto);
+//            return ResponseEntity.ok(postDto);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(".....");
+//        }
     }
 
     /**
