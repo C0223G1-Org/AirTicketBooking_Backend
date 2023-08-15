@@ -48,8 +48,7 @@ public interface IRouteRepository extends JpaRepository<Route, Long> {
 
     /**
      * method dùng để lấy danh sách top 10 chuyến bay giá rẻ nhất
-     * theo ngày hiện tại với thời gian bay lớn hơn 1 giờ hoặc ngày lớn hơn ngày hiện tại
-     *
+     * theo ngày hiện tại với thời gian bay lớn hơn 4 giờ hoặc ngày lớn hơn ngày hiện tại
      * @param dateDeparture
      * @param timeDeparture
      * @return List<Route>
