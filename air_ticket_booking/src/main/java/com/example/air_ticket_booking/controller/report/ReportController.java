@@ -67,4 +67,9 @@ public class ReportController {
         }
         return new ResponseEntity<>(reportList, HttpStatus.OK);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Not Found");
+    }
 }
