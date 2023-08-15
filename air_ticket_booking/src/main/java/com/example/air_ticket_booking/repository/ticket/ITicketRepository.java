@@ -3,6 +3,7 @@ package com.example.air_ticket_booking.repository.ticket;
 
 import com.example.air_ticket_booking.model.customer.Customer;
 import com.example.air_ticket_booking.model.luggage.Luggage;
+import com.example.air_ticket_booking.model.route.Route;
 import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
@@ -59,22 +60,20 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
          *Date create: 10/08/2023
          * Function:updateTicket()
          * @Param: ticketDto
-         * @Return: void
+         * @Return: update Ticket
          */
 
         @Modifying
-        @Query("UPDATE Ticket t SET t.priceTicket = :price, t.flagTicket = :flag, t.namePassenger = :name, t.genderPassenger = :gender," +
-                " t.emailPassenger = :email, t.telPassenger = :tel, t.idCardPassenger = :idCard, t.dateBooking = :dateBooking, " +
-                "t.typeTicket = :typeTicket, t.luggage = :luggage, t.typePassenger = :typePassenger, t.seat = :seat, " +
-                "t.customer = :customer WHERE t.idTicket = :id")
-        void updateTicket(@Param("id") Long id, @Param("price") Long price, @Param("flag") Boolean flag, @Param("name") String name,
-                          @Param("gender") Boolean gender, @Param("email") String email, @Param("tel") String tel, @Param("idCard") String idCard, @Param("dateBooking") String dateBooking, @Param("typeTicket") TypeTicket typeTicket, @Param("luggage") Luggage luggage, @Param("typePassenger") TypePassenger typePassenger, @Param("seat") Seat seat, @Param("customer") Customer customer);
-        @Query(value = "select * from ticket where id_ticket = :id ", nativeQuery = true)
-        Ticket findTicketById(@Param("id") Long id);
+        @Query(value = "UPDATE ticket  JOIN customer on ticket.customer_id_customer= customer.id_customer  " +
+                "SET ticket.name_passenger = :name, customer.email_customer = :email " +
+                "WHERE ticket.id_ticket = :id", nativeQuery = true)
+        void updateTicket(@Param("id") Long id, @Param("name") String name, @Param("email") String email);
+    @Query(value = "select * from customer where id_customer = :id",nativeQuery = true)
+    Customer findCustomerById(@Param("id") Long id);
+
     /**
      * task take  data from database
      * @Method findAllTickets
-     * date create: 10/08/2023
      * @param pageable
      * @return Page<Ticket>
      * @author Nhàn NA
@@ -95,7 +94,6 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
     /**
      * task delete ticket by ID database
      * @Method deleteTicketById
-     * date create: 10/08/2023
      * @param id
      * @return
      * @author Nhàn NA
@@ -107,13 +105,13 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
     /**
      * task get Ticket by id
      * @Method findByTicket
-     * date create: 10/08/2023
      * @param id
      * @return
      * @author Nhàn NA
      */
     @Query(value = "select  * from ticket where ticket.flag_ticket=0 and ticket.id_ticket=:id ",nativeQuery = true)
     Optional<Ticket> findByTicket(@Param("id")Long id);
+
     @Query(value = "select id_ticket as id, date_booking as dateBooking, name_passenger as namePassenger, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture,price_ticket as priceTicket  from ticket t \n" +
             "join type_ticket tt on t.type_ticket_id_type_ticket = tt.id_type_ticket\n" +
             "join luggage l on l.id_luggage=t.luggage_id_luggage\n" +
@@ -130,7 +128,6 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
     /**
      * task get all tickets  unbooked from database
      * @Method findAllTicketUnbooked
-     * date create: 10/08/2023
      * @param pageable
      * @return Page<Ticket>
      * @author Nhàn NA
@@ -151,6 +148,9 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
      * @return Page<Ticket>
      * @author Nhàn NA
      */
+
+
+
     @Query(value = "select id_seat as id ,position_seat as positionSeat,name_type_seat as typeSeat, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture  from seat s\n" +
             "join type_seat ts on ts.id_type_seat=s.id_type_seat\n" +
             "join route r on r.id_route=s.id_route\n" +

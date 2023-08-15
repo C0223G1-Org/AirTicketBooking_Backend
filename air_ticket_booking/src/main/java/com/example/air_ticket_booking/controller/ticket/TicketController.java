@@ -19,7 +19,22 @@ import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
 import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
+import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
+import com.example.air_ticket_booking.service.ticket.ITicketService;
+import com.example.air_ticket_booking.service.ticket.impl.TicketService;
+//import com.sun.tools.javac.util.List;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 import java.util.Arrays;
 
@@ -27,13 +42,9 @@ import java.util.Arrays;
 @CrossOrigin("*")
 @RequestMapping("/tickets")
 public class TicketController {
-    
 
     @Autowired
     private ITicketService iTicketService;
-
-    @Autowired
-    private ITicketRepository ticketRepository;
 
     /**
      * method: used to create a new ticket when the user confirms the booking
@@ -73,7 +84,7 @@ public class TicketController {
      *Date create: 10/08/2023
      * Function:getTicketById()
      * @Param: Long id
-     * @Return: ticket
+     * @Return:  if found and then return a ticket, otherwise it will return error not found.
      */
     @GetMapping("/{id}")
     public ResponseEntity<Ticket> getTicketById(@PathVariable Long id){
@@ -88,37 +99,45 @@ public class TicketController {
      *Date create: 10/08/2023
      * Function: updateTicket()
      * @Param: ticketDto
-     * @Return: ticket
+     * @Return:  If  idTicket is found then enter the correct format,
+     * the ticket will be updated. otherwise it will throw an error
      */
 
-    @PutMapping("/updateTicket/{id}")
-    public ResponseEntity<?> updateTicket(@PathVariable Long id,@RequestBody TicketDto ticketDto, BindingResult bindingResult ) {
-        ticketDto.validate(ticketDto, bindingResult);
-        if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body("Lỗi validation");
-        }
+    @PatchMapping("/updateTicket/{id}")
+    public ResponseEntity<?> updateTicket(@PathVariable Long id,@Valid @RequestBody TicketDto ticketDto) {
+//        ticketDto.validate(ticketDto, bindingResult);
+//        if (bindingResult.hasErrors()) {
+//            return ResponseEntity.badRequest().body("Lỗi Không Đúng Định Dạng");
+//        }
 
         Ticket existingTicket = iTicketService.findByIdTicket(id);
         if (existingTicket == null) {
             return ResponseEntity.notFound().build();
         }
 
-        Long price = ticketDto.getPriceTicket();
-        Boolean flag = ticketDto.getFlagTicket();
         String name = ticketDto.getNamePassenger();
-        Boolean gender = ticketDto.getGenderPassenger();
-        String email = ticketDto.getEmailPassenger();
-        String tel = ticketDto.getTelPassenger();
-        String idCard = ticketDto.getIdCardPassenger();
-        String dateBooking = ticketDto.getDateBooking();
-        TypeTicket typeTicket = ticketDto.getTypeTicket();
-        Luggage luggage = ticketDto.getLuggage();
-        TypePassenger typePassenger = ticketDto.getTypePassenger();
-        Seat seat = ticketDto.getSeat();
-        Customer customer = ticketDto.getCustomer();
-
-        ticketRepository.updateTicket(id, price, flag, name, gender, email, tel, idCard, dateBooking, typeTicket, luggage, typePassenger, seat, customer);
+        String email= ticketDto.getCustomer().getEmailCustomer();
+        iTicketService.updateTicket(id, name, email);
         return ResponseEntity.ok("Cập nhật vé thành công");
+    }
+    /**
+     * task validate data ticket to BE
+     * @Method handleValidationExceptions
+     * @return throw errors;
+     * @author VuDt
+     */
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
 
     /**
