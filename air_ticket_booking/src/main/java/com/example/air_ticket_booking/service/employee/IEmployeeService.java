@@ -18,7 +18,7 @@ public interface IEmployeeService {
     void saveEmployee(EmployeeDto employee);
     void editEmployee(Long id,EmployeeDto employee);
 
-    Employee findByyId(Long id);
+
     /**
      * Create by: HuyHD;
      * Date create: 10/08/2023

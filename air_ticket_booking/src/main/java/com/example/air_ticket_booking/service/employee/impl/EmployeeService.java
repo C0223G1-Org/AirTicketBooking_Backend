@@ -9,6 +9,8 @@ import com.example.air_ticket_booking.repository.employee.IEmployeeRepository;
 import com.example.air_ticket_booking.service.employee.IEmployeeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -70,6 +72,11 @@ public class EmployeeService implements IEmployeeService {
         );
     }
 
+    @Override
+    public Page<Employee> findAll(Pageable pageable) {
+        return employeeRepository.findAll(pageable);
+    }
+
     /**
      * Create by: QuocNHA,
      * Date create : 10/08/2023
@@ -81,7 +88,8 @@ public class EmployeeService implements IEmployeeService {
      */
     @Override
     public Employee findByyId(Long id) {
-       return employeeRepository.findWithIdEmployee(id);
+        return employeeRepository.findWithIdEmployee(id);
+    }
 
     /**
      * Create by: HuyHD;
