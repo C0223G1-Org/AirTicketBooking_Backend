@@ -17,7 +17,7 @@ public interface IEmployeeService {
     void saveEmployee(EmployeeDto employee);
     void editEmployee(Long id,EmployeeDto employee);
 
-    EmployeeDto findByyId(Long id);
+    Employee findByyId(Long id);
     /**
      * Create by: HuyHD;
      * Date create: 10/08/2023
@@ -46,5 +46,5 @@ public interface IEmployeeService {
      */
     Page<Employee> searchEmployee(Boolean gender, String name, Pageable pageable);
 
-    Employee getEmployeeById(Long id);
+//    Employee getEmployeeById(Long id);
 }

@@ -25,7 +25,7 @@ public class EmployeeController_getListEmployee {
     @Test
     public void getListEmployee_5() throws Exception {
         this.mockMvc.perform(
-                        MockMvcRequestBuilders.get("/api/employee/{page}/{limit}", 5, 2))
+                        MockMvcRequestBuilders.get("/api/employee/{page}/{limit}", 5, 5))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -38,16 +38,16 @@ public class EmployeeController_getListEmployee {
     @Test
     public void getListEmployee_6() throws Exception {
         this.mockMvc.perform(
-                        MockMvcRequestBuilders.get("/api/employee/{page}/{limit}", 0, 2))
+                        MockMvcRequestBuilders.get("/api/employee/{page}/{limit}", 0, 5))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("totalPages").value(2))
-                .andExpect(jsonPath("totalElements").value(4))
+                .andExpect(jsonPath("totalElements").value(10))
                 .andExpect(jsonPath("content[0].idEmployee").value("1"))
                 .andExpect(jsonPath("content[0].nameEmployee").value("admin"))
                 .andExpect(jsonPath("content[0].emailEmployee").value("admin@gmail.com"))
-                .andExpect(jsonPath("content[1].idEmployee").value("2"))
-                .andExpect(jsonPath("content[1].nameEmployee").value("aaaa"))
-                .andExpect(jsonPath("content[1].emailEmployee").value("aaaa@gmail.com"));
+                .andExpect(jsonPath("content[4].idEmployee").value("5"))
+                .andExpect(jsonPath("content[4].nameEmployee").value("Nguyễn Quốc Việt"))
+                .andExpect(jsonPath("content[4].emailEmployee").value("quocviet@gmail.com"));
     }
 }

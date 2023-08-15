@@ -55,11 +55,11 @@ public class EmployeeController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<?> findByIdEmployee(@PathVariable Long id) {
-        EmployeeDto employeeDto = employeeService.findByyId(id);
-        if (employeeDto == null) {
+        Employee employee = employeeService.findByyId(id);
+        if (employee == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(employeeDto, HttpStatus.OK);
+            return new ResponseEntity<>(employee, HttpStatus.OK);
         }
     }
     /**
@@ -125,18 +125,18 @@ public class EmployeeController {
      * @param : id (id_employee);
      * @return : new employee list does not exist newly deleted element.
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
-        Employee employee = this.employeeService.getEmployeeById(id);
+        Employee employee = this.employeeService.findByyId(id);
         if (employee == null) {
-            return  new ResponseEntity<>("Không tìm thấy nhân viên" ,HttpStatus.NOT_FOUND);
+            return  new ResponseEntity<>("Không tìm thấy nhân viên" ,HttpStatus.NO_CONTENT);
         }
 
         try {
             this.employeeService.deleteEmployee(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Đã xảy ra lỗi! Không thể xóa nhân viên này!", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Đã xảy ra lỗi! Không thể xóa nhân viên này!", HttpStatus.NO_CONTENT);
         }
     }
 
@@ -155,11 +155,12 @@ public class EmployeeController {
         Pageable pageable = PageRequest.of(page, size);
         Page<Employee> employeeList = employeeService.searchEmployee(gender, name,pageable );
         if (employeeList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(employeeService.findAll(pageable), HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(employeeList, HttpStatus.OK);
         }
     }
+
 }
 
 

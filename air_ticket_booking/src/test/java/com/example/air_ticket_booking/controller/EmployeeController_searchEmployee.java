@@ -28,12 +28,29 @@ public class EmployeeController_searchEmployee {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
                                 .get("/api/employee/search")
-                                .param("gender", "false")
-                                .param("name", "a")
+                                .param("gender", "true")
+                                .param("name", "aaaa")
                                 .param("page", "0")
                                 .param("size", "2"))
                 .andDo(print())
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    /**
+     * Create by: HuyHD;
+     * Date create: 11/08/2023
+     * Test case searches for employees with incorrect "gender" and "name" parameters
+     * @throws Exception
+     */
+    @Test
+    public void searchEmployee_11_3() throws Exception {
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders
+                                .get("/api/employee/search")
+                                .param("page", "0")
+                                .param("size", "2"))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
     }
 
     /**
@@ -81,18 +98,18 @@ public class EmployeeController_searchEmployee {
                         MockMvcRequestBuilders
                                 .get("/api/employee/search")
                                 .param("gender", "true")
-                                .param("page", "1")
-                                .param("size", "2"))
+                                .param("page", "0")
+                                .param("size", "5"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(jsonPath("totalPages").value(2))
-                .andExpect(jsonPath("totalElements").value(4))
-                .andExpect(jsonPath("content[0].idEmployee").value("3"))
-                .andExpect(jsonPath("content[0].nameEmployee").value("bbbb"))
-                .andExpect(jsonPath("content[0].emailEmployee").value("bbbbb@gmail.com"))
-                .andExpect(jsonPath("content[1].idEmployee").value("4"))
-                .andExpect(jsonPath("content[1].nameEmployee").value("cccc"))
-                .andExpect(jsonPath("content[1].emailEmployee").value("cccc@gmail.com"));
+                .andExpect(jsonPath("totalPages").value(1))
+                .andExpect(jsonPath("totalElements").value(5))
+                .andExpect(jsonPath("content[0].idEmployee").value("1"))
+                .andExpect(jsonPath("content[0].nameEmployee").value("admin"))
+                .andExpect(jsonPath("content[0].emailEmployee").value("admin@gmail.com"))
+                .andExpect(jsonPath("content[4].idEmployee").value("10"))
+                .andExpect(jsonPath("content[4].nameEmployee").value("Nguyễn Quốc Công"))
+                .andExpect(jsonPath("content[4].emailEmployee").value("quoccong@gmail.com"));
     }
 
     /**
@@ -105,16 +122,16 @@ public class EmployeeController_searchEmployee {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
                                 .get("/api/employee/search")
-                                .param("name", "b")
+                                .param("name", "viet")
                                 .param("page", "0")
-                                .param("size", "2"))
+                                .param("size", "5"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("totalPages").value(1))
                 .andExpect(jsonPath("totalElements").value(1))
-                .andExpect(jsonPath("content[0].idEmployee").value("3"))
-                .andExpect(jsonPath("content[0].nameEmployee").value("bbbb"))
-                .andExpect(jsonPath("content[0].emailEmployee").value("bbbbb@gmail.com"));
+                .andExpect(jsonPath("content[0].idEmployee").value("2005"))
+                .andExpect(jsonPath("content[0].nameEmployee").value("Nguyễn Quốc Việt"))
+                .andExpect(jsonPath("content[0].emailEmployee").value("quocviet@gmail.com"));
     }
 
     /**
@@ -130,16 +147,16 @@ public class EmployeeController_searchEmployee {
                                 .param("gender", "true")
                                 .param("name", "a")
                                 .param("page", "0")
-                                .param("size", "2"))
+                                .param("size", "5"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("totalPages").value(1))
-                .andExpect(jsonPath("totalElements").value(2))
-                .andExpect(jsonPath("content[0].idEmployee").value("1"))
+                .andExpect(jsonPath("totalElements").value(3))
+                .andExpect(jsonPath("content[0].idEmployee").value("2001"))
                 .andExpect(jsonPath("content[0].nameEmployee").value("admin"))
                 .andExpect(jsonPath("content[0].emailEmployee").value("admin@gmail.com"))
-                .andExpect(jsonPath("content[1].idEmployee").value("2"))
-                .andExpect(jsonPath("content[1].nameEmployee").value("aaaa"))
-                .andExpect(jsonPath("content[1].emailEmployee").value("aaaa@gmail.com"));
+                .andExpect(jsonPath("content[2].idEmployee").value("2007"))
+                .andExpect(jsonPath("content[2].nameEmployee").value("Nguyễn Hoàng Nam"))
+                .andExpect(jsonPath("content[2].emailEmployee").value("hoangnam@gmail.com"));
     }
 }
