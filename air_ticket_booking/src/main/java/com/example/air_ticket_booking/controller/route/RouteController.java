@@ -16,13 +16,18 @@ public class RouteController {
     private IRouteService routeService;
 
     /**
-     * method dùng để lấy danh sách top 10 chuyến bay giá rẻ nhất từ database
+     * method dùng để lấy danh sách top 10 chuyến bay giá rẻ nhất
+     * @return ResponseEntity
      * @author ThaiVV
      * @since 10/08/2023
-     * @return ResponseEntity
      */
     @GetMapping("/top10")
     public ResponseEntity<?> getTop10Cheapest() {
+        if (routeService.findTop10RouteCheapest().size() == 0) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else if (routeService.findTop10RouteCheapest().size() < 10) {
+            return new ResponseEntity<>(routeService.findTop10RouteCheapest(), HttpStatus.OK);
+        }
         return new ResponseEntity<>(routeService.findTop10RouteCheapest(), HttpStatus.OK);
     }
     /**
@@ -36,7 +41,17 @@ public class RouteController {
     @GetMapping("/search-trips/{departure}/{destination}/{dateDeparture}")
 public ResponseEntity<List<RouteProjection>> searchTrips(@PathVariable String departure, @PathVariable String destination,
                                                          @PathVariable String dateDeparture){
-        return new ResponseEntity<>(routeService.showListRoute(departure,destination,dateDeparture), HttpStatus.OK);
+        List<RouteProjection> list;
+        try{
+            list = routeService.showListRoute(departure,destination,dateDeparture);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+//
+//        if (list.size()==0){
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
     /**
      *method :find a flight route by id

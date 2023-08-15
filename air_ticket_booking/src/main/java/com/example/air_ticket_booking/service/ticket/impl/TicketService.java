@@ -11,7 +11,6 @@ import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
 import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
-import com.example.air_ticket_booking.repository.ticket.ITypeTicketRepository;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
