@@ -151,4 +151,5 @@ public class PostController {
         }
         return new ResponseEntity<>(iPostService.searchPostByTitle(titles),HttpStatus.OK);
     }
+
  }
