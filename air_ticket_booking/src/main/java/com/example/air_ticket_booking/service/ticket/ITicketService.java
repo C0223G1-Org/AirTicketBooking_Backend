@@ -47,7 +47,7 @@ public interface ITicketService {
      * @param id,pageable
      * @return Page<Ticket>
      **/
-    Page<Ticket> findAllListPaymentByCustomerById(Long id, Pageable pageable);
+    Page<Ticket> searchAllListPaymentByCustomerById(Long id, Pageable pageable, String departure, String destination);
 
     void updateTicketByIdTicket(Long id);
 }

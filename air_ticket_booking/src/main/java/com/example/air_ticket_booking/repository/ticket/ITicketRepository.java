@@ -110,7 +110,7 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
      * @return
      * @author Nhàn NA
      */
-    @Query(value = "select  * from ticket where ticket.flag_ticket=0 and ticket.id_ticket=:id ",nativeQuery = true)
+    @Query(value = "select  * from ticket where ticket.flag_ticket =0 and ticket.id_ticket=:id ",nativeQuery = true)
     Optional<Ticket> findByTicket(@Param("id")Long id);
 //    @Query(value = "select id_ticket as id, date_booking as dateBooking, name_passenger as namePassenger, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture,price_ticket as priceTicket  from ticket t \n" +
 //            "join type_ticket tt on t.type_ticket_id_type_ticket = tt.id_type_ticket\n" +
@@ -176,8 +176,12 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             "join luggage on luggage.id_luggage = ticket.luggage_id_luggage \n" +
             "join type_ticket on type_ticket.id_type_ticket = ticket.type_ticket_id_type_ticket \n" +
             "join type_passenger on type_passenger.id_type_passenger = ticket.type_passenger_id_type_passenger \n" +
-            "where customer.id_customer = :id")
-    Page<Ticket> findAllListPaymentByCustomerById(@Param("id") Long id, Pageable pageable);
+            "where customer.id_customer = :id " +
+            "and  name_departure like concat('%',:departure, '%')" +
+            "and name_destination like concat('%',:destination,'%')" +
+            "and flag_ticket = false")
+    Page<Ticket> searchAllListPaymentByCustomerById(@Param("id") Long id, Pageable pageable,
+                                                    @Param("departure") String departure, @Param("destination") String destination);
 @Modifying
     @Query(nativeQuery = true, value = "UPDATE ticket " +
             "SET ticket.flag_ticket = true " +

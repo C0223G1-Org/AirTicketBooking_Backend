@@ -184,8 +184,8 @@ public class TicketService implements ITicketService {
      * @return Page<Ticket>
      **/
     @Override
-    public Page<Ticket> findAllListPaymentByCustomerById(Long id, Pageable pageable) {
-        return ticketRepository.findAllListPaymentByCustomerById(id,pageable);
+    public Page<Ticket> searchAllListPaymentByCustomerById(Long id, Pageable pageable,String departure,String destination) {
+        return ticketRepository.searchAllListPaymentByCustomerById(id,pageable,departure, destination);
     }
 
     @Override

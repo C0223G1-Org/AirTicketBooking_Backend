@@ -27,12 +27,6 @@ public class PaymentController {
     private ICustomerService iCustomerService;
     @Autowired
     private ISeatService iSeatService;
-
-//    @Value("${paypal.clientId}")
-//    private String clientId;
-//
-//    @Value("${paypal.clientSecret}")
-//    private String clientSecret;
     /**
      *Create by: ThanhVH
      *Date create: 11/08/2023
@@ -41,12 +35,19 @@ public class PaymentController {
      * @return Page<Ticket> , void
      **/
     @GetMapping("/history/{id}")
-    public ResponseEntity<Page<Ticket>>  getListHistoryPayment(@PathVariable Long id,@PageableDefault(size = 5)Pageable pageable) {
+    public ResponseEntity<Page<Ticket>>  getListHistoryPayment(@PathVariable Long id,@PageableDefault(size = 4)Pageable pageable,
+                                                               @RequestParam("departure") String departure, @RequestParam("destination") String destination,
+                                                               @RequestParam("page") String page) {
+        int currentPage;
+        currentPage = Integer.parseInt(page);
         if (iCustomerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else {
-            return new ResponseEntity<>(iTicketService.findAllListPaymentByCustomerById(id,pageable),HttpStatus.OK);
+        } else if (currentPage < 0 || departure.length() > 50 || destination.length() > 50) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<>(iTicketService.searchAllListPaymentByCustomerById(id,pageable,departure,destination), HttpStatus.OK);
         }
+
     }
     @GetMapping("/payment/{id}")
     public ResponseEntity<Ticket> getTicketById(@PathVariable Long id) {
@@ -55,30 +56,20 @@ public class PaymentController {
         }
         return new ResponseEntity<>(iTicketService.findByIdTicket(id),HttpStatus.OK);
     }
-
-
-    @PatchMapping("/callback/{id}")
-    public ResponseEntity<String> updateTicketByIdTicket(@PathVariable Long id) {
-//        Chuyển đổi JSON thành đối tượng Java
-        Gson gson = new Gson();
-        if (iTicketService.findByIdTicket(id) == null) {
+    @PatchMapping("/callback/{id}/")
+    public ResponseEntity<String> updateTicketByIdTicket(@PathVariable Long id, @RequestParam("message") String paymentStatus) {
+        Ticket ticket = iTicketService.findByIdTicket(id);
+        if (ticket == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else{
-            Ticket ticket = iTicketService.findByIdTicket(id);
-            // Chuyển đổi đối tượng ticket thành chuỗi JSON
-            String ticketJson = gson.toJson(ticket);
-            // Chuyển đổi chuỗi JSON thành đối tượng PayPalResponse
-            PayPalResponse response = gson.fromJson(ticketJson, PayPalResponse.class);
-
-            String paymentStatus = response.getStatus();
+        } else {
             Seat seat = iSeatService.findSeatById(ticket.getSeat().getIdSeat());
             seat.setFlagSeat(true);
             if ("COMPLETED".equals(paymentStatus)) {
                 // Thanh toán đã hoàn thành
                 iTicketService.updateTicketByIdTicket(id);
-
                 return new ResponseEntity<>(HttpStatus.OK);
-            } else if ("CANCELLED".equals(paymentStatus)) {
+            } else if ("CANCELLED".equals(paymentStatus) ||"DECLINED".equals(paymentStatus) || "FAILED".equals(paymentStatus)
+                       || "EXPIRED".equals(paymentStatus) || "PENDING".equals(paymentStatus)) {
                 return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
             }
         }

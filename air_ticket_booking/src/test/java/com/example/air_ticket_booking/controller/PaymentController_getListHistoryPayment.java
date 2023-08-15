@@ -1,16 +1,10 @@
 package com.example.air_ticket_booking.controller;
-
-import com.paypal.http.serializer.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-
-import static jdk.dynalink.linker.support.Guards.isNull;
-import static org.assertj.core.internal.bytebuddy.implementation.FixedValue.nullValue;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -59,7 +53,39 @@ public class PaymentController_getListHistoryPayment {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
-
+    /**
+     *Create by: ThanhVH
+     *Date create: 11/08/2023
+     * description: test id is negative
+     **/
+    @Test
+    public void getListHistoryPayment_3a() throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/payment/history/{id}", "-1"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+    /**
+     *Create by: ThanhVH
+     *Date create: 11/08/2023
+     * description: test id is not a number
+     **/
+    @Test
+    public void getListHistoryPayment_3b() throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/payment/history/{id}", "a"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+    /**
+     *Create by: ThanhVH
+     *Date create: 11/08/2023
+     * description: test id is 0
+     **/
+    @Test
+    public void getListHistoryPayment_3c() throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/payment/history/{id}", "0"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
     /**
      *Create by: ThanhVH
      *Date create: 11/08/2023
