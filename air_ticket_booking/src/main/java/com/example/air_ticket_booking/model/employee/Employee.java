@@ -5,6 +5,7 @@ import com.example.air_ticket_booking.model.account.Account;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "employee")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

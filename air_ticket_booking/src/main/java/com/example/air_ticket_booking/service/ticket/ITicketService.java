@@ -28,6 +28,14 @@ public interface ITicketService {
      * return void
      */
     void createNewTicket(TicketDto ticketDto);
+    /**
+     * task get Ticket by id
+     *  date create: 10/08/2023
+     * @param
+     * @return Ticket or null
+     * @Method findByTicket
+     * @author Nhàn NA
+     */
     List<Ticket> findTicketByNameAndIdCard(String namePassenger, String idCardPassenger);
     /**
      *Create by: VuDT
@@ -51,9 +59,41 @@ public interface ITicketService {
 
 
     Page<ITicketProjection> findAllTickets(Pageable pageable);
+    /**
+     * task delete ticket
+     *  date create: 10/08/2023
+     * @param id
+     * @return boolean
+     * @Method findByTicket
+     * @author Nhàn NA
+     */
 
     boolean deleteTicket(Long id);
+    /**
+     * task search ticket
+     *  date create: 10/08/2023
+     * @param idTypeTicket, namePassenger, nameRoute,  nameDeparture, nameDestination,pageable
+     * @return Page<Ticket>
+     * @Method searchTicket
+     * @author Nhàn NA
+     */
     Page<ITicketProjection> searchTicket(Long idTypeTicket,String namePassenger, String nameRoute,  String nameDeparture, String nameDestination, Pageable pageable);
+    /**
+     * task get all ticket unbooked
+     *  date create: 10/08/2023
+     * @param pageable
+     * @return Page<Ticket>
+     * @Method findAllTicketUnbooked
+     * @author Nhàn NA
+     */
     Page<ITicketUnbookedProjection> findAllTicketUnbooked(Pageable pageable);
+    /**
+     * task search ticket unbooked
+     *  date create: 10/08/2023
+     * @param idTypeSeat,positionSeat,nameRoute,nameDeparture,nameDestination,pageable
+     * @return Page<Ticket>
+     * @Method searchTicketUnbooked
+     * @author Nhàn NA
+     */
     Page<ITicketUnbookedProjection> searchTicketUnbooked(Long idTypeSeat,String positionSeat,String nameRoute, String nameDeparture,String nameDestination,Pageable pageable);
 }
