@@ -5,10 +5,7 @@ import com.example.air_ticket_booking.service.seat.ITypeSeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,13 +32,5 @@ public class TypeSeatController {
             return new ResponseEntity<>(typeSeat,HttpStatus.OK);
         }
     }
-    /**
-     * create by : SangTDN
-     * @return arr Json TypeSeat , status
-     * Upload data to API
-     */
-    @GetMapping("")
-    public ResponseEntity<List<TypeSeat>> getListSeat(){
-        return new ResponseEntity<>(typeSeatService.getListSeat(), HttpStatus.OK);
-    }
+
 }
