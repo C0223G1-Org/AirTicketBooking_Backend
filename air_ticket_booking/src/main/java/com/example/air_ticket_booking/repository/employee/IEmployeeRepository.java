@@ -43,7 +43,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
                      @Param("image") String image,
                      @Param("telEmployee") String telEmployee,
                      @Param("email") String email,
-                     @Param("account") Account account,
+                     @Param("account") Long accountId,
                      @Param("flagEmployee") boolean flagEmployee
     );
 
@@ -68,7 +68,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
                         @Param("image") String image,
                         @Param("telEmployee") String telEmployee,
                         @Param("email") String email,
-                        @Param("account") Account account,
+                        @Param("account") Long account,
                         @Param("flagEmployee") boolean flagEmployee
     );
 }
