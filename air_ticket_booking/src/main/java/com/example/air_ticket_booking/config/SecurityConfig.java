@@ -1,6 +1,7 @@
 package com.example.air_ticket_booking.config;
 
 
+import com.example.air_ticket_booking.service.account.IAccountService;
 import com.example.air_ticket_booking.service.account.impl.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
