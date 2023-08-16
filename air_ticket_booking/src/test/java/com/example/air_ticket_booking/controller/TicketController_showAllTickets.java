@@ -172,6 +172,7 @@ public class TicketController_showAllTickets {
      * check request format"int,string,string,string,string" is decimal
      * @Method searchTickets
      * date create: 11/08/2023
+      * param idTypeTicket,tên khách hàng,ngày bay,nơi đến
      * input "1,a,a,a,a" page=0
      * @author Nhàn NA
      * @throws Exception
@@ -185,6 +186,7 @@ public class TicketController_showAllTickets {
     /**
      * check request format"string,string,string,string,string" is decimal
      * @Method searchTickets
+     * param idTypeTicket,tên khách hàng,ngày bay,nơi đến
      * input "a,a,a,,",page=0
      * date create: 11/08/2023
      * @author Nhàn NA
@@ -199,6 +201,7 @@ public class TicketController_showAllTickets {
     /**
      * check request String "number,string,string" is decimal
      * @Method searchTickets
+     * param idTypeTicket,tên khách hàng,ngày bay,nơi đến
      * date create: 11/08/2023
      * input item="5,a,a"
      * @author Nhàn NA
@@ -215,6 +218,7 @@ public class TicketController_showAllTickets {
      * @Method searchTickets
      * date create: 11/08/2023
      * out is empty
+     * param idTypeTicket,tên khách hàng,ngày bay,nơi đến
      * input item="5,a,a,a,a" page=4
      * @author Nhàn NA
      * @throws Exception
@@ -226,10 +230,10 @@ public class TicketController_showAllTickets {
                 .andExpect(status().is2xxSuccessful());
     }
     /**
-     * check request String "number,string,string,string" is decimal
      * @Method searchTickets
      * date create: 11/08/2023
      * output data
+     * param idTypeTicket,tên khách hàng,ngày bay,nơi đến
      * input "1,a,a,a," ,page=0
      * @author Nhàn NA
      * @throws Exception
@@ -247,6 +251,7 @@ public class TicketController_showAllTickets {
      * @Method searchTickets
      * date create: 11/08/2023
      * output data
+     * param idTypeTicket,tên khách hàng,ngày bay,nơi đến
      * input "1,a,a,a," ,page=0
      * @author Nhàn NA
      * @throws Exception
@@ -261,14 +266,15 @@ public class TicketController_showAllTickets {
      * check request String "number,string,string" is decimal
      * @Method searchTickets
      * date create: 11/08/2023
+     * param idTypeTicket,tên khách hàng,ngày bay,nơi đến
      * output data
-     * input "1,a,a,a," ,page=10000000000
+     * input "1,,,," ,page=10000000000
      * @author Nhàn NA
      * @throws Exception
      */
     @Test
     public void searchTickets_item_page_35() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/tickets/search/{item}/{page}", ",'','','',''",10000000000L))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/tickets/search/{item}/{page}", "1,'','','',''",10000000000L))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -277,6 +283,7 @@ public class TicketController_showAllTickets {
      * @Method findAllTicketUnbooked
      * date create: 11/08/2023
      * output data
+     * param idTypeTicket,tên ghế,ngày bay,nơi đến
      * input "1,a,a,a," ,page=0
      * @author Nhàn NA
      * @throws Exception
@@ -291,6 +298,7 @@ public class TicketController_showAllTickets {
      * check data ticket unbooked
      * @Method findAllTicketUnbooked
      * date create: 11/08/2023
+     * param idTypeTicket,tên ghế,ngày bay,nơi đến
      * output data
      * input page doesn't exist
      * @author Nhàn NA
@@ -306,6 +314,7 @@ public class TicketController_showAllTickets {
      * check data ticket unbooked
      * @Method findAllTicketUnbooked
      * date create: 11/08/2023
+     * param idTypeTicket,tên ghế,ngày bay,nơi đến
      * output data
      * input page is empty
      * @author Nhàn NA
@@ -321,6 +330,7 @@ public class TicketController_showAllTickets {
      * check data ticket unbooked
      * @Method findAllTicketUnbooked
      * date create: 11/08/2023
+     * param idTypeTicket,tên ghế,ngày bay,nơi đến
      * output data
      * input page larger number
      * @author Nhàn NA
@@ -336,6 +346,7 @@ public class TicketController_showAllTickets {
      * check data ticket unbooked
      * @Method findAllTicketUnbooked
      * date create: 11/08/2023
+     * param idTypeTicket,tên ghế,ngày bay,nơi đến
      * output data
      * input page =0
      * @author Nhàn NA
@@ -355,6 +366,7 @@ public class TicketController_showAllTickets {
      * check indAllTicketUnbooked
      * @Method search unbooked ticket
      * date create: 11/08/2023
+     * param idTypeTicket,tên ghế,ngày bay,nơi đến
      * input page = double
      * @author Nhàn NA
      * @throws Exception
@@ -369,6 +381,7 @@ public class TicketController_showAllTickets {
      * check indAllTicketUnbooked
      * @Method search unbooked ticket
      * date create: 11/08/2023
+     * param idTypeTicket,tên ghế,ngày bay,nơi đến
      * input page = 0 ,item="1,a,a,,"
      * @author Nhàn NA
      * @throws Exception
@@ -382,6 +395,7 @@ public class TicketController_showAllTickets {
     /**
      * check searchTicketsUnBooked
      * @Method search ticket
+     * param idTypeTicket,tên ghế,ngày bay,nơi đến
      * input item="a,a,a,,",page=0
      * date create: 11/08/2023
      * @author Nhàn NA
@@ -396,6 +410,7 @@ public class TicketController_showAllTickets {
     /**
      * check searchTicketsUnBooked
      * @Method search unbooked ticket
+     * param idTypeTicket,tên ghế,ngày bay,nơi đến
      * input item="5,a,a",page=0
      * date create: 11/08/2023
      * @author Nhàn NA
@@ -410,6 +425,7 @@ public class TicketController_showAllTickets {
     /**
      * check searchTicketsUnBooked
      * @Method search unbooked ticket
+     * param idTypeTicket,tên ghế,ngày bay,nơi đến
      * input "5,a,a,a,a",page=4
      * date create: 11/08/2023
      * @author Nhàn NA
@@ -424,6 +440,7 @@ public class TicketController_showAllTickets {
     /**
      * check searchTicketsUnBooked
      * @Method search unbooked ticket
+     * param idTypeTicket,tên ghế,ngày bay,nơi đến
      * input "1,a,a,a,",page=0
      * date create: 11/08/2023
      * @author Nhàn NA
