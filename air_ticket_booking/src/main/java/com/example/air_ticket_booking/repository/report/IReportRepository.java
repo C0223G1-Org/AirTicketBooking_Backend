@@ -19,11 +19,27 @@ public interface IReportRepository extends JpaRepository<Ticket, Long> {
      * @param endDate
      * @return revenue data
      */
-    @Query(value = "SELECT t.date_booking as dateBooking, SUM(t.price_ticket) AS priceTicket\n" +
-            "            FROM ticket as t\n" +
-            "            WHERE t.flag_ticket=false\n" +
-            "            AND t.date_booking BETWEEN :startDate AND :endDate\n" +
-            "            GROUP BY date_booking", nativeQuery = true)
+    @Query(value = "SELECT\n" +
+            "    t.date_booking AS date_booking,\n" +
+            "    SUM(t.price_ticket) AS priceTicket,\n" +
+            "    DAYNAME(t.date_booking) AS date_Booking,\n" +
+            "    CASE\n" +
+            "        WHEN DAYNAME(t.date_booking) = 'Monday' THEN 'Thứ Hai'\n" +
+            "        WHEN DAYNAME(t.date_booking) = 'Tuesday' THEN 'Thứ Ba'\n" +
+            "        WHEN DAYNAME(t.date_booking) = 'Wednesday' THEN 'Thứ Tư'\n" +
+            "        WHEN DAYNAME(t.date_booking) = 'Thursday' THEN 'Thứ Năm'\n" +
+            "        WHEN DAYNAME(t.date_booking) = 'Friday' THEN 'Thứ Sáu'\n" +
+            "        WHEN DAYNAME(t.date_booking) = 'Saturday' THEN 'Thứ Bảy'\n" +
+            "        WHEN DAYNAME(t.date_booking) = 'Sunday' THEN 'Chủ Nhật'\n" +
+            "        ELSE DAYNAME(t.date_booking)\n" +
+            "        END AS dateBooking\n" +
+            "FROM\n" +
+            "    ticket AS t\n" +
+            "WHERE\n" +
+            "        t.flag_ticket = false\n" +
+            "  AND t.date_booking BETWEEN :startDate AND :endDate\n" +
+            "GROUP BY\n" +
+            "    date_booking, dateBooking", nativeQuery = true)
     List<IReport> getWeekRevenue(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
     @Query(value = "   SELECT\n" +
@@ -89,17 +105,17 @@ public interface IReportRepository extends JpaRepository<Ticket, Long> {
      * @return revenue data
      */
     @Query(value = "SELECT\n" +
-            "    t.date_booking AS dateBooking,\n" +
+            "    DATE_FORMAT(t.date_booking, '%Y-%m') AS month,\n" +
             "    SUM(t.price_ticket) AS priceTicket\n" +
             "FROM\n" +
             "    ticket AS t\n" +
             "WHERE\n" +
-            "        t.flag_ticket = false\n" +
-            "  AND (\n" +
+            "    t.flag_ticket = false\n" +
+            "    AND (\n" +
             "        (:startDate IS NULL AND :endDate IS NULL)\n" +
             "        OR (t.date_booking >= :startDate AND t.date_booking <= :endDate)\n" +
             "    )\n" +
             "GROUP BY\n" +
-            "    t.date_booking", nativeQuery = true)
+            "    DATE_FORMAT(t.date_booking, '%Y-%m')", nativeQuery = true)
     List<IReport> getRevenue(@Param("startDate") String startDate, @Param("endDate") String endDate);
 }
