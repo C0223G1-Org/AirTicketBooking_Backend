@@ -133,7 +133,7 @@ public class AccountController {
         boolean check = accountService.checkCode(account);
         try {
             if (check) {
-                return ResponseEntity.ok(account.getUsername());
+                return ResponseEntity.ok(new JwtResponse(account.getUsername()));
             } else {
                 ErrorInfo errorInfo = new ErrorInfo("Xác nhận mã thất bại!!", account.getUsername());
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorInfo);
