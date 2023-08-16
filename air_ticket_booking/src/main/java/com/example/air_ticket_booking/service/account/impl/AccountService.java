@@ -106,6 +106,7 @@ public class AccountService implements UserDetailsService, IAccountService {
 
     /**
      * create by : SangTDN
+     *
      * @param newPass
      * @param idCustomer
      */
@@ -119,7 +120,8 @@ public class AccountService implements UserDetailsService, IAccountService {
         return accountRepository.findAccountById(id);
     }
 
-    private boolean checkExistAccount(String email) {
+    @Override
+    public boolean checkExistAccount(String email) {
         List<Account> accountList = accountRepository.findAllByUsername(email);
         return accountList.size() > 0;
     }
@@ -138,14 +140,19 @@ public class AccountService implements UserDetailsService, IAccountService {
      * @return
      */
     @Override
-    public boolean checkCode(Account account) {
-        Account accountCheck = accountRepository.getByUserNameAndStatusTrue(account.getUsername());
-        if (Objects.equals(account.getVerificationCode(), accountCheck.getVerificationCode())) {
+    public boolean checkCode(AccountDto account) {
+        Account accountCheck = accountRepository.getByUserNameAndStatusTrue(account.getEmailCustomer());
+        boolean check = Objects.equals(account.getVerificationCode(), accountCheck.getVerificationCode());
+        if (account.getCount() <= 3 && check) {
             this.accountRepository.setStatusToFalse(accountCheck.getIdAccount());
             this.accountRepository.setCodeToFalse(accountCheck.getIdAccount());
+            this.customerService.setFlagToFalse(accountCheck.getUsername());
             return true;
+        } else if (account.getCount() >= 3 && !check) {
+            this.accountRepository.setCodeToFalse(accountCheck.getIdAccount());
+            return false;
         }
-        return false;
+        return check;
     }
 
 

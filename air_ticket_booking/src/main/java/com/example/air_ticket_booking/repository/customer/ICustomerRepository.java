@@ -109,9 +109,8 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
      * @Param: id
      * @Return: List<Customer>
      */
-
     @Modifying
-    @Query(nativeQuery = true,value = "select * from customer where email_customer = :email")
+    @Query(nativeQuery = true,value = "select * from customer where email_customer = :email and flag_customer = false")
     List<Customer> findAllByEmailOrIdCard(@Param("email") String email);
 
     /**
@@ -123,13 +122,23 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
      * @Return: void
      */
     @Modifying
-    @org.springframework.transaction.annotation.Transactional
+    @Transactional
     @Query(value = "insert into customer(name_customer,gender_customer, email_customer, date_customer," +
             "id_card_customer, address_customer, flag_customer, img_customer, tel_customer,nationality_customer,account_id_account)" +
             "values (:#{#accountDto.nameCustomer},:#{#accountDto.genderCustomer},:#{#accountDto.emailCustomer},:#{#accountDto.dateCustomer}" +
-            ",:#{#accountDto.idCardCustomer},:#{#accountDto.addressCustomer},:#{#accountDto.flagCustomer},:#{#accountDto.imgCustomer}," +
+            ",:#{#accountDto.idCardCustomer},:#{#accountDto.addressCustomer}, true,:#{#accountDto.imgCustomer}," +
             ":#{#accountDto.telCustomer},:#{#accountDto.nationalityCustomer},:idAccountNew)", nativeQuery = true)
     void createCustomer(@Param("accountDto") AccountDto accountDto, @Param("idAccountNew") Long idAccountNew);
-
+    /**
+     * Create by: NhanDT
+     * Date create: 10/08/2023
+     * Function: get data from service and insert fields of customers into database
+     *
+     * @Param: id
+     * @Return: void
+     */
+    @Modifying
+    @Query(nativeQuery = true,value = "update customer as c set c.flag_customer = false where c.email_customer = :email")
+    void setFlagToFalse(@Param("email") String email);
 }
 

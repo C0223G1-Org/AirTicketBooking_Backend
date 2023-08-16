@@ -17,6 +17,15 @@ public interface IAccountService {
      * @return boolean
      */
     boolean signUp(AccountDto accountDto);
+    /**
+     * Created by: NhanDT
+     * Date created: 10/08/2023
+     * Function: SignUp
+     *
+     * @param email
+     * @return boolean
+     */
+    boolean checkExistAccount(String email);
 
     /**
      * create by : SangTDN
@@ -40,5 +49,5 @@ public interface IAccountService {
      * @param account
      * @return boolean
      */
-    boolean checkCode(Account account);
+    boolean checkCode(AccountDto account);
 }
