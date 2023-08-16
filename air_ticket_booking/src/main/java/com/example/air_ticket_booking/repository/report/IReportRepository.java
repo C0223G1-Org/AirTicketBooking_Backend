@@ -29,7 +29,7 @@ public interface IReportRepository extends JpaRepository<Ticket, Long> {
     @Query(value = "   SELECT\n" +
             "    YEAR(t.date_booking) AS year,\n" +
             "    MONTH(t.date_booking) AS month,\n" +
-            "    FLOOR((DAY(t.date_booking) - 1) / 7) + 1 AS week_number,\n" +
+            "    FLOOR((DAY(t.date_booking) - 1) / 7) + 1 AS dateBooking,\n" +
             "    MIN(t.date_booking) AS week_start,\n" +
             "    MAX(t.date_booking) AS week_end,\n" +
             "    SUM(t.price_ticket) AS priceTicket\n" +
@@ -39,11 +39,44 @@ public interface IReportRepository extends JpaRepository<Ticket, Long> {
             "        t.flag_ticket = false\n" +
             "  AND t.date_booking BETWEEN :startDate AND :endDate\n" +
             "GROUP BY\n" +
-            "    year, month, week_number\n" +
+            "    year, month, dateBooking\n" +
             "ORDER BY\n" +
-            "    year, month, week_number;\n;", nativeQuery = true)
+            "    year, month, dateBooking", nativeQuery = true)
     List<IReport> getMonthRevenue(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
+    @Query(value = "  SELECT\n" +
+            "    YEAR(t.date_booking) AS year,\n" +
+            "    FLOOR((MONTH(t.date_booking) - 1) / 3) + 1 AS dateBooking,\n" +
+            "    MIN(t.date_booking) AS quarter_start,\n" +
+            "    MAX(t.date_booking) AS quarter_end,\n" +
+            "    SUM(t.price_ticket) AS priceTicket\n" +
+            "FROM\n" +
+            "    ticket AS t\n" +
+            "WHERE\n" +
+            "    t.flag_ticket = false\n" +
+            "    AND t.date_booking BETWEEN :startDate AND :endDate\n" +
+            "GROUP BY\n" +
+            "    year, dateBooking\n" +
+            "ORDER BY\n" +
+            "    year, dateBooking;", nativeQuery = true)
+    List<IReport> getQuarterRevenue(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+
+    @Query(value = "  SELECT\n" +
+            "    YEAR(t.date_booking) AS year,\n" +
+            "    MONTH(t.date_booking) AS dateBooking,\n" +
+            "    MIN(t.date_booking) AS month_start,\n" +
+            "    MAX(t.date_booking) AS month_end,\n" +
+            "    SUM(t.price_ticket) AS priceTicket\n" +
+            "FROM\n" +
+            "    ticket AS t\n" +
+            "WHERE\n" +
+            "        t.flag_ticket = false\n" +
+            "  AND t.date_booking BETWEEN :startDate AND :endDate\n" +
+            "GROUP BY\n" +
+            "    year, dateBooking\n" +
+            "ORDER BY\n" +
+            "    year, dateBooking;", nativeQuery = true)
+    List<IReport> getYearRevenue(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
 
     /**

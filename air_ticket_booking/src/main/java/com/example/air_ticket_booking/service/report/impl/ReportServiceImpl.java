@@ -49,21 +49,21 @@ public class ReportServiceImpl implements IReportService {
                 endDate = yearMonth.atEndOfMonth();
                 reports = reportRepository.getMonthRevenue(startDate, endDate);
                 break;
-//            case "quarter":
-//                currentDate = LocalDate.now();
-//                currentYear = currentDate.getYear();
-//                int currentQuarter = currentDate.get(IsoFields.QUARTER_OF_YEAR);
-//                startDate = LocalDate.of(currentYear, Month.of((currentQuarter - 1) * 3 + 1), 1);
-//                endDate = startDate.plusMonths(3).minusDays(1);
-//                reports = reportRepository.getCurrentRevenue(startDate, endDate);
-//                break;
-//            case "year":
-//                currentDate = LocalDate.now();
-//                currentYear = Year.now().getValue();
-//                startDate = YearMonth.of(currentYear, 1).atDay(1);
-//                endDate = YearMonth.of(currentYear, 12).atEndOfMonth();
-//                reports = reportRepository.getCurrentRevenue(startDate, endDate);
-//                break;
+            case "quarter":
+                currentDate = LocalDate.now();
+                currentYear = currentDate.getYear();
+                int currentQuarter = currentDate.get(IsoFields.QUARTER_OF_YEAR);
+                startDate = LocalDate.of(currentYear, Month.of((currentQuarter - 1) * 3 + 1), 1);
+                endDate = startDate.plusMonths(3).minusDays(1);
+                reports = reportRepository.getQuarterRevenue(startDate, endDate);
+                break;
+            case "year":
+                currentDate = LocalDate.now();
+                currentYear = Year.now().getValue();
+                startDate = YearMonth.of(currentYear, 1).atDay(1);
+                endDate = YearMonth.of(currentYear, 12).atEndOfMonth();
+                reports = reportRepository.getYearRevenue(startDate, endDate);
+                break;
             default:
                 reports = new ArrayList<>();
         }
@@ -102,21 +102,21 @@ public class ReportServiceImpl implements IReportService {
                 endDate = yearMonth.atEndOfMonth();
                 reports = reportRepository.getMonthRevenue(startDate, endDate);
                 break;
-//            case "quarter":
-//                currentDate = LocalDate.now();
-//                currentYear = currentDate.getYear();
-//                int currentQuarter = currentDate.get(IsoFields.QUARTER_OF_YEAR);
-//                startDate = LocalDate.of(currentYear, Month.of((currentQuarter - 1) * 3 + 1), 1).minusMonths(3);
-//                endDate = startDate.plusMonths(3).minusDays(1);
-//                reports = reportRepository.getCurrentRevenue(startDate, endDate);
-//                break;
-//            case "year":
-//                currentDate = LocalDate.now();
-//                currentYear = Year.now().getValue() - 1; // Năm trước
-//                startDate = YearMonth.of(currentYear, 1).atDay(1);
-//                endDate = YearMonth.of(currentYear, 12).atEndOfMonth();
-//                reports = reportRepository.getCurrentRevenue(startDate, endDate);
-//                break;
+            case "quarter":
+                currentDate = LocalDate.now();
+                currentYear = currentDate.getYear();
+                int currentQuarter = currentDate.get(IsoFields.QUARTER_OF_YEAR);
+                startDate = LocalDate.of(currentYear, Month.of((currentQuarter - 1) * 3 + 1), 1).minusMonths(3);
+                endDate = startDate.plusMonths(3).minusDays(1);
+                reports = reportRepository.getQuarterRevenue(startDate, endDate);
+                break;
+            case "year":
+                currentDate = LocalDate.now();
+                currentYear = Year.now().getValue() - 1; // Năm trước
+                startDate = YearMonth.of(currentYear, 1).atDay(1);
+                endDate = YearMonth.of(currentYear, 12).atEndOfMonth();
+                reports = reportRepository.getYearRevenue(startDate, endDate);
+                break;
             default:
                  reports = new ArrayList<>();
         }
