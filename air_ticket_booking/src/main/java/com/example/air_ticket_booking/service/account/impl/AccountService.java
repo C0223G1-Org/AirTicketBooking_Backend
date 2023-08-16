@@ -142,15 +142,6 @@ public class AccountService implements UserDetailsService, IAccountService {
         return false;
     }
 
-    @Override
-    public void updatePasswordForCustomer(String newPass, String oldPass, Long idCustomer) {
-
-    }
-
-    @Override
-    public void updatePasswordForEmployee(String newPass, String oldPass, Long idEmployee) {
-
-    }
 
     /**
      * Create by: HungLV
