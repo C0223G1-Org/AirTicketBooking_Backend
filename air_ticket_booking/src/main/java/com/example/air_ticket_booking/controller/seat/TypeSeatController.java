@@ -32,5 +32,14 @@ public class TypeSeatController {
             return new ResponseEntity<>(typeSeat,HttpStatus.OK);
         }
     }
+    @GetMapping("/search/{name}")
+    public ResponseEntity<TypeSeat> findTypeSeatByName(@PathVariable String name){
+        TypeSeat typeSeat = typeSeatService.findTypeSeatByName(name);
+        if (typeSeat==null){
+            return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(typeSeat,HttpStatus.OK);
+        }
+    }
 
 }

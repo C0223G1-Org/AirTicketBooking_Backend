@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61205119-b156-4029-885f-2d65b707e4f5" name="Changes" comment="thai commit code hoàn chỉnh phần top 10 back end ngày 16/8">
+    <list default="true" id="61205119-b156-4029-885f-2d65b707e4f5" name="Changes" comment="Nampc commit BE">
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.bin" afterDir="false" />
@@ -13,16 +14,119 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/com.example.air_ticket_booking.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/com.example.air_ticket_booking.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/employee/EmployeeDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/employee/EmployeeDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/customer/ICustomerRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/customer/ICustomerRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/account/impl/AccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/account/impl/AccountService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/customer/ICustomerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/customer/ICustomerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/customer/impl/CustomerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/customer/impl/CustomerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/service/account/impl/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/service/account/impl/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/air_ticket_booking.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/air_ticket_booking.test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/AirTicketBookingApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/config/JwtTokenUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/config/JwtUserDetails.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/config/JwtUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/account/AccountController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/account/RoleController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/customer/CustomerController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/employee/EmployeeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/luggage/LuggageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/payment/PaymentController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/post/PostController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/report/ReportController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/route/AirCraftController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/route/DepartureController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/route/DestinationController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/route/RouteController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/seat/SeatController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/seat/TypeSeatController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/ticket/TicketController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/ticket/TypeTicketController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/type_passenger/TypePassengerController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/account/AccountChangeDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/account/AccountDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/account/JwtRequestDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/customer/CustomerDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/employee/EmployeeDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/luggage/LuggageDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/post/PostDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/report/IReport.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/route/AirCraftDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/route/DepartureDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/route/DestinationDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/route/RouteDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/seat/SeatDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/seat/TypeSeatDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/ticket/TicketDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/ticket/TypeTicketDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/type_passenger/TypePassengerDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/account/Account.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/account/Role.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/customer/Customer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/employee/Employee.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/luggage/Luggage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/post/Post.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/projection_tdns/RouteProjection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/projection_tdns/SeatProjection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/route/AirCraft.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/route/Departure.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/route/Destination.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/route/Route.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/seat/Seat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/seat/TypeSeat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/ticket/Ticket.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/ticket/TypeTicket.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/type_passenger/TypePassenger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/projection/ITicketProjection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/projection/ITicketUnbookedProjection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/reponse/JwtRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/reponse/JwtResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/account/IAccountRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/account/IRoleRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/customer/ICustomerRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/employee/IEmployeeRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/luggage/ILuggageRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/post/IPostRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/report/IReportRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/route/IAirCraftRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/route/IDepartureRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/route/IDestinationRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/route/IRouteRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/seat/ISeatRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/seat/ITypeSeatRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/ticket/ITicketRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/ticket/ITypeTicketRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/type_passenger/ITypePassengerRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/account/IAccountService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/account/IRoleService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/account/impl/AccountService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/account/impl/RoleService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/customer/ICustomerService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/customer/impl/CustomerService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/employee/IEmployeeService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/employee/impl/EmployeeService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/luggage/ILuggageService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/luggage/impl/LuggageService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/post/IPostService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/report/IReportService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/report/impl/ReportServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/route/IAirCraftService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/route/IDepartureService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/route/IDestinationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/route/IRouteService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/route/impl/AirCraftService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/route/impl/DepartureService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/route/impl/DestinationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/route/impl/RouteService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/seat/ISeatService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/seat/ITypeSeatService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/seat/impl/SeatService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/seat/impl/TypeSeatService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/ticket/ITicketService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/ticket/ITypeTicketService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/ticket/impl/TicketService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/ticket/impl/TypeTicketService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/type_passenger/ITypePassengerService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/service/type_passenger/impl/TypePassengerService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,9 +141,6 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <task path="$PROJECT_DIR$">
-          <activation />
-        </task>
         <projects_view>
           <tree_state>
             <expand />
@@ -56,9 +157,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/repository/account/IAccountRepository.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -77,12 +175,14 @@
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/AirTicketBooking_Backend/air_ticket_booking/src/main/java/com/example/air_ticket_booking/model&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;cf2e3f1bf99913094ccc54139ec18554&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -98,7 +198,7 @@
       <recent name="D:\AirTicketBooking_Backend\air_ticket_booking\src\main\java\com\example\air_ticket_booking\controller" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.AirTicketBookingApplication (1)">
+  <component name="RunManager" selected="Spring Boot.AirTicketBookingApplication">
     <configuration name="PaymentController_getListHistoryPayment" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -120,7 +220,6 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="PaymentController_updateTicketByIdTicket" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -144,7 +243,6 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="PaymentController_updateTicketByIdTicket.updateTicketByIdTicket_success" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -170,19 +268,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="AirTicketBookingApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="com.example.air_ticket_booking.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.air_ticket_booking.AirTicketBookingApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.air_ticket_booking.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AirTicketBookingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="air_ticket_booking.main" />
@@ -191,16 +276,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Gradle.PaymentController_getListHistoryPayment" />
-      <item itemvalue="Gradle.PaymentController_updateTicketByIdTicket" />
-      <item itemvalue="Gradle.PaymentController_updateTicketByIdTicket.updateTicketByIdTicket_success" />
-      <item itemvalue="Spring Boot.AirTicketBookingApplication" />
-      <item itemvalue="Spring Boot.AirTicketBookingApplication (1)" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.AirTicketBookingApplication (1)" />
         <item itemvalue="Gradle.PaymentController_updateTicketByIdTicket" />
         <item itemvalue="Gradle.PaymentController_updateTicketByIdTicket.updateTicketByIdTicket_success" />
         <item itemvalue="Gradle.PaymentController_getListHistoryPayment" />
@@ -217,9 +294,12 @@
       <updated>1691977124050</updated>
       <workItem from="1691977125754" duration="14835000" />
       <workItem from="1692013343244" duration="7908000" />
-      <workItem from="1692062616013" duration="16799000" />
-      <workItem from="1692100271573" duration="10184000" />
-      <workItem from="1692114927594" duration="1123000" />
+      <workItem from="1692062616013" duration="20440000" />
+      <workItem from="1692100244225" duration="7271000" />
+      <workItem from="1692114912912" duration="147000" />
+      <workItem from="1692115743981" duration="572000" />
+      <workItem from="1692148447492" duration="851000" />
+      <workItem from="1692149508552" duration="15095000" />
     </task>
     <task id="LOCAL-00001" summary="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 14/8">
       <option name="closed" value="true" />
@@ -229,33 +309,38 @@
       <option name="project" value="LOCAL" />
       <updated>1692023381118</updated>
     </task>
-    <task id="LOCAL-00002" summary="nhan update 15/8 11:03">
-      <created>1692115459322</created>
+    <task id="LOCAL-00002" summary="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 15/8">
+      <option name="closed" value="true" />
+      <created>1692086454759</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1692115459322</updated>
+      <updated>1692086454759</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Nampc commit BE">
+      <created>1692168877446</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692168877446</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Nampc commit BE">
+      <created>1692175659430</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1692175659430</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 14/8" />
-    <MESSAGE value="nhan update 15/8 11:03" />
-    <option name="LAST_COMMIT_MESSAGE" value="nhan update 15/8 11:03" />
+    <MESSAGE value="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 15/8" />
+    <MESSAGE value="Nampc commit BE" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nampc commit BE" />
   </component>
 </project>

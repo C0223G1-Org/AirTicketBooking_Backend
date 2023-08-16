@@ -23,7 +23,6 @@ import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
 import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
 import com.example.air_ticket_booking.service.ticket.impl.TicketService;
-//import com.sun.tools.javac.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -57,7 +56,8 @@ public class TicketController {
      */
 
     @PostMapping()
-    public ResponseEntity<?> createNewTicket(@RequestBody TicketDto ticketDto, BindingResult bindingResult) {
+    public ResponseEntity<HttpStatus> createNewTicket(@RequestBody TicketDto ticketDto, BindingResult bindingResult) {
+
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
