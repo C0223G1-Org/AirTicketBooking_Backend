@@ -1,17 +1,13 @@
 package com.example.air_ticket_booking.controller.payment;
 
-import com.example.air_ticket_booking.model.customer.Customer;
-import com.example.air_ticket_booking.model.paypal.PayPalResponse;
 import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.service.customer.ICustomerService;
 import com.example.air_ticket_booking.service.seat.ISeatService;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
