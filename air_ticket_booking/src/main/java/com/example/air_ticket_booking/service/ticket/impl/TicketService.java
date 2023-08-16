@@ -4,6 +4,7 @@ package com.example.air_ticket_booking.service.ticket.impl;
 import com.example.air_ticket_booking.dto.ticket.TicketDto;
 import com.example.air_ticket_booking.model.customer.Customer;
 import com.example.air_ticket_booking.model.ticket.Ticket;
+import com.example.air_ticket_booking.model.ticket.TicketSearch;
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
 import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
@@ -207,4 +208,16 @@ public class TicketService implements ITicketService {
             throw new RuntimeException("Lỗi khi truy vấn dữ liệu từ database", e);
         }
     }
+
+    @Override
+    public Page<Ticket> searchAllListPaymentByCustomerById(Long id, Pageable pageable,String departure,String destination) {
+        return ticketRepository.searchAllListPaymentByCustomerById(id,pageable,departure, destination);
+    }
+
+    @Override
+    public void updateTicketByIdTicket(Long id) {
+        ticketRepository.updateTicketByIdTicket(id);
+    }
+
+
 }
