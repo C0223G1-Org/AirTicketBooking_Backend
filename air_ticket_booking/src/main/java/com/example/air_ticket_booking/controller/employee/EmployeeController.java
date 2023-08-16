@@ -1,6 +1,7 @@
 package com.example.air_ticket_booking.controller.employee;
 
 import com.example.air_ticket_booking.dto.employee.EmployeeDto;
+
 import com.example.air_ticket_booking.model.employee.Employee;
 import com.example.air_ticket_booking.service.employee.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,7 @@ public class EmployeeController {
      * @return HttpStatus.NOT_FOUND if result= null else then return employeeDto and HttpStatus.OK
      */
     @GetMapping("/{id}")
-    public ResponseEntity<?> findByIdEmployee(@PathVariable Long id) {
+    public ResponseEntity<Employee> findByIdEmployee(@PathVariable Long id) {
         Employee employee = employeeService.findByyId(id);
         if (employee == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -110,7 +111,7 @@ public class EmployeeController {
      * @return : paginated employee list with limit number of molecules per page.
      */
     @GetMapping("/{page}/{limit}")
-    public ResponseEntity<?> getListEmployee(@PathVariable(value = "page")Integer page, @PathVariable(value = "limit") Integer limit) {
+    public ResponseEntity<Page<Employee>> getListEmployee(@PathVariable(value = "page")Integer page, @PathVariable(value = "limit") Integer limit) {
         Pageable pageable = PageRequest.of(page, limit);
         if (employeeService.findAll(pageable).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -126,7 +127,7 @@ public class EmployeeController {
      * @return : new employee list does not exist newly deleted element.
      */
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
+    public ResponseEntity<String> deleteEmployee(@PathVariable Long id) {
         Employee employee = this.employeeService.findByyId(id);
         if (employee == null) {
             return  new ResponseEntity<>("Không tìm thấy nhân viên" ,HttpStatus.NO_CONTENT);
@@ -148,7 +149,7 @@ public class EmployeeController {
      * @return : The list of new employees matches the parameters passed in.
      */
     @GetMapping("/search")
-    public ResponseEntity<?> searchEmployee(@RequestParam( required = false) Boolean gender,
+    public ResponseEntity<Page<Employee>> searchEmployee(@RequestParam( required = false) Boolean gender,
                                             @RequestParam( required = false) String name,
                                             @RequestParam(required = false) Integer page,
                                             @RequestParam(required = false) Integer size) {
