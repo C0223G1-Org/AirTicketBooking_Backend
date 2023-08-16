@@ -57,6 +57,7 @@ public class TicketController {
 
     @PostMapping()
     public ResponseEntity<HttpStatus> createNewTicket(@RequestBody TicketDto ticketDto, BindingResult bindingResult) {
+
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
