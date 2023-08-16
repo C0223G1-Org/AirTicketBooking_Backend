@@ -114,7 +114,7 @@ public class AccountController {
             return new ResponseEntity<>(bindingResult.getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST);
         }
         if (accountService.signUp(accountDto)) {
-            return ResponseEntity.ok(accountDto.getEmailCustomer());
+            return ResponseEntity.ok(new JwtResponse(accountDto.getEmailCustomer()));
         }
 //        String encoderPassword = passwordEncoder.encode(accountDto.getPassword());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Đăng ký tài khoản không thành công");
