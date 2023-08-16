@@ -7,7 +7,7 @@ import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.service.customer.ICustomerService;
 import com.example.air_ticket_booking.service.seat.ISeatService;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
-import com.google.gson.Gson;
+//import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
