@@ -179,14 +179,6 @@ public class CustomerController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<?> getCustomerById(@PathVariable Long id ){
-//        Customer customer = customerService.findCustomerById(id);
-//        if(customer==null){
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        return new ResponseEntity<>(customer, HttpStatus.OK);
-//    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
