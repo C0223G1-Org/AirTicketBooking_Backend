@@ -8,7 +8,7 @@ public class TypeSeat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTypeSeat;
     private String nameTypeSeat;
-    private Long priceExtra;
+    private double priceExtra;
 
     public TypeSeat() {
     }
@@ -35,11 +35,11 @@ public class TypeSeat {
         this.nameTypeSeat = nameTypeSeat;
     }
 
-    public Long getPriceExtra() {
+    public double getPriceExtra() {
         return priceExtra;
     }
 
-    public void setPriceExtra(Long priceExtra) {
+    public void setPriceExtra(double priceExtra) {
         this.priceExtra = priceExtra;
     }
 }

@@ -9,6 +9,10 @@ public class Account {
     private Long idAccount;
     private String username;
     private String password;
+    @Column(name = "verification_code")
+    private Integer verificationCode;
+    @Column(name = "status_delete")
+    private Integer statusDelete;
     @ManyToOne
     private Role role;
 
@@ -19,6 +23,15 @@ public class Account {
         this.idAccount = idAccount;
         this.username = username;
         this.password = password;
+        this.role = role;
+    }
+
+    public Account(Long idAccount, String username, String password, Integer verificationCode, Integer statusDelete, Role role) {
+        this.idAccount = idAccount;
+        this.username = username;
+        this.password = password;
+        this.verificationCode = verificationCode;
+        this.statusDelete = statusDelete;
         this.role = role;
     }
 
@@ -52,5 +65,21 @@ public class Account {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Integer getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(Integer verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
+    public Integer getStatusDelete() {
+        return statusDelete;
+    }
+
+    public void setStatusDelete(Integer statusDelete) {
+        this.statusDelete = statusDelete;
     }
 }

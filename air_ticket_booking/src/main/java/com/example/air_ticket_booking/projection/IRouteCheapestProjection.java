@@ -19,4 +19,5 @@ public interface IRouteCheapestProjection {
     String getNameDeparture();
 
     String getNameAirCraft();
+    String getImageDestination();
 }
