@@ -87,7 +87,7 @@ public class AccountService implements UserDetailsService, IAccountService {
         Random random = new Random();
         int randomNumber = random.nextInt(900000) + 100000;
         this.accountRepository.saveAccount(accountDto.getEmailCustomer(), encoderPassword, randomNumber);
-        this.emailService.sendMail(email, "Mã xác nhận đăng ký", "Chào bạn, mã xác nhận đăng ký tài khoản của bạn là: \n " + randomNumber + "." +
+        this.emailService.sendMail(email, "Mã xác nhận đăng ký", "Chào bạn, mã xác nhận đăng ký tài khoản của bạn là: \n " + randomNumber +
                 "\n" +
                 "\n" +
                 "\n" +
