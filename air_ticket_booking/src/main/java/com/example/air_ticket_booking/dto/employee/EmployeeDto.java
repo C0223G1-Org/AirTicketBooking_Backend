@@ -28,8 +28,8 @@ public class EmployeeDto {
     private boolean gender;
     @Size(min = 10, message = "Bạn cần nhập tối thiểu 10 ký tự")
     @Size(max = 50, message = "Bạn nhập quá 20 ký tự. Vui lòng kiểm tra lại")
-    @NotBlank(message = "Email không được để trống.")
-    @Email(message = "Email không đúng định dạng")
+    @NotBlank(message = "EmailService không được để trống.")
+    @Email(message = "EmailService không đúng định dạng")
     private String emailEmployee;
     private Account account;
 

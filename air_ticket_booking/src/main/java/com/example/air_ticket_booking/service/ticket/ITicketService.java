@@ -1,6 +1,7 @@
 package com.example.air_ticket_booking.service.ticket;
 
 import com.example.air_ticket_booking.model.ticket.Ticket;
+import com.example.air_ticket_booking.model.ticket.TicketSearch;
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
 import org.springframework.data.domain.Page;
@@ -78,7 +79,7 @@ public interface ITicketService {
      * @Method searchTicket
      * @author Nhàn NA
      */
-    Page<ITicketProjection> searchTicket(Long idTypeTicket,String namePassenger, String nameRoute,  String nameDeparture, String nameDestination, Pageable pageable);
+    Page<ITicketProjection> searchTicket(TicketSearch ticketSearch, Pageable pageable);
     /**
      * task get all ticket unbooked
      *  date create: 10/08/2023
@@ -96,7 +97,7 @@ public interface ITicketService {
      * @Method searchTicketUnbooked
      * @author Nhàn NA
      */
-    Page<ITicketUnbookedProjection> searchTicketUnbooked(Long idTypeSeat,String positionSeat,String nameRoute, String nameDeparture,String nameDestination,Pageable pageable);
+    Page<ITicketUnbookedProjection> searchTicketUnbooked(TicketSearch ticketSearch,Pageable pageable);
 
     /**
      *Create by: ThanhVh
