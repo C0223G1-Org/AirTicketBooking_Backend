@@ -8,24 +8,37 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface IAccountService {
-    boolean signUp(AccountDto accountDto);
     /**
-     * create by : SangTDN
-     * @param newPass
-     * @param oldPass
-     * @param idCustomer
-     * @Return void
+     * Created by: NhanDT
+     * Date created: 10/08/2023
+     * Function: SignUp
+     *
+     * @param accountDto
+     * @return boolean
      */
-    void updatePasswordForCustomer (String newPass,String oldPass,Long idCustomer);
+    boolean signUp(AccountDto accountDto);
 
     /**
      * create by : SangTDN
      * @param newPass
-     * @param oldPass
-     * @param idEmployee
+     * @param idCustomer
      * @Return void
      */
-    void updatePasswordForEmployee (String newPass,String oldPass,Long idEmployee);
+    void updatePasswordForId(String newPass,Long idCustomer);
+
+    Account findAccountById (Long id);
     List<Account> getList();
+
     void saveAccount(Account account);
+
+
+    /**
+     * Created by: NhanDT
+     * Date created: 14/08/2023
+     * Function: SignUp
+     *
+     * @param account
+     * @return boolean
+     */
+    boolean checkCode(Account account);
 }

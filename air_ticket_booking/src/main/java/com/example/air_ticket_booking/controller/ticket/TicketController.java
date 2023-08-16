@@ -23,7 +23,6 @@ import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
 import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
 import com.example.air_ticket_booking.service.ticket.impl.TicketService;
-//import com.sun.tools.javac.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -57,7 +56,8 @@ public class TicketController {
      */
 
     @PostMapping()
-    public ResponseEntity<?> createNewTicket(@RequestBody TicketDto ticketDto, BindingResult bindingResult) {
+    public ResponseEntity<HttpStatus> createNewTicket(@RequestBody TicketDto ticketDto, BindingResult bindingResult) {
+
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -201,7 +201,8 @@ public class TicketController {
         Pageable pageable = PageRequest.of(page,5);
         System.out.println(ticketSearch.getSeatCode());
         System.out.println(ticketSearch.getDeparture());
-        if(iTicketService.searchTicket(ticketSearch,pageable).isEmpty()){
+        if(iTicketService.searchTicket(ticketSearch,pageable).getContent().isEmpty()){
+
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         else {
@@ -234,23 +235,23 @@ public class TicketController {
      * task response search unbooked tickets   data to FE
      * @Method findAllTicketUnbooked
      * date create: 10/08/2023
-     * @param item,page
+     * @param
      * @return HttpStatus and Page<Ticket>
      * @author Nhàn NA
      */
-    @GetMapping("/search-unbooked/{item}/{page}")
-    public ResponseEntity<Page<ITicketUnbookedProjection>> searchTicketsUnBooked(@PathVariable("item") String item, @PathVariable("page") int page){
-        String[] input = item.split(",", -1);
-        Pageable pageable= PageRequest.of(page,5);
+    @GetMapping("/search-unbooked/{page}")
+    public ResponseEntity<Page<ITicketUnbookedProjection>> searchTicketsUnBooked(@ModelAttribute TicketSearch ticketSearch, @PathVariable("page") int page){
+        System.out.println("nhan");
         String idString= String.valueOf(page);
-        if(page<0||!idString.matches("^[0-9]{1,8}$")||!input[0].matches("^[0-9]{1,8}$")){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        if(iTicketService.searchTicketUnbooked(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable).isEmpty()){
+        Pageable pageable = PageRequest.of(page,5);
+        System.out.println(ticketSearch.getSeatCode());
+        System.out.println(ticketSearch.getDeparture());
+        if(iTicketService.searchTicketUnbooked(ticketSearch,pageable).getContent().isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         else {
-            return new ResponseEntity<>(iTicketService.searchTicketUnbooked(Long.valueOf(input[0]),input[1],input[2],input[3],input[4],pageable),HttpStatus.OK);
+            System.out.println(iTicketService.searchTicketUnbooked(ticketSearch,pageable).getContent().get(0).getNameRoute());
+            return new ResponseEntity<>(iTicketService.searchTicketUnbooked(ticketSearch,pageable),HttpStatus.OK);
         }
     }
 }

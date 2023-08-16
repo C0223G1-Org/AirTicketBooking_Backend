@@ -44,6 +44,11 @@ public class TicketSearch {
         this.idSearch = idSearch;
     }
 
+    public TicketSearch(String routeCode, String chairCode) {
+        this.routeCode = routeCode;
+        this.chairCode = chairCode;
+    }
+
     public TicketSearch(String departure, String departureDate, String routeCode, int idSearch) {
         this.departure = departure;
         this.departureDate = departureDate;

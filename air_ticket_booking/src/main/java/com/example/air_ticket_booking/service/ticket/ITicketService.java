@@ -97,7 +97,7 @@ public interface ITicketService {
      * @Method searchTicketUnbooked
      * @author Nhàn NA
      */
-    Page<ITicketUnbookedProjection> searchTicketUnbooked(Long idTypeSeat,String positionSeat,String nameRoute, String nameDeparture,String nameDestination,Pageable pageable);
+    Page<ITicketUnbookedProjection> searchTicketUnbooked(TicketSearch ticketSearch,Pageable pageable);
 
     /**
      *Create by: ThanhVh
@@ -109,4 +109,6 @@ public interface ITicketService {
     Page<Ticket> searchAllListPaymentByCustomerById(Long id, Pageable pageable, String departure, String destination);
 
     void updateTicketByIdTicket(Long id);
+
+
 }

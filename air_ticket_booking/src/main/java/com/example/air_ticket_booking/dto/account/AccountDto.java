@@ -25,7 +25,6 @@ public class AccountDto implements Validator {
     @NotBlank(message = "Không được để trống trường này")
     @Pattern(regexp = "^(\\+84|0)[1-9][0-9]{8}$", message = "Nhập theo định dạng +84xxxxxxxxx hoặc 0xxxxxxxxx với x là ký tự số")
     private String telCustomer;
-    @NotBlank(message = "Không được để trống trường này")
     private String addressCustomer;
 
     private String imgCustomer;
@@ -35,13 +34,13 @@ public class AccountDto implements Validator {
     @Pattern(regexp = "^([A-Z][0-9]{6,12})|([0-9]{12})$", message = "Nhập theo định dạng (7 ký tự đối với hộ chiếu và 12 ký tự đối với CCCD)")
     private String idCardCustomer;
     @NotBlank(message = "Không được để trống trường này")
-
     private String dateCustomer;
     private Boolean flagCustomer = false;
     @NotBlank(message = "Không được để trống trường này")
     @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9]).{8,20}$", message = "Mật khẩu phải từ 8 ký tự và ít hơn 20 ký tự, có chứa ký ự in hoa và ký tự số")
 //    @Size(min = 8, max = 20, message = "Mật khẩu phải từ 8 ký tự và ít hơn 20 ký tự")
     private String password;
+    private String passwordAgain;
 
     public AccountDto(String nameCustomer, Boolean genderCustomer, String emailCustomer, String telCustomer, String addressCustomer, String imgCustomer, String nationalityCustomer, String idCardCustomer, String dateCustomer, Boolean flagCustomer, String password) {
 
@@ -56,6 +55,29 @@ public class AccountDto implements Validator {
         this.dateCustomer = dateCustomer;
         this.flagCustomer = flagCustomer;
         this.password = password;
+    }
+
+    public AccountDto(String nameCustomer, Boolean genderCustomer, String emailCustomer, String telCustomer, String addressCustomer, String imgCustomer, String nationalityCustomer, String idCardCustomer, String dateCustomer, Boolean flagCustomer, String password, String passwordAgain) {
+        this.nameCustomer = nameCustomer;
+        this.genderCustomer = genderCustomer;
+        this.emailCustomer = emailCustomer;
+        this.telCustomer = telCustomer;
+        this.addressCustomer = addressCustomer;
+        this.imgCustomer = imgCustomer;
+        this.nationalityCustomer = nationalityCustomer;
+        this.idCardCustomer = idCardCustomer;
+        this.dateCustomer = dateCustomer;
+        this.flagCustomer = flagCustomer;
+        this.password = password;
+        this.passwordAgain = passwordAgain;
+    }
+
+    public String getPasswordAgain() {
+        return passwordAgain;
+    }
+
+    public void setPasswordAgain(String passwordAgain) {
+        this.passwordAgain = passwordAgain;
     }
 
     public AccountDto() {
@@ -162,24 +184,24 @@ public class AccountDto implements Validator {
      * @param target
      * @return errors
      */
-    @Override
-    public void validate(Object target, Errors errors) {
-
-        AccountDto accountDto = (AccountDto) target;
-        String date = accountDto.getDateCustomer();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        try{
-            LocalDate currentDate = LocalDate.now();
-            LocalDate birthday = LocalDate.parse(date, formatter);
-            Period age = Period.between(birthday, currentDate);
-            int years = age.getYears();
-            if (years < 18 || years > 150) {
-                errors.rejectValue("dateCustomer", "", "Khách hàng phải trên 18 tuổi và nh hơn 150 tuổi");
-            }
-        }catch (DateTimeParseException e){
-            errors.rejectValue("dateCustomer", "","Định dạng ngày không hợp lệ, vui lòng kiểm tra lại");
-
-        }
+//    @Override
+//    public void validate(Object target, Errors errors) {
+//
+//        AccountDto accountDto = (AccountDto) target;
+//        String date = accountDto.getDateCustomer();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        try{
+//            LocalDate currentDate = LocalDate.now();
+//            LocalDate birthday = LocalDate.parse(date, formatter);
+//            Period age = Period.between(birthday, currentDate);
+//            int years = age.getYears();
+//            if (years < 18 || years > 150) {
+//                errors.rejectValue("dateCustomer", "", "Khách hàng phải trên 18 tuổi và nh hơn 150 tuổi");
+//            }
+//        }catch (DateTimeParseException e){
+//            errors.rejectValue("dateCustomer", "","Định dạng ngày không hợp lệ, vui lòng kiểm tra lại");
+//
+//        }
 
 
 //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -193,6 +215,28 @@ public class AccountDto implements Validator {
 //        } catch (DateTimeParseException e) {
 //            errors.rejectValue("birthDay", "","Định dạng ngày không hợp lệ, vui lòng kiểm tra lại");
 //        }
+//    }
+    @Override
+    public void validate(Object target, Errors errors) {
+
+        try {
+            AccountDto customerDto = (AccountDto) target;
+            String date = customerDto.dateCustomer;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate dateOfBirth = LocalDate.parse(date, formatter);
+            LocalDate today = LocalDate.now();
+            Period period = Period.between(dateOfBirth, today);
+            if (period.getYears() < 18 || period.getYears() > 150) {
+                errors.rejectValue("dateCustomer", "dateCustomer", "Khách hàng phải trên 18 tuổi và dưới 150 tuổi");
+            } else if (period.getYears() == 18) {
+                if (period.getMonths() < 0 || period.getDays() < 0) {
+                    errors.rejectValue("dateCustomer", "dateCustomer", "Khách hàng phải trên 18 tuổi và dưới 150 tuổi");
+                }
+            }
+        } catch (DateTimeParseException e) {
+//            e.printStackTrace();
+            errors.rejectValue("dateCustomer", "dateCustomer", "Không đúng định dạng dd/MM/yyyy");
+        }
     }
 
     public static void main(String[] args) {
