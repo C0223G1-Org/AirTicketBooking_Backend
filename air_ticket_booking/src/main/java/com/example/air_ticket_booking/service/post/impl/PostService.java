@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class PostService implements IPostService {
@@ -22,6 +21,7 @@ public class PostService implements IPostService {
      * Author: SonTT
      * Date create: 10/8/2023
      * Handling: Get data from link, call repository corresponding to return data
+     *
      * @param pageable
      * @return Page<Post>
      */
@@ -53,8 +53,6 @@ public class PostService implements IPostService {
     }
 
 
-
-
     /**
      * Create by : TriPD
      * Date created : 10/08/2023
@@ -67,9 +65,6 @@ public class PostService implements IPostService {
     public Post findPostsById(Long id) {
         return iPostRepository.findPostsById(id);
     }
-
-
-
 
 
     /**
@@ -107,11 +102,7 @@ public class PostService implements IPostService {
      * @return Post
      */
     public Post findPostById(Long id) {
-        if (!iPostRepository.findPostById(id).isPresent()) {
-            return null;
-        } else {
-            return iPostRepository.findPostById(id).get();
-        }
+        return iPostRepository.findPostById(id).orElse(null);
     }
 
     /**

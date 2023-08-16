@@ -139,11 +139,33 @@ public class TicketService implements ITicketService {
     @Override
     public Page<ITicketProjection> searchTicket(TicketSearch ticketSearch, Pageable pageable) {
         if(ticketSearch.getIdSearch()==1){
+//            int typeTicket, String departure, String destination, String departureDate, String destinationDate, String passenger, int idSearch
+            if(ticketSearch.getDeparture()==null){
+                ticketSearch.setDeparture("");
+            }
+            if(ticketSearch.getDestination()==null){
+                ticketSearch.setDestination("");
+            }
+            if(ticketSearch.getPassenger()==null){
+                ticketSearch.setPassenger("");
+            }
             return ticketRepository.searchTicket(ticketSearch,pageable);
         }else if(ticketSearch.getIdSearch()==2){
+//            String passenger, String chairCode, int idSearch
+            if(ticketSearch.getPassenger()==null){
+                ticketSearch.setPassenger("");
+            }
+            if(ticketSearch.getChairCode()==null){
+                ticketSearch.setChairCode("");
+            }
             System.out.println(ticketRepository.searchSeatPosition(ticketSearch,pageable).getContent().size());
             return ticketRepository.searchSeatPosition(ticketSearch,pageable);
         }else if(ticketSearch.getIdSearch()==3){
+//            String departure, String departureDate, String routeCode, int idSearch
+            if(ticketSearch.getRouteCode()==null){
+                ticketSearch.setRouteCode("");
+            }
+            System.out.println(ticketSearch.getRouteCode());
             return ticketRepository.searchRouteTicket(ticketSearch,pageable);
         }else {
             return null;
@@ -171,15 +193,21 @@ public class TicketService implements ITicketService {
     /**
      * task search ticket unbooked
      *  date create: 10/08/2023
-     * @param idTypeSeat,positionSeat,nameRoute,nameDeparture,nameDestination,pageable
+     * @param
      * @return Page<Ticket>
      * @Method searchTicketUnbooked
      * @author Nhàn NA
      */
     @Override
-    public Page<ITicketUnbookedProjection> searchTicketUnbooked(Long idTypeSeat, String positionSeat, String nameRoute, String nameDeparture, String nameDestination, Pageable pageable) {
+    public Page<ITicketUnbookedProjection> searchTicketUnbooked(TicketSearch ticketSearch, Pageable pageable) {
         try {
-            return ticketRepository.searchTicketUnbooked(idTypeSeat, positionSeat, nameRoute, nameDeparture, nameDestination, pageable);
+            if(ticketSearch.getChairCode()==null){
+                ticketSearch.setChairCode("");
+            }
+            if(ticketSearch.getRouteCode()==null){
+                ticketSearch.setRouteCode("");
+            }
+            return ticketRepository.searchTicketUnbooked(ticketSearch, pageable);
 
         } catch (Exception e) {
             e.printStackTrace();
