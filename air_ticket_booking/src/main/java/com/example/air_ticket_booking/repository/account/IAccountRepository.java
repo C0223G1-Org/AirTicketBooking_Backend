@@ -107,4 +107,19 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
     @Transactional
     @Query(nativeQuery = true, value = "update account as a set a.verification_code = 0 where a.id_account = :id")
     void setCodeToFalse(@Param("id") Long id);
+
+    @Query(nativeQuery = true, value = "insert into account(username, password, role_id_role) values (:email, :password, 3)")
+    void saveAccount(@Param("email") String email, @Param("password") String password);
+
+
+
+    @Modifying
+    @Transactional
+    @Query(nativeQuery = true, value = "insert into account(username, password, role_id_role) values (:#{#account.username}, :#{#account.password}, 1)")
+    void saveAccountCustomer(Account account);
+
+    @Modifying
+    @Transactional
+    @Query(value = "select * from account",nativeQuery = true)
+    List<Account> getListAccount();
 }

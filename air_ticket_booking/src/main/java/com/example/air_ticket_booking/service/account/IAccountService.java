@@ -20,7 +20,6 @@ public interface IAccountService {
 
     /**
      * create by : SangTDN
-     *
      * @param newPass
      * @param idCustomer
      * @Return void
@@ -28,17 +27,6 @@ public interface IAccountService {
     void updatePasswordForId(String newPass,Long idCustomer);
 
     Account findAccountById (Long id);
-
-    /**
-     * create by : SangTDN
-     *
-     * @param newPass
-     * @param oldPass
-     * @param idEmployee
-     * @Return void
-     */
-    void updatePasswordForEmployee(String newPass, String oldPass, Long idEmployee);
-
     List<Account> getList();
 
     void saveAccount(Account account);

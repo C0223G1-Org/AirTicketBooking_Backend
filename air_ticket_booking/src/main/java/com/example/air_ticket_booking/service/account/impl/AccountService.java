@@ -152,12 +152,27 @@ public class AccountService implements UserDetailsService, IAccountService {
 
     }
 
-
+    /**
+     * Create by: HungLV
+     * Date create: 14/08/2023
+     * Function:get List Account from database
+     *
+     * @Param: none
+     * @Return: List<Account>
+     */
     @Override
     public List<Account> getList() {
         return accountRepository.findAll();
     }
 
+    /**
+     * Create by: HungLV
+     * Date create: 14/08/2023
+     * Function:save Account Customer into database
+     *
+     * @Param: account
+     * @Return: void
+     */
     @Override
     public void saveAccount(Account account) {
         accountRepository.save(account);
