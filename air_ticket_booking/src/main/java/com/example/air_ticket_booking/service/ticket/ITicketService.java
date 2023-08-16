@@ -109,4 +109,6 @@ public interface ITicketService {
     Page<Ticket> searchAllListPaymentByCustomerById(Long id, Pageable pageable, String departure, String destination);
 
     void updateTicketByIdTicket(Long id);
+
+    Ticket findTicketPayment(Long id);
 }

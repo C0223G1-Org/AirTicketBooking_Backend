@@ -1,5 +1,6 @@
 package com.example.air_ticket_booking.controller.route;
 
+import com.example.air_ticket_booking.model.route.Destination;
 import com.example.air_ticket_booking.service.route.IDestinationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -23,8 +26,8 @@ public class DestinationController {
      * @return ResponseEntity
      */
     @GetMapping()
-    public ResponseEntity<?> findAll() {
-        if (destinationService.getAll().size() == 0) {
+    public ResponseEntity<List<Destination>> findAll() {
+        if (destinationService.getAll().isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(destinationService.getAll(), HttpStatus.OK);
