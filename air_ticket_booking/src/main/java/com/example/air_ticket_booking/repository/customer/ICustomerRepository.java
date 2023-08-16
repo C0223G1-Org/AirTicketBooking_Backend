@@ -131,5 +131,17 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
             ":#{#accountDto.telCustomer},:#{#accountDto.nationalityCustomer},:idAccountNew)", nativeQuery = true)
     void createCustomer(@Param("accountDto") AccountDto accountDto, @Param("idAccountNew") Long idAccountNew);
 
+    /**
+     * Create by: NhanDT
+     * Date create: 10/08/2023
+     * Function: get email from service and get all fields of customer
+     *
+     * @Param: id
+     * @Return: List<Customer>
+     */
+
+    @Modifying
+    @Query(nativeQuery = true,value = "select * from customer where email_customer = :email")
+    List<Customer> findAllByEmailOrIdCard(@Param("email") String email);
 }
 

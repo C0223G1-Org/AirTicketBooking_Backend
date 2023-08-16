@@ -122,4 +122,5 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
     @Transactional
     @Query(value = "select * from account",nativeQuery = true)
     List<Account> getListAccount();
+
 }

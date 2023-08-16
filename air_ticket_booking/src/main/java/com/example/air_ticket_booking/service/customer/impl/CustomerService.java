@@ -111,5 +111,18 @@ public class CustomerService implements ICustomerService {
     public void createCustomer(AccountDto accountDto, Long idAccountNew) {
         this.customerRepository.createCustomer(accountDto, idAccountNew);
     }
+
+    /**
+     * Create by: NhanDT
+     * Date create: 10/08/2023
+     * Function: declare function for use
+     *
+     * @Param: id
+     * @Return: List<Customer>
+     */
+    @Override
+    public List<Customer> findAllByEmailOrIdCard(String email) {
+        return customerRepository.findAllByEmailOrIdCard(email);
+    }
 }
 

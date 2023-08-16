@@ -83,4 +83,14 @@ public interface ICustomerService {
      * @Return: List<Customer>
      */
     void createCustomer(AccountDto accountDto, Long idAccountNew);
+
+    /**
+     * Create by: NhanDT
+     * Date create: 10/08/2023
+     * Function: declare function for use
+     *
+     * @Param: id
+     * @Return: List<Customer>
+     */
+    List<Customer> findAllByEmailOrIdCard(String email);
 }
