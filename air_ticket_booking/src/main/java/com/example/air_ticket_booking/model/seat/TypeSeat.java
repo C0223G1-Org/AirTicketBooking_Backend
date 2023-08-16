@@ -13,7 +13,7 @@ public class TypeSeat {
     public TypeSeat() {
     }
 
-    public TypeSeat(Long idTypeSeat, String nameTypeSeat, Long priceExtra) {
+    public TypeSeat(Long idTypeSeat, String nameTypeSeat, double priceExtra) {
         this.idTypeSeat = idTypeSeat;
         this.nameTypeSeat = nameTypeSeat;
         this.priceExtra = priceExtra;

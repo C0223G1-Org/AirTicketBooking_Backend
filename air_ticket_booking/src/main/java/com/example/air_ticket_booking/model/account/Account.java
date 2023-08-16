@@ -11,12 +11,17 @@ public class Account {
     private String password;
     @Column(name = "verification_code")
     private Integer verificationCode;
-    @Column(name = "status_delete")
-    private Integer statusDelete;
     @ManyToOne
     private Role role;
+    @Column(name = "status_delete")
+    private Integer statusDelete;
 
     public Account() {
+    }
+
+    public Account(String username, Integer verificationCode) {
+        this.username = username;
+        this.verificationCode = verificationCode;
     }
 
     public Account(Long idAccount, String username, String password, Role role) {
@@ -26,13 +31,37 @@ public class Account {
         this.role = role;
     }
 
-    public Account(Long idAccount, String username, String password, Integer verificationCode, Integer statusDelete, Role role) {
+    public Account(Long idAccount, String username, String password, Integer verificationCode, Role role) {
         this.idAccount = idAccount;
         this.username = username;
         this.password = password;
         this.verificationCode = verificationCode;
-        this.statusDelete = statusDelete;
         this.role = role;
+    }
+
+    public Account(Long idAccount, String username, String password, Integer verificationCode, Role role, Integer statusDelete) {
+        this.idAccount = idAccount;
+        this.username = username;
+        this.password = password;
+        this.verificationCode = verificationCode;
+        this.role = role;
+        this.statusDelete = statusDelete;
+    }
+
+    public Integer getStatusDelete() {
+        return statusDelete;
+    }
+
+    public void setStatusDelete(Integer statusDelete) {
+        this.statusDelete = statusDelete;
+    }
+
+    public Integer getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(Integer verificationCode) {
+        this.verificationCode = verificationCode;
     }
 
     public Long getIdAccount() {
@@ -65,21 +94,5 @@ public class Account {
 
     public void setRole(Role role) {
         this.role = role;
-    }
-
-    public Integer getVerificationCode() {
-        return verificationCode;
-    }
-
-    public void setVerificationCode(Integer verificationCode) {
-        this.verificationCode = verificationCode;
-    }
-
-    public Integer getStatusDelete() {
-        return statusDelete;
-    }
-
-    public void setStatusDelete(Integer statusDelete) {
-        this.statusDelete = statusDelete;
     }
 }

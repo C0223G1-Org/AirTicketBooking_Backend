@@ -34,7 +34,7 @@ public class AccountController_login {
     public void loginAuthentication_username_13() throws Exception {
         JwtRequest jwtRequest = new JwtRequest();
         jwtRequest.setUsername(null);
-        jwtRequest.setPassword("123");
+        jwtRequest.setPassword("12345678A");
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/account/login")
@@ -54,7 +54,7 @@ public class AccountController_login {
     public void loginAuthentication_username_14() throws Exception {
         JwtRequest jwtRequest = new JwtRequest();
         jwtRequest.setUsername("");
-        jwtRequest.setPassword("123");
+        jwtRequest.setPassword("12345678A");
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/account/login")
@@ -73,7 +73,7 @@ public class AccountController_login {
     @Test
     public void loginAuthentication_password_13() throws Exception {
         JwtRequest jwtRequest = new JwtRequest();
-        jwtRequest.setUsername("nhan1@123");
+        jwtRequest.setUsername("nhan1@123.com");
         jwtRequest.setPassword(null);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
@@ -93,7 +93,7 @@ public class AccountController_login {
     @Test
     public void loginAuthentication_password_14() throws Exception {
         JwtRequest jwtRequest = new JwtRequest();
-        jwtRequest.setUsername("nhan1@123");
+        jwtRequest.setUsername("nhan1@123.com");
         jwtRequest.setPassword("");
         this.mockMvc
                 .perform(MockMvcRequestBuilders
@@ -113,8 +113,21 @@ public class AccountController_login {
     @Test
     public void loginAuthentication_username_password_18() throws Exception {
         JwtRequest jwtRequest = new JwtRequest();
-        jwtRequest.setUsername("nhan1@123");
-        jwtRequest.setPassword("123");
+        jwtRequest.setUsername("khang10@gmail.com");
+        jwtRequest.setPassword("12345678A");
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .post("/api/account/login")
+                        .content(this.objectMapper.writeValueAsString(jwtRequest))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+    }
+@Test
+    public void loginAuthentication_username_password_fail_18() throws Exception {
+        JwtRequest jwtRequest = new JwtRequest();
+        jwtRequest.setUsername("khang10@gmail.com");
+        jwtRequest.setPassword("12345678A");
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/account/login")
