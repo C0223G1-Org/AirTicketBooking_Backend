@@ -1,0 +1,48 @@
+Index: src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring.datasource.driver-class-name=com.mysql.jdbc.Driver\r\nspring.datasource.url=jdbc:mysql://localhost:3306/air_ticket_booking?createDatabaseIfNotExist=true\r\nspring.datasource.username=root\r\nspring.datasource.password=codegym\r\nspring.jpa.database-platform=org.hibernate.dialect.MySQL5Dialect\r\nspring.jpa.show-sql=true\r\nspring.jpa.hibernate.ddl-auto=create\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/src/main/resources/application.properties b/src/main/resources/application.properties
+--- a/src/main/resources/application.properties	(revision efbd4fdfe3c5de636ed7bb2b6e2aa2c78a44fb17)
++++ b/src/main/resources/application.properties	(date 1691977295987)
+@@ -4,4 +4,6 @@
+ spring.datasource.password=codegym
+ spring.jpa.database-platform=org.hibernate.dialect.MySQL5Dialect
+ spring.jpa.show-sql=true
+-spring.jpa.hibernate.ddl-auto=create
++spring.jpa.hibernate.ddl-auto=update
++paypal.client.id=AdMVmlo2QWJz0XJfXFVBktkyEQS7gKciL78WIKx-cjzaYOT2bjY_sBYMnu7mFwbNzQMppmeAZinA0KA0
++paypal.client.secret=EBz8DdIk59Uk3Zn_OjVoOdW3eDx9itK2AVUJUwIdD2Boaupmo7xLm7R3Is8XH0wDmIDMrVQa4-LiA8mX
+\ No newline at end of file
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'java'\r\n    id 'org.springframework.boot' version '2.7.14'\r\n    id 'io.spring.dependency-management' version '1.0.15.RELEASE'\r\n}\r\n\r\ngroup = 'com.example'\r\nversion = '0.0.1-SNAPSHOT'\r\n\r\njava {\r\n    sourceCompatibility = '1.8'\r\n}\r\n\r\nrepositories {\r\n    mavenCentral()\r\n}\r\n\r\ndependencies {\r\n    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'\r\n    implementation 'org.springframework.boot:spring-boot-starter-security'\r\n    implementation 'org.springframework.boot:spring-boot-starter-validation'\r\n    implementation 'org.springframework.boot:spring-boot-starter-web'\r\n    implementation 'org.springframework.boot:spring-boot-starter-web-services'\r\n    developmentOnly 'org.springframework.boot:spring-boot-devtools'\r\n    runtimeOnly 'com.mysql:mysql-connector-j'\r\n    testImplementation 'org.springframework.boot:spring-boot-starter-test'\r\n    testImplementation 'org.springframework.security:spring-security-test'\r\n}\r\n\r\ntasks.named('test') {\r\n    useJUnitPlatform()\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle b/build.gradle
+--- a/build.gradle	(revision efbd4fdfe3c5de636ed7bb2b6e2aa2c78a44fb17)
++++ b/build.gradle	(date 1691977394042)
+@@ -17,14 +17,16 @@
+ 
+ dependencies {
+     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+-    implementation 'org.springframework.boot:spring-boot-starter-security'
++//    implementation 'org.springframework.boot:spring-boot-starter-security'
+     implementation 'org.springframework.boot:spring-boot-starter-validation'
+     implementation 'org.springframework.boot:spring-boot-starter-web'
+     implementation 'org.springframework.boot:spring-boot-starter-web-services'
+     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+     runtimeOnly 'com.mysql:mysql-connector-j'
+     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+-    testImplementation 'org.springframework.security:spring-security-test'
++//    testImplementation 'org.springframework.security:spring-security-test'
++    implementation 'com.paypal.sdk:checkout-sdk:1.0.4'
++    implementation 'com.google.code.gson:gson:2.8.8'
+ }
+ 
+ tasks.named('test') {

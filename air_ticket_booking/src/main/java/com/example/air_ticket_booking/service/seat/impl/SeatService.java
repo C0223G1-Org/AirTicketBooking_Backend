@@ -14,16 +14,6 @@ public class SeatService implements ISeatService {
     @Autowired
     private ISeatRepository seatRepository;
 
-    /**
-     * creatr by : SangTDN
-     * @param idRoute
-     * @return list SeatProjection (see details in path air_ticket_booking/model/projection_tdns/SeatProjection.java)
-     * call method showListSeatEmptyByRoute() from ISeatRepository
-     */
-    @Override
-    public List<SeatProjection> showListSeatEmptyByRoute(Long idRoute) {
-        return seatRepository.showListSeatEmptyByRoute(idRoute);
-    }
 
     /**
      *method :find seat  by id in service
