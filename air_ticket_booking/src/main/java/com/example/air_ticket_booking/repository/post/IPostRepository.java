@@ -14,7 +14,6 @@ import java.util.Optional;
 
 public interface IPostRepository extends JpaRepository<Post, Long> {
 
-
     /**
      * Author: SonTT
      * Handling method: run method with query and connect database to get data
