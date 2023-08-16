@@ -2,12 +2,9 @@ package com.example.air_ticket_booking.repository.ticket;
 
 
 import com.example.air_ticket_booking.model.customer.Customer;
-import com.example.air_ticket_booking.model.luggage.Luggage;
-import com.example.air_ticket_booking.model.route.Route;
-import com.example.air_ticket_booking.model.seat.Seat;
+
 import com.example.air_ticket_booking.model.ticket.Ticket;
-import com.example.air_ticket_booking.model.ticket.TypeTicket;
-import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
+
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
 import org.springframework.data.domain.Page;
