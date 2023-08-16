@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket" tests="8" skipped="0" failures="1" errors="0" timestamp="2023-08-14T03:28:59" hostname="DESKTOP-KMNS09Q" time="1.024">
+  <properties/>
+  <testcase name="updateTicketByIdTicket_24()" classname="com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket" time="0.616"/>
+  <testcase name="updateTicketByIdTicket_3a()" classname="com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket" time="0.021"/>
+  <testcase name="updateTicketByIdTicket_3b()" classname="com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket" time="0.017"/>
+  <testcase name="updateTicketByIdTicket_1()" classname="com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket" time="0.04"/>
+  <testcase name="updateTicketByIdTicket_2()" classname="com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket" time="0.013"/>
+  <testcase name="updateTicketByIdTicket_3()" classname="com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket" time="0.083"/>
+  <testcase name="updateTicketByIdTicket_success()" classname="com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket" time="0.093">
+    <failure message="java.lang.AssertionError: Range for response status value 404 expected:&lt;SUCCESSFUL&gt; but was:&lt;CLIENT_ERROR&gt;" type="java.lang.AssertionError">java.lang.AssertionError: Range for response status value 404 expected:&lt;SUCCESSFUL&gt; but was:&lt;CLIENT_ERROR&gt;
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$is2xxSuccessful$3(StatusResultMatchers.java:78)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket.updateTicketByIdTicket_success(PaymentController_updateTicketByIdTicket.java:68)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:725)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:149)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:140)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:84)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(ExecutableInvoker.java:115)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.lambda$invoke$0(ExecutableInvoker.java:105)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:104)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:98)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:214)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:210)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:135)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:66)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:110)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:90)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:85)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:62)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at jdk.proxy1/jdk.proxy1.$Proxy2.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:193)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:113)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:65)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+</failure>
+  </testcase>
+  <testcase name="updateTicketByIdTicket_failed()" classname="com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket" time="0.11"/>
+  <system-out><![CDATA[10:28:50.023 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+10:28:50.036 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+10:28:50.078 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+10:28:50.091 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket], using SpringBootContextLoader
+10:28:50.096 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket]: class path resource [com/example/air_ticket_booking/controller/PaymentController_updateTicketByIdTicket-context.xml] does not exist
+10:28:50.097 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket]: class path resource [com/example/air_ticket_booking/controller/PaymentController_updateTicketByIdTicketContext.groovy] does not exist
+10:28:50.097 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket]: no resource found for suffixes {-context.xml, Context.groovy}.
+10:28:50.098 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket]: PaymentController_updateTicketByIdTicket does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+10:28:50.193 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket]
+10:28:50.285 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [D:\AirTicketBooking_Backend\air_ticket_booking\build\classes\java\main\com\example\air_ticket_booking\AirTicketBookingApplication.class]
+10:28:50.287 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.air_ticket_booking.AirTicketBookingApplication for test class com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket
+10:28:50.436 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.example.air_ticket_booking.controller.PaymentController_updateTicketByIdTicket]: using defaults.
+10:28:50.437 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+10:28:50.461 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@3b0f7d9d, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@236ab296, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@5c84624f, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@63034ed1, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@232024b9, org.springframework.test.context.support.DirtiesContextTestExecutionListener@55a8dc49, org.springframework.test.context.transaction.TransactionalTestExecutionListener@2a415aa9, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@53cdecf6, org.springframework.test.context.event.EventPublishingTestExecutionListener@71ea1fda, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@62b3df3a, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@420745d7, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@7e11ab3d, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@5fa47fea, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@2392212b, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@5b43e173]
+10:28:50.469 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@15b986cd testClass = PaymentController_updateTicketByIdTicket, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6bb7cce7 testClass = PaymentController_updateTicketByIdTicket, locations = '{}', classes = '{class com.example.air_ticket_booking.AirTicketBookingApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@1433046b, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@4b3fa0b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@6d24ffa1, [ImportsContextCustomizer@41c62850 key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@2488b073, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1992eaf4, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e029d61, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@67b9b51a], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v2.7.14)
+
+2023-08-14 10:28:50.956  INFO 7228 --- [    Test worker] PaymentController_updateTicketByIdTicket : Starting PaymentController_updateTicketByIdTicket using Java 17.0.7 on DESKTOP-KMNS09Q with PID 7228 (started by Admin in D:\AirTicketBooking_Backend\air_ticket_booking)
+2023-08-14 10:28:50.958  INFO 7228 --- [    Test worker] PaymentController_updateTicketByIdTicket : No active profile set, falling back to 1 default profile: "default"
+2023-08-14 10:28:52.215  INFO 7228 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-14 10:28:52.416  INFO 7228 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 188 ms. Found 14 JPA repository interfaces.
+2023-08-14 10:28:52.989  INFO 7228 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$707397b9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-08-14 10:28:53.076  INFO 7228 --- [    Test worker] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2023-08-14 10:28:53.469  INFO 7228 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-14 10:28:53.552  INFO 7228 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-08-14 10:28:53.815  INFO 7228 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-08-14 10:28:53.980  INFO 7228 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-08-14 10:28:53.989  WARN 7228 --- [    Test worker] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-08-14 10:28:54.487  INFO 7228 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-08-14 10:28:54.514  INFO 7228 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-08-14 10:28:56.077  INFO 7228 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-14 10:28:56.094  INFO 7228 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-14 10:28:57.826  WARN 7228 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-14 10:28:59.003  INFO 7228 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-08-14 10:28:59.003  INFO 7228 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-08-14 10:28:59.005  INFO 7228 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2023-08-14 10:28:59.036  INFO 7228 --- [    Test worker] PaymentController_updateTicketByIdTicket : Started PaymentController_updateTicketByIdTicket in 8.512 seconds (JVM running for 10.349)
+Hibernate: select  * from ticket where ticket.flag_ticket=0 and ticket.id_ticket=? 
+Hibernate: select customer0_.id_customer as id_custo1_2_0_, customer0_.account_id_account as account12_2_0_, customer0_.address_customer as address_2_2_0_, customer0_.date_customer as date_cus3_2_0_, customer0_.email_customer as email_cu4_2_0_, customer0_.flag_customer as flag_cus5_2_0_, customer0_.gender_customer as gender_c6_2_0_, customer0_.id_card_customer as id_card_7_2_0_, customer0_.img_customer as img_cust8_2_0_, customer0_.name_customer as name_cus9_2_0_, customer0_.nationality_customer as nationa10_2_0_, customer0_.tel_customer as tel_cus11_2_0_, account1_.id_account as id_accou1_0_1_, account1_.password as password2_0_1_, account1_.role_id_role as role_id_4_0_1_, account1_.username as username3_0_1_, role2_.id_role as id_role1_8_2_, role2_.name_role as name_rol2_8_2_ from customer customer0_ left outer join account account1_ on customer0_.account_id_account=account1_.id_account left outer join role role2_ on account1_.role_id_role=role2_.id_role where customer0_.id_customer=?
+Hibernate: select luggage0_.id_luggage as id_lugga1_6_0_, luggage0_.name_luggage as name_lug2_6_0_, luggage0_.price_luggage as price_lu3_6_0_ from luggage luggage0_ where luggage0_.id_luggage=?
+Hibernate: select seat0_.id_seat as id_seat1_10_0_, seat0_.flag_seat as flag_sea2_10_0_, seat0_.position_seat as position3_10_0_, seat0_.id_route as id_route4_10_0_, seat0_.id_type_seat as id_type_5_10_0_, route1_.id_route as id_route1_9_1_, route1_.id_air_craft as id_air_c9_9_1_, route1_.date_arrival as date_arr2_9_1_, route1_.date_departure as date_dep3_9_1_, route1_.id_departure as id_depa10_9_1_, route1_.id_destination as id_dest11_9_1_, route1_.flag_route as flag_rou4_9_1_, route1_.name_route as name_rou5_9_1_, route1_.price_route as price_ro6_9_1_, route1_.time_arrival as time_arr7_9_1_, route1_.time_departure as time_dep8_9_1_, aircraft2_.id_air_craft as id_air_c1_1_2_, aircraft2_.name_air_craft as name_air2_1_2_, departure3_.id_departure as id_depar1_3_3_, departure3_.name_departure as name_dep2_3_3_, destinatio4_.id_destination as id_desti1_4_4_, destinatio4_.name_destination as name_des2_4_4_, typeseat5_.id_type_seat as id_type_1_12_5_, typeseat5_.name_type_seat as name_typ2_12_5_, typeseat5_.price_extra as price_ex3_12_5_ from seat seat0_ left outer join route route1_ on seat0_.id_route=route1_.id_route left outer join air_craft aircraft2_ on route1_.id_air_craft=aircraft2_.id_air_craft left outer join departure departure3_ on route1_.id_departure=departure3_.id_departure left outer join destination destinatio4_ on route1_.id_destination=destinatio4_.id_destination left outer join type_seat typeseat5_ on seat0_.id_type_seat=typeseat5_.id_type_seat where seat0_.id_seat=?
+Hibernate: select typepassen0_.id_type_passenger as id_type_1_13_0_, typepassen0_.name_type_passenger as name_typ2_13_0_ from type_passenger typepassen0_ where typepassen0_.id_type_passenger=?
+Hibernate: select typeticket0_.id_type_ticket as id_type_1_14_0_, typeticket0_.name_type_ticket as name_typ2_14_0_ from type_ticket typeticket0_ where typeticket0_.id_type_ticket=?
+Hibernate: select  * from ticket where ticket.flag_ticket=0 and ticket.id_ticket=? 
+Hibernate: select  * from ticket where ticket.flag_ticket=0 and ticket.id_ticket=? 
+Hibernate: select  * from ticket where ticket.flag_ticket=0 and ticket.id_ticket=? 
+Hibernate: select * from seat where id_seat = ?
+
+MockHttpServletRequest:
+      HTTP Method = PATCH
+      Request URI = /payment/callback/1
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = com.example.air_ticket_booking.controller.payment.PaymentController
+           Method = com.example.air_ticket_booking.controller.payment.PaymentController#updateTicketByIdTicket(Long)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", Content-Type:"text/plain;charset=UTF-8", Content-Length:"12"]
+     Content type = text/plain;charset=UTF-8
+             Body = Thành công
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+Hibernate: select  * from ticket where ticket.flag_ticket=0 and ticket.id_ticket=? 
+
+MockHttpServletRequest:
+      HTTP Method = PATCH
+      Request URI = /payment/callback/-1
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = com.example.air_ticket_booking.controller.payment.PaymentController
+           Method = com.example.air_ticket_booking.controller.payment.PaymentController#updateTicketByIdTicket(Long)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 404
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2023-08-14 10:28:59.721  WARN 7228 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "a"]
+
+MockHttpServletRequest:
+      HTTP Method = PATCH
+      Request URI = /payment/callback/a
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = com.example.air_ticket_booking.controller.payment.PaymentController
+           Method = com.example.air_ticket_booking.controller.payment.PaymentController#updateTicketByIdTicket(Long)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.method.annotation.MethodArgumentTypeMismatchException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = PATCH
+      Request URI = /payment/callback/
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = org.springframework.web.servlet.resource.ResourceHttpRequestHandler
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 404
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = PATCH
+      Request URI = /payment/callback/
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = org.springframework.web.servlet.resource.ResourceHttpRequestHandler
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 404
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+Hibernate: select  * from ticket where ticket.flag_ticket=0 and ticket.id_ticket=? 
+
+MockHttpServletRequest:
+      HTTP Method = PATCH
+      Request URI = /payment/callback/10
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = com.example.air_ticket_booking.controller.payment.PaymentController
+           Method = com.example.air_ticket_booking.controller.payment.PaymentController#updateTicketByIdTicket(Long)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 404
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = PATCH
+      Request URI = /payment/callback/1/status
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = org.springframework.web.servlet.resource.ResourceHttpRequestHandler
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 404
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = PATCH
+      Request URI = /payment/callback/1/status
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = org.springframework.web.servlet.resource.ResourceHttpRequestHandler
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 404
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = PATCH
+      Request URI = /payment/callback/10/status
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = org.springframework.web.servlet.resource.ResourceHttpRequestHandler
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 404
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  <system-err><![CDATA[Loading class `com.mysql.jdbc.Driver'. This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver'. The driver is automatically registered via the SPI and manual loading of the driver class is generally unnecessary.
+]]></system-err>
+</testsuite>

@@ -15,11 +15,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -37,18 +39,18 @@ public class CustomerController {
      * Date create: 10/08/2023
      */
     @GetMapping(value = {"/", "/list"})
-    public ResponseEntity<Page<Customer>> getListCustomers(@PageableDefault(size = 2) Pageable pageable, @RequestParam("page") String page, @RequestParam("email") String email,
-                                                               @RequestParam("name") String name, @RequestParam("nationality") String nationality) {
+    public ResponseEntity<Page<Customer>> getListCustomers(@PageableDefault(size = 5) Pageable pageable, @RequestParam("page") String page, @RequestParam("email") String email,
+                                                           @RequestParam("name") String name, @RequestParam("nationality") String nationality) {
         int currentPage;
         try {
             currentPage = Integer.parseInt(page);
             if (currentPage < 0) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }else if (email.length()>100||name.length()>100||nationality.length()>20){
+            } else if (email.length() > 100 || name.length() > 100 || nationality.length() > 20) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
             }
-        } catch (NumberFormatException num) {
+        } catch (NumberFormatException n) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -60,14 +62,15 @@ public class CustomerController {
         }
     }
 
-    /**
-     * @param pageable, name, nationality, email
-     * @return if getListSearch have data return getListSearch and status OK else return status NO_CONTENT
-     * Create by: TàiMP
-     * Date create: 10/08/2023
-     */
+
+        /**
+         * @param pageable, name, nationality, email
+         * @return if getListSearch have data return getListSearch and status OK else return status NO_CONTENT
+         * Create by: TàiMP
+         * Date create: 10/08/2023
+         */
     @GetMapping("/search")
-    public ResponseEntity<Page<Customer>> getListSearchCustomer(@PageableDefault(size = 1) Pageable pageable, @RequestParam("email") String email,
+    public ResponseEntity<Page<Customer>> getListSearchCustomer(@PageableDefault(size = 5) Pageable pageable, @RequestParam("email") String email,
                                                                 @RequestParam("name") String name, @RequestParam("nationality") String nationality,@RequestParam("page")String page) {
 
         int currentPage;
@@ -138,23 +141,22 @@ public class CustomerController {
      * @param id
      * @return customer
      */
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getCustomerDetails(@PathVariable Long id) {
-        try{
-            if(ObjectUtils.isEmpty(id)){
-                return new ResponseEntity<>("Không tìm thấy khách hàng này",HttpStatus.NOT_FOUND);
-            }
-
-            if (customerService.findCustomerById(id) == null) {
-                return new ResponseEntity<>("Không tìm thấy khách hàng này",HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity<>(customerService.findCustomerById(id), HttpStatus.OK);
-        }catch (IllegalArgumentException  e){
-            return new ResponseEntity<>("ID không thể chứa chữ hoặc kí tự đặc biệt",HttpStatus.BAD_REQUEST);
-        }
-
-    }
-
+//    @GetMapping("/{id}")
+//    public ResponseEntity<?> getCustomerDetails(@PathVariable Long id) {
+//        try{
+//            if(ObjectUtils.isEmpty(id)){
+//                return new ResponseEntity<>("Không tìm thấy khách hàng này",HttpStatus.NOT_FOUND);
+//            }
+//            if (customerService.findCustomerById(id) == null) {
+//                return new ResponseEntity<>("Không tìm thấy khách hàng này",HttpStatus.NOT_FOUND);
+//            }
+//
+//       return new ResponseEntity<>(customerService.findCustomerById(id), HttpStatus.OK);
+//}catch (IllegalArgumentException  e){
+//        return new ResponseEntity<>("ID không thể chứa chữ hoặc kí tự đặc biệt",HttpStatus.BAD_REQUEST);
+//        }
+//
+//        }
     /**
      * Create by: HungLV
      * Date create: 10/08/2023
@@ -177,7 +179,14 @@ public class CustomerController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getCustomerById(@PathVariable Long id ){
+        Customer customer = customerService.findCustomerById(id);
+        if(customer==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(customer, HttpStatus.OK);
+    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
