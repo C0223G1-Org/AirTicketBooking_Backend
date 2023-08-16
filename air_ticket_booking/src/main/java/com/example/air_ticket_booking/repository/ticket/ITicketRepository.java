@@ -157,7 +157,7 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             "join departure de on de.id_departure=r.id_departure\n" +
             "where s.flag_seat=0 and ts.id_type_seat=:idTypeSeat and position_seat Like concat('%',:positionSeat,'%') and name_route like concat('%',:nameRoute,'%') and name_departure like concat('%',:nameDeparture,'%') and name_destination like concat('%',:nameDestination,'%')",nativeQuery = true)
     Page<ITicketUnbookedProjection> searchTicketUnbooked(@Param("idTypeSeat")Long idTypeSeat,@Param("positionSeat")String positionSeat,@Param("nameRoute")String nameRoute,@Param("nameDeparture") String nameDeparture,@Param("nameDestination")String nameDestination,Pageable pageable);
-    }
+//    }
 //    @Query(value = "select id_seat as id ,position_seat as positionSeat,name_type_seat as typeSeat, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture  from seat s\n" +
 //            "join type_seat ts on ts.id_type_seat=s.id_type_seat\n" +
 //            "join route r on r.id_route=s.id_route\n" +
