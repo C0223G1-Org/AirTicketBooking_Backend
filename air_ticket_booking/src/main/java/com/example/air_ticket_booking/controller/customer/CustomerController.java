@@ -15,13 +15,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -178,6 +176,7 @@ public class CustomerController {
         customerService.saveCustomer(customer);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
