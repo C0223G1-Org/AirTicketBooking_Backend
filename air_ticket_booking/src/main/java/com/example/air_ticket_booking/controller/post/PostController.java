@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 
 @RequestMapping("/api/post")
@@ -23,8 +24,6 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
     @Autowired
     private IPostService iPostService;
-
-
 
     /**
      * Create by : TriPD
@@ -42,13 +41,14 @@ public class PostController {
         iPostService.createPost(postDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     /**
      * Author: SonTT
      * handling:receive pagination data and find the service to perform the task, if empty,
      * return NOT_FOUND status otherwise return page and status ACCEPTED
      * @param page
      * @param limit
-     * @return ResponseEntity<Page<Post>>
+     * @return ResponseEntity<Page < Post>>
      */
     @GetMapping("/{page}/{limit}")
     public ResponseEntity<Page<Post>> getListPost(@PathVariable(value = "page", required = false) Integer page, @PathVariable(value = "limit", required = false) Integer limit) {
@@ -59,18 +59,31 @@ public class PostController {
         return new ResponseEntity<>(this.iPostService.getListPost(pageable), HttpStatus.ACCEPTED);
     }
 
+    /**
+     * Author: SonTT
+     * Date create: 14/08/2023
+     * Handling: Get data by calling service
+     * @return
+     */
+    @GetMapping("/hot-news")
+    public ResponseEntity<List<Post>> HotNewList(){
+        if (this.iPostService.getListPostHotNews().isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<>(this.iPostService.getListPostHotNews(),HttpStatus.OK);
+        }
+    }
 
-
-        /**
-         * Create by : TriPD
-         * Date created : 10/08/2023
-         * Function : findPostById()
-         *
-         * @Param: id
-         * @Return: Post
-         */
+    /**
+     * Create by : TriPD
+     * Date created : 10/08/2023
+     * Function : findPostById()
+     *
+     * @Param: id
+     * @Return: Post
+     */
     @GetMapping("/findPost/{id}")
-    public ResponseEntity<PostDto> findPostById(@PathVariable Long id){
+    public ResponseEntity<PostDto> findPostById(@PathVariable Long id) {
         Post post = this.iPostService.findPostsById(id);
         if (post == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -84,22 +97,21 @@ public class PostController {
      * Author: SonTT
      * Handling:Get data from the link and check the execution process, if it is correct,
      * return the message "Not found the document you want to delete" and the status NOT_FOUND otherwise return the OK status and return the message "Post deleted"
+     *
      * @param id
      * @return message and status
      */
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deletePost(@PathVariable(value = "id", required = false) Long id) {
-        if (this.iPostService.deletePostById(id)) {
-            String message = "Không tìm thấy tài Liệu muốn xoá ";
-            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+    public ResponseEntity<?> deletePost(@PathVariable(value = "id",required = false) Long id) {
+        if (id==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else if (this.iPostService.deletePostById(id)) {
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
         } else {
-            String message = "Đã xoá bài viết ";
-            return new ResponseEntity<>(message, HttpStatus.OK);
+            return new ResponseEntity<>( HttpStatus.OK);
         }
+
     }
-
-
-
 
     /**
      * Create by : TriPD
@@ -110,12 +122,34 @@ public class PostController {
      * @Return: void
      */
     @PatchMapping("/updatePost")
-    public ResponseEntity<?> updatePost(@RequestBody PostDto postDto){
-        try {
-            iPostService.savePost(postDto);
-            return ResponseEntity.ok(postDto);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(".....");
+    public ResponseEntity<?> updatePost(@Validated @RequestBody PostDto postDto,BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        iPostService.savePost(postDto);
+        return new ResponseEntity<>(postDto,HttpStatus.OK);
+//        try {
+//            iPostService.savePost(postDto);
+//            return ResponseEntity.ok(postDto);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(".....");
+//        }
     }
-}
+
+    /**
+     * Author: SonTT
+     * Date create: 14/08/2023
+     * Handling: Get param title get data by calling service
+     * @param title
+     * @return
+     */
+    @GetMapping("/search")
+    public ResponseEntity<List<Post>> searchPost(@RequestParam(value = "title",required = false) String title){
+        String titles = title.toString().trim();
+        if (iPostService.searchPostByTitle(titles).isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(iPostService.searchPostByTitle(titles),HttpStatus.OK);
+    }
+
+ }

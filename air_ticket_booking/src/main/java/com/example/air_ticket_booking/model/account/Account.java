@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idAccount;
     private String username;
     private String password;
