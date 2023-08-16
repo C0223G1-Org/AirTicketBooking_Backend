@@ -1,17 +1,13 @@
 package com.example.air_ticket_booking.controller.payment;
 
-import com.example.air_ticket_booking.model.customer.Customer;
-import com.example.air_ticket_booking.model.paypal.PayPalResponse;
 import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.service.customer.ICustomerService;
 import com.example.air_ticket_booking.service.seat.ISeatService;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
-//import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,14 +48,14 @@ public class PaymentController {
     }
     @GetMapping("/payment/{id}")
     public ResponseEntity<Ticket> getTicketById(@PathVariable Long id) {
-        if (iTicketService.findByIdTicket(id) == null) {
+        if (iTicketService.findTicketPayment(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(iTicketService.findByIdTicket(id),HttpStatus.OK);
+        return new ResponseEntity<>(iTicketService.findTicketPayment(id),HttpStatus.OK);
     }
     @PatchMapping("/callback/{id}/{message}")
     public ResponseEntity<String> updateTicketByIdTicket(@PathVariable Long id, @PathVariable("message") String paymentStatus) {
-        Ticket ticket = iTicketService.findByIdTicket(id);
+        Ticket ticket = iTicketService.findTicketPayment(id);
         if (ticket == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
