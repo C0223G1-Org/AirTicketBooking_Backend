@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61205119-b156-4029-885f-2d65b707e4f5" name="Changes" comment="TaiMP commit chức năng của Customer ngày 16/08/2023">
+    <list default="true" id="61205119-b156-4029-885f-2d65b707e4f5" name="Changes" comment="TaiMP commit update Controller của Customer ngày 16/08/2023">
       <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -13,13 +13,10 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/air_ticket_booking.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/air_ticket_booking.test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_14_2023_8_49_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_14_2023_8_49_AM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_15_2023_9_12_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_15_2023_9_12_AM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/customer/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/customer/CustomerController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/controller/customer/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/controller/customer/CustomerController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +51,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
+        <entry key="$PROJECT_DIR$/.." value="customer" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -188,9 +185,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.PaymentController_updateTicketByIdTicket.updateTicketByIdTicket_success" />
+        <item itemvalue="Gradle.PaymentController_updateTicketByIdTicket" />
+        <item itemvalue="Gradle.PaymentController_getListHistoryPayment" />
         <item itemvalue="Gradle.PaymentController_updateTicketByIdTicket" />
         <item itemvalue="Gradle.PaymentController_updateTicketByIdTicket.updateTicketByIdTicket_success" />
-        <item itemvalue="Gradle.PaymentController_getListHistoryPayment" />
       </list>
     </recent_temporary>
   </component>
@@ -213,6 +212,7 @@
       <workItem from="1692157106185" duration="1242000" />
       <workItem from="1692167629261" duration="270000" />
       <workItem from="1692167918141" duration="790000" />
+      <workItem from="1692170424068" duration="2848000" />
     </task>
     <task id="LOCAL-00001" summary="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 14/8">
       <option name="closed" value="true" />
@@ -242,19 +242,21 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 14/8" />
     <MESSAGE value="TaiMP commit chức năng của Customer ngày 16/08/2023" />
-    <option name="LAST_COMMIT_MESSAGE" value="TaiMP commit chức năng của Customer ngày 16/08/2023" />
+    <MESSAGE value="TaiMP commit SonaLint của Customer ngày 16/08/2023" />
+    <MESSAGE value="TaiMP commit update Controller của Customer ngày 16/08/2023" />
+    <option name="LAST_COMMIT_MESSAGE" value="TaiMP commit update Controller của Customer ngày 16/08/2023" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/controller/customer/CustomerController.java</url>
-          <line>76</line>
+          <line>72</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/controller/customer/CustomerController.java</url>
-          <line>78</line>
+          <line>74</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

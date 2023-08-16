@@ -45,11 +45,7 @@ public class CustomerController {
         try {
             currentPage = Integer.parseInt(page);
 
-            if (currentPage < 0) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }else if (email.length()>100||name.length()>100||nationality.length()>20){
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }else if (email.contains("_")||email.contains("&")||email.contains("+")||name.contains("_")||name.contains("+")||name.contains("&")){
+            if (currentPage < 0||email.length()>100||name.length()>100||nationality.length()>20||email.contains("_")||email.contains("&")||email.contains("+")||name.contains("_")||name.contains("+")||name.contains("&")) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (NumberFormatException num) {
@@ -77,11 +73,8 @@ public class CustomerController {
         int currentPage;
         try {
             currentPage = Integer.parseInt(page);
-            if (currentPage < 0) {
+            if (currentPage < 0||email.length()>100||name.length()>100||nationality.length()>20||email.equals("_")||email.equals("&")||email.equals("+")||name.equals("_")||name.equals("+")||name.equals("&")) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }else if (email.length()>100||name.length()>100||nationality.length()>20||email.equals("_")||email.equals("&")||email.equals("+")||name.equals("_")||name.equals("+")||name.equals("&")){
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
             }
         } catch (NumberFormatException n) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
