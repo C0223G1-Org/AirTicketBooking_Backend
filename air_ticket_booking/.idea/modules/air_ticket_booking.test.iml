@@ -124,5 +124,7 @@
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.sun.activation:jakarta.activation:1.2.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.junit.platform:junit-platform-engine:1.8.2" level="project" />
   </component>
-  <component name="TestModuleProperties" production-module="air_ticket_booking.main" />
+  <component name="SonarLintModuleSettings">
+    <option name="uniqueId" value="99ebee2e-7798-4a32-a674-90922336640e" />
+  </component>
 </module>
