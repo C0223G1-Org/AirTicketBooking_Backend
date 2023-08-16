@@ -198,7 +198,7 @@ public class TicketController {
     public ResponseEntity<Page<ITicketProjection>> searchTickets(@ModelAttribute TicketSearch ticketSearch, @PathVariable("page") int page){
         System.out.println("nhan");
         String idString= String.valueOf(page);
-        Pageable pageable = PageRequest.of(page,4);
+        Pageable pageable = PageRequest.of(page,5);
         System.out.println(ticketSearch.getSeatCode());
         System.out.println(ticketSearch.getDeparture());
         if(iTicketService.searchTicket(ticketSearch,pageable).getContent().isEmpty()){
@@ -224,7 +224,7 @@ public class TicketController {
         if(page<0||!idString.matches("^[0-9]{1,8}$")){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        Pageable pageable=PageRequest.of(page,4);
+        Pageable pageable=PageRequest.of(page,5);
         if(iTicketService.findAllTicketUnbooked(pageable).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }else {
