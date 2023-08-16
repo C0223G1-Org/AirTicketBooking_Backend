@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.air_ticket_booking.controller.CustomerController_updateCustomer" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-08-14T08:11:45" hostname="DESKTOP-CG8II2N" time="3.396">
+  <properties/>
+  <testcase name="updateCustomer_dateOfBirthCustomer()" classname="com.example.air_ticket_booking.controller.CustomerController_updateCustomer" time="3.396"/>
+  <system-out><![CDATA[15:11:32.435 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+15:11:32.450 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+15:11:32.500 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.example.air_ticket_booking.controller.CustomerController_updateCustomer] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+15:11:32.516 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.air_ticket_booking.controller.CustomerController_updateCustomer], using SpringBootContextLoader
+15:11:32.521 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.example.air_ticket_booking.controller.CustomerController_updateCustomer]: class path resource [com/example/air_ticket_booking/controller/CustomerController_updateCustomer-context.xml] does not exist
+15:11:32.522 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.example.air_ticket_booking.controller.CustomerController_updateCustomer]: class path resource [com/example/air_ticket_booking/controller/CustomerController_updateCustomerContext.groovy] does not exist
+15:11:32.522 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.example.air_ticket_booking.controller.CustomerController_updateCustomer]: no resource found for suffixes {-context.xml, Context.groovy}.
+15:11:32.523 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.air_ticket_booking.controller.CustomerController_updateCustomer]: CustomerController_updateCustomer does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:11:32.618 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.example.air_ticket_booking.controller.CustomerController_updateCustomer]
+15:11:32.710 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\code\AirTicketBooking_Backend\air_ticket_booking\build\classes\java\main\com\example\air_ticket_booking\AirTicketBookingApplication.class]
+15:11:32.712 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.air_ticket_booking.AirTicketBookingApplication for test class com.example.air_ticket_booking.controller.CustomerController_updateCustomer
+15:11:32.861 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.example.air_ticket_booking.controller.CustomerController_updateCustomer]: using defaults.
+15:11:32.862 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+15:11:32.893 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@77d67cf3, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6dee4f1b, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@176b3f44, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@6ee6f53, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@421bba99, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5d12a356, org.springframework.test.context.transaction.TransactionalTestExecutionListener@134d26af, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@66ac5762, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@797cf65c, org.springframework.test.context.event.EventPublishingTestExecutionListener@31bcf236, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@4b3ed2f0, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@4fad9bb2, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@517d4a0d, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@7862f56, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@3a12c404, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@1941a8ff, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@22d7b4f8]
+15:11:32.899 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@5dcd8c7a testClass = CustomerController_updateCustomer, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2250b9f2 testClass = CustomerController_updateCustomer, locations = '{}', classes = '{class com.example.air_ticket_booking.AirTicketBookingApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@491b9b8, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@4b3fa0b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2657d4dd, [ImportsContextCustomizer@7e3181aa key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@f58853c, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@9816741, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@24959ca4, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@4b14c583], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v2.7.14)
+
+2023-08-14 15:11:33.453  INFO 7368 --- [    Test worker] .e.a.c.CustomerController_updateCustomer : Starting CustomerController_updateCustomer using Java 1.8.0_241 on DESKTOP-CG8II2N with PID 7368 (started by hanta in C:\code\AirTicketBooking_Backend\air_ticket_booking)
+2023-08-14 15:11:33.456  INFO 7368 --- [    Test worker] .e.a.c.CustomerController_updateCustomer : No active profile set, falling back to 1 default profile: "default"
+2023-08-14 15:11:34.897  INFO 7368 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-14 15:11:35.078  INFO 7368 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 166 ms. Found 7 JPA repository interfaces.
+2023-08-14 15:11:36.428  INFO 7368 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-14 15:11:36.529  INFO 7368 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-08-14 15:11:36.871  INFO 7368 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-08-14 15:11:37.143  INFO 7368 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-08-14 15:11:37.151  WARN 7368 --- [    Test worker] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-08-14 15:11:37.977  INFO 7368 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-08-14 15:11:38.015  INFO 7368 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+Hibernate: alter table account add constraint FK9pbnm9levk9yjtdx8ihxja8ei foreign key (role_id_role) references role (id_role)
+Hibernate: alter table customer add constraint FKsvltrp0v6swwnwwjittqcoxh8 foreign key (account_id_account) references account (id_account)
+Hibernate: alter table employee add constraint FKdj1dw61h7w0s2t29f9cank7xi foreign key (account_id_account) references account (id_account)
+Hibernate: alter table post add constraint FK18s6ve2mw2p0w3kth5wt2n4hj foreign key (employee_id) references employee (id_employee)
+Hibernate: alter table route add constraint FKfaw6n25ueugnmnxs59ok672iy foreign key (id_air_craft) references air_craft (id_air_craft)
+Hibernate: alter table route add constraint FKhgycblcw4ojds47bsclvr9ljb foreign key (id_departure) references departure (id_departure)
+Hibernate: alter table route add constraint FKbe0l5h5smvbpsojja1fxkquda foreign key (id_destination) references destination (id_destination)
+Hibernate: alter table seat add constraint FKk135xd0jppmv62kdyhrrcid8c foreign key (id_route) references route (id_route)
+Hibernate: alter table seat add constraint FK28kyfo0ys52noa3gtkolnb7jd foreign key (id_type_seat) references type_seat (id_type_seat)
+Hibernate: alter table ticket add constraint FK7wn2vjkvy4gh7wl7041uury09 foreign key (customer_id_customer) references customer (id_customer)
+Hibernate: alter table ticket add constraint FKm24drthm088e9cy4g28xdtupp foreign key (luggage_id_luggage) references luggage (id_luggage)
+Hibernate: alter table ticket add constraint FK3nwpv090qmb2m985ya575q8ys foreign key (seat_id_seat) references seat (id_seat)
+Hibernate: alter table ticket add constraint FKhiku6sb9mklri5018qrs3y2v8 foreign key (type_passenger_id_type_passenger) references type_passenger (id_type_passenger)
+Hibernate: alter table ticket add constraint FKsn2xg2u42vebggjqk0cdlr4ph foreign key (type_ticket_id_type_ticket) references type_ticket (id_type_ticket)
+2023-08-14 15:11:40.458  INFO 7368 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-14 15:11:40.473  INFO 7368 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-14 15:11:41.727  WARN 7368 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-14 15:11:44.191  INFO 7368 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@57867d96, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1a7a21d0, org.springframework.security.web.context.SecurityContextPersistenceFilter@6a38e3d1, org.springframework.security.web.header.HeaderWriterFilter@7e8c58fd, org.springframework.web.filter.CorsFilter@bb21063, org.springframework.security.web.authentication.logout.LogoutFilter@19e8fe55, com.example.air_ticket_booking.config.JwtRequestFilter@46b21632, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@bdda8a7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2a9f8d47, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6821c63c, org.springframework.security.web.session.SessionManagementFilter@7dd7ec56, org.springframework.security.web.access.ExceptionTranslationFilter@73e399cc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@78b8f818]
+2023-08-14 15:11:45.194  INFO 7368 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-08-14 15:11:45.195  INFO 7368 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-08-14 15:11:45.196  INFO 7368 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2023-08-14 15:11:45.237  INFO 7368 --- [    Test worker] .e.a.c.CustomerController_updateCustomer : Started CustomerController_updateCustomer in 12.283 seconds (JVM running for 14.237)
+Hibernate: select customer.id_customer,customer.name_customer,customer.gender_customer,customer.email_customer,customer.date_customer,customer.id_card_customer,customer.address_customer,customer.flag_customer,customer.img_customer,customer.tel_customer,customer.nationality_customer,customer.account_id_account from customer where id_customer = ? and flag_customer=false
+Hibernate: select account0_.id_account as id_accou1_0_0_, account0_.password as password2_0_0_, account0_.role_id_role as role_id_4_0_0_, account0_.username as username3_0_0_, role1_.id_role as id_role1_8_1_, role1_.name_role as name_rol2_8_1_ from account account0_ left outer join role role1_ on account0_.role_id_role=role1_.id_role where account0_.id_account=?
+
+MockHttpServletRequest:
+      HTTP Method = PUT
+      Request URI = /customers/1
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"321"]
+             Body = {"idCustomer":1,"nameCustomer":"Lê Th? Y?n Hoa","genderCustomer":true,"emailCustomer":"lsyh31@gamil.com","telCustomer":"0397215463","addressCustomer":"Dai Loc,Quang Nam","imgCustomer":"","nationalityCustomer":"Viet Nam","idCardCustomer":"012345678974","dateCustomer":"2000/01/01","flagCustomer":false,"account":null}
+    Session Attrs = {}
+
+Handler:
+             Type = com.example.air_ticket_booking.controller.customer.CustomerController
+           Method = com.example.air_ticket_booking.controller.customer.CustomerController#updateCustomer(Long, CustomerDto, BindingResult)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", Content-Type:"text/plain;charset=UTF-8", Content-Length:"39", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = text/plain;charset=UTF-8
+             Body = Không ?úng ??nh d?ng dd/MM/yyyy
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  <system-err><![CDATA[Loading class `com.mysql.jdbc.Driver'. This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver'. The driver is automatically registered via the SPI and manual loading of the driver class is generally unnecessary.
+]]></system-err>
+</testsuite>
