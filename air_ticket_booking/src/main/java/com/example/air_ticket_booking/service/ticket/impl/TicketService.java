@@ -228,4 +228,9 @@ public class TicketService implements ITicketService {
     public void updateTicketByIdTicket(Long id) {
         ticketRepository.updateTicketByIdTicket(id);
     }
+
+    @Override
+    public Ticket findTicketPayment(Long id) {
+        return ticketRepository.findByTicketById(id);
+    }
 }
