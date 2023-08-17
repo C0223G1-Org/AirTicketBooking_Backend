@@ -125,17 +125,17 @@ public class AccountController {
      * @return boolean
      */
     @PostMapping("/checkCode")
-    public ResponseEntity<?> checkCode(@RequestBody Account account) {
+    public ResponseEntity<?> checkCode(@RequestBody AccountDto account) {
         boolean check = accountService.checkCode(account);
         try {
             if (check) {
-                return ResponseEntity.ok(new JwtResponse(account.getUsername()));
+                return ResponseEntity.ok(new JwtResponse(account.getEmailCustomer()));
             } else {
-                ErrorInfo errorInfo = new ErrorInfo("Xác nhận mã thất bại!!", account.getUsername());
+                ErrorInfo errorInfo = new ErrorInfo("Xác nhận mã thất bại!!", account.getEmailCustomer());
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorInfo);
             }
         } catch (Exception e) {
-            ErrorInfo errorInfo = new ErrorInfo("Xác nhận mã thất bại!!", account.getUsername());
+            ErrorInfo errorInfo = new ErrorInfo("Xác nhận mã thất bại!!", account.getEmailCustomer());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorInfo);
         }
 

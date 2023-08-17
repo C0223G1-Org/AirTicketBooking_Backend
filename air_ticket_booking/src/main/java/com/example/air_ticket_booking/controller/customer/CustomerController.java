@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -32,6 +33,8 @@ public class CustomerController {
     private ICustomerService customerService;
     @Autowired
     private IAccountService accountService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     /**
      * @param pageable
      * @return if getListCustomer have data return getListCustomer and status OK else return status NO_CONTENT
@@ -173,6 +176,8 @@ public class CustomerController {
         BeanUtils.copyProperties(customerdto,customer);
         Long idAccount = (long) (accountService.getList().size()+1);
         Account account = customer.getAccount();
+        String encoderNewPassword = passwordEncoder.encode(account.getPassword());
+        account.setPassword(encoderNewPassword);
         account.setIdAccount(idAccount);
         accountService.saveAccount(account);
         customer.setAccount(account);
