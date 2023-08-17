@@ -232,5 +232,19 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
 
     @Query(value = "select  * from ticket where ticket.flag_ticket=0 and ticket.id_ticket=:id",nativeQuery = true)
     Ticket findByTicketById(@Param("id")Long id);
+    @Query(nativeQuery = true, value = "select * from ticket " +
+            "join customer on customer.id_customer = ticket.customer_id_customer \n" +
+            "join seat on seat.id_seat = ticket.seat_id_seat \n" +
+            "join route on route.id_route = seat.id_route \n "+
+            "join air_craft on air_craft.id_air_craft = route.id_air_craft\n"+
+            "join destination on destination.id_destination = route.id_destination \n" +
+            "join departure on departure.id_departure = route.id_departure \n" +
+            "join type_seat on seat.id_type_seat = type_seat.id_type_seat \n" +
+            "join luggage on luggage.id_luggage = ticket.luggage_id_luggage \n" +
+            "join type_ticket on type_ticket.id_type_ticket = ticket.type_ticket_id_type_ticket \n" +
+            "join type_passenger on type_passenger.id_type_passenger = ticket.type_passenger_id_type_passenger \n" +
+            "where customer.id_customer = :id \n")
+    List<Ticket> getListTicketByIdCustomer(@Param("id") Long id);
+
 
 }
