@@ -125,5 +125,10 @@ public class EmployeeService implements IEmployeeService {
     public List<Employee> searchEmployee(Boolean gender, String name) {
         return employeeRepository.searchEmployee(gender, name);
     }
+
+    @Override
+    public Employee getEmployeeLoginByEmail(String email) {
+        return employeeRepository.getEmployeeLoginByEmail(email);
+    }
 }
 

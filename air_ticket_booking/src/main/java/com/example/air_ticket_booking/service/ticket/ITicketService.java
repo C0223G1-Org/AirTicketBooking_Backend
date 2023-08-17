@@ -31,7 +31,6 @@ public interface ITicketService {
      * return void
      */
     void createNewTicket(TicketDto ticketDto);
-    Page<ITicketPassengerProjection> findTicketByNameAndIdCard(String namePassenger, String idCardPassenger, Pageable pageable);
     /**
      * task get Ticket by id
      *  date create: 10/08/2023
@@ -40,7 +39,7 @@ public interface ITicketService {
      * @Method findByTicket
      * @author Nhàn NA
      */
-
+    Page<ITicketPassengerProjection> findTicketByNameAndIdCard(String namePassenger, String idCardPassenger,Pageable pageable);
     /**
      *Create by: VuDT
      *Date create: 10/08/2023
@@ -76,7 +75,7 @@ public interface ITicketService {
     /**
      * task search ticket
      *  date create: 10/08/2023
-     * @param  namePassenger, nameRoute,  nameDeparture, nameDestination,pageable
+     * @param idTypeTicket, namePassenger, nameRoute,  nameDeparture, nameDestination,pageable
      * @return Page<Ticket>
      * @Method searchTicket
      * @author Nhàn NA
@@ -99,7 +98,7 @@ public interface ITicketService {
      * @Method searchTicketUnbooked
      * @author Nhàn NA
      */
-    Page<ITicketUnbookedProjection> searchTicketUnbooked(Long idTypeSeat,String positionSeat,String nameRoute, String nameDeparture,String nameDestination,Pageable pageable);
+    Page<ITicketUnbookedProjection> searchTicketUnbooked(TicketSearch ticketSearch,Pageable pageable);
 
     /**
      *Create by: ThanhVh
@@ -111,4 +110,6 @@ public interface ITicketService {
     Page<Ticket> searchAllListPaymentByCustomerById(Long id, Pageable pageable, String departure, String destination);
 
     void updateTicketByIdTicket(Long id);
+
+    Ticket findTicketPayment(Long id);
 }

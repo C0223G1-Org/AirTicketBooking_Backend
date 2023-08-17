@@ -112,7 +112,7 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
 
     @Modifying
     @Query(nativeQuery = true,value = "select * from customer where email_customer = :email")
-    List<Customer> findAllByEmail(@Param("email") String email);
+    List<Customer> findAllByEmailOrIdCard(@Param("email") String email);
 
     /**
      * Create by: NhanDT
@@ -131,5 +131,7 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
             ":#{#accountDto.telCustomer},:#{#accountDto.nationalityCustomer},:idAccountNew)", nativeQuery = true)
     void createCustomer(@Param("accountDto") AccountDto accountDto, @Param("idAccountNew") Long idAccountNew);
 
+    @Query(nativeQuery = true, value = "select * from customer where email_customer = :email")
+    Customer getCustomerLoginByEmail(@Param("email") String email);
 }
 

@@ -96,8 +96,8 @@ public class CustomerService implements ICustomerService {
      * @Return: List<Customer>
      */
     @Override
-    public List<Customer> findAllByEmail(String email) {
-        return customerRepository.findAllByEmail(email);
+    public List<Customer> findAllByEmailOrIdCard(String email) {
+        return customerRepository.findAllByEmailOrIdCard(email);
     }
     /**
      * Create by: NhanDT
@@ -110,6 +110,11 @@ public class CustomerService implements ICustomerService {
     @Override
     public void createCustomer(AccountDto accountDto, Long idAccountNew) {
         this.customerRepository.createCustomer(accountDto, idAccountNew);
+    }
+
+    @Override
+    public Customer getCustomerLoginByEmail(String email) {
+        return customerRepository.getCustomerLoginByEmail(email);
     }
 }
 

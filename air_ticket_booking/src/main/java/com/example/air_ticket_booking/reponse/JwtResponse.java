@@ -11,6 +11,10 @@ public class JwtResponse {
     public JwtResponse() {
     }
 
+    public JwtResponse(String username) {
+        this.username = username;
+    }
+
     public JwtResponse(String token, String username, String role) {
         this.token = token;
         this.username = username;

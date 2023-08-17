@@ -429,7 +429,7 @@ public class AccountController_signup {
     @Test
     public void signUp_all_item_18() throws Exception {
         AccountDto accountDto = new AccountDto();
-        accountDto.setEmailCustomer("nhan36@gmail.com");
+        accountDto.setEmailCustomer("nhan39@gmail.com");
         accountDto.setPassword("123456A78");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Đỗ Thành Nhân");
@@ -437,7 +437,7 @@ public class AccountController_signup {
         accountDto.setAddressCustomer("Đà Nẵng");
         accountDto.setGenderCustomer(false);
         accountDto.setNationalityCustomer("Việt Nam");
-        accountDto.setIdCardCustomer("120123456789");
+        accountDto.setIdCardCustomer("120123412345");
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/account/signup")
@@ -856,7 +856,7 @@ public class AccountController_signup {
     @Test
     public void signUp_dayOfBirth_18_15() throws Exception {
         AccountDto accountDto = new AccountDto();
-        accountDto.setEmailCustomer("khang4@gmail.com");
+        accountDto.setEmailCustomer("nha1243@gmail.com");
         accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Nhan Nhan Nhan");
@@ -864,7 +864,7 @@ public class AccountController_signup {
         accountDto.setAddressCustomer("Đà Nẵng");
         accountDto.setGenderCustomer(false);
         accountDto.setNationalityCustomer("Việt Nam");
-        accountDto.setIdCardCustomer("120123456789");
+        accountDto.setIdCardCustomer("120121234561");
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/account/signup")
@@ -884,15 +884,15 @@ public class AccountController_signup {
     @Test
     public void signUp_dayOfBirth_150_15() throws Exception {
         AccountDto accountDto = new AccountDto();
-        accountDto.setEmailCustomer("khang1@gmail.com");
+        accountDto.setEmailCustomer("khang9@gmail.com");
         accountDto.setPassword("12345678A");
         accountDto.setTelCustomer("0123456789");
         accountDto.setNameCustomer("Nhan Nhan Nhan");
-        accountDto.setDateCustomer("1850-02-02");
+        accountDto.setDateCustomer("1800-02-02");
         accountDto.setAddressCustomer("Đà Nẵng");
         accountDto.setGenderCustomer(false);
         accountDto.setNationalityCustomer("Việt Nam");
-        accountDto.setIdCardCustomer("120123456789");
+        accountDto.setIdCardCustomer("120123478789");
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/account/signup")
@@ -902,7 +902,60 @@ public class AccountController_signup {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Created by: NhanDT
+     * Date created: 11/08/2023
+     *
+     * Check case exit account (has email)
+     * @throws Exception
+     */
+    @Test
+    public void signUp_exist_account_email() throws Exception {
+        AccountDto accountDto = new AccountDto();
+        accountDto.setEmailCustomer("khang9@gmail.com");
+        accountDto.setPassword("12345678A");
+        accountDto.setTelCustomer("0123456789");
+        accountDto.setNameCustomer("Nhan Nhan Nhan");
+        accountDto.setDateCustomer("1998-02-02");
+        accountDto.setAddressCustomer("Đà Nẵng");
+        accountDto.setGenderCustomer(false);
+        accountDto.setNationalityCustomer("Việt Nam");
+        accountDto.setIdCardCustomer("120123478799");
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .post("/api/account/signup")
+                        .content(this.objectMapper.writeValueAsString(accountDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
 
-
+    /**
+     * Created by: NhanDT
+     * Date created: 11/08/2023
+     *
+     * Check case exit customer (has idCard)
+     * @throws Exception
+     */
+    @Test
+    public void signUp_exist_customer_idCard() throws Exception {
+        AccountDto accountDto = new AccountDto();
+        accountDto.setEmailCustomer("khang11@gmail.com");
+        accountDto.setPassword("12345678A");
+        accountDto.setTelCustomer("0123456789");
+        accountDto.setNameCustomer("Nhan Nhan Nhan");
+        accountDto.setDateCustomer("1998-02-02");
+        accountDto.setAddressCustomer("Đà Nẵng");
+        accountDto.setGenderCustomer(false);
+        accountDto.setNationalityCustomer("Việt Nam");
+        accountDto.setIdCardCustomer("120123478788");
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .post("/api/account/signup")
+                        .content(this.objectMapper.writeValueAsString(accountDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
 
 }

@@ -15,4 +15,5 @@ public interface ITypeSeatService {
      * return TypeSeat
      */
     TypeSeat findTypeSeatById(Long id);
+    TypeSeat findTypeSeatByName(String name);
 }
