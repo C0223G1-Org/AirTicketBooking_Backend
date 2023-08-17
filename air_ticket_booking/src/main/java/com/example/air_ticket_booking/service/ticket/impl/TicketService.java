@@ -20,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -51,7 +52,8 @@ public class TicketService implements ITicketService {
     public void createNewTicket(TicketDto ticketDto) {
         Ticket ticket = new Ticket();
         BeanUtils.copyProperties(ticketDto, ticket);
-        ticket.setPriceTicket(ticket.getLuggage().getPriceLuggage() + ticket.getSeat().getTypeSeat().getPriceExtra() * ticket.getSeat().getRoute().getPriceRoute());
+        ticket.setDateBooking(String.valueOf(LocalDate.now()));
+        ticket.setPriceTicket(ticket.getLuggage().getPriceLuggage() + (ticket.getSeat().getTypeSeat().getPriceExtra() * ticket.getSeat().getRoute().getPriceRoute())*1.6);
         ticketRepository.createNewTicket(ticket);
     }
 
@@ -227,5 +229,10 @@ public class TicketService implements ITicketService {
     @Override
     public void updateTicketByIdTicket(Long id) {
         ticketRepository.updateTicketByIdTicket(id);
+    }
+
+    @Override
+    public Ticket findTicketPayment(Long id) {
+        return ticketRepository.findByTicketById(id);
     }
 }

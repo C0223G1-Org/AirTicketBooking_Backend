@@ -118,7 +118,8 @@ public interface IRouteRepository extends JpaRepository<Route,Long> {
             "       rt.price_route as priceRoute,\n" +
             "       ac.name_air_craft as nameAirCraft,\n" +
             "       dp.name_departure as nameDeparture,\n" +
-            "       ds.name_destination as nameDestination\n" +
+            "       ds.name_destination as nameDestination, " +
+            "       ds.image_destination as imageDestination \n" +
             "from route rt\n" +
             "         join air_craft ac on ac.id_air_craft = rt.id_air_craft\n" +
             "         join departure dp on dp.id_departure = rt.id_departure\n" +
