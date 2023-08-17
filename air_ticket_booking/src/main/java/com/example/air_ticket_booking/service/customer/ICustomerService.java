@@ -86,4 +86,15 @@ public interface ICustomerService {
     void createCustomer(AccountDto accountDto, Long idAccountNew);
 
     Customer getCustomerLoginByEmail(String email);
+
+
+    /**
+     * Create by: NhanDT
+     * Date create: 16/08/2023
+     * Function: declare function for use
+     *
+     * @Param: id
+     * @Return: List<Customer>
+     */
+    void setFlagToFalse(String username);
 }
