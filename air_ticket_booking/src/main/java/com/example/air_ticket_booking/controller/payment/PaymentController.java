@@ -52,14 +52,14 @@ public class PaymentController {
     }
     @GetMapping("/payment/{id}")
     public ResponseEntity<Ticket> getTicketById(@PathVariable Long id) {
-        if (iTicketService.findByIdTicket(id) == null) {
+        if (iTicketService.findTicketPayment(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(iTicketService.findByIdTicket(id),HttpStatus.OK);
+        return new ResponseEntity<>(iTicketService.findTicketPayment(id),HttpStatus.OK);
     }
     @PatchMapping("/callback/{id}/{message}")
     public ResponseEntity<String> updateTicketByIdTicket(@PathVariable Long id, @PathVariable("message") String paymentStatus) {
-        Ticket ticket = iTicketService.findByIdTicket(id);
+        Ticket ticket = iTicketService.findTicketPayment(id);
         if (ticket == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {

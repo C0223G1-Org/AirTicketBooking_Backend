@@ -13,29 +13,31 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Repository
 public interface IAccountRepository extends JpaRepository<Account, Long> {
     /**
      * create by : SangTDN
+     *
      * @param newPass
-     * @param idAccount
-     *use: update password
+     * @param idAccount use: update password
      */
-   @Transactional
-   @Modifying
-   @Query(value = "UPDATE account SET password = :newPass \n" +
-           "WHERE id_account = :idAccount", nativeQuery = true)
-   void updatePasswordById (@Param("newPass") String newPass, @Param("idAccount") Long idAccount);
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE account SET password = :newPass \n" +
+            "WHERE id_account = :idAccount", nativeQuery = true)
+    void updatePasswordById(@Param("newPass") String newPass, @Param("idAccount") Long idAccount);
 
     /**
      * create by : SangTDN
+     *
      * @param id
      * @return account by id
      */
     @Query(value = "select * from account where id_account = :id", nativeQuery = true)
-    Account findAccountById (@Param("id") Long id);
+    Account findAccountById(@Param("id") Long id);
 
     /**
      * Created by: NhanDT
@@ -44,6 +46,8 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
      * @param userName
      * @return Account
      */
+//    @Modifying
+//    @Transactional
     @Query(nativeQuery = true, value = "select * from account as a where a.username = :userName and a.status_delete = 0")
     Account getByUserNameAndStatusFalse(@Param("userName") String userName);
 
@@ -112,7 +116,6 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
     void saveAccount(@Param("email") String email, @Param("password") String password);
 
 
-
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = "insert into account(username, password, role_id_role) values (:#{#account.username}, :#{#account.password}, 1)")
@@ -120,6 +123,10 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "select * from account",nativeQuery = true)
+    @Query(value = "select * from account", nativeQuery = true)
     List<Account> getListAccount();
+    @Modifying
+    @Transactional
+    @Query(nativeQuery = true, value = "insert into account(username, password, role_id_role, status_delete) values (:email, :password, 2, 0)")
+    void saveAccountEmployee(@Param("email") String email, @Param("password") String password);
 }

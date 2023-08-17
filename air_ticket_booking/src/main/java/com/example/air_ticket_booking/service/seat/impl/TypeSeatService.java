@@ -24,4 +24,9 @@ public class TypeSeatService implements ITypeSeatService {
     public TypeSeat findTypeSeatById(Long id) {
         return typeSeatRepository.findTypeSeatById(id);
     }
+
+    @Override
+    public TypeSeat findTypeSeatByName(String name) {
+        return typeSeatRepository.findTypeSeatByName(name);
+    }
 }

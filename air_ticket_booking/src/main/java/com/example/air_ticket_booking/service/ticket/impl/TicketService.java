@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -47,7 +48,8 @@ public class TicketService implements ITicketService {
     public void createNewTicket(TicketDto ticketDto) {
         Ticket ticket = new Ticket();
         BeanUtils.copyProperties(ticketDto, ticket);
-        ticket.setPriceTicket(ticket.getLuggage().getPriceLuggage() + ticket.getSeat().getTypeSeat().getPriceExtra() * ticket.getSeat().getRoute().getPriceRoute());
+        ticket.setDateBooking(String.valueOf(LocalDate.now()));
+        ticket.setPriceTicket(ticket.getLuggage().getPriceLuggage() + (ticket.getSeat().getTypeSeat().getPriceExtra() * ticket.getSeat().getRoute().getPriceRoute())*1.6);
         ticketRepository.createNewTicket(ticket);
     }
 
@@ -143,6 +145,9 @@ public class TicketService implements ITicketService {
             if(ticketSearch.getPassenger()==null){
                 ticketSearch.setPassenger("");
             }
+            if(ticketSearch.getDestinationDate()==null){
+                ticketRepository.getSearchReturn(ticketSearch,pageable);
+            }
             return ticketRepository.searchTicket(ticketSearch,pageable);
         }else if(ticketSearch.getIdSearch()==2){
 //            String passenger, String chairCode, int idSearch
@@ -208,7 +213,13 @@ public class TicketService implements ITicketService {
             throw new RuntimeException("Lỗi khi truy vấn dữ liệu từ database", e);
         }
     }
-
+    /**
+     *Create by: ThanhVh
+     *Date create: 11/08/2023
+     * Function:getListHistoryPayment()
+     * @param id,pageable
+     * @return Page<Ticket>
+     **/
     @Override
     public Page<Ticket> searchAllListPaymentByCustomerById(Long id, Pageable pageable,String departure,String destination) {
         return ticketRepository.searchAllListPaymentByCustomerById(id,pageable,departure, destination);
@@ -219,5 +230,8 @@ public class TicketService implements ITicketService {
         ticketRepository.updateTicketByIdTicket(id);
     }
 
-
+    @Override
+    public Ticket findTicketPayment(Long id) {
+        return ticketRepository.findByTicketById(id);
+    }
 }

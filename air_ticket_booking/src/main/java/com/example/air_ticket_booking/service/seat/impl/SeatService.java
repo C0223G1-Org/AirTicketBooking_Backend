@@ -26,4 +26,9 @@ public class SeatService implements ISeatService {
     public Seat findSeatById(Long id) {
         return seatRepository.findSeatById(id);
     }
+
+    @Override
+    public Seat findSeatByIdTySeat(Long idTypeSeat, Long idRoute, Long number) {
+        return seatRepository.findSeatByIdTySeat(idTypeSeat,idRoute,number);
+    }
 }
