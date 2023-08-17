@@ -22,6 +22,11 @@ public interface IReportRepository extends JpaRepository<Ticket, Long> {
     @Query(value = "SELECT\n" +
             "    t.date_booking AS date_booking,\n" +
             "    SUM(t.price_ticket) AS priceTicket,\n" +
+            "       CONCAT(\n" +
+            "               DATE_FORMAT(MIN(:startDate), '%d-%m-%Y'),\n" +
+            "               ' - ',\n" +
+            "               DATE_FORMAT(MAX(:endDate), '%d-%m-%Y')\n" +
+            "           ) AS title,\n" +
             "    DAYNAME(t.date_booking) AS date_Booking,\n" +
             "    CASE\n" +
             "        WHEN DAYNAME(t.date_booking) = 'Monday' THEN 'Thứ Hai'\n" +
@@ -42,46 +47,53 @@ public interface IReportRepository extends JpaRepository<Ticket, Long> {
             "    date_booking, dateBooking", nativeQuery = true)
     List<IReport> getWeekRevenue(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
-    @Query(value = "   SELECT\n" +
-            "    YEAR(t.date_booking) AS year,\n" +
-            "    MONTH(t.date_booking) AS month,\n" +
-            "    FLOOR((DAY(t.date_booking) - 1) / 7) + 1 AS dateBooking,\n" +
-            "    MIN(t.date_booking) AS week_start,\n" +
-            "    MAX(t.date_booking) AS week_end,\n" +
-            "    SUM(t.price_ticket) AS priceTicket\n" +
+    @Query(value = "SELECT CONCAT('Tuần ', FLOOR((DAY(t.date_booking) - 1) / 7) + 1) AS dateBooking,\n" +
+            "       SUM(t.price_ticket)                                       AS priceTicket,\n" +
+            "       CONCAT(\n" +
+            "               DATE_FORMAT(MIN(:startDate), '%d-%m-%Y'),\n" +
+            "               ' - ',\n" +
+            "               DATE_FORMAT(MAX(:endDate), '%d-%m-%Y')\n" +
+            "           ) AS title\n" +
             "FROM\n" +
             "    ticket AS t\n" +
             "WHERE\n" +
-            "        t.flag_ticket = false\n" +
-            "  AND t.date_booking BETWEEN :startDate AND :endDate\n" +
-            "GROUP BY\n" +
-            "    year, month, dateBooking\n" +
-            "ORDER BY\n" +
-            "    year, month, dateBooking", nativeQuery = true)
-    List<IReport> getMonthRevenue(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
-
-    @Query(value = "  SELECT\n" +
-            "    WEEK(t.date_booking) AS dateBooking,\n" +
-            "    MIN(t.date_booking) AS week_start,\n" +
-            "    MAX(t.date_booking) AS week_end,\n" +
-            "    SUM(t.price_ticket) AS priceTicket\n" +
-            "FROM\n" +
-            "    ticket AS t\n" +
-            "WHERE\n" +
-            "        t.flag_ticket = false\n" +
-            "  AND t.date_booking BETWEEN :startDate AND :endDate\n" +
+            "    t.flag_ticket = false\n" +
+            "  AND t.date_booking BETWEEN :startDate\n" +
+            "  AND :endDate\n" +
             "GROUP BY\n" +
             "    dateBooking\n" +
             "ORDER BY\n" +
-            "    dateBooking;;", nativeQuery = true)
+            "    dateBooking", nativeQuery = true)
+    List<IReport> getMonthRevenue(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+
+    @Query(value = " SELECT\n" +
+            "                 CONCAT('Tuần ', WEEK(t.date_booking)) AS dateBooking,\n" +
+            "                SUM(t.price_ticket) AS priceTicket,\n" +
+            "                (SELECT CONCAT(\n" +
+            "                                DATE_FORMAT(MIN(:startDate), '%d-%m-%Y'),\n" +
+            "                                ' - ',\n" +
+            "                                DATE_FORMAT(MAX(:endDate), '%d-%m-%Y')\n" +
+            "                            )) AS title\n" +
+            "            FROM\n" +
+            "                ticket AS t\n" +
+            "            WHERE\n" +
+            "                    t.flag_ticket = false\n" +
+            "              AND t.date_booking BETWEEN :startDate AND :endDate\n" +
+            "            GROUP BY\n" +
+            "                dateBooking\n" +
+            "            ORDER BY\n" +
+            "                WEEK(dateBooking);", nativeQuery = true)
     List<IReport> getQuarterRevenue(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
-    @Query(value = "  SELECT\n" +
+    @Query(value = " SELECT\n" +
             "    YEAR(t.date_booking) AS year,\n" +
-            "    MONTH(t.date_booking) AS dateBooking,\n" +
-            "    MIN(t.date_booking) AS month_start,\n" +
-            "    MAX(t.date_booking) AS month_end,\n" +
-            "    SUM(t.price_ticket) AS priceTicket\n" +
+            "    CONCAT('Tháng ', MONTH(t.date_booking)) AS dateBooking,\n" +
+            "    SUM(t.price_ticket) AS priceTicket,\n" +
+            "    (SELECT CONCAT(\n" +
+            "                    DATE_FORMAT(MIN(:startDate), '%d-%m-%Y'),\n" +
+            "                    ' - ',\n" +
+            "                    DATE_FORMAT(MAX(:endDate), '%d-%m-%Y')\n" +
+            "                )) AS title\n" +
             "FROM\n" +
             "    ticket AS t\n" +
             "WHERE\n" +
@@ -90,7 +102,7 @@ public interface IReportRepository extends JpaRepository<Ticket, Long> {
             "GROUP BY\n" +
             "    year, dateBooking\n" +
             "ORDER BY\n" +
-            "    year, dateBooking;", nativeQuery = true)
+            "    year, MONTH(dateBooking);", nativeQuery = true)
     List<IReport> getYearRevenue(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
 
@@ -104,17 +116,19 @@ public interface IReportRepository extends JpaRepository<Ticket, Long> {
      * @return revenue data
      */
     @Query(value = "SELECT\n" +
-            "    MONTH(t.date_booking) AS dateBooking,\n" +
-            "    SUM(t.price_ticket) AS priceTicket\n" +
+            "    SUM(t.price_ticket) AS priceTicket,\n" +
+            "    CONCAT(\n" +
+            "        DATE_FORMAT(MIN(:startDate), '%d-%m-%Y'),\n" +
+            "        ' - ',\n" +
+            "        DATE_FORMAT(MAX(:endDate), '%d-%m-%Y')\n" +
+            "    ) AS dateBooking\n" +
             "FROM\n" +
             "    ticket AS t\n" +
             "WHERE\n" +
-            "        t.flag_ticket = false\n" +
-            "  AND (\n" +
+            "    t.flag_ticket = false\n" +
+            "    AND (\n" +
             "        (:startDate IS NULL AND :endDate IS NULL)\n" +
             "        OR (t.date_booking >= :startDate AND t.date_booking <= :endDate)\n" +
-            "    )\n" +
-            "GROUP BY\n" +
-            "    MONTH(t.date_booking);", nativeQuery = true)
+            "    );", nativeQuery = true)
     List<IReport> getRevenue(@Param("startDate") String startDate, @Param("endDate") String endDate);
 }
