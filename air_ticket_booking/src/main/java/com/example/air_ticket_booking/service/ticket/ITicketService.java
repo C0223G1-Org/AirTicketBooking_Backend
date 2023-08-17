@@ -2,6 +2,7 @@ package com.example.air_ticket_booking.service.ticket;
 
 import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TicketSearch;
+import com.example.air_ticket_booking.projection.ITicketPassengerProjection;
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
 import org.springframework.data.domain.Page;
@@ -38,7 +39,7 @@ public interface ITicketService {
      * @Method findByTicket
      * @author Nhàn NA
      */
-    List<Ticket> findTicketByNameAndIdCard(String namePassenger, String idCardPassenger);
+    Page<ITicketPassengerProjection> findTicketByNameAndIdCard(String namePassenger, String idCardPassenger,Pageable pageable);
     /**
      *Create by: VuDT
      *Date create: 10/08/2023

@@ -146,4 +146,11 @@ public class EmployeeController {
             return new ResponseEntity<>(employeeList, HttpStatus.OK);
         }
     }
+    @GetMapping("/login/{email}")
+    public ResponseEntity<Employee> getEmployeeLoginByEmail(@PathVariable String email) {
+        if (employeeService.getEmployeeLoginByEmail(email) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(employeeService.getEmployeeLoginByEmail(email), HttpStatus.OK);
+    }
 }

@@ -114,4 +114,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
     @Modifying
     @Query("SELECT e FROM Employee e WHERE (:gender = NULL OR e.gender = :gender) AND (:name = NULL OR e.nameEmployee LIKE %:name%) AND e.flagEmployee = false")
     List<Employee> searchEmployee(@Param("gender") Boolean gender, @Param("name") String name);
+
+    @Query(nativeQuery = true, value = "select * from employee where email_employee = :email")
+    Employee getEmployeeLoginByEmail(@Param("email") String email);
 }

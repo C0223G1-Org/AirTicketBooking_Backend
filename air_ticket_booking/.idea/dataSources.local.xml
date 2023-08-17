@@ -5,7 +5,7 @@
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
       <schema-mapping />
     </data-source>
-    <data-source name="@localhost [2]" uuid="d9ccc72a-9a29-4d43-b0e7-24bd73b8f781">
+    <data-source name="@localhost [2]" uuid="59c95127-d0a3-44fa-b01a-2947c7dc5f52">
       <database-info product="MySQL" version="8.0.33" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MYSQL" exact-version="8.0.33" exact-driver-version="8.0">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
