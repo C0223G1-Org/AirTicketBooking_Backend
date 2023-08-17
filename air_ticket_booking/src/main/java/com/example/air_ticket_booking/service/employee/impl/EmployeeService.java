@@ -68,7 +68,6 @@ public class EmployeeService implements IEmployeeService {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDto, employee);
         employeeRepository.updateEmployee(
-                employee.getIdEmployee(),
                 employee.getNameEmployee(),
                 employee.getDateEmployee(),
                 employee.getGender(),
@@ -147,6 +146,7 @@ public class EmployeeService implements IEmployeeService {
         employee.setFlagEmployee(true);
         employeeRepository.save(employee);
     }
+
 
     /**
      * Create by: HuyHD;
