@@ -9,6 +9,7 @@ import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TicketSearch;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
 import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
+import com.example.air_ticket_booking.projection.ITicketPassengerProjection;
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
 import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
@@ -20,6 +21,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -35,8 +37,8 @@ public class TicketService implements ITicketService {
      * @param namePassenger,idCardPassenger return List Ticket
      */
     @Override
-    public List<Ticket> findTicketByNameAndIdCard(String namePassenger, String idCardPassenger) {
-        return ticketRepository.findTicketByNameAndIdCardPassengers(namePassenger, idCardPassenger);
+    public Page<ITicketPassengerProjection> findTicketByNameAndIdCard(String namePassenger, String idCardPassenger, Pageable pageablee) {
+        return ticketRepository.findTicketByNameAndIdCardPassengers(namePassenger, idCardPassenger,pageablee);
     }
 
     /**
@@ -51,7 +53,8 @@ public class TicketService implements ITicketService {
     public void createNewTicket(TicketDto ticketDto) {
         Ticket ticket = new Ticket();
         BeanUtils.copyProperties(ticketDto, ticket);
-        ticket.setPriceTicket(ticket.getLuggage().getPriceLuggage() + ticket.getSeat().getTypeSeat().getPriceExtra() * ticket.getSeat().getRoute().getPriceRoute());
+        ticket.setDateBooking(String.valueOf(LocalDate.now()));
+        ticket.setPriceTicket(ticket.getLuggage().getPriceLuggage() + (ticket.getSeat().getTypeSeat().getPriceExtra() * ticket.getSeat().getRoute().getPriceRoute())*1.6);
         ticketRepository.createNewTicket(ticket);
     }
 
@@ -136,6 +139,10 @@ public class TicketService implements ITicketService {
      */
     @Override
     public Page<ITicketProjection> searchTicket(TicketSearch ticketSearch, Pageable pageable) {
+        System.out.println(ticketSearch.isHasParameter());
+        if(!ticketSearch.isHasParameter()){
+            return ticketRepository.findAllTickets(pageable);
+        }
         if(ticketSearch.getIdSearch()==1){
 //            int typeTicket, String departure, String destination, String departureDate, String destinationDate, String passenger, int idSearch
             if(ticketSearch.getDeparture()==null){
@@ -146,6 +153,9 @@ public class TicketService implements ITicketService {
             }
             if(ticketSearch.getPassenger()==null){
                 ticketSearch.setPassenger("");
+            }
+            if(ticketSearch.getDestinationDate()==null){
+                ticketRepository.getSearchReturn(ticketSearch,pageable);
             }
             return ticketRepository.searchTicket(ticketSearch,pageable);
         }else if(ticketSearch.getIdSearch()==2){
@@ -227,5 +237,10 @@ public class TicketService implements ITicketService {
     @Override
     public void updateTicketByIdTicket(Long id) {
         ticketRepository.updateTicketByIdTicket(id);
+    }
+
+    @Override
+    public Ticket findTicketPayment(Long id) {
+        return ticketRepository.findByTicketById(id);
     }
 }

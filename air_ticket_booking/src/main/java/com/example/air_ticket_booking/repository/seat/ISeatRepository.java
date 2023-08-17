@@ -21,5 +21,7 @@ public interface ISeatRepository extends JpaRepository<Seat,Long> {
     @Query(value = "select * from seat where id_seat = :id", nativeQuery = true)
     Seat findSeatById(@Param("id") Long id);
 
+    @Query(value = "select * from seat where id_type_seat=:idTypeSeat and flag_seat=false and id_route=:idRoute limit :number,1",nativeQuery = true)
+    Seat findSeatByIdTySeat(@Param("idTypeSeat")Long idTypeSeat,@Param("idRoute") Long idRoute,@Param("number") Long number );
 
 }

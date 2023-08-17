@@ -1,6 +1,7 @@
 package com.example.air_ticket_booking.controller.ticket;
 
 import com.example.air_ticket_booking.model.ticket.TicketSearch;
+import com.example.air_ticket_booking.projection.ITicketPassengerProjection;
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
 import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +25,6 @@ import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
 import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
 import com.example.air_ticket_booking.service.ticket.impl.TicketService;
-//import com.sun.tools.javac.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,15 +53,12 @@ public class TicketController {
      * created by :NamPC
      * date create: 10/08/2023
      * @param ticketDto
-     * @param bindingResult
+     * @param
      * @return httpStatus
      */
 
     @PostMapping()
-    public ResponseEntity<?> createNewTicket(@RequestBody TicketDto ticketDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<HttpStatus> createNewTicket(@Valid @RequestBody TicketDto ticketDto) {
         iTicketService.createNewTicket(ticketDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -69,15 +67,42 @@ public class TicketController {
      * method :findTicketByNameAndIdCardPassengers()
      * created by :KietNT
      * date create: 10/08/2023
-     * @param namePassenger,idCardPassenger
-     * return List Ticket
+     *
+     * @param namePassenger,idCardPassenger return List Ticket
      */
     @GetMapping("/search-ticket/{namePassenger}/{idCardPassenger}")
     @ResponseBody
-    public ResponseEntity<?> findTicketByNameAndIdCardPassenger(@PathVariable String namePassenger,
-                                                                @PathVariable String idCardPassenger) {
-        return new ResponseEntity<>(iTicketService.findTicketByNameAndIdCard(namePassenger, idCardPassenger),
-                HttpStatus.OK);
+    public ResponseEntity<Page<ITicketPassengerProjection>> findTicketByNameAndIdCardPassenger(@PageableDefault Pageable pageable, @PathVariable String namePassenger,
+
+
+                                                                                               @PathVariable String idCardPassenger) {
+
+
+        Page<ITicketPassengerProjection> ticket = this.iTicketService.findTicketByNameAndIdCard(namePassenger, idCardPassenger, pageable);
+        if (ticket.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        if (ticket == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(ticket, HttpStatus.OK);
+    }
+
+    @GetMapping("/search-ticket-result/{namePassenger}/{idCardPassenger}")
+    @ResponseBody
+    public ResponseEntity<Page<ITicketPassengerProjection>> findTicketByNameAndIdCardPassengerResult(@PageableDefault(size = 1) Pageable pageable, @PathVariable String namePassenger,
+                                                                                                     @PathVariable String idCardPassenger) {
+
+
+        Page<ITicketPassengerProjection> ticket = this.iTicketService.findTicketByNameAndIdCard(namePassenger, idCardPassenger, pageable);
+        if (ticket.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        if (ticket == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(ticket, HttpStatus.OK);
     }
 
     /**
@@ -195,18 +220,14 @@ public class TicketController {
      * @author Nhàn NA
      */
     @GetMapping ("/search/{page}")
-    public ResponseEntity<Page<ITicketProjection>> searchTickets(@ModelAttribute TicketSearch ticketSearch, @PathVariable("page") int page){
-        System.out.println("nhan");
-        String idString= String.valueOf(page);
+    public ResponseEntity<Page<ITicketProjection>> searchTickets(@ModelAttribute TicketSearch ticketSearch, @PathVariable("page") int page){;
         Pageable pageable = PageRequest.of(page,5);
-        System.out.println(ticketSearch.getSeatCode());
-        System.out.println(ticketSearch.getDeparture());
         if(iTicketService.searchTicket(ticketSearch,pageable).getContent().isEmpty()){
-
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         else {
-            System.out.println(iTicketService.searchTicket(ticketSearch,pageable).getContent().get(0).getNameRoute());
+            System.out.println("nhan");
+            System.out.println(ticketSearch.isHasParameter());
             return new ResponseEntity<>(iTicketService.searchTicket(ticketSearch,pageable),HttpStatus.OK);
         }
     }
