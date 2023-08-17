@@ -2,7 +2,6 @@ package com.example.air_ticket_booking.repository.employee;
 
 import com.example.air_ticket_booking.model.account.Account;
 import com.example.air_ticket_booking.model.employee.Employee;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -112,6 +112,14 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
      * @param name   The name of the employee to search for. Can be null to indicate any name.
      * @return A list of employees matching the specified gender and name criteria.
      */
+    @Transactional
+    @Modifying
+    @Query("SELECT e FROM Employee e WHERE (:gender = NULL OR e.gender = :gender) AND (:name = NULL OR e.nameEmployee LIKE %:name%) AND e.flagEmployee = false")
+    List<Employee> searchEmployee(@Param("gender") Boolean gender, @Param("name") String name);
+
+    @Query(nativeQuery = true, value = "select * from employee where email_employee = :email")
+    Employee getEmployeeLoginByEmail(@Param("email") String email);
+}
 //    @Transactional
 //    @Modifying
     @Query("SELECT e FROM Employee e WHERE (:gender IS NULL OR e.gender = :gender) AND (:name IS NULL OR e.nameEmployee LIKE %:name%) AND e.flagEmployee = false")

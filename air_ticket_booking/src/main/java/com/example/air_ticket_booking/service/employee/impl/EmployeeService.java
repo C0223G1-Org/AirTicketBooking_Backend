@@ -68,6 +68,7 @@ public class EmployeeService implements IEmployeeService {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDto, employee);
         employeeRepository.updateEmployee(
+                employee.getIdEmployee(),
                 employee.getNameEmployee(),
                 employee.getDateEmployee(),
                 employee.getGender(),
@@ -161,4 +162,10 @@ public class EmployeeService implements IEmployeeService {
     public Page<Employee> searchEmployee(Boolean gender, String name, Pageable pageable) {
         return employeeRepository.searchEmployee(gender, name, pageable);
     }
+
+    @Override
+    public Employee getEmployeeLoginByEmail(String email) {
+        return employeeRepository.getEmployeeLoginByEmail(email);
+    }
 }
+

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module version="4">
+<module external.linked.project.id="air_ticket_booking:test" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="GRADLE" external.system.module.group="com.example" external.system.module.type="sourceSet" external.system.module.version="0.0.1-SNAPSHOT" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="web" name="Web">
       <configuration>
@@ -25,9 +25,6 @@
     <content url="file://$MODULE_DIR$/../../src/test">
       <sourceFolder url="file://$MODULE_DIR$/../../src/test/java" isTestSource="true" />
     </content>
-  </component>
-  <component name="SonarLintModuleSettings">
-    <option name="uniqueId" value="792b40c3-ef17-4b48-998c-c93e3bef5eeb" />
   </component>
   <component name="SonarLintModuleSettings">
     <option name="uniqueId" value="3df0457a-de44-428e-b983-52b0d65970d7" />
