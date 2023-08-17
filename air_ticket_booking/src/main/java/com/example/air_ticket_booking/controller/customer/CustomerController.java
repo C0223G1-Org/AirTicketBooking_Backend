@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -32,9 +33,11 @@ public class CustomerController {
     private ICustomerService customerService;
     @Autowired
     private IAccountService accountService;
+
+
     /**
-     * @param pageable
-     * @return if getListCustomer have data return getListCustomer and status OK else return status NO_CONTENT
+     * @param pageable, name, nationality, email
+     * @return if getListSearch have data return getListSearch and status OK else return status NO_CONTENT
      * Create by: TàiMP
      * Date create: 10/08/2023
      */
@@ -44,13 +47,15 @@ public class CustomerController {
         int currentPage;
         try {
             currentPage = Integer.parseInt(page);
+
             if (currentPage < 0) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             } else if (email.length() > 100 || name.length() > 100 || nationality.length() > 20) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
+            } else if (email.contains("_") || email.contains("&") || email.contains("+") || name.contains("_") || name.contains("+") || name.contains("&")) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
-        } catch (NumberFormatException n) {
+        } catch (NumberFormatException num) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -63,36 +68,6 @@ public class CustomerController {
     }
 
 
-        /**
-         * @param pageable, name, nationality, email
-         * @return if getListSearch have data return getListSearch and status OK else return status NO_CONTENT
-         * Create by: TàiMP
-         * Date create: 10/08/2023
-         */
-    @GetMapping("/search")
-    public ResponseEntity<Page<Customer>> getListSearchCustomer(@PageableDefault(size = 5) Pageable pageable, @RequestParam("email") String email,
-                                                                @RequestParam("name") String name, @RequestParam("nationality") String nationality,@RequestParam("page")String page) {
-
-        int currentPage;
-        try {
-            currentPage = Integer.parseInt(page);
-            if (currentPage < 0) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }else if (email.length()>100||name.length()>100||nationality.length()>20){
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-            }
-        } catch (NumberFormatException n) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        Page<Customer> getListSearch = customerService.getListSearchCustomer(pageable, email, name, nationality);
-        if (!getListSearch.isEmpty()) {
-            return new ResponseEntity<>(getListSearch, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
 
     /**
      * @param id
@@ -119,14 +94,14 @@ public class CustomerController {
      * @return ResponseEntity<>
      */
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto, BindingResult bindingResult) {
+    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto) {
         if (customerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        new CustomerDto().validate(customerDto,bindingResult);
-        if(bindingResult.hasErrors()){
-            return new ResponseEntity<>(bindingResult.getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST);
-        }
+//        new CustomerDto().validate(customerDto,bindingResult);
+//        if(bindingResult.hasErrors()){
+//            return new ResponseEntity<>(bindingResult.getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST);
+//        }
         Customer customer=new Customer();
         BeanUtils.copyProperties(customerDto,customer);
         customerService.updateCustomer(customer);
