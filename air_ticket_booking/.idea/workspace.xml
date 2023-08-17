@@ -154,31 +154,31 @@
     <option name="showLibraryContents" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/AirTicketBooking_Backend/air_ticket_booking/src/main/java/com/example/air_ticket_booking/model&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;cf2e3f1bf99913094ccc54139ec18554&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/coding_module_6/AirTicketBooking_Backend/air_ticket_booking",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "spring.configuration.checksum": "cf2e3f1bf99913094ccc54139ec18554",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\AirTicketBooking_Backend\air_ticket_booking\src\main\java\com\example\air_ticket_booking\model" />
@@ -295,6 +295,10 @@
       <workItem from="1692149508552" duration="16458000" />
       <workItem from="1692240451927" duration="3664000" />
       <workItem from="1692258312124" duration="223000" />
+      <workItem from="1692258558819" duration="729000" />
+      <workItem from="1692259904885" duration="270000" />
+      <workItem from="1692260355890" duration="57000" />
+      <workItem from="1692265071133" duration="656000" />
     </task>
     <task id="LOCAL-00001" summary="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 14/8">
       <option name="closed" value="true" />
@@ -333,7 +337,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692176597818</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="HuyHD + QuocNHA merge code employee lan 9 date 17/08/2023">
+      <created>1692258658208</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1692258658208</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -344,6 +355,7 @@
     <MESSAGE value="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 15/8" />
     <MESSAGE value="Nampc commit BE" />
     <MESSAGE value="Nampc commit BE-" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nampc commit BE-" />
+    <MESSAGE value="HuyHD + QuocNHA merge code employee lan 9 date 17/08/2023" />
+    <option name="LAST_COMMIT_MESSAGE" value="HuyHD + QuocNHA merge code employee lan 9 date 17/08/2023" />
   </component>
 </project>
