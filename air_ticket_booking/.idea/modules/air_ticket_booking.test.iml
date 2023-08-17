@@ -26,7 +26,4 @@
       <sourceFolder url="file://$MODULE_DIR$/../../src/test/java" isTestSource="true" />
     </content>
   </component>
-  <component name="SonarLintModuleSettings">
-    <option name="uniqueId" value="3df0457a-de44-428e-b983-52b0d65970d7" />
-  </component>
 </module>
