@@ -2,7 +2,6 @@ package com.example.air_ticket_booking.controller.post;
 
 import com.example.air_ticket_booking.dto.post.PostDto;
 import com.example.air_ticket_booking.model.post.Post;
-import com.example.air_ticket_booking.model.post.Post;
 import com.example.air_ticket_booking.service.post.IPostService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +65,7 @@ public class PostController {
      * @return
      */
     @GetMapping("/hot-news")
-    public ResponseEntity<List<Post>> HotNewList(){
+    public ResponseEntity<List<Post>> hotNewList(){
         if (this.iPostService.getListPostHotNews().isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else {
@@ -102,7 +101,7 @@ public class PostController {
      * @return message and status
      */
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deletePost(@PathVariable(value = "id",required = false) Long id) {
+    public ResponseEntity<HttpStatus > deletePost(@PathVariable(value = "id",required = false) Long id) {
         if (id==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else if (this.iPostService.deletePostById(id)) {
@@ -128,12 +127,6 @@ public class PostController {
         }
         iPostService.savePost(postDto);
         return new ResponseEntity<>(postDto,HttpStatus.OK);
-//        try {
-//            iPostService.savePost(postDto);
-//            return ResponseEntity.ok(postDto);
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(".....");
-//        }
     }
 
     /**
@@ -145,7 +138,7 @@ public class PostController {
      */
     @GetMapping("/search")
     public ResponseEntity<List<Post>> searchPost(@RequestParam(value = "title",required = false) String title){
-        String titles = title.toString().trim();
+        String titles = title.trim();
         if (iPostService.searchPostByTitle(titles).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

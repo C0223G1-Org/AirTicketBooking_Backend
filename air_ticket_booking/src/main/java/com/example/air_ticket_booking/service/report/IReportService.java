@@ -1,9 +1,8 @@
 package com.example.air_ticket_booking.service.report;
 
 import com.example.air_ticket_booking.dto.report.IReport;
-import com.example.air_ticket_booking.model.ticket.Ticket;
 
-import java.time.LocalDate;
+
 import java.util.List;
 
 public interface IReportService {
