@@ -173,6 +173,8 @@ public class TicketService implements ITicketService {
                 ticketSearch.setRouteCode("");
             }
             System.out.println(ticketSearch.getRouteCode());
+            System.out.println(ticketSearch.getDepartureDate());
+            System.out.println(ticketRepository.searchRouteTicket(ticketSearch,pageable).getContent().size());
             return ticketRepository.searchRouteTicket(ticketSearch,pageable);
         }else {
             return null;

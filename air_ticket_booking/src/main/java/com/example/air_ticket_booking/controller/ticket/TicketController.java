@@ -108,6 +108,7 @@ public class TicketController {
 //        }
 
         Ticket existingTicket = iTicketService.findByIdTicket(id);
+        System.out.println("nhan");
         if (existingTicket == null) {
             return ResponseEntity.notFound().build();
         }

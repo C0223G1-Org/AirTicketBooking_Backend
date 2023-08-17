@@ -141,19 +141,19 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             " and position_seat like concat('%',:#{#ticketSearch.chairCode},'%')",nativeQuery = true)
     Page<ITicketProjection> searchSeatPosition(@Param("ticketSearch")TicketSearch ticketSearch, Pageable pageable);
     @Query(value = "select id_ticket as id, date_booking as dateBooking, name_passenger as namePassenger, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture,price_ticket as priceTicket  from ticket t \n" +
-            "join type_ticket tt on t.type_ticket_id_type_ticket = tt.id_type_ticket\n" +
-            "join type_passenger tp on tp.id_type_passenger = t.type_passenger_id_type_passenger\n" +
-            "join customer c on c.id_customer = t.customer_id_customer\n" +
-            "join seat s on s.id_seat=t.seat_id_seat\n" +
-            "join type_seat ts on ts.id_type_seat=s.id_type_seat\n" +
-            "join route r on r.id_route=s.id_route\n" +
-            "join destination d on d.id_destination = r.id_destination\n" +
-            "join air_craft ac on ac.id_air_craft = r.id_air_craft\n" +
-            "join departure de on de.id_departure=r.id_departure\n" +
-            "where t.flag_ticket=0 and  " +
-            " name_route like concat('%',:#{#ticketSearch.routeCode},'%')" +
-            "and date_departure like  :#{#ticketSearch.departureDate} ",nativeQuery = true)
-    Page<ITicketProjection> searchRouteTicket(@Param("ticketSearch")TicketSearch ticketSearch, Pageable pageable);
+            "            join type_ticket tt on t.type_ticket_id_type_ticket = tt.id_type_ticket\n" +
+            "            join type_passenger tp on tp.id_type_passenger = t.type_passenger_id_type_passenger\n" +
+            "            join customer c on c.id_customer = t.customer_id_customer\n" +
+            "            join seat s on s.id_seat=t.seat_id_seat\n" +
+            "            join type_seat ts on ts.id_type_seat=s.id_type_seat\n" +
+            "            join route r on r.id_route=s.id_route\n" +
+            "            join destination d on d.id_destination = r.id_destination\n" +
+            "            join air_craft ac on ac.id_air_craft = r.id_air_craft\n" +
+            "            join departure de on de.id_departure=r.id_departure\n" +
+            "            where t.flag_ticket=0 and  \n" +
+            "            name_route like concat('%',:#{#ticketSearch.routeCode},'%')\n" +
+            "            and date_departure = :#{#ticketSearch.departureDate}", nativeQuery = true)
+    Page<ITicketProjection> searchRouteTicket(@Param("ticketSearch") TicketSearch ticketSearch, Pageable pageable);
     /**
      * task get all tickets  unbooked from database
      * @Method findAllTicketUnbooked
@@ -161,13 +161,15 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
      * @return Page<Ticket>
      * @author Nhàn NA
      */
-    @Query(value = "select id_seat as id ,position_seat as positionSeat,name_type_seat as typeSeat, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture  from seat s\n" +
-            "join type_seat ts on ts.id_type_seat=s.id_type_seat\n" +
-            "join route r on r.id_route=s.id_route\n" +
-            "join destination d on d.id_destination = r.id_destination\n" +
-            "join air_craft ac on ac.id_air_craft = r.id_air_craft\n" +
-            "join departure de on de.id_departure=r.id_departure\n" +
-            "where s.flag_seat=0",nativeQuery = true)
+    @Query(value = "SELECT r.id_route AS idRoute, r.name_route AS nameRoute, de.name_departure AS nameDeparture, d.name_destination AS nameDestination, r.time_departure AS timeDeparture, COUNT(*) AS 'soVe'\n" +
+            "FROM seat s\n" +
+            "JOIN type_seat ts ON ts.id_type_seat = s.id_type_seat\n" +
+            "JOIN route r ON r.id_route = s.id_route\n" +
+            "JOIN destination d ON d.id_destination = r.id_destination\n" +
+            "JOIN air_craft ac ON ac.id_air_craft = r.id_air_craft\n" +
+            "JOIN departure de ON de.id_departure = r.id_departure\n" +
+            "GROUP BY r.id_route, r.name_route, de.name_departure, d.name_destination, r.time_departure\n" +
+            "order by r.id_route ;",nativeQuery = true)
     Page<ITicketUnbookedProjection> findAllTicketUnbooked(Pageable pageable);
     /**
      * task get search all tickets unbooked from database
@@ -179,14 +181,23 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
 
 
 
-    @Query(value = "select id_seat as id ,position_seat as positionSeat,name_type_seat as typeSeat, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture  from seat s\n" +
-            "join type_seat ts on ts.id_type_seat=s.id_type_seat\n" +
-            "join route r on r.id_route=s.id_route\n" +
-            "join destination d on d.id_destination = r.id_destination\n" +
-            "join air_craft ac on ac.id_air_craft = r.id_air_craft\n" +
-            "join departure de on de.id_departure=r.id_departure\n" +
-            "where s.flag_seat=0 and  name_route like concat('%',:#{#ticketSearch.routeCode},'%') and position_seat like concat('%',:#{#ticketSearch.chairCode},'%')  ",nativeQuery = true)
-    Page<ITicketUnbookedProjection> searchTicketUnbooked(@Param("ticketSearch")TicketSearch ticketSearch,Pageable pageable);
+    @Query(value = "SELECT r.id_route AS id, r.name_route AS nameRoute, de.name_departure AS nameDeparture, d.name_destination AS nameDestination, r.time_departure AS timeDeparture,r.price_route as priceTicket ," +
+            " (SELECT COUNT(*) FROM seat s " +
+            " JOIN type_seat ts ON ts.id_type_seat = s.id_type_seat " +
+            " WHERE s.flag_seat = 0 AND r.id_route = s.id_route) AS countEmpty " +
+            " FROM route r " +
+            " JOIN destination d ON d.id_destination = r.id_destination " +
+            " JOIN air_craft ac ON ac.id_air_craft = r.id_air_craft " +
+            " JOIN departure de ON de.id_departure = r.id_departure " +
+            " WHERE r.name_route LIKE CONCAT('%', :#{#ticketSearch.routeCode}, '%') " +
+            " ORDER BY r.id_route",
+            countQuery = "SELECT COUNT(*) FROM route r " +
+                    " JOIN destination d ON d.id_destination = r.id_destination " +
+                    " JOIN air_craft ac ON ac.id_air_craft = r.id_air_craft " +
+                    " JOIN departure de ON de.id_departure = r.id_departure " +
+                    " WHERE r.name_route LIKE CONCAT('%', :#{#ticketSearch.routeCode}, '%')",
+            nativeQuery = true)
+    Page<ITicketUnbookedProjection> searchTicketUnbooked(@Param("ticketSearch") TicketSearch ticketSearch, Pageable pageable);
 
 //    @Query(value = "select id_seat as id ,position_seat as positionSeat,name_type_seat as typeSeat, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture  from seat s\n" +
 //            "join type_seat ts on ts.id_type_seat=s.id_type_seat\n" +
