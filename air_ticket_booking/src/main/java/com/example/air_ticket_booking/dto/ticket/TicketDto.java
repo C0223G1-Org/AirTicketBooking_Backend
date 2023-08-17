@@ -22,7 +22,7 @@ public class TicketDto implements Validator {
     private Boolean flagTicket;
     @NotBlank(message = "Không được để trống")
     @Size(max = 50,message = "Tên không vượt quá 50 ký tự")
-    @Size(min = 10, message = "Tên ít nhất 10 ký tự")
+    @Size(min = 5, message = "Tên ít nhất 5 ký tự")
     @Pattern(regexp = "^([A-Z][a-z]{0,7}\\s){1,5}[A-Z][a-z]{0,7}$",message = "Tên không đúng định dạng")
     private String namePassenger;
 //    @NotBlank(message = "Không được để trống")
