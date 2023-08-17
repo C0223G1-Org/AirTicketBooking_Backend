@@ -110,5 +110,5 @@ public interface ITicketService {
 
     void updateTicketByIdTicket(Long id);
 
-
+    Ticket findTicketPayment(Long id);
 }

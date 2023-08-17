@@ -51,16 +51,12 @@ public class TicketController {
      * created by :NamPC
      * date create: 10/08/2023
      * @param ticketDto
-     * @param bindingResult
+     * @param
      * @return httpStatus
      */
 
     @PostMapping()
-    public ResponseEntity<HttpStatus> createNewTicket(@RequestBody TicketDto ticketDto, BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<HttpStatus> createNewTicket(@Valid @RequestBody TicketDto ticketDto) {
         iTicketService.createNewTicket(ticketDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
