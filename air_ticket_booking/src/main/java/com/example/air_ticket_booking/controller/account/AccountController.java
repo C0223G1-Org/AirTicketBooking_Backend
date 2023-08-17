@@ -1,7 +1,8 @@
 package com.example.air_ticket_booking.controller.account;
-
-import com.example.air_ticket_booking.config.JwtTokenUtil;
-import com.example.air_ticket_booking.config.JwtUserDetails;
+//
+//import com.example.air_ticket_booking.config.JwtTokenUtil;
+//import com.example.air_ticket_booking.config.JwtUserDetails;
+import com.example.air_ticket_booking.dto.account.AccountChangeDTO;
 import com.example.air_ticket_booking.dto.account.AccountDto;
 import com.example.air_ticket_booking.dto.account.JwtRequestDto;
 import com.example.air_ticket_booking.model.account.Account;
@@ -14,12 +15,13 @@ import com.example.air_ticket_booking.service.customer.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.authentication.AuthenticationManager;
+//import org.springframework.security.authentication.BadCredentialsException;
+//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -42,12 +44,14 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/account")
 public class AccountController {
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+//    @Autowired
+//    private AuthenticationManager authenticationManager;
+//    @Autowired
+//    private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private IAccountService accountService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     class ErrorInfo {
@@ -85,18 +89,18 @@ public class AccountController {
      */
     @PostMapping("/login")
     public ResponseEntity<?> loginAuthentication(@RequestBody JwtRequest authenticationRequest) throws Exception {
-        try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
-            );
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            JwtUserDetails principal = (JwtUserDetails) authentication.getPrincipal();
-            GrantedAuthority authority = principal.getAuthorities().stream().findFirst().orElse(null);
-            final String token = jwtTokenUtil.generateToken(principal.getUsername());
-            return ResponseEntity.ok(new JwtResponse(token, principal.getUsername(), authority != null ? authority.getAuthority() : null));
-        } catch (BadCredentialsException e) {
+//        try {
+//            Authentication authentication = authenticationManager.authenticate(
+//                    new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
+//            );
+//            SecurityContextHolder.getContext().setAuthentication(authentication);
+//            JwtUserDetails principal = (JwtUserDetails) authentication.getPrincipal();
+//            GrantedAuthority authority = principal.getAuthorities().stream().findFirst().orElse(null);
+//            final String token = jwtTokenUtil.generateToken(principal.getUsername());
+//            return ResponseEntity.ok(new JwtResponse(token, principal.getUsername(), authority != null ? authority.getAuthority() : null));
+//        } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Đăng nhập thất bại!!!");
-        }
+//        }
     }
 
     /**
@@ -165,5 +169,23 @@ public class AccountController {
             errors.put(fieldName, errorMessage);
         });
         return errors;
+    }
+
+    /**
+     //     * create by : SangTDN
+     //     * @param id
+     //     * @param accountChangeDTO
+     //     * @return status
+     //     */
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updateAccount(@Valid @RequestBody AccountChangeDTO accountChangeDTO, @PathVariable Long id) {
+        Account account = accountService.findAccountById(id);
+        boolean flag = passwordEncoder.matches(accountChangeDTO.getOldPassword(), account.getPassword());
+        if (flag) {
+            String encoderNewPassword = passwordEncoder.encode(accountChangeDTO.getNewPassword());
+            accountService.updatePasswordForId(encoderNewPassword, id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
