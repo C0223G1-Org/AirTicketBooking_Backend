@@ -40,6 +40,7 @@ public class TicketService implements ITicketService {
         return ticketRepository.findTicketByNameAndIdCardPassengers(namePassenger, idCardPassenger,pageable);
     }
 
+
     /**
      * method :used to create a new ticket when the user confirms the booking
      * created by :NamPC

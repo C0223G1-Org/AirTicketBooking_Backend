@@ -1,8 +1,8 @@
 package com.example.air_ticket_booking.service.ticket;
 
 import com.example.air_ticket_booking.model.ticket.Ticket;
-import com.example.air_ticket_booking.projection.ITicketPassengerProjection;
 import com.example.air_ticket_booking.model.ticket.TicketSearch;
+import com.example.air_ticket_booking.projection.ITicketPassengerProjection;
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
 import org.springframework.data.domain.Page;
@@ -40,7 +40,7 @@ public interface ITicketService {
      * @Method findByTicket
      * @author Nhàn NA
      */
-    List<Ticket> findTicketByNameAndIdCard(String namePassenger, String idCardPassenger);
+
     /**
      *Create by: VuDT
      *Date create: 10/08/2023
@@ -76,7 +76,7 @@ public interface ITicketService {
     /**
      * task search ticket
      *  date create: 10/08/2023
-     * @param idTypeTicket, namePassenger, nameRoute,  nameDeparture, nameDestination,pageable
+     * @param  namePassenger, nameRoute,  nameDeparture, nameDestination,pageable
      * @return Page<Ticket>
      * @Method searchTicket
      * @author Nhàn NA

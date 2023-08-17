@@ -5,6 +5,7 @@ import com.example.air_ticket_booking.model.customer.Customer;
 import com.example.air_ticket_booking.model.luggage.Luggage;
 import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.Ticket;
+import com.example.air_ticket_booking.model.ticket.TicketSearch;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
 import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
 import com.example.air_ticket_booking.projection.ITicketPassengerProjection;
@@ -144,7 +145,7 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             "and name_route like concat('%',:#{#ticketSearch.routeCode},'%') and  name_destination like concat('%',:#{#ticketSearch.destination},'%') " +
             "and name_departure like concat('%',:#{#ticketSearch.departure},'%') and position_seat like concat('%',:#{#ticketSearch.seatCode},'%')" +
             "and date_departure like :#{#ticketSearch.departureDate} and date_arrival like :#{#ticketSearch.destinationDate}",nativeQuery = true)
-    Page<ITicketProjection> searchTicket(@Param("ticketSearch")TicketSearch ticketSearch, Pageable pageable);
+    Page<ITicketProjection> searchTicket(@Param("ticketSearch") TicketSearch ticketSearch, Pageable pageable);
     @Query(value = "select id_ticket as id, date_booking as dateBooking, name_passenger as namePassenger, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture,price_ticket as priceTicket  from ticket t \n" +
             "join type_ticket tt on t.type_ticket_id_type_ticket = tt.id_type_ticket\n" +
             "join type_passenger tp on tp.id_type_passenger = t.type_passenger_id_type_passenger\n" +
