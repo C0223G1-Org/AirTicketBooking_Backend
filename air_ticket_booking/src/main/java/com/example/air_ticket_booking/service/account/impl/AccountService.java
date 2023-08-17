@@ -175,8 +175,8 @@ public class AccountService implements UserDetailsService, IAccountService {
         }
         boolean check = Objects.equals(account.getVerificationCode(), accountCheck.getVerificationCode());
         if (account.getCount() <= 3 && check) {
-            this.accountRepository.setStatusToFalse(accountCheck.getIdAccount());
             this.accountRepository.setCodeToFalse(accountCheck.getIdAccount());
+            this.accountRepository.setStatusToFalse(accountCheck.getIdAccount());
             this.customerService.setFlagToFalse(accountCheck.getUsername());
             return true;
         } else if (account.getCount() >= 3 && !check) {
