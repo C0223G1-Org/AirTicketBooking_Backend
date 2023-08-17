@@ -6,6 +6,12 @@
     </content>
   </component>
   <component name="FacetManager">
+    <facet type="web" name="Web">
+      <configuration>
+        <webroots />
+        <sourceRoots />
+      </configuration>
+    </facet>
     <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="true" />
@@ -22,5 +28,12 @@
   </component>
   <component name="SonarLintModuleSettings">
     <option name="uniqueId" value="1fa2169e-8a1a-4ec9-81c2-7064be88a280" />
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../../src/test">
+      <sourceFolder url="file://$MODULE_DIR$/../../src/test/java" isTestSource="true" />
+    </content>
+  </component>
+  <component name="SonarLintModuleSettings">
+    <option name="uniqueId" value="3df0457a-de44-428e-b983-52b0d65970d7" />
   </component>
 </module>

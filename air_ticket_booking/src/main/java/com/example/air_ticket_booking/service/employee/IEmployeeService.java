@@ -39,11 +39,15 @@ public interface IEmployeeService {
      * Create by: HuyHD;
      * Date create: 10/08/2023
      * Function: Searches for employees based on the provided gender and name parameters.
-     * @param gender The gender of the employee to search for
-     * @param name The name or part of the name of the employee to search for
+     *
+     * @param gender   The gender of the employee to search for
+     * @param name     The name or part of the name of the employee to search for
+     * @param
      * @return A list of employees matching the specified gender and name criteria
      */
-    List<Employee> searchEmployee(Boolean gender, String name);
+
+    Employee getEmployeeLoginByEmail(String email);
+
     /**
      * Create by: TriPD;
      * Date create: 17/08/2023
@@ -51,5 +55,11 @@ public interface IEmployeeService {
      * @return A list of employees matching the specified gender and name criteria
      */
     List<Employee> getAllEmployee();
-}
 
+    Page<Employee> searchEmployee(Boolean gender, String name, Pageable pageable);
+
+    //    Employee getEmployeeById(Long id);
+    Employee findByyId(Long id);
+
+    boolean createEmployee(EmployeeDto employeeDto);
+}

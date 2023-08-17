@@ -23,7 +23,6 @@ import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
 import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
 import com.example.air_ticket_booking.service.ticket.impl.TicketService;
-//import com.sun.tools.javac.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,15 +51,12 @@ public class TicketController {
      * created by :NamPC
      * date create: 10/08/2023
      * @param ticketDto
-     * @param bindingResult
+     * @param
      * @return httpStatus
      */
 
     @PostMapping()
-    public ResponseEntity<?> createNewTicket(@RequestBody TicketDto ticketDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<HttpStatus> createNewTicket(@Valid @RequestBody TicketDto ticketDto) {
         iTicketService.createNewTicket(ticketDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -195,18 +191,14 @@ public class TicketController {
      * @author Nhàn NA
      */
     @GetMapping ("/search/{page}")
-    public ResponseEntity<Page<ITicketProjection>> searchTickets(@ModelAttribute TicketSearch ticketSearch, @PathVariable("page") int page){
-        System.out.println("nhan");
-        String idString= String.valueOf(page);
+    public ResponseEntity<Page<ITicketProjection>> searchTickets(@ModelAttribute TicketSearch ticketSearch, @PathVariable("page") int page){;
         Pageable pageable = PageRequest.of(page,5);
-        System.out.println(ticketSearch.getSeatCode());
-        System.out.println(ticketSearch.getDeparture());
         if(iTicketService.searchTicket(ticketSearch,pageable).getContent().isEmpty()){
-
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         else {
-            System.out.println(iTicketService.searchTicket(ticketSearch,pageable).getContent().get(0).getNameRoute());
+            System.out.println("nhan");
+            System.out.println(ticketSearch.isHasParameter());
             return new ResponseEntity<>(iTicketService.searchTicket(ticketSearch,pageable),HttpStatus.OK);
         }
     }

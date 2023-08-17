@@ -41,4 +41,9 @@ public interface IAccountService {
      * @return boolean
      */
     boolean checkCode(Account account);
+    boolean checkExistAccount(String email);
+
+    void createAccEmpl(String email, String password);
+
+    Account findAccountByEmail(String email);
 }

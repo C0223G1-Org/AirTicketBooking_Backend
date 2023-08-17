@@ -14,4 +14,5 @@ public interface ISeatService {
      * return Seat
      */
     Seat findSeatById(Long id);
+    Seat findSeatByIdTySeat(Long idTypeSeat, Long idRoute ,Long number );
 }

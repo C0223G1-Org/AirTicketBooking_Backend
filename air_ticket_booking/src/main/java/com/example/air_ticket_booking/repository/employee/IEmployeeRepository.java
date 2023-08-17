@@ -39,8 +39,8 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
      */
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO employee (name_employee, date_employee, gender, image, tel_employee, email_employee,account_id_account,flag_employee) " +
-            "VALUES (:name, :birthDay, :gender,:image,:telEmployee, :email,:account,:flagEmployee)",
+    @Query(value = "INSERT INTO employee (name_employee, date_employee, gender, image, tel_employee, email_employee,password_employee,type_employee_id_type_employee,flag_employee) " +
+            "VALUES (:name, :birthDay, :gender,:image,:telEmployee, :email,:passwordEmployee,:typeEmployee, false)",
             nativeQuery = true)
     void addEmployee(@Param("name") String name,
                      @Param("birthDay") String birthDay,
@@ -48,8 +48,8 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
                      @Param("image") String image,
                      @Param("telEmployee") String telEmployee,
                      @Param("email") String email,
-                     @Param("account") Account account,
-                     @Param("flagEmployee") boolean flagEmployee
+                     @Param("typeEmployee") Long typeEmployee,
+                     @Param("passwordEmployee") String passwordEmployee
     );
 
     /**
@@ -64,17 +64,19 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
     @Modifying
     @Transactional
     @Query(value = "Update employee set name_employee=:name,date_employee=:birthDay,gender=:gender,image=:image," +
-            "tel_employee=:telEmployee,email_employee=:email,account_id_account=:account,flag_employee=:flagEmployee " +
+            "tel_employee=:telEmployee,email_employee=:email,type_employee_id_type_employee=:typeEmployee,password_employee=:passwordEmployee,flag_employee=:flagEmployee " +
             "where id_employee=:id", nativeQuery = true)
-    void updateEmployee(@Param("id") Long id,
+    void updateEmployee(
                         @Param("name") String name,
                         @Param("birthDay") String birthday,
                         @Param("gender") boolean gender,
                         @Param("image") String image,
                         @Param("telEmployee") String telEmployee,
                         @Param("email") String email,
-                        @Param("account") Account account,
-                        @Param("flagEmployee") boolean flagEmployee
+                        @Param("passwordEmployee") String passwordEmployee,
+                        @Param("typeEmployee") Long typeEmployee,
+                        @Param("flagEmployee") boolean flagEmployee,
+                        @Param("id") Long id
     );
 
     /**
@@ -115,6 +117,18 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
     @Query("SELECT e FROM Employee e WHERE (:gender = NULL OR e.gender = :gender) AND (:name = NULL OR e.nameEmployee LIKE %:name%) AND e.flagEmployee = false")
     List<Employee> searchEmployee(@Param("gender") Boolean gender, @Param("name") String name);
 
+    @Query(nativeQuery = true, value = "select * from employee where email_employee = :email")
+    Employee getEmployeeLoginByEmail(@Param("email") String email);
+
+//    @Transactional
+//    @Modifying
+    @Query("SELECT e FROM Employee e WHERE (:gender IS NULL OR e.gender = :gender) AND (:name IS NULL OR e.nameEmployee LIKE %:name%) AND e.flagEmployee = false")
+    Page<Employee> searchEmployee(
+            @Param("gender") Boolean gender,
+            @Param("name") String name,
+            Pageable pageable
+    );
+
 
     /**
      * Create by: TriPD;
@@ -125,4 +139,8 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
      */
     @Query(value = "select * from employee where flag_employee = false ",nativeQuery = true)
     List<Employee> getAllEmployees();
+}
+
+    @Query(nativeQuery = true, value = "select * from employee as e where e.email_employee = :email and e.flag_employee = false")
+    List<Employee> findAllByEmail(@Param("email") String email);
 }
