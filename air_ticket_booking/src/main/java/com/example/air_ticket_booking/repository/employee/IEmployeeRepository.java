@@ -12,6 +12,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
@@ -39,7 +40,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO employee (name_employee, date_employee, gender, image, tel_employee, email_employee,password_employee,type_employee_id_type_employee,flag_employee) " +
-            "VALUES (:name, :birthDay, :gender,:image,:telEmployee, :email,:passwordEmployee,:typeEmployee,:flagEmployee)",
+            "VALUES (:name, :birthDay, :gender,:image,:telEmployee, :email,:passwordEmployee,:typeEmployee, false)",
             nativeQuery = true)
     void addEmployee(@Param("name") String name,
                      @Param("birthDay") String birthDay,
@@ -48,8 +49,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
                      @Param("telEmployee") String telEmployee,
                      @Param("email") String email,
                      @Param("typeEmployee") Long typeEmployee,
-                     @Param("passwordEmployee") String passwordEmployee,
-                     @Param("flagEmployee") boolean flagEmployee
+                     @Param("passwordEmployee") String passwordEmployee
     );
 
     /**
@@ -119,4 +119,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
             @Param("name") String name,
             Pageable pageable
     );
+
+    @Query(nativeQuery = true, value = "select * from employee as e where e.email_employee = :email and e.flag_employee = false")
+    List<Employee> findAllByEmail(@Param("email") String email);
 }

@@ -37,8 +37,8 @@ public class EmployeeController {
     @PostMapping("")
     public ResponseEntity<?> saveEmployee(@Validated @RequestBody EmployeeDto employeeDto,
                                           BindingResult bindingResult) {
-        if (!bindingResult.hasErrors()) {
-            employeeService.saveEmployee(employeeDto);
+        if (employeeService.createEmployee(employeeDto)) {
+//            employeeService.saveEmployee(employeeDto);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } else {
             getResponseEntity(bindingResult);
