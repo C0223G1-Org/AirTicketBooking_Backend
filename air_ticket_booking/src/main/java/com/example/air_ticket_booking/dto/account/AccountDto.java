@@ -41,6 +41,14 @@ public class AccountDto implements Validator {
 //    @Size(min = 8, max = 20, message = "Mật khẩu phải từ 8 ký tự và ít hơn 20 ký tự")
     private String password;
     private String passwordAgain;
+    private Integer verificationCode;
+    private Integer count;
+
+    public AccountDto(String emailCustomer, Integer verificationCode, Integer count) {
+        this.emailCustomer = emailCustomer;
+        this.verificationCode = verificationCode;
+        this.count = count;
+    }
 
     public AccountDto(String nameCustomer, Boolean genderCustomer, String emailCustomer, String telCustomer, String addressCustomer, String imgCustomer, String nationalityCustomer, String idCardCustomer, String dateCustomer, Boolean flagCustomer, String password) {
 
@@ -70,6 +78,22 @@ public class AccountDto implements Validator {
         this.flagCustomer = flagCustomer;
         this.password = password;
         this.passwordAgain = passwordAgain;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public Integer getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(Integer verificationCode) {
+        this.verificationCode = verificationCode;
     }
 
     public String getPasswordAgain() {

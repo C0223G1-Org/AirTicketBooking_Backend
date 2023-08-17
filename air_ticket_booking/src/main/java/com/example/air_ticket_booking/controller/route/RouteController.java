@@ -1,7 +1,7 @@
 package com.example.air_ticket_booking.controller.route;
 import com.example.air_ticket_booking.model.projection_tdns.RouteProjection;
-
 import com.example.air_ticket_booking.model.route.Route;
+import com.example.air_ticket_booking.projection.IRouteCheapestProjection;
 import com.example.air_ticket_booking.service.route.IRouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,8 +22,8 @@ public class RouteController {
      * @since 10/08/2023
      */
     @GetMapping("/top10")
-    public ResponseEntity<?> getTop10Cheapest() {
-        if (routeService.findTop10RouteCheapest().size() == 0) {
+    public ResponseEntity<List<IRouteCheapestProjection>> getTop10Cheapest() {
+        if (routeService.findTop10RouteCheapest().isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else if (routeService.findTop10RouteCheapest().size() < 10) {
             return new ResponseEntity<>(routeService.findTop10RouteCheapest(), HttpStatus.OK);
@@ -47,10 +47,6 @@ public ResponseEntity<List<RouteProjection>> searchTrips(@PathVariable String de
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-//
-//        if (list.size()==0){
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
     /**

@@ -1,6 +1,5 @@
 package com.example.air_ticket_booking.repository.post;
 
-import com.example.air_ticket_booking.model.employee.Employee;
 import com.example.air_ticket_booking.model.post.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,12 +9,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 public interface IPostRepository extends JpaRepository<Post, Long> {
-
 
     /**
      * Author: SonTT
@@ -24,7 +21,7 @@ public interface IPostRepository extends JpaRepository<Post, Long> {
      * @param pageable
      * @return Page<T>
      */
-    @Query(value = "SELECT * FROM Post WHERE Post.flag_post = false", nativeQuery = true)
+    @Query(value = "SELECT * FROM Post WHERE Post.flag_post = false ORDER BY date_post DESC", nativeQuery = true)
     Page<Post> getListPostByFlag(Pageable pageable);
 
     /**
