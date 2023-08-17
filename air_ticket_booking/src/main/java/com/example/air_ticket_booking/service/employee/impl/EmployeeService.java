@@ -161,4 +161,10 @@ public class EmployeeService implements IEmployeeService {
     public Page<Employee> searchEmployee(Boolean gender, String name, Pageable pageable) {
         return employeeRepository.searchEmployee(gender, name, pageable);
     }
+
+    @Override
+    public Employee getEmployeeLoginByEmail(String email) {
+        return employeeRepository.getEmployeeLoginByEmail(email);
+    }
 }
+

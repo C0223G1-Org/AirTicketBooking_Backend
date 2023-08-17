@@ -42,9 +42,14 @@ public interface IEmployeeService {
      *
      * @param gender   The gender of the employee to search for
      * @param name     The name or part of the name of the employee to search for
-     * @param pageable
+     * @param
      * @return A list of employees matching the specified gender and name criteria
      */
+
+
+
+    Employee getEmployeeLoginByEmail(String email);
+
     Page<Employee> searchEmployee(Boolean gender, String name, Pageable pageable);
 
     //    Employee getEmployeeById(Long id);
