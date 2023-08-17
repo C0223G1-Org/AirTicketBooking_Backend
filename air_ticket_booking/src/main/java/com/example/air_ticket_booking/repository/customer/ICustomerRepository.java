@@ -131,7 +131,7 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
     void createCustomer(@Param("accountDto") AccountDto accountDto, @Param("idAccountNew") Long idAccountNew);
     /**
      * Create by: NhanDT
-     * Date create: 10/08/2023
+     * Date create: 17/08/2023
      * Function: get data from service and insert fields of customers into database
      *
      * @Param: id
@@ -140,5 +140,8 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
     @Modifying
     @Query(nativeQuery = true,value = "update customer as c set c.flag_customer = false where c.email_customer = :email")
     void setFlagToFalse(@Param("email") String email);
+
+    @Query(nativeQuery = true, value = "select * from customer where email_customer = :email")
+    Customer getCustomerLoginByEmail(@Param("email") String email);
 }
 

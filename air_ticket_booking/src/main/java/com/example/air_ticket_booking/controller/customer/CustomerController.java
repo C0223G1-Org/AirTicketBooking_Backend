@@ -201,4 +201,13 @@ public class CustomerController {
         });
         return errors;
     }
+
+    @GetMapping("/login/{email}")
+    public ResponseEntity<Customer> getCustomerByEmail(@PathVariable String email) {
+        // TODO document why this method is empty
+        if (customerService.getCustomerLoginByEmail(email) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(customerService.getCustomerLoginByEmail(email), HttpStatus.OK);
+    }
 }

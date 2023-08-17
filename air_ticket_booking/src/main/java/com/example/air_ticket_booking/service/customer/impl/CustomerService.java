@@ -111,6 +111,11 @@ public class CustomerService implements ICustomerService {
     public void createCustomer(AccountDto accountDto, Long idAccountNew) {
         this.customerRepository.createCustomer(accountDto, idAccountNew);
     }
+
+    @Override
+    public Customer getCustomerLoginByEmail(String email) {
+        return customerRepository.getCustomerLoginByEmail(email);
+    }
     /**
      * Create by: NhanDT
      * Date create: 16/08/2023
