@@ -44,5 +44,12 @@ public interface IEmployeeService {
      * @return A list of employees matching the specified gender and name criteria
      */
     List<Employee> searchEmployee(Boolean gender, String name);
+    /**
+     * Create by: TriPD;
+     * Date create: 17/08/2023
+     * Function: Searches for employees based on the provided gender and name parameters.
+     * @return A list of employees matching the specified gender and name criteria
+     */
+    List<Employee> getAllEmployee();
 }
 

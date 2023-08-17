@@ -114,4 +114,15 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
     @Modifying
     @Query("SELECT e FROM Employee e WHERE (:gender = NULL OR e.gender = :gender) AND (:name = NULL OR e.nameEmployee LIKE %:name%) AND e.flagEmployee = false")
     List<Employee> searchEmployee(@Param("gender") Boolean gender, @Param("name") String name);
+
+
+    /**
+     * Create by: TriPD;
+     * Date create: 17/08/2023
+     * Function: Searches for employees based on the provided gender and name parameters.
+     *
+     * @return A list of employees matching the specified gender and name criteria.
+     */
+    @Query(value = "select * from employee where flag_employee = false ",nativeQuery = true)
+    List<Employee> getAllEmployees();
 }

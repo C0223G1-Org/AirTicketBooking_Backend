@@ -53,7 +53,7 @@ public class PostController {
     public ResponseEntity<Page<Post>> getListPost(@PathVariable(value = "page", required = false) Integer page, @PathVariable(value = "limit", required = false) Integer limit) {
         Pageable pageable = PageRequest.of(page, limit);
         if (this.iPostService.getListPost(pageable).isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(this.iPostService.getListPost(pageable), HttpStatus.ACCEPTED);
     }
@@ -67,7 +67,7 @@ public class PostController {
     @GetMapping("/hot-news")
     public ResponseEntity<List<Post>> hotNewList(){
         if (this.iPostService.getListPostHotNews().isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }else {
             return new ResponseEntity<>(this.iPostService.getListPostHotNews(),HttpStatus.OK);
         }
@@ -103,9 +103,9 @@ public class PostController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<HttpStatus > deletePost(@PathVariable(value = "id",required = false) Long id) {
         if (id==null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else if (this.iPostService.deletePostById(id)) {
-            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>( HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>( HttpStatus.OK);
         }
@@ -140,7 +140,7 @@ public class PostController {
     public ResponseEntity<List<Post>> searchPost(@RequestParam(value = "title",required = false) String title){
         String titles = title.trim();
         if (iPostService.searchPostByTitle(titles).isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(iPostService.searchPostByTitle(titles),HttpStatus.OK);
     }

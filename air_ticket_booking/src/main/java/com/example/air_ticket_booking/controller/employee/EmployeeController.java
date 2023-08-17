@@ -146,4 +146,17 @@ public class EmployeeController {
             return new ResponseEntity<>(employeeList, HttpStatus.OK);
         }
     }
+
+    /**
+     * Create by: TriPD;
+     * Date create: 17/08/2023
+     * Function: Search for employees by gender and name ;
+     * @return : The list of new employees matches the parameters passed in.
+     */
+    @GetMapping("")
+    public ResponseEntity<List<Employee>> employeesList(){
+        List<Employee> employeeList= employeeService.getAllEmployee();
+        return new ResponseEntity<>(employeeList, HttpStatus.OK);
+    }
+
 }
