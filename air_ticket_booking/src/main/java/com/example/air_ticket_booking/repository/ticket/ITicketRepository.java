@@ -232,8 +232,8 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
     @Query(nativeQuery = true, value = "select * from ticket " +
             "join customer on customer.id_customer = ticket.customer_id_customer \n" +
             "join seat on seat.id_seat = ticket.seat_id_seat \n" +
-            "join route on route.id_route = seat.id_route \n "+
-            "join air_craft on air_craft.id_air_craft = route.id_air_craft\n"+
+            "join route on route.id_route = seat.id_route \n " +
+            "join air_craft on air_craft.id_air_craft = route.id_air_craft\n" +
             "join destination on destination.id_destination = route.id_destination \n" +
             "join departure on departure.id_departure = route.id_departure \n" +
             "join type_seat on seat.id_type_seat = type_seat.id_type_seat \n" +
@@ -249,12 +249,13 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
                                                     @Param("departure") String departure, @Param("destination") String destination);
 @Modifying
     @Query(nativeQuery = true, value = "UPDATE ticket " +
-            "SET ticket.flag_ticket = true " +
+            "SET ticket.flag_ticket = true \n" +
             "WHERE ticket.id_ticket = :id")
     void updateTicketByIdTicket(@Param("id") Long id);
 
-    @Query(value = "select  * from ticket where ticket.flag_ticket=0 and ticket.id_ticket=:id",nativeQuery = true)
-    Ticket findByTicketById(@Param("id")Long id);
+    @Query(value = "select  * from ticket where ticket.flag_ticket=0 and ticket.id_ticket=:id", nativeQuery = true)
+    Ticket findByTicketById(@Param("id") Long id);
+
     @Query(value = "select id_ticket as id, date_booking as dateBooking, name_passenger as namePassenger, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture,price_ticket as priceTicket  from ticket t \n" +
             "            join type_ticket tt on t.type_ticket_id_type_ticket = tt.id_type_ticket\n" +
             "            join type_passenger tp on tp.id_type_passenger = t.type_passenger_id_type_passenger\n" +
@@ -278,6 +279,23 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             "            join air_craft ac on ac.id_air_craft = r.id_air_craft\n" +
             "            where t.type_ticket_id_type_ticket=2 and de.name_departure like concat('',:#{#ticketSearch.departure})\n" +
             "            and d.name_destination like concat('%',:#{#ticketSearch.destination}) and t.namePassenger like concat('%',:#{#ticketSearch.passenger})" +
-            "            ) as ticket_a);\n",nativeQuery = true)
-    Page<ITicketProjection> getSearchReturn(@Param("ticketSearch") TicketSearch ticketSearch,Pageable pageable);
+            "            ) as ticket_a);\n", nativeQuery = true)
+    Page<ITicketProjection> getSearchReturn(@Param("ticketSearch") TicketSearch ticketSearch, Pageable pageable);
+
+    @Query(nativeQuery = true, value = "select * from ticket " +
+            "join customer on customer.id_customer = ticket.customer_id_customer \n" +
+            "join seat on seat.id_seat = ticket.seat_id_seat \n" +
+            "join route on route.id_route = seat.id_route \n " +
+            "join air_craft on air_craft.id_air_craft = route.id_air_craft\n" +
+            "join destination on destination.id_destination = route.id_destination \n" +
+            "join departure on departure.id_departure = route.id_departure \n" +
+            "join type_seat on seat.id_type_seat = type_seat.id_type_seat \n" +
+            "join luggage on luggage.id_luggage = ticket.luggage_id_luggage \n" +
+            "join type_ticket on type_ticket.id_type_ticket = ticket.type_ticket_id_type_ticket \n" +
+            "join type_passenger on type_passenger.id_type_passenger = ticket.type_passenger_id_type_passenger \n" +
+            "where customer.id_customer = :id \n" +
+            "and flag_ticket = false")
+    List<Ticket> getListTicketByIdCustomer(@Param("id") Long id);
+
+
 }

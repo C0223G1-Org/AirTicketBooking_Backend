@@ -12,15 +12,24 @@ import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
 import com.example.air_ticket_booking.projection.ITicketPassengerProjection;
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
+import com.example.air_ticket_booking.repository.customer.ICustomerRepository;
 import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
 import com.example.air_ticket_booking.service.ticket.ITicketService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -28,6 +37,10 @@ import java.util.List;
 public class TicketService implements ITicketService {
     @Autowired
     private ITicketRepository ticketRepository;
+    @Autowired
+    private ICustomerRepository iCustomerRepository;
+    @Autowired
+    private JavaMailSender mailSender;
 
     /**
      * method :findTicketByNameAndIdCardPassengers()
@@ -245,4 +258,10 @@ public class TicketService implements ITicketService {
     public Ticket findTicketPayment(Long id) {
         return ticketRepository.findByTicketById(id);
     }
+
+    @Override
+    public List<Ticket> getListTicketByIdCustomer(Long id) {
+        return ticketRepository.getListTicketByIdCustomer(id);
+    }
+
 }
