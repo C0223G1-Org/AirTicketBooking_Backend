@@ -49,4 +49,6 @@ public interface IEmployeeService {
 
     //    Employee getEmployeeById(Long id);
     Employee findByyId(Long id);
+
+    boolean createEmployee(EmployeeDto employeeDto);
 }

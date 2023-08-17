@@ -15,9 +15,9 @@ public class EmployeeDto {
 //    @Pattern(regexp = "^[a-zA-ZÀ-ỹ\\s ]*$", message = "Tên không được nhập số và ký tự đặc biệt.")
 
     private String nameEmployee;
-    @Size(min = 10, message = "Bạn cần nhập tối thiểu 10 ký tự")
-    @Size(max = 12, message = "Bạn nhập quá 12 ký tự. Vui lòng kiểm tra lại")
-    @NotBlank(message = "Ngày sinh không đươc để trống")
+//    @Size(min = 10, message = "Bạn cần nhập tối thiểu 10 ký tự")
+//    @Size(max = 12, message = "Bạn nhập quá 12 ký tự. Vui lòng kiểm tra lại")
+//    @NotBlank(message = "Ngày sinh không đươc để trống")
 //    @Pattern(regexp = "^(19|20)\\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[0-1])$",
 //            message = "Ngày sinh phải đúng định dạng DD/MM/YYYY.")
     private String dateEmployee;
