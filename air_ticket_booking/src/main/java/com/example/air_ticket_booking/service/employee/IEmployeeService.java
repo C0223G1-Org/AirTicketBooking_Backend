@@ -44,5 +44,8 @@ public interface IEmployeeService {
      * @return A list of employees matching the specified gender and name criteria
      */
     List<Employee> searchEmployee(Boolean gender, String name);
+
+
+    Employee getEmployeeLoginByEmail(String email);
 }
 
