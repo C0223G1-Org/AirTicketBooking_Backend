@@ -68,7 +68,6 @@ public class EmployeeService implements IEmployeeService {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDto, employee);
         employeeRepository.updateEmployee(
-                employee.getIdEmployee(),
                 employee.getNameEmployee(),
                 employee.getDateEmployee(),
                 employee.getGender(),
@@ -77,7 +76,8 @@ public class EmployeeService implements IEmployeeService {
                 employee.getEmailEmployee(),
                 employee.getPasswordEmployee(),
                 employee.getTypeEmployee().getIdTypeEmployee(),
-                employee.getFlagEmployee()
+                employee.getFlagEmployee(),
+                employee.getIdEmployee()
         );
     }
 
@@ -99,7 +99,15 @@ public class EmployeeService implements IEmployeeService {
     public Employee findByyId(Long id) {
         return employeeRepository.findWithIdEmployee(id);
     }
-
+    /**
+     * Create by: QuocNHA,
+     * Date create : 10/08/2023
+     * Function : create employee
+     * <p>
+     *
+     * @param employeeDto
+     * @return status create
+     */
     @Override
     public boolean createEmployee(EmployeeDto employeeDto) {
         String email = employeeDto.getEmailEmployee();

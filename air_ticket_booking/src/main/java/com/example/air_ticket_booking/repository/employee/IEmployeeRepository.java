@@ -66,7 +66,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
     @Query(value = "Update employee set name_employee=:name,date_employee=:birthDay,gender=:gender,image=:image," +
             "tel_employee=:telEmployee,email_employee=:email,type_employee_id_type_employee=:typeEmployee,password_employee=:passwordEmployee,flag_employee=:flagEmployee " +
             "where id_employee=:id", nativeQuery = true)
-    void updateEmployee(@Param("id") Long id,
+    void updateEmployee(
                         @Param("name") String name,
                         @Param("birthDay") String birthday,
                         @Param("gender") boolean gender,
@@ -75,7 +75,8 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
                         @Param("email") String email,
                         @Param("passwordEmployee") String passwordEmployee,
                         @Param("typeEmployee") Long typeEmployee,
-                        @Param("flagEmployee") boolean flagEmployee
+                        @Param("flagEmployee") boolean flagEmployee,
+                        @Param("id") Long id
     );
 
     /**
