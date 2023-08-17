@@ -124,7 +124,6 @@ public class AccountController {
     @PostMapping("/checkCode")
     public ResponseEntity<?> checkCode(@RequestBody AccountDto account) {
         boolean check = accountService.checkCode(account);
-
         try {
             if (check) {
                 return ResponseEntity.ok(new JwtResponse(account.getEmailCustomer()));
