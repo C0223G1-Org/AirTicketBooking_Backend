@@ -195,18 +195,14 @@ public class TicketController {
      * @author Nhàn NA
      */
     @GetMapping ("/search/{page}")
-    public ResponseEntity<Page<ITicketProjection>> searchTickets(@ModelAttribute TicketSearch ticketSearch, @PathVariable("page") int page){
-        System.out.println("nhan");
-        String idString= String.valueOf(page);
+    public ResponseEntity<Page<ITicketProjection>> searchTickets(@ModelAttribute TicketSearch ticketSearch, @PathVariable("page") int page){;
         Pageable pageable = PageRequest.of(page,5);
-        System.out.println(ticketSearch.getSeatCode());
-        System.out.println(ticketSearch.getDeparture());
         if(iTicketService.searchTicket(ticketSearch,pageable).getContent().isEmpty()){
-
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         else {
-            System.out.println(iTicketService.searchTicket(ticketSearch,pageable).getContent().get(0).getNameRoute());
+            System.out.println("nhan");
+            System.out.println(ticketSearch.isHasParameter());
             return new ResponseEntity<>(iTicketService.searchTicket(ticketSearch,pageable),HttpStatus.OK);
         }
     }

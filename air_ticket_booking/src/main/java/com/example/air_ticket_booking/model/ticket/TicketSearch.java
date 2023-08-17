@@ -11,7 +11,9 @@ public class TicketSearch {
     private String routeCode;
     private String chairCode;
     private int idSearch;
+    private boolean hasParameter;
     public TicketSearch() {
+        hasParameter=false;
     }
 
     public TicketSearch(int typeTicket, String departure, String destination, String departureDate, String destinationDate, String passenger, String seatCode, String routeCode, String chairCode, int idSearch) {
@@ -36,25 +38,30 @@ public class TicketSearch {
         this.destinationDate = destinationDate;
         this.passenger = passenger;
         this.idSearch = idSearch;
+        hasParameter=true;
     }
 
-    public TicketSearch(String passenger, String chairCode, int idSearch) {
+    public TicketSearch(String passenger, String chairCode, int idSearch,boolean hasParameter) {
         this.passenger = passenger;
         this.chairCode = chairCode;
         this.idSearch = idSearch;
+        this.hasParameter=true;
     }
 
-    public TicketSearch(String routeCode, String chairCode) {
+    public TicketSearch(String routeCode, String chairCode,boolean hasParameter) {
         this.routeCode = routeCode;
         this.chairCode = chairCode;
+        this.hasParameter=true;
     }
 
-    public TicketSearch(String departure, String departureDate, String routeCode, int idSearch) {
+    public TicketSearch(String departure, String departureDate, String routeCode, int idSearch,boolean hasParameter) {
         this.departure = departure;
         this.departureDate = departureDate;
         this.routeCode = routeCode;
         this.idSearch = idSearch;
+        this.hasParameter=true;
     }
+
 
     public int getIdSearch() {
         return idSearch;
@@ -134,5 +141,13 @@ public class TicketSearch {
 
     public void setChairCode(String chairCode) {
         this.chairCode = chairCode;
+    }
+
+    public boolean isHasParameter() {
+        return hasParameter;
+    }
+
+    public void setHasParameter(boolean hasParameter) {
+        this.hasParameter = hasParameter;
     }
 }
