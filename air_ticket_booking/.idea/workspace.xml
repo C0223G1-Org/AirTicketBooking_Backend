@@ -4,35 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61205119-b156-4029-885f-2d65b707e4f5" name="Changes" comment="nhan update 16/8 1:53">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+    <list default="true" id="61205119-b156-4029-885f-2d65b707e4f5" name="Changes" comment="Nampc commit BE-">
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/air_ticket_booking.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/air_ticket_booking.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/air_ticket_booking.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/air_ticket_booking.test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/com.example.air_ticket_booking.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/com.example.air_ticket_booking.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/account/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/account/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/route/RouteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/route/RouteController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/ticket/TicketController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/ticket/TicketController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/dto/account/AccountChangeDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/route/Destination.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/route/Destination.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/route/IRouteRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/route/IRouteRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/controller/payment/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/controller/payment/PaymentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/controller/ticket/TicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/controller/ticket/TicketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/dto/ticket/TicketDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/dto/ticket/TicketDto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +58,7 @@
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/AirTicketBooking_Backend/air_ticket_booking/src/main/java/com/example/air_ticket_booking/model&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -199,15 +177,13 @@
       <updated>1691977124050</updated>
       <workItem from="1691977125754" duration="14835000" />
       <workItem from="1692013343244" duration="7908000" />
-      <workItem from="1692062616013" duration="16799000" />
-      <workItem from="1692100271573" duration="10184000" />
-      <workItem from="1692114927594" duration="1860000" />
-      <workItem from="1692148695825" duration="2043000" />
-      <workItem from="1692156444500" duration="1043000" />
-      <workItem from="1692163684296" duration="2639000" />
-      <workItem from="1692166838140" duration="1934000" />
-      <workItem from="1692168805370" duration="5515000" />
-      <workItem from="1692176545810" duration="1362000" />
+      <workItem from="1692062616013" duration="20440000" />
+      <workItem from="1692100244225" duration="7271000" />
+      <workItem from="1692114912912" duration="147000" />
+      <workItem from="1692115743981" duration="572000" />
+      <workItem from="1692148447492" duration="851000" />
+      <workItem from="1692149508552" duration="16458000" />
+      <workItem from="1692240451927" duration="3664000" />
     </task>
     <task id="LOCAL-00001" summary="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 14/8">
       <option name="closed" value="true" />
@@ -217,33 +193,34 @@
       <option name="project" value="LOCAL" />
       <updated>1692023381118</updated>
     </task>
-    <task id="LOCAL-00002" summary="nhan update 15/8 11:03">
-      <created>1692115459322</created>
+    <task id="LOCAL-00002" summary="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 15/8">
+      <option name="closed" value="true" />
+      <created>1692086454759</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1692115459322</updated>
+      <updated>1692086454759</updated>
     </task>
-    <task id="LOCAL-00003" summary="nhan update 15/8 11:19">
-      <created>1692116394013</created>
+    <task id="LOCAL-00003" summary="Nampc commit BE">
+      <created>1692168877446</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1692116394013</updated>
+      <updated>1692168877446</updated>
     </task>
-    <task id="LOCAL-00004" summary="nhan update 16/8 1:49">
-      <created>1692168596737</created>
+    <task id="LOCAL-00004" summary="Nampc commit BE">
+      <created>1692175659430</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1692168596737</updated>
+      <updated>1692175659430</updated>
     </task>
-    <task id="LOCAL-00005" summary="nhan update 16/8 1:53">
-      <created>1692168831171</created>
+    <task id="LOCAL-00005" summary="Nampc commit BE-">
+      <created>1692176597818</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1692168831171</updated>
+      <updated>1692176597818</updated>
     </task>
     <option name="localTasksCounter" value="6" />
     <servers />
@@ -251,23 +228,11 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 14/8" />
-    <MESSAGE value="nhan update 15/8 11:03" />
-    <MESSAGE value="nhan update 15/8 11:19" />
-    <MESSAGE value="nhan update 16/8 1:49" />
-    <MESSAGE value="nhan update 16/8 1:53" />
-    <option name="LAST_COMMIT_MESSAGE" value="nhan update 16/8 1:53" />
+    <MESSAGE value="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 15/8" />
+    <MESSAGE value="Nampc commit BE" />
+    <MESSAGE value="Nampc commit BE-" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nampc commit BE-" />
   </component>
 </project>
