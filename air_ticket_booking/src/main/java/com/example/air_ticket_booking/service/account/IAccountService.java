@@ -50,4 +50,9 @@ public interface IAccountService {
      * @return boolean
      */
     boolean checkCode(AccountDto account);
+
+    void createAccEmpl(String email, String password);
+
+    Account findAccountByEmail(String email);
+
 }

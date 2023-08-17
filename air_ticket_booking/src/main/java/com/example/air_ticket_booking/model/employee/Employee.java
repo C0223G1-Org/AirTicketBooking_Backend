@@ -15,26 +15,29 @@ public class Employee {
     private String telEmployee;
     private String image;
     private String emailEmployee;
+    private String passwordEmployee;
+    private String confirmPasswordEmployee;
     private Boolean gender;
     private Boolean flagEmployee;
 
-    @OneToOne
-    private Account account;
+    @ManyToOne
+    private TypeEmployee typeEmployee;
 
     public Employee() {
     }
 
-    public Employee(Long idEmployee, String nameEmployee, String dateEmployee, String telEmployee,
-                    String image, String emailEmployee, Boolean gender, Boolean flagEmployee, Account account) {
+    public Employee(Long idEmployee, String nameEmployee, String dateEmployee, String telEmployee, String image,
+                    String emailEmployee, String passwordEmployee, String confirmPasswordEmployee, Boolean gender, Boolean flagEmployee) {
         this.idEmployee = idEmployee;
         this.nameEmployee = nameEmployee;
         this.dateEmployee = dateEmployee;
         this.telEmployee = telEmployee;
         this.image = image;
         this.emailEmployee = emailEmployee;
+        this.passwordEmployee = passwordEmployee;
+        this.confirmPasswordEmployee = confirmPasswordEmployee;
         this.gender = gender;
         this.flagEmployee = flagEmployee;
-        this.account = account;
     }
 
     public Long getIdEmployee() {
@@ -85,6 +88,22 @@ public class Employee {
         this.emailEmployee = emailEmployee;
     }
 
+    public String getPasswordEmployee() {
+        return passwordEmployee;
+    }
+
+    public void setPasswordEmployee(String passwordEmployee) {
+        this.passwordEmployee = passwordEmployee;
+    }
+
+    public String getConfirmPasswordEmployee() {
+        return confirmPasswordEmployee;
+    }
+
+    public void setConfirmPasswordEmployee(String confirmPasswordEmployee) {
+        this.confirmPasswordEmployee = confirmPasswordEmployee;
+    }
+
     public Boolean getGender() {
         return gender;
     }
@@ -101,11 +120,11 @@ public class Employee {
         this.flagEmployee = flagEmployee;
     }
 
-    public Account getAccount() {
-        return account;
+    public TypeEmployee getTypeEmployee() {
+        return typeEmployee;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setTypeEmployee(TypeEmployee typeEmployee) {
+        this.typeEmployee = typeEmployee;
     }
 }

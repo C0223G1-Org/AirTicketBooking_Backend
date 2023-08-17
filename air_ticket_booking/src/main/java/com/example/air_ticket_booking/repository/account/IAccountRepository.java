@@ -46,6 +46,8 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
      * @param userName
      * @return Account
      */
+//    @Modifying
+//    @Transactional
     @Query(nativeQuery = true, value = "select * from account as a where a.username = :userName and a.status_delete = 0")
     Account getByUserNameAndStatusFalse(@Param("userName") String userName);
 
@@ -152,7 +154,8 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
     @Query(value = "select * from account", nativeQuery = true)
     List<Account> getListAccount();
 
-
-
-
+    @Modifying
+    @Transactional
+    @Query(nativeQuery = true, value = "insert into account(username, password, role_id_role, status_delete) values (:email, :password, 2, 0)")
+    void saveAccountEmployee(@Param("email") String email, @Param("password") String password);
 }

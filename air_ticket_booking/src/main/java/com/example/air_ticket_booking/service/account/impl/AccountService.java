@@ -131,6 +131,24 @@ public class AccountService implements UserDetailsService, IAccountService {
         List<Account> accountList = accountRepository.findAllByUsername(email);
         return accountList.size() > 0;
     }
+    /**
+     * Create by: QuocNHA,
+     * Date create : 10/08/2023
+     * Function : create employee
+     * <p>
+     *
+     * @param email,password
+     * @return status create
+     */
+    @Override
+    public void createAccEmpl(String email, String password) {
+        this.accountRepository.saveAccountEmployee(email, password);
+    }
+
+    @Override
+    public Account findAccountByEmail(String email) {
+        return accountRepository.getByUserNameAndStatusFalse(email);
+    }
 
     private boolean checkExistCustomer(String email) {
         List<Customer> customerList = customerService.findAllByEmailOrIdCard(email);
