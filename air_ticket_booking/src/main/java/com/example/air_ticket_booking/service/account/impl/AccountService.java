@@ -106,6 +106,7 @@ public class AccountService implements UserDetailsService, IAccountService {
 
     /**
      * create by : SangTDN
+     *
      * @param newPass
      * @param idCustomer
      */
@@ -119,9 +120,28 @@ public class AccountService implements UserDetailsService, IAccountService {
         return accountRepository.findAccountById(id);
     }
 
-    private boolean checkExistAccount(String email) {
+    @Override
+    public boolean checkExistAccount(String email) {
         List<Account> accountList = accountRepository.findAllByUsername(email);
         return accountList.size() > 0;
+    }
+    /**
+     * Create by: QuocNHA,
+     * Date create : 10/08/2023
+     * Function : create employee
+     * <p>
+     *
+     * @param email,password
+     * @return status create
+     */
+    @Override
+    public void createAccEmpl(String email, String password) {
+        this.accountRepository.saveAccountEmployee(email, password);
+    }
+
+    @Override
+    public Account findAccountByEmail(String email) {
+        return accountRepository.getByUserNameAndStatusFalse(email);
     }
 
     private boolean checkExistCustomer(String email) {
