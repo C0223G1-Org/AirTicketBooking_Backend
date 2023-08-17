@@ -77,7 +77,12 @@ public class AccountService implements UserDetailsService, IAccountService {
      */
     @Override
     public boolean signUp(AccountDto accountDto) {
+
         String email = accountDto.getEmailCustomer();
+        List<Account> accountList = accountRepository.findAllByEmailAndStatus2(email);
+        if(accountList.size()>0){
+            this.accountRepository.setAllStatusToTrue();
+        }
         Boolean checkExistAccount = checkExistAccount(email);
         Boolean checkExistCustomer = checkExistCustomer(email);
         if (checkExistAccount || checkExistCustomer) {
@@ -131,6 +136,10 @@ public class AccountService implements UserDetailsService, IAccountService {
         List<Customer> customerList = customerService.findAllByEmailOrIdCard(email);
         return customerList.size() > 0;
     }
+    private boolean checkInfoSignUp(String email) {
+        List<Account> accountList = accountRepository.findAllByEmailAndStatus2(email);
+        return accountList.size() > 0;
+    }
 
     /**
      * Created by: NhanDT
@@ -143,7 +152,7 @@ public class AccountService implements UserDetailsService, IAccountService {
     @Override
     public boolean checkCode(AccountDto account) {
         Account accountCheck = accountRepository.getByUserNameAndStatus2(account.getEmailCustomer());
-        if(accountCheck == null){
+        if (accountCheck == null) {
             return false;
         }
         boolean check = Objects.equals(account.getVerificationCode(), accountCheck.getVerificationCode());

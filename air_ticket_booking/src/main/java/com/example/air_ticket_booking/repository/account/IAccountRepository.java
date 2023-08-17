@@ -121,6 +121,21 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
     @Transactional
     @Query(nativeQuery = true, value = "update account as a set a.status_delete = 1 where a.id_account = :id and a.status_delete = 2")
     void setStatusToTrue(@Param("id") Long id);
+    /**
+     * Created by: NhanDT
+     * Date created: 17/08/2023
+     *
+     * @param email
+     * @return void
+     */
+//    @Modifying
+//    @Transactional
+    @Query(nativeQuery = true, value = "select * from account as a where a.username = :email and a.status_delete = 2")
+    List<Account> findAllByEmailAndStatus2(@Param("email") String email);
+    @Modifying
+    @Transactional
+    @Query(nativeQuery = true, value = "update account as a set a.status_delete = 1 where a.status_delete = 2")
+    void setAllStatusToTrue();
 
 
     @Query(nativeQuery = true, value = "insert into account(username, password, role_id_role) values (:email, :password, 3)")
@@ -136,5 +151,8 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
     @Transactional
     @Query(value = "select * from account", nativeQuery = true)
     List<Account> getListAccount();
+
+
+
 
 }
