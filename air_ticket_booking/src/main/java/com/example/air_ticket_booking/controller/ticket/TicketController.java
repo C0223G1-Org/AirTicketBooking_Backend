@@ -1,6 +1,7 @@
 package com.example.air_ticket_booking.controller.ticket;
 
 import com.example.air_ticket_booking.model.ticket.TicketSearch;
+import com.example.air_ticket_booking.projection.ITicketPassengerProjection;
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
 import com.example.air_ticket_booking.repository.ticket.ITicketRepository;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -65,15 +67,42 @@ public class TicketController {
      * method :findTicketByNameAndIdCardPassengers()
      * created by :KietNT
      * date create: 10/08/2023
-     * @param namePassenger,idCardPassenger
-     * return List Ticket
+     *
+     * @param namePassenger,idCardPassenger return List Ticket
      */
     @GetMapping("/search-ticket/{namePassenger}/{idCardPassenger}")
     @ResponseBody
-    public ResponseEntity<?> findTicketByNameAndIdCardPassenger(@PathVariable String namePassenger,
-                                                                @PathVariable String idCardPassenger) {
-        return new ResponseEntity<>(iTicketService.findTicketByNameAndIdCard(namePassenger, idCardPassenger),
-                HttpStatus.OK);
+    public ResponseEntity<Page<ITicketPassengerProjection>> findTicketByNameAndIdCardPassenger(@PageableDefault Pageable pageable, @PathVariable String namePassenger,
+
+
+                                                                                               @PathVariable String idCardPassenger) {
+
+
+        Page<ITicketPassengerProjection> ticket = this.iTicketService.findTicketByNameAndIdCard(namePassenger, idCardPassenger, pageable);
+        if (ticket.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        if (ticket == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(ticket, HttpStatus.OK);
+    }
+
+    @GetMapping("/search-ticket-result/{namePassenger}/{idCardPassenger}")
+    @ResponseBody
+    public ResponseEntity<Page<ITicketPassengerProjection>> findTicketByNameAndIdCardPassengerResult(@PageableDefault(size = 1) Pageable pageable, @PathVariable String namePassenger,
+                                                                                                     @PathVariable String idCardPassenger) {
+
+
+        Page<ITicketPassengerProjection> ticket = this.iTicketService.findTicketByNameAndIdCard(namePassenger, idCardPassenger, pageable);
+        if (ticket.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        if (ticket == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(ticket, HttpStatus.OK);
     }
 
     /**

@@ -8,6 +8,7 @@ import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TicketSearch;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
 import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
+import com.example.air_ticket_booking.projection.ITicketPassengerProjection;
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
 import org.springframework.data.domain.Page;
@@ -33,16 +34,27 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
      * return List Ticket
      */
     @Query(nativeQuery = true,
-            value = "select * from ticket where name_passenger like concat('%', :namePassenger, '%') and id_card_passenger = :idCardPassenger;")
-    List<Ticket> findTicketByNameAndIdCardPassengers(@Param("namePassenger") String namePassenger,
-                                                     @Param("idCardPassenger") String idCardPassenger);
-    /**
-     *method :used to create a new ticket when the user confirms the booking
-     * created by :NamPC
-     * date create: 10/08/2023
-     * @param ticket
-     * return void
-     */
+            value = "select t.id_ticket as id,t.tel_passenger as telPassenger,t.price_ticket as priceTicket,t.name_passenger as namePassenger," +
+                    "t.id_card_passenger as idCardPassenger,t.date_booking as dateBooking," +
+                    "tp.name_type_passenger as nameTypePassenger,l.name_luggage as nameLuggage," +
+                    "tt.name_type_ticket as nameTypeTicket,s.position_seat as positionSeat,ts.name_type_seat as nameTypeSeat," +
+                    "r.name_route as nameRoute,r.time_arrival as timeArrival,r.time_departure as timeDeparture," +
+                    "r.date_arrival as dateArrival,r.date_departure as dateDeparture,d.name_destination as nameDestination," +
+                    "dt.name_departure as nameDeparture,ac.name_air_craft as nameAirCraft from ticket t \n" +
+                    "    join type_ticket tt on tt.id_type_ticket = t.type_ticket_id_type_ticket \n" +
+                    "    join luggage l on l.id_luggage = t.luggage_id_luggage\n" +
+                    "    join type_passenger tp on t.type_passenger_id_type_passenger = tp.id_type_passenger \n" +
+                    "    join seat s on t.seat_id_seat = s.id_seat \n" +
+                    "    join type_seat ts on s.id_type_seat = ts.id_type_seat \n" +
+                    "    join route r on s.id_route = r.id_route \n" +
+                    "    join air_craft ac on ac.id_air_craft = r.id_air_craft \n" +
+                    "    join destination d on d.id_destination = r.id_destination \n" +
+                    "    join departure dt on dt.id_departure = r.id_departure \n" +
+                    "    where t.name_passenger like concat('%', :namePassenger, '%') and t.id_card_passenger = :idCardPassenger")
+
+    Page<ITicketPassengerProjection> findTicketByNameAndIdCardPassengers(@Param("namePassenger") String namePassenger,
+                                                                         @Param("idCardPassenger") String idCardPassenger, Pageable pageable);
+
     @Modifying
     @Query (value = "insert into " +
             "ticket(date_booking,price_ticket,seat_id_seat,flag_ticket," +
