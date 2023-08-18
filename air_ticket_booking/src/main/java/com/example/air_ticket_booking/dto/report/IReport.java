@@ -5,4 +5,6 @@ public interface IReport {
     String getPriceTicket();
 
     String getDateBooking();
+
+    String getTitle();
 }
