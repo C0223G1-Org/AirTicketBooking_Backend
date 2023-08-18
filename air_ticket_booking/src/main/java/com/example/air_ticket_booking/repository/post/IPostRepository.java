@@ -115,5 +115,4 @@ public interface IPostRepository extends JpaRepository<Post, Long> {
      */
     @Query(value = "SELECT * FROM Post WHERE Post.flag_post = false ORDER BY date_post DESC LIMIT 5", nativeQuery = true)
     List<Post> getListPostHotNews();
-
 }
