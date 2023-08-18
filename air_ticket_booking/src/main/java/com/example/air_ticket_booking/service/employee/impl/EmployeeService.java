@@ -167,5 +167,17 @@ public class EmployeeService implements IEmployeeService {
     public Employee getEmployeeLoginByEmail(String email) {
         return employeeRepository.getEmployeeLoginByEmail(email);
     }
+
+    /**
+     * Create by: TriPD;
+     * Date create: 17/08/2023
+     * Function: Searches for employees based on the provided gender and name parameters.
+     *
+     * @return A list of employees matching the specified gender and name criteria
+     */
+    @Override
+    public List<Employee> getAllEmployee() {
+        return employeeRepository.getAllEmployees();
+    }
 }
 

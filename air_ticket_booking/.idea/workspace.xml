@@ -4,6 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="61205119-b156-4029-885f-2d65b707e4f5" name="Changes" comment="Thanh son merge develop ngay 17-08-2023">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     <list default="true" id="61205119-b156-4029-885f-2d65b707e4f5" name="Changes" comment="HuyHD + QuocNHA merge code employee lan 9 date 17/08/2023">
       <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.lock" afterDir="false" />
@@ -253,7 +255,21 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
+    </configuration>
+    <configuration name="AirTicketBookingApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="air_ticket_booking.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.air_ticket_booking.AirTicketBookingApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.air_ticket_booking.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="AirTicketBookingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -299,6 +315,12 @@
       <workItem from="1692259904885" duration="270000" />
       <workItem from="1692260355890" duration="57000" />
       <workItem from="1692265071133" duration="656000" />
+      <workItem from="1692062616013" duration="16799000" />
+      <workItem from="1692100271573" duration="10184000" />
+      <workItem from="1692114927594" duration="1123000" />
+      <workItem from="1692187767475" duration="1325000" />
+      <workItem from="1692225848524" duration="739000" />
+      <workItem from="1692233455119" duration="7420000" />
     </task>
     <task id="LOCAL-00001" summary="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 14/8">
       <option name="closed" value="true" />
@@ -345,6 +367,28 @@
       <updated>1692258658208</updated>
     </task>
     <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00003" summary="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 16/8">
+      <created>1692170834870</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692170834870</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Thanh son merge develop ngay 17-08-2023">
+      <created>1692257089215</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1692257089215</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Thanh son merge develop ngay 17-08-2023">
+      <created>1692258023751</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1692258023751</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -357,5 +401,10 @@
     <MESSAGE value="Nampc commit BE-" />
     <MESSAGE value="HuyHD + QuocNHA merge code employee lan 9 date 17/08/2023" />
     <option name="LAST_COMMIT_MESSAGE" value="HuyHD + QuocNHA merge code employee lan 9 date 17/08/2023" />
+    <MESSAGE value="nhan update 15/8 11:03" />
+    <MESSAGE value="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 16/8" />
+    <MESSAGE value="Thanh son merge develop ngay 16-08-2023" />
+    <MESSAGE value="Thanh son merge develop ngay 17-08-2023" />
+    <option name="LAST_COMMIT_MESSAGE" value="Thanh son merge develop ngay 17-08-2023" />
   </component>
 </project>
