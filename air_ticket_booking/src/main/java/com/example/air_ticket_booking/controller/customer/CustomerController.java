@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -32,7 +33,8 @@ public class CustomerController {
     private ICustomerService customerService;
     @Autowired
     private IAccountService accountService;
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     /**
      * @param pageable
      * @return if getListCustomer have data return getListCustomer and status OK else return status NO_CONTENT
@@ -45,12 +47,16 @@ public class CustomerController {
         int currentPage;
         try {
             currentPage = Integer.parseInt(page);
-            if (currentPage < 0 || email.length() > 100 || name.length() > 100 || nationality.length() > 20 || email.contains("_") || email.contains("&") || email.contains("+") || name.contains("_") || name.contains("+") || name.contains("&")) {
+            if (currentPage < 0) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            } else if (email.length() > 100 || name.length() > 100 || nationality.length() > 20) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
             }
-        } catch (NumberFormatException num) {
+        } catch (NumberFormatException n) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
         Page<Customer> getListCustomer = customerService.getListSearchCustomer(pageable, email, name, nationality);
         if (!getListCustomer.isEmpty()) {
             return new ResponseEntity<>(getListCustomer, HttpStatus.OK);
@@ -59,6 +65,37 @@ public class CustomerController {
         }
     }
 
+
+        /**
+         * @param pageable, name, nationality, email
+         * @return if getListSearch have data return getListSearch and status OK else return status NO_CONTENT
+         * Create by: TàiMP
+         * Date create: 10/08/2023
+         */
+    @GetMapping("/search")
+    public ResponseEntity<Page<Customer>> getListSearchCustomer(@PageableDefault(size = 5) Pageable pageable, @RequestParam("email") String email,
+                                                                @RequestParam("name") String name, @RequestParam("nationality") String nationality,@RequestParam("page")String page) {
+
+        int currentPage;
+        try {
+            currentPage = Integer.parseInt(page);
+            if (currentPage < 0) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }else if (email.length()>100||name.length()>100||nationality.length()>20){
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+            }
+        } catch (NumberFormatException n) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        Page<Customer> getListSearch = customerService.getListSearchCustomer(pageable, email, name, nationality);
+        if (!getListSearch.isEmpty()) {
+            return new ResponseEntity<>(getListSearch, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     /**
      * @param id
@@ -85,16 +122,20 @@ public class CustomerController {
      * @return ResponseEntity<>
      */
     @PutMapping("/{id}")
-    public ResponseEntity<HttpStatus> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto) {
+    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto) {
         if (customerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
-        Customer customer = new Customer();
-        BeanUtils.copyProperties(customerDto, customer);
+//        new CustomerDto().validate(customerDto,bindingResult);
+//        if(bindingResult.hasErrors()){
+//            return new ResponseEntity<>(bindingResult.getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST);
+//        }
+        Customer customer=new Customer();
+        BeanUtils.copyProperties(customerDto,customer);
         customerService.updateCustomer(customer);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 
     /**
      * Create by: HoaLTY
@@ -104,22 +145,22 @@ public class CustomerController {
      * @param id
      * @return customer
      */
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getCustomerDetails(@PathVariable Long id) {
-        try {
-            if (ObjectUtils.isEmpty(id)) {
-                return new ResponseEntity<>("Không tìm thấy khách hàng này", HttpStatus.NOT_FOUND);
-            }
-            if (customerService.findCustomerById(id) == null) {
-                return new ResponseEntity<>("Không tìm thấy khách hàng này", HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity<>(customerService.findCustomerById(id), HttpStatus.OK);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>("ID không thể chứa chữ hoặc kí tự đặc biệt", HttpStatus.BAD_REQUEST);
-        }
-
-    }
-
+//    @GetMapping("/{id}")
+//    public ResponseEntity<?> getCustomerDetails(@PathVariable Long id) {
+//        try{
+//            if(ObjectUtils.isEmpty(id)){
+//                return new ResponseEntity<>("Không tìm thấy khách hàng này",HttpStatus.NOT_FOUND);
+//            }
+//            if (customerService.findCustomerById(id) == null) {
+//                return new ResponseEntity<>("Không tìm thấy khách hàng này",HttpStatus.NOT_FOUND);
+//            }
+//
+//       return new ResponseEntity<>(customerService.findCustomerById(id), HttpStatus.OK);
+//}catch (IllegalArgumentException  e){
+//        return new ResponseEntity<>("ID không thể chứa chữ hoặc kí tự đặc biệt",HttpStatus.BAD_REQUEST);
+//        }
+//
+//        }
     /**
      * Create by: HungLV
      * Date create: 10/08/2023
@@ -130,11 +171,13 @@ public class CustomerController {
      */
 
     @PostMapping("")
-    public ResponseEntity<HttpStatus> saveCustomer(@Valid @RequestBody CustomerDto customerdto) {
+    public ResponseEntity<?> saveCustomer(@Valid @RequestBody CustomerDto customerdto) {
         Customer customer = new Customer();
-        BeanUtils.copyProperties(customerdto, customer);
-        Long idAccount = (long) (accountService.getList().size() + 1);
+        BeanUtils.copyProperties(customerdto,customer);
+        Long idAccount = (long) (accountService.getList().size()+1);
         Account account = customer.getAccount();
+        String encoderNewPassword = passwordEncoder.encode(account.getPassword());
+        account.setPassword(encoderNewPassword);
         account.setIdAccount(idAccount);
         accountService.saveAccount(account);
         customer.setAccount(account);
@@ -142,6 +185,14 @@ public class CustomerController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getCustomerById(@PathVariable Long id ){
+        Customer customer = customerService.findCustomerById(id);
+        if(customer==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(customer, HttpStatus.OK);
+    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)

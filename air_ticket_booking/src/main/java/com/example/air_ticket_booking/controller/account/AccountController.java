@@ -1,14 +1,13 @@
 package com.example.air_ticket_booking.controller.account;
-
 import com.example.air_ticket_booking.config.JwtTokenUtil;
 import com.example.air_ticket_booking.config.JwtUserDetails;
-//import com.example.air_ticket_booking.dto.account.AccountChangeDTO;
 import com.example.air_ticket_booking.dto.account.AccountDto;
 import com.example.air_ticket_booking.dto.account.JwtRequestDto;
 import com.example.air_ticket_booking.model.account.Account;
 import com.example.air_ticket_booking.model.customer.Customer;
 import com.example.air_ticket_booking.reponse.JwtRequest;
 import com.example.air_ticket_booking.reponse.JwtResponse;
+import com.example.air_ticket_booking.service.account.IAccountService;
 import com.example.air_ticket_booking.service.account.impl.AccountService;
 import com.example.air_ticket_booking.service.customer.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +19,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-
+import com.example.air_ticket_booking.dto.account.AccountChangeDTO;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,35 +45,35 @@ public class AccountController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
-    private AccountService accountService;
+    private IAccountService accountService;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
 
     class ErrorInfo {
         private String error;
-        private Long id;
+        private String useName;
+        public ErrorInfo(String error, String useName) {
+            this.error = error;
+            this.useName = useName;
+        }
 
+        public String getError() {
+            return error;
+        }
 
+        public void setError(String error) {
+            this.error = error;
+        }
+
+        public String getId() {
+            return useName;
+        }
+
+        public void setId(String useName) {
+            this.useName = useName;
+        }
     }
-
-    /**
-     * create by : SangTDN
-     * @param id
-     * @param accountChangeDTO
-     * @return status
-     */
-//    @PatchMapping("/{id}")
-//    public ResponseEntity<?> updateAccount(@Valid @RequestBody AccountChangeDTO accountChangeDTO, @PathVariable Long id) {
-//        Account account = accountService.findAccountById(id);
-//        boolean flag = passwordEncoder.matches(accountChangeDTO.getOldPassword(), account.getPassword());
-//        if (flag) {
-//            String encoderNewPassword = passwordEncoder.encode(accountChangeDTO.getNewPassword());
-//            accountService.updatePasswordForId(encoderNewPassword, id);
-//            return new ResponseEntity<>(HttpStatus.OK);
-//        }
-//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
 
     /**
      * Created by: NhanDT
@@ -94,12 +93,12 @@ public class AccountController {
             JwtUserDetails principal = (JwtUserDetails) authentication.getPrincipal();
             GrantedAuthority authority = principal.getAuthorities().stream().findFirst().orElse(null);
             final String token = jwtTokenUtil.generateToken(principal.getUsername());
-
             return ResponseEntity.ok(new JwtResponse(token, principal.getUsername(), authority != null ? authority.getAuthority() : null));
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Đăng nhập thất bại!!!");
         }
     }
+
     /**
      * Created by: NhanDT
      * Date created: 10/08/2023
@@ -109,13 +108,41 @@ public class AccountController {
      * @return
      */
     @PostMapping("/signup")
-    public ResponseEntity<?> signUp(@Valid @RequestBody AccountDto accountDto){
-        if (accountService.signUp(accountDto)){
-            return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<?> signUp(@Valid @RequestBody AccountDto accountDto) {
+        if (accountService.signUp(accountDto)) {
+            return ResponseEntity.ok(new JwtResponse(accountDto.getEmailCustomer()));
         }
 //        String encoderPassword = passwordEncoder.encode(accountDto.getPassword());
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Đăng ký tài khoản không thành công");
     }
+
+    /**
+     * Created by: NhanDT
+     * Date created: 14/08/2023
+     * Function: checkCode
+     *
+     * @param account
+     * @return boolean
+     */
+    @PostMapping("/checkCode")
+    public ResponseEntity<?> checkCode(@RequestBody AccountDto account) {
+        boolean check = accountService.checkCode(account);
+        try {
+            if (check) {
+                return ResponseEntity.ok(new JwtResponse(account.getEmailCustomer()));
+            } else {
+                ErrorInfo errorInfo = new ErrorInfo("Xác nhận mã thất bại!!", account.getEmailCustomer());
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorInfo);
+            }
+        } catch (Exception e) {
+            ErrorInfo errorInfo = new ErrorInfo("Xác nhận mã thất bại!!", account.getEmailCustomer());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorInfo);
+        }
+
+    }
+
+
+
     /**
      * Created by: NhanDT
      * Date created: 11/08/2023
@@ -134,5 +161,23 @@ public class AccountController {
             errors.put(fieldName, errorMessage);
         });
         return errors;
+    }
+
+    /**
+     //     * create by : SangTDN
+     //     * @param id
+     //     * @param accountChangeDTO
+     //     * @return status
+     //     */
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updateAccount(@Valid @RequestBody AccountChangeDTO accountChangeDTO, @PathVariable Long id) {
+        Account account = accountService.findAccountById(id);
+        boolean flag = passwordEncoder.matches(accountChangeDTO.getOldPassword(), account.getPassword());
+        if (flag) {
+            String encoderNewPassword = passwordEncoder.encode(accountChangeDTO.getNewPassword());
+            accountService.updatePasswordForId(encoderNewPassword, id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

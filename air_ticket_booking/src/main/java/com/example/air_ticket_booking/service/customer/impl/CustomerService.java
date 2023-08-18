@@ -116,5 +116,17 @@ public class CustomerService implements ICustomerService {
     public Customer getCustomerLoginByEmail(String email) {
         return customerRepository.getCustomerLoginByEmail(email);
     }
+    /**
+     * Create by: NhanDT
+     * Date create: 16/08/2023
+     * Function: declare function for use
+     *
+     * @Param: id
+     * @Return: List<Customer>
+     */
+    @Override
+    public void setFlagToFalse(String email) {
+        this.customerRepository.setFlagToFalse(email);
+    }
 }
 
