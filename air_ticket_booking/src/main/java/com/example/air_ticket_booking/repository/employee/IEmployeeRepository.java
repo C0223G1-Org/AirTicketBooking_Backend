@@ -139,7 +139,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Long> {
      */
     @Query(value = "select * from employee where flag_employee = false ",nativeQuery = true)
     List<Employee> getAllEmployees();
-}
+
 
     @Query(nativeQuery = true, value = "select * from employee as e where e.email_employee = :email and e.flag_employee = false")
     List<Employee> findAllByEmail(@Param("email") String email);
