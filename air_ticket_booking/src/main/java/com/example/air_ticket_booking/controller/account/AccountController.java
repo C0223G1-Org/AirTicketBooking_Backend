@@ -1,5 +1,4 @@
 package com.example.air_ticket_booking.controller.account;
-
 import com.example.air_ticket_booking.config.JwtTokenUtil;
 import com.example.air_ticket_booking.config.JwtUserDetails;
 import com.example.air_ticket_booking.dto.account.AccountDto;
@@ -20,12 +19,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-
+import com.example.air_ticket_booking.dto.account.AccountChangeDTO;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
@@ -48,6 +46,8 @@ public class AccountController {
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private IAccountService accountService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     class ErrorInfo {
@@ -108,11 +108,7 @@ public class AccountController {
      * @return
      */
     @PostMapping("/signup")
-    public ResponseEntity<?> signUp(@Valid @RequestBody AccountDto accountDto, BindingResult bindingResult) {
-        new AccountDto().validate(accountDto,bindingResult);
-        if(bindingResult.hasErrors()){
-            return new ResponseEntity<>(bindingResult.getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<?> signUp(@Valid @RequestBody AccountDto accountDto) {
         if (accountService.signUp(accountDto)) {
             return ResponseEntity.ok(new JwtResponse(accountDto.getEmailCustomer()));
         }
@@ -129,17 +125,17 @@ public class AccountController {
      * @return boolean
      */
     @PostMapping("/checkCode")
-    public ResponseEntity<?> checkCode(@RequestBody Account account) {
+    public ResponseEntity<?> checkCode(@RequestBody AccountDto account) {
         boolean check = accountService.checkCode(account);
         try {
             if (check) {
-                return ResponseEntity.ok(new JwtResponse(account.getUsername()));
+                return ResponseEntity.ok(new JwtResponse(account.getEmailCustomer()));
             } else {
-                ErrorInfo errorInfo = new ErrorInfo("Xác nhận mã thất bại!!", account.getUsername());
+                ErrorInfo errorInfo = new ErrorInfo("Xác nhận mã thất bại!!", account.getEmailCustomer());
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorInfo);
             }
         } catch (Exception e) {
-            ErrorInfo errorInfo = new ErrorInfo("Xác nhận mã thất bại!!", account.getUsername());
+            ErrorInfo errorInfo = new ErrorInfo("Xác nhận mã thất bại!!", account.getEmailCustomer());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorInfo);
         }
 
@@ -167,4 +163,21 @@ public class AccountController {
         return errors;
     }
 
+    /**
+     //     * create by : SangTDN
+     //     * @param id
+     //     * @param accountChangeDTO
+     //     * @return status
+     //     */
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updateAccount(@Valid @RequestBody AccountChangeDTO accountChangeDTO, @PathVariable Long id) {
+        Account account = accountService.findAccountById(id);
+        boolean flag = passwordEncoder.matches(accountChangeDTO.getOldPassword(), account.getPassword());
+        if (flag) {
+            String encoderNewPassword = passwordEncoder.encode(accountChangeDTO.getNewPassword());
+            accountService.updatePasswordForId(encoderNewPassword, id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
