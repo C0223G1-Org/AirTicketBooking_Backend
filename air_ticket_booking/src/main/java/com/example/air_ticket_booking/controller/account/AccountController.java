@@ -1,5 +1,4 @@
 package com.example.air_ticket_booking.controller.account;
-
 import com.example.air_ticket_booking.config.JwtTokenUtil;
 import com.example.air_ticket_booking.config.JwtUserDetails;
 import com.example.air_ticket_booking.dto.account.AccountDto;
@@ -23,7 +22,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-
+import com.example.air_ticket_booking.dto.account.AccountChangeDTO;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +46,8 @@ public class AccountController {
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private IAccountService accountService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     class ErrorInfo {
@@ -110,6 +112,7 @@ public class AccountController {
         if (accountService.signUp(accountDto)) {
             return ResponseEntity.ok(new JwtResponse(accountDto.getEmailCustomer()));
         }
+//        String encoderPassword = passwordEncoder.encode(accountDto.getPassword());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Đăng ký tài khoản không thành công");
     }
 
@@ -160,4 +163,21 @@ public class AccountController {
         return errors;
     }
 
+    /**
+     //     * create by : SangTDN
+     //     * @param id
+     //     * @param accountChangeDTO
+     //     * @return status
+     //     */
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updateAccount(@Valid @RequestBody AccountChangeDTO accountChangeDTO, @PathVariable Long id) {
+        Account account = accountService.findAccountById(id);
+        boolean flag = passwordEncoder.matches(accountChangeDTO.getOldPassword(), account.getPassword());
+        if (flag) {
+            String encoderNewPassword = passwordEncoder.encode(accountChangeDTO.getNewPassword());
+            accountService.updatePasswordForId(encoderNewPassword, id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
