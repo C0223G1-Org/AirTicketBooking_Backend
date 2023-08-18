@@ -113,7 +113,7 @@ public interface IPostRepository extends JpaRepository<Post, Long> {
      * Handling:  Get data via query with data input and return one page with post
      * @return
      */
-    @Query(value = "SELECT * FROM Post WHERE Post.flag_post = false and date_post BETWEEN CURDATE() - INTERVAL 10 DAY AND CURDATE()  ", nativeQuery = true)
+    @Query(value = "SELECT * FROM Post WHERE Post.flag_post = false ORDER BY date_post DESC LIMIT 5", nativeQuery = true)
     List<Post> getListPostHotNews();
 
 }
