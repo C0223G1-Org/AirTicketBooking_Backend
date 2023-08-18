@@ -16,7 +16,6 @@ public class ReportController {
     @Autowired
     private IReportService reportService;
 
-
     /**
      * Created by: KhangPVA
      * Date created: 10/08/2023
