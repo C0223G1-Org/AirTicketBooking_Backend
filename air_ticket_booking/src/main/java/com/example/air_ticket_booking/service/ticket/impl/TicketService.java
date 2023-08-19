@@ -68,6 +68,7 @@ public class TicketService implements ITicketService {
         BeanUtils.copyProperties(ticketDto, ticket);
         ticket.setDateBooking(String.valueOf(LocalDate.now()));
         ticket.setPriceTicket(ticket.getLuggage().getPriceLuggage() + (ticket.getSeat().getTypeSeat().getPriceExtra() * ticket.getSeat().getRoute().getPriceRoute())*1.6);
+        System.out.println(ticket.getPriceTicket());
         ticketRepository.createNewTicket(ticket);
     }
 
