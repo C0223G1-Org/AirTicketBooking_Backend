@@ -61,18 +61,18 @@ public class PaymentController {
 
     }
 
-    @GetMapping("/payment/{id}")
-    public ResponseEntity<List<Ticket>> getTicketById(@PathVariable Long id) {
+    @GetMapping("/payment/{id}/{num}")
+    public ResponseEntity<List<Ticket>> getTicketById(@PathVariable Long id, @PathVariable Integer num) {
         if (iCustomerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(iTicketService.getListTicketByIdCustomer(id),HttpStatus.OK);
+        return new ResponseEntity<>(iTicketService.getListTicketByIdCustomer(id, num),HttpStatus.OK);
     }
 
     @PatchMapping("/callback/{id}/{message}")
     public ResponseEntity<String> updateTicketByIdTicket(@PathVariable Long id , @PathVariable("message") String paymentStatus) {
         Ticket ticket = iTicketService.findTicketPayment(id);
-//        Seat seat = iSeatService.findSeatById(ticket.getSeat().getIdSeat());
+        Seat seat = iSeatService.findSeatById(ticket.getSeat().getIdSeat());
 
          if (ticket == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -80,7 +80,7 @@ public class PaymentController {
         System.out.print(id);
             if ("COMPLETED".equals(paymentStatus)) {
                 // Thanh toán đã hoàn thành
-//                seat.setFlagSeat(true);
+                seat.setFlagSeat(true);
 //                sendEmail(id);
 //                for (Long id1: id) {
 //                    iTicketService.updateTicketByIdTicket(id1);

@@ -180,4 +180,13 @@ public class AccountController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<Account> getAccountByGmail ( @PathVariable String email){
+        Account account = accountService.findAccountByEmail(email);
+        if (account==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(account,HttpStatus.OK);
+    }
 }

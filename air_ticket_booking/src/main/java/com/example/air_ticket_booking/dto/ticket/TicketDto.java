@@ -25,6 +25,7 @@ public class TicketDto implements Validator {
 //    @Size(min = 10, message = "Tên ít nhất 10 ký tự")
 //    @Pattern(regexp = "/^[A-Z]{1}[a-z]*(\\s[A-Z]{1}[a-z]*)*$/",message = "Tên không đúng định dạng")
     private String namePassenger;
+//    @NotBlank(message = "Không được để trống")
     private Boolean genderPassenger;
 //    @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$",message = "Email không đúng định dạng")
 //    @Email(message = "Email không đúng định dạng")
