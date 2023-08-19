@@ -9,6 +9,7 @@ public class Destination {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDestination;
     private String nameDestination;
+    private String imageDestination;
 
     public Destination() {
     }
@@ -16,6 +17,12 @@ public class Destination {
     public Destination(Long idDestination, String nameDestination) {
         this.idDestination = idDestination;
         this.nameDestination = nameDestination;
+    }
+
+    public Destination(Long idDestination, String nameDestination, String imageDestination) {
+        this.idDestination = idDestination;
+        this.nameDestination = nameDestination;
+        this.imageDestination = imageDestination;
     }
 
     public Long getIdDestination() {
@@ -32,5 +39,13 @@ public class Destination {
 
     public void setNameDestination(String nameDestination) {
         this.nameDestination = nameDestination;
+    }
+
+    public String getImageDestination() {
+        return imageDestination;
+    }
+
+    public void setImageDestination(String imageDestination) {
+        this.imageDestination = imageDestination;
     }
 }

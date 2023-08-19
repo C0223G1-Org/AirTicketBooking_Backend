@@ -17,6 +17,8 @@ import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
 import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 
@@ -97,16 +99,38 @@ public interface ITicketService {
      * @Method searchTicketUnbooked
      * @author Nhàn NA
      */
-    Page<ITicketUnbookedProjection> searchTicketUnbooked(Long idTypeSeat,String positionSeat,String nameRoute, String nameDeparture,String nameDestination,Pageable pageable);
+    Page<ITicketUnbookedProjection> searchTicketUnbooked(TicketSearch ticketSearch,Pageable pageable);
 
     /**
      *Create by: ThanhVh
      *Date create: 11/08/2023
-     * Function:getListHistoryPayment()
-     * @param id,pageable
+     * Function:searchAllListPaymentByCustomerById()
+     * @param id,pageable,departure,destination
      * @return Page<Ticket>
      **/
     Page<Ticket> searchAllListPaymentByCustomerById(Long id, Pageable pageable, String departure, String destination);
-
+    /**
+     *Create by: ThanhVh
+     *Date create: 11/08/2023
+     * Function:updateTicketByIdTicket()
+     * @param id
+     * @return void
+     **/
     void updateTicketByIdTicket(Long id);
+    /**
+     *Create by: ThanhVh
+     *Date create: 16/08/2023
+     * Function:findTicketPayment()
+     * @param id
+     * @return Ticket
+     **/
+    Ticket findTicketPayment(Long id);
+    /**
+     *Create by: ThanhVh
+     *Date create: 17/08/2023
+     * Function:getListTicketByIdCustomer()
+     * @param id
+     * @return List<Ticket>
+     **/
+    List<Ticket> getListTicketByIdCustomer( Long id);
 }

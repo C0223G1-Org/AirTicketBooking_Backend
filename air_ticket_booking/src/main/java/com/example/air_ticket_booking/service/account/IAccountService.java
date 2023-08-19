@@ -8,7 +8,25 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface IAccountService {
+    /**
+     * Created by: NhanDT
+     * Date created: 10/08/2023
+     * Function: SignUp
+     *
+     * @param accountDto
+     * @return boolean
+     */
     boolean signUp(AccountDto accountDto);
+    /**
+     * Created by: NhanDT
+     * Date created: 10/08/2023
+     * Function: SignUp
+     *
+     * @param email
+     * @return boolean
+     */
+    boolean checkExistAccount(String email);
+
     /**
      * create by : SangTDN
      * @param newPass
@@ -19,5 +37,22 @@ public interface IAccountService {
 
     Account findAccountById (Long id);
     List<Account> getList();
+
     void saveAccount(Account account);
+
+
+    /**
+     * Created by: NhanDT
+     * Date created: 14/08/2023
+     * Function: SignUp
+     *
+     * @param account
+     * @return boolean
+     */
+    boolean checkCode(AccountDto account);
+
+    void createAccEmpl(String email, String password);
+
+    Account findAccountByEmail(String email);
+
 }
