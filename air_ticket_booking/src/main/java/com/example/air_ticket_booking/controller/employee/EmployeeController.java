@@ -1,9 +1,11 @@
 package com.example.air_ticket_booking.controller.employee;
 
 import com.example.air_ticket_booking.dto.employee.EmployeeDto;
+
 import com.example.air_ticket_booking.model.employee.Employee;
 import com.example.air_ticket_booking.service.employee.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -35,8 +37,8 @@ public class EmployeeController {
     @PostMapping("")
     public ResponseEntity<?> saveEmployee(@Validated @RequestBody EmployeeDto employeeDto,
                                           BindingResult bindingResult) {
-        if (!bindingResult.hasErrors()) {
-            employeeService.saveEmployee(employeeDto);
+        if (employeeService.createEmployee(employeeDto)) {
+//            employeeService.saveEmployee(employeeDto);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } else {
             getResponseEntity(bindingResult);
@@ -53,12 +55,12 @@ public class EmployeeController {
      * @return HttpStatus.NOT_FOUND if result= null else then return employeeDto and HttpStatus.OK
      */
     @GetMapping("/{id}")
-    public ResponseEntity<?> findByIdEmployee(@PathVariable Long id) {
-        EmployeeDto employeeDto = employeeService.findByyId(id);
-        if (employeeDto == null) {
+    public ResponseEntity<Employee> findByIdEmployee(@PathVariable Long id) {
+        Employee employee = employeeService.findByyId(id);
+        if (employee == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(employeeDto, HttpStatus.OK);
+            return new ResponseEntity<>(employee, HttpStatus.OK);
         }
     }
     /**
@@ -70,7 +72,7 @@ public class EmployeeController {
      * @param employeeDto
      * @return status update
      */
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<?> editEmployee(@Validated @RequestBody EmployeeDto employeeDto,
                                           BindingResult bindingResult, @PathVariable Long id) {
         if (!bindingResult.hasErrors()) {
@@ -109,7 +111,7 @@ public class EmployeeController {
      * @return : paginated employee list with limit number of molecules per page.
      */
     @GetMapping("/{page}/{limit}")
-    public ResponseEntity<?> getListEmployee(@PathVariable(value = "page")Integer page, @PathVariable(value = "limit") Integer limit) {
+    public ResponseEntity<Page<Employee>> getListEmployee(@PathVariable(value = "page")Integer page, @PathVariable(value = "limit") Integer limit) {
         Pageable pageable = PageRequest.of(page, limit);
         if (employeeService.findAll(pageable).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -124,10 +126,19 @@ public class EmployeeController {
      * @param : id (id_employee);
      * @return : new employee list does not exist newly deleted element.
      */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
-        this.employeeService.deleteEmployee(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable Long id) {
+        Employee employee = this.employeeService.findByyId(id);
+        if (employee == null) {
+            return  new ResponseEntity<>("Không tìm thấy nhân viên" ,HttpStatus.NO_CONTENT);
+        }
+
+        try {
+            this.employeeService.deleteEmployee(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Đã xảy ra lỗi! Không thể xóa nhân viên này!", HttpStatus.NO_CONTENT);
+        }
     }
 
     /**
@@ -137,11 +148,15 @@ public class EmployeeController {
      * @param : gender (employee's gender), name(name of employee you want to find);
      * @return : The list of new employees matches the parameters passed in.
      */
-    @GetMapping("/search/{gender}/{name}")
-    public ResponseEntity<?> searchEmployee(@PathVariable(value = "gender", required = false) Boolean gender, @PathVariable(value = "name", required = false) String name) {
-        List<Employee> employeeList = employeeService.searchEmployee(gender, name);
-        if (employeeList.size() == 0) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping("/search")
+    public ResponseEntity<Page<Employee>> searchEmployee(@RequestParam( required = false) Boolean gender,
+                                            @RequestParam( required = false) String name,
+                                            @RequestParam(required = false) Integer page,
+                                            @RequestParam(required = false) Integer size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Employee> employeeList = employeeService.searchEmployee(gender, name,pageable );
+        if (employeeList.isEmpty()) {
+            return new ResponseEntity<>(employeeService.findAll(pageable), HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(employeeList, HttpStatus.OK);
         }

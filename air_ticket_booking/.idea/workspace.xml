@@ -4,18 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61205119-b156-4029-885f-2d65b707e4f5" name="Changes" comment="TaiMP commit SonaLint của Customer ngày 16/08/2023">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/checksums/sha1-checksums.bin" afterDir="false" />
+    <list default="true" id="61205119-b156-4029-885f-2d65b707e4f5" name="Changes" comment="HuyHD + QuocNHA merge code employee lan 9 date 17/08/2023">
       <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__antlr_antlr_2_7_7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__antlr_antlr_2_7_7.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_classic_1_2_12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_classic_1_2_12.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_core_1_2_12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_core_1_2_12.xml" afterDir="false" />
@@ -109,11 +109,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/com.example.air_ticket_booking.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/com.example.air_ticket_booking.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/customer/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/controller/customer/CustomerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/account/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/model/account/Account.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/account/IAccountRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/air_ticket_booking/repository/account/IAccountRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/controller/customer/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/controller/customer/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,17 +124,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <task path="$PROJECT_DIR$">
-          <activation />
-        </task>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="air_ticket_booking" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -148,10 +136,14 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="customer" />
+        <entry key="$PROJECT_DIR$/.." value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/controller/account/AccountController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/repository/account/IAccountRepository.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -164,7 +156,6 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Git.Branch.Popup.ShowAllRemotes": "true",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -173,15 +164,13 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "WebServerToolWindowFactoryState": "false",
-    "database.data.extractors.current.export.id": "SQL Inserts",
-    "database.data.extractors.current.id": "SQL Inserts",
-    "last_opened_file_path": "D:/AirTicketBooking_Backend/air_ticket_booking/src/main/java/com/example/air_ticket_booking/model",
+    "last_opened_file_path": "E:/coding_module_6/AirTicketBooking_Backend/air_ticket_booking",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "spring.configuration.checksum": "2a3b635da27a02a8a51df6d4259bab59",
+    "spring.configuration.checksum": "cf2e3f1bf99913094ccc54139ec18554",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -196,7 +185,7 @@
       <recent name="D:\AirTicketBooking_Backend\air_ticket_booking\src\main\java\com\example\air_ticket_booking\controller" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.AirTicketBookingApplication (1)">
+  <component name="RunManager" selected="Spring Boot.AirTicketBookingApplication">
     <configuration name="PaymentController_getListHistoryPayment" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -266,13 +255,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="AirTicketBookingApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="com.example.air_ticket_booking.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.air_ticket_booking.AirTicketBookingApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AirTicketBookingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="air_ticket_booking.main" />
@@ -281,13 +263,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Gradle.PaymentController_getListHistoryPayment" />
+      <item itemvalue="Gradle.PaymentController_updateTicketByIdTicket" />
+      <item itemvalue="Gradle.PaymentController_updateTicketByIdTicket.updateTicketByIdTicket_success" />
+      <item itemvalue="Spring Boot.AirTicketBookingApplication" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.PaymentController_updateTicketByIdTicket.updateTicketByIdTicket_success" />
         <item itemvalue="Gradle.PaymentController_updateTicketByIdTicket" />
+        <item itemvalue="Gradle.PaymentController_updateTicketByIdTicket.updateTicketByIdTicket_success" />
         <item itemvalue="Gradle.PaymentController_getListHistoryPayment" />
-        <item itemvalue="Gradle.PaymentController_updateTicketByIdTicket" />
-        <item itemvalue="Gradle.PaymentController_updateTicketByIdTicket.updateTicketByIdTicket_success" />
       </list>
     </recent_temporary>
   </component>
@@ -301,17 +287,18 @@
       <updated>1691977124050</updated>
       <workItem from="1691977125754" duration="14835000" />
       <workItem from="1692013343244" duration="7908000" />
-      <workItem from="1692062616013" duration="16799000" />
-      <workItem from="1692089878609" duration="763000" />
-      <workItem from="1692099051886" duration="8049000" />
-      <workItem from="1692149225423" duration="4776000" />
-      <workItem from="1692154763430" duration="1549000" />
-      <workItem from="1692156351293" duration="56000" />
-      <workItem from="1692157106185" duration="1242000" />
-      <workItem from="1692167629261" duration="270000" />
-      <workItem from="1692167918141" duration="790000" />
-      <workItem from="1692170424068" duration="2848000" />
-      <workItem from="1692177335877" duration="1290000" />
+      <workItem from="1692062616013" duration="20440000" />
+      <workItem from="1692100244225" duration="7271000" />
+      <workItem from="1692114912912" duration="147000" />
+      <workItem from="1692115743981" duration="572000" />
+      <workItem from="1692148447492" duration="851000" />
+      <workItem from="1692149508552" duration="16458000" />
+      <workItem from="1692240451927" duration="3664000" />
+      <workItem from="1692258312124" duration="223000" />
+      <workItem from="1692258558819" duration="729000" />
+      <workItem from="1692259904885" duration="270000" />
+      <workItem from="1692260355890" duration="57000" />
+      <workItem from="1692265071133" duration="656000" />
     </task>
     <task id="LOCAL-00001" summary="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 14/8">
       <option name="closed" value="true" />
@@ -321,51 +308,54 @@
       <option name="project" value="LOCAL" />
       <updated>1692023381118</updated>
     </task>
-    <task id="LOCAL-00002" summary="TaiMP commit SonaLint của Customer ngày 16/08/2023">
-      <created>1692177631998</created>
+    <task id="LOCAL-00002" summary="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 15/8">
+      <option name="closed" value="true" />
+      <created>1692086454759</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1692177631998</updated>
+      <updated>1692086454759</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Nampc commit BE">
+      <created>1692168877446</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692168877446</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Nampc commit BE">
+      <created>1692175659430</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1692175659430</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Nampc commit BE-">
+      <created>1692176597818</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1692176597818</updated>
+    </task>
+    <task id="LOCAL-00006" summary="HuyHD + QuocNHA merge code employee lan 9 date 17/08/2023">
+      <created>1692258658208</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1692258658208</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 14/8" />
-    <MESSAGE value="TaiMP commit chức năng của Customer ngày 16/08/2023" />
-    <MESSAGE value="TaiMP commit update Controller của Customer ngày 16/08/2023" />
-    <MESSAGE value="TaiMP commit SonaLint của Customer ngày 16/08/2023" />
-    <option name="LAST_COMMIT_MESSAGE" value="TaiMP commit SonaLint của Customer ngày 16/08/2023" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/air_ticket_booking/controller/customer/CustomerController.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-    <pin-to-top-manager>
-      <pinned-members>
-        <PinnedItemInfo parentTag="org.springframework.dao.InvalidDataAccessResourceUsageException" memberName="detailMessage" />
-      </pinned-members>
-    </pin-to-top-manager>
+    <MESSAGE value="thanhVH push chuc nang thanh toan va chuc nang xem lich su backend 15/8" />
+    <MESSAGE value="Nampc commit BE" />
+    <MESSAGE value="Nampc commit BE-" />
+    <MESSAGE value="HuyHD + QuocNHA merge code employee lan 9 date 17/08/2023" />
+    <option name="LAST_COMMIT_MESSAGE" value="HuyHD + QuocNHA merge code employee lan 9 date 17/08/2023" />
   </component>
 </project>
