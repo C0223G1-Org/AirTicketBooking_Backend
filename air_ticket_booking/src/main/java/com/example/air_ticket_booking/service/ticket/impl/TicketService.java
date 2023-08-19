@@ -30,6 +30,7 @@ import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -65,8 +66,9 @@ public class TicketService implements ITicketService {
     public void createNewTicket(TicketDto ticketDto) {
         Ticket ticket = new Ticket();
         BeanUtils.copyProperties(ticketDto, ticket);
-        ticket.setDateBooking(String.valueOf(LocalDate.now()));
+        ticket.setDateBooking(String.valueOf(LocalDateTime.now()));
         ticket.setPriceTicket(ticket.getLuggage().getPriceLuggage() + (ticket.getSeat().getTypeSeat().getPriceExtra() * ticket.getSeat().getRoute().getPriceRoute())*1.6);
+
         System.out.println(ticket.getPriceTicket());
         ticketRepository.createNewTicket(ticket);
     }
@@ -258,8 +260,13 @@ public class TicketService implements ITicketService {
     }
 
     @Override
-    public List<Ticket> getListTicketByIdCustomer(Long id) {
-        return ticketRepository.getListTicketByIdCustomer(id);
+    public List<Ticket> getListTicketByIdCustomer(Long id, Integer num) {
+        return ticketRepository.getListTicketByIdCustomer(id, num);
+    }
+
+    @Override
+    public void deleteTicketFlagIsFalse(Long customer_id_customer) {
+        ticketRepository.deleteTicketFlagIsFalse(customer_id_customer);
     }
 
 }

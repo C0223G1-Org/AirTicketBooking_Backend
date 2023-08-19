@@ -132,5 +132,6 @@ public interface ITicketService {
      * @param id
      * @return List<Ticket>
      **/
-    List<Ticket> getListTicketByIdCustomer( Long id);
+    List<Ticket> getListTicketByIdCustomer( Long id, Integer num);
+    void deleteTicketFlagIsFalse(Long customer_id_customer);
 }

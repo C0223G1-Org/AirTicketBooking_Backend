@@ -287,8 +287,13 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             "join type_ticket on type_ticket.id_type_ticket = ticket.type_ticket_id_type_ticket \n" +
             "join type_passenger on type_passenger.id_type_passenger = ticket.type_passenger_id_type_passenger \n" +
             "where customer.id_customer = :id \n" +
-            "and flag_ticket = false")
-    List<Ticket> getListTicketByIdCustomer(@Param("id") Long id);
+            "and flag_ticket = false " +
+            "order by ticket.date_booking desc limit :num")
+    List<Ticket> getListTicketByIdCustomer(@Param("id") Long id, @Param("num") Integer num);
 
+    @Modifying
+    @Query(nativeQuery = true, value = "delete from ticket\n" +
+            "where flag_ticket = false and customer_id_customer = :customer_id_customer  ")
+    void deleteTicketFlagIsFalse(@Param("customer_id_customer") Long customer_id_customer);
 
 }

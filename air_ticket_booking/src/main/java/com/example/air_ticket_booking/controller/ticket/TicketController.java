@@ -33,6 +33,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -245,5 +246,11 @@ public class TicketController {
             System.out.println(iTicketService.searchTicketUnbooked(ticketSearch,pageable).getContent().get(0).getNameRoute());
             return new ResponseEntity<>(iTicketService.searchTicketUnbooked(ticketSearch,pageable),HttpStatus.OK);
         }
+    }
+    @DeleteMapping("/delete/{idCustomer}")
+    public void deleteTicketFlagIsFalse(@PathVariable Long idCustomer){
+
+        iTicketService.deleteTicketFlagIsFalse(idCustomer);
+
     }
 }

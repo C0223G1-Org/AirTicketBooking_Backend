@@ -61,12 +61,12 @@ public class PaymentController {
 
     }
 
-    @GetMapping("/payment/{id}")
-    public ResponseEntity<List<Ticket>> getTicketById(@PathVariable Long id) {
+    @GetMapping("/payment/{id}/{num}")
+    public ResponseEntity<List<Ticket>> getTicketById(@PathVariable Long id, @PathVariable Integer num) {
         if (iCustomerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(iTicketService.getListTicketByIdCustomer(id),HttpStatus.OK);
+        return new ResponseEntity<>(iTicketService.getListTicketByIdCustomer(id, num),HttpStatus.OK);
     }
 
     @PatchMapping("/callback/{id}/{message}")
