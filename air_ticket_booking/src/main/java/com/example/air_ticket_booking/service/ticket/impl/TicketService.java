@@ -224,9 +224,6 @@ public class TicketService implements ITicketService {
     @Override
     public Page<ITicketUnbookedProjection> searchTicketUnbooked(TicketSearch ticketSearch, Pageable pageable) {
         try {
-            if(ticketSearch.getChairCode()==null){
-                ticketSearch.setChairCode("");
-            }
             if(ticketSearch.getRouteCode()==null){
                 ticketSearch.setRouteCode("");
             }
