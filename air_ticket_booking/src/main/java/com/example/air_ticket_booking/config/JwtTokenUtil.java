@@ -48,7 +48,6 @@ public class JwtTokenUtil {
         try {
             JwtParser parser = Jwts.parser().setSigningKey(secret);
             Claims claims = parser.parseClaimsJws(token).getBody();
-
             // Kiểm tra tính hợp lệ của token bằng cách so sánh username trong token với thông tin người dùng được truyền vào
             if (claims.getSubject().equals(userDetails.getUsername())) {
                 return true;
@@ -56,7 +55,6 @@ public class JwtTokenUtil {
         } catch (Exception e) {
             throw e;
         }
-
         return false;
     }
 
