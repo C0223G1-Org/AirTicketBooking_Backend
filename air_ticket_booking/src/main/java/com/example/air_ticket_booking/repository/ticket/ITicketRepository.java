@@ -8,6 +8,7 @@ import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TicketSearch;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
 import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
+import com.example.air_ticket_booking.projection.ITicketPassengerProjection;
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
 import org.springframework.data.domain.Page;
@@ -34,8 +35,8 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
      */
     @Query(nativeQuery = true,
             value = "select * from ticket where name_passenger like concat('%', :namePassenger, '%') and id_card_passenger = :idCardPassenger;")
-    List<Ticket> findTicketByNameAndIdCardPassengers(@Param("namePassenger") String namePassenger,
-                                                     @Param("idCardPassenger") String idCardPassenger);
+    Page<ITicketPassengerProjection> findTicketByNameAndIdCardPassengers(@Param("namePassenger") String namePassenger,
+                                                                         @Param("idCardPassenger") String idCardPassenger, Pageable pageable);
 
     /**
      * method :used to create a new ticket when the user confirms the booking
