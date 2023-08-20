@@ -35,6 +35,11 @@ public interface IEmployeeService {
      */
     void deleteEmployee(Long id);
 
+
+
+
+
+    Employee getEmployeeLoginByEmail(String email);
     /**
      * Create by: HuyHD;
      * Date create: 10/08/2023
@@ -45,11 +50,6 @@ public interface IEmployeeService {
      * @param
      * @return A list of employees matching the specified gender and name criteria
      */
-
-
-
-    Employee getEmployeeLoginByEmail(String email);
-
     Page<Employee> searchEmployee(Boolean gender, String name, Pageable pageable);
 
     //    Employee getEmployeeById(Long id);

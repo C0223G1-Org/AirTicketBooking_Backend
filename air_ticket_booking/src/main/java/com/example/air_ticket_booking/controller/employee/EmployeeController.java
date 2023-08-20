@@ -130,14 +130,17 @@ public class EmployeeController {
     public ResponseEntity<String> deleteEmployee(@PathVariable Long id) {
         Employee employee = this.employeeService.findByyId(id);
         if (employee == null) {
-            return  new ResponseEntity<>("Không tìm thấy nhân viên" ,HttpStatus.NO_CONTENT);
-        }
+            return new ResponseEntity<>("Không tìm thấy nhân viên", HttpStatus.NO_CONTENT);
+        } else if (employee.getFlagEmployee() == true) {
+            return new ResponseEntity<>("Không tìm thấy nhân viên", HttpStatus.NO_CONTENT);
+        } else {
 
-        try {
-            this.employeeService.deleteEmployee(id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Đã xảy ra lỗi! Không thể xóa nhân viên này!", HttpStatus.NO_CONTENT);
+            try {
+                this.employeeService.deleteEmployee(id);
+                return new ResponseEntity<>(HttpStatus.OK);
+            } catch (Exception e) {
+                return new ResponseEntity<>("Đã xảy ra lỗi! Không thể xóa nhân viên này!", HttpStatus.NO_CONTENT);
+            }
         }
     }
 

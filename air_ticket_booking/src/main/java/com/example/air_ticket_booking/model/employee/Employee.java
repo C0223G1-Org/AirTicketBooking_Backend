@@ -21,7 +21,7 @@ public class Employee {
     private Boolean flagEmployee;
 
     @ManyToOne
-    private TypeEmployee typeEmployee;
+    private TypeEmployee typeEmployee ;
 
     public Employee() {
     }
