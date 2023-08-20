@@ -13,6 +13,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.mail.javamail.JavaMailSender;
 
@@ -46,6 +47,7 @@ public class PaymentController {
      * @return Page<Ticket> , void
      **/
     @GetMapping("/history/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_CUSTOMER')")
     public ResponseEntity<Page<Ticket>> getListHistoryPayment(@PathVariable Long id, @PageableDefault(size = 4) Pageable pageable,
                                                               @RequestParam("departure") String departure, @RequestParam("destination") String destination,
                                                               @RequestParam("page") String page) {

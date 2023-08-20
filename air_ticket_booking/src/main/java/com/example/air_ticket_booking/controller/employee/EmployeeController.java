@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -35,6 +36,7 @@ public class EmployeeController {
      * @return status create
      */
     @PostMapping("")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> saveEmployee(@Validated @RequestBody EmployeeDto employeeDto,
                                           BindingResult bindingResult) {
         if (employeeService.createEmployee(employeeDto)) {
@@ -55,6 +57,7 @@ public class EmployeeController {
      * @return HttpStatus.NOT_FOUND if result= null else then return employeeDto and HttpStatus.OK
      */
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Employee> findByIdEmployee(@PathVariable Long id) {
         Employee employee = employeeService.findByyId(id);
         if (employee == null) {
@@ -73,6 +76,7 @@ public class EmployeeController {
      * @return status update
      */
     @PatchMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> editEmployee(@Validated @RequestBody EmployeeDto employeeDto,
                                           BindingResult bindingResult, @PathVariable Long id) {
         if (!bindingResult.hasErrors()) {
@@ -111,6 +115,7 @@ public class EmployeeController {
      * @return : paginated employee list with limit number of molecules per page.
      */
     @GetMapping("/{page}/{limit}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Page<Employee>> getListEmployee(@PathVariable(value = "page")Integer page, @PathVariable(value = "limit") Integer limit) {
         Pageable pageable = PageRequest.of(page, limit);
         if (employeeService.findAll(pageable).isEmpty()) {
@@ -127,6 +132,7 @@ public class EmployeeController {
      * @return : new employee list does not exist newly deleted element.
      */
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<String> deleteEmployee(@PathVariable Long id) {
         Employee employee = this.employeeService.findByyId(id);
         if (employee == null) {
@@ -149,6 +155,8 @@ public class EmployeeController {
      * @return : The list of new employees matches the parameters passed in.
      */
     @GetMapping("/search")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+
     public ResponseEntity<Page<Employee>> searchEmployee(@RequestParam( required = false) Boolean gender,
                                             @RequestParam( required = false) String name,
                                             @RequestParam(required = false) Integer page,
@@ -162,6 +170,7 @@ public class EmployeeController {
         }
     }
     @GetMapping("/login/{email}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Employee> getEmployeeLoginByEmail(@PathVariable String email) {
         if (employeeService.getEmployeeLoginByEmail(email) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
