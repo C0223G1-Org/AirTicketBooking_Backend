@@ -69,6 +69,7 @@ public class PaymentController {
         return new ResponseEntity<>(iTicketService.getListTicketByIdCustomer(id, num),HttpStatus.OK);
     }
 
+
     @PatchMapping("/callback/{id}/{message}")
     public ResponseEntity<String> updateTicketByIdTicket(@PathVariable Long id , @PathVariable("message") String paymentStatus) {
         Ticket ticket = iTicketService.findTicketPayment(id);
