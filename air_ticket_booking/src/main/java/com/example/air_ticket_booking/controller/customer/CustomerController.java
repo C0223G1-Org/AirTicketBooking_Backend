@@ -46,11 +46,13 @@ public class CustomerController {
             currentPage = Integer.parseInt(page);
             if (currentPage < 0) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            } else if (email.length() > 100 || name.length() > 100 || nationality.length() > 20) {
+            }else if (email.length()>100||name.length()>100||nationality.length()>20){
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }else if (email.contains("_")||email.contains("&")||email.contains("+")||name.contains("_")||name.contains("+")||name.contains("&")){
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
             }
-        } catch (NumberFormatException n) {
+        } catch (NumberFormatException num) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -119,7 +121,7 @@ public class CustomerController {
      * @return ResponseEntity<>
      */
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto) {
+    public ResponseEntity<HttpStatus> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto) {
         if (customerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -168,7 +170,7 @@ public class CustomerController {
      */
 
     @PostMapping("")
-    public ResponseEntity<?> saveCustomer(@Valid @RequestBody CustomerDto customerdto) {
+    public ResponseEntity<HttpStatus> saveCustomer(@Valid @RequestBody CustomerDto customerdto) {
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerdto,customer);
         Long idAccount = (long) (accountService.getList().size()+1);
