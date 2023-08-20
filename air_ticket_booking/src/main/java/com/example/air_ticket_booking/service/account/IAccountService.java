@@ -46,4 +46,6 @@ public interface IAccountService {
     void createAccEmpl(String email, String password);
 
     Account findAccountByEmail(String email);
+
+    void setAccountToTrue(String emailEmployee);
 }
