@@ -116,5 +116,10 @@ public class CustomerService implements ICustomerService {
     public Customer getCustomerLoginByEmail(String email) {
         return customerRepository.getCustomerLoginByEmail(email);
     }
+
+    @Override
+    public void deleteAccount(Long idAccount) {
+        customerRepository.deleteAccount(idAccount);
+    }
 }
 

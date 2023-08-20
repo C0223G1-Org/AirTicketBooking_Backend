@@ -4,6 +4,7 @@ import com.example.air_ticket_booking.dto.account.AccountDto;
 import com.example.air_ticket_booking.model.customer.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -86,4 +87,5 @@ public interface ICustomerService {
     void createCustomer(AccountDto accountDto, Long idAccountNew);
 
     Customer getCustomerLoginByEmail(String email);
+    void deleteAccount(Long idAccount);
 }
