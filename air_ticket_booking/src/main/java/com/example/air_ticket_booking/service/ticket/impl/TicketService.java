@@ -4,11 +4,13 @@ package com.example.air_ticket_booking.service.ticket.impl;
 import com.example.air_ticket_booking.dto.ticket.TicketDto;
 import com.example.air_ticket_booking.model.customer.Customer;
 import com.example.air_ticket_booking.model.luggage.Luggage;
+import com.example.air_ticket_booking.model.paypal.TicketProjection;
 import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TicketSearch;
 import com.example.air_ticket_booking.model.ticket.TypeTicket;
 import com.example.air_ticket_booking.model.type_passenger.TypePassenger;
+import com.example.air_ticket_booking.projection.ITicketPassengerProjection;
 import com.example.air_ticket_booking.projection.ITicketProjection;
 import com.example.air_ticket_booking.projection.ITicketUnbookedProjection;
 import com.example.air_ticket_booking.repository.customer.ICustomerRepository;
@@ -50,8 +52,8 @@ public class TicketService implements ITicketService {
      * @param namePassenger,idCardPassenger return List Ticket
      */
     @Override
-    public List<Ticket> findTicketByNameAndIdCard(String namePassenger, String idCardPassenger) {
-        return ticketRepository.findTicketByNameAndIdCardPassengers(namePassenger, idCardPassenger);
+    public Page<ITicketPassengerProjection> findTicketByNameAndIdCard(String namePassenger, String idCardPassenger, Pageable pageable) {
+        return ticketRepository.findTicketByNameAndIdCardPassengers(namePassenger, idCardPassenger,pageable);
     }
 
     /**
@@ -154,11 +156,14 @@ public class TicketService implements ITicketService {
      */
     @Override
     public Page<ITicketProjection> searchTicket(TicketSearch ticketSearch, Pageable pageable) {
+        System.out.println(ticketSearch.getTypeTicket());
+        System.out.println("vu");
         System.out.println(ticketSearch.isHasParameter());
         if(!ticketSearch.isHasParameter()){
             return ticketRepository.findAllTickets(pageable);
         }
         if(ticketSearch.getIdSearch()==1){
+
 //            int typeTicket, String departure, String destination, String departureDate, String destinationDate, String passenger, int idSearch
             if(ticketSearch.getDeparture()==null){
                 ticketSearch.setDeparture("");
@@ -169,10 +174,16 @@ public class TicketService implements ITicketService {
             if(ticketSearch.getPassenger()==null){
                 ticketSearch.setPassenger("");
             }
-            if(ticketSearch.getDestinationDate()==null){
-                ticketRepository.getSearchReturn(ticketSearch,pageable);
+            if(ticketSearch.getDepartureDate()==null){
+                ticketSearch.setDepartureDate("");
             }
-            return ticketRepository.searchTicket(ticketSearch,pageable);
+            if(ticketSearch.getTypeTicket()==2){
+                return ticketRepository.searchTicketOne(ticketSearch,pageable);
+            }
+            if(ticketSearch.getDestinationDate()==null){
+                ticketSearch.setDestinationDate("");
+            }
+            return ticketRepository.searchTicketReturn(ticketSearch,pageable);
         }else if(ticketSearch.getIdSearch()==2){
 //            String passenger, String chairCode, int idSearch
             if(ticketSearch.getPassenger()==null){
@@ -189,6 +200,8 @@ public class TicketService implements ITicketService {
                 ticketSearch.setRouteCode("");
             }
             System.out.println(ticketSearch.getRouteCode());
+            System.out.println(ticketSearch.getDepartureDate());
+            System.out.println(ticketRepository.searchRouteTicket(ticketSearch,pageable).getContent().size());
             return ticketRepository.searchRouteTicket(ticketSearch,pageable);
         }else {
             return null;
@@ -224,9 +237,6 @@ public class TicketService implements ITicketService {
     @Override
     public Page<ITicketUnbookedProjection> searchTicketUnbooked(TicketSearch ticketSearch, Pageable pageable) {
         try {
-            if(ticketSearch.getChairCode()==null){
-                ticketSearch.setChairCode("");
-            }
             if(ticketSearch.getRouteCode()==null){
                 ticketSearch.setRouteCode("");
             }
@@ -245,7 +255,7 @@ public class TicketService implements ITicketService {
      * @return Page<Ticket>
      **/
     @Override
-    public Page<Ticket> searchAllListPaymentByCustomerById(Long id, Pageable pageable,String departure,String destination) {
+    public Page<TicketProjection> searchAllListPaymentByCustomerById(Long id, Pageable pageable, String departure, String destination) {
         return ticketRepository.searchAllListPaymentByCustomerById(id,pageable,departure, destination);
     }
 
@@ -268,5 +278,11 @@ public class TicketService implements ITicketService {
     public void deleteTicketFlagIsFalse(Long customer_id_customer) {
         ticketRepository.deleteTicketFlagIsFalse(customer_id_customer);
     }
+
+    @Override
+    public List<Ticket> getListTicketByRoute(String departure, String  destination, String dateBooking) {
+        return ticketRepository.getListTicketByRoute(departure,destination, dateBooking);
+    }
+
 
 }

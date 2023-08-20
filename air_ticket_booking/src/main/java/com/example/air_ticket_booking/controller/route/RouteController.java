@@ -39,8 +39,8 @@ public class RouteController {
      * then Upload data to API
      */
     @GetMapping("/search-trips/{departure}/{destination}/{dateDeparture}")
-public ResponseEntity<List<RouteProjection>> searchTrips(@PathVariable String departure, @PathVariable String destination,
-                                                         @PathVariable String dateDeparture){
+    public ResponseEntity<List<RouteProjection>> searchTrips(@PathVariable String departure, @PathVariable String destination,
+                                                             @PathVariable String dateDeparture){
         List<RouteProjection> list;
         try{
             list = routeService.showListRoute(departure,destination,dateDeparture);
@@ -49,6 +49,7 @@ public ResponseEntity<List<RouteProjection>> searchTrips(@PathVariable String de
         }
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
+
     /**
      *method :find a flight route by id
      * created by :NamPC
