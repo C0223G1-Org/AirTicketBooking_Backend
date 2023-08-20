@@ -4,6 +4,7 @@ package com.example.air_ticket_booking.service.ticket.impl;
 import com.example.air_ticket_booking.dto.ticket.TicketDto;
 import com.example.air_ticket_booking.model.customer.Customer;
 import com.example.air_ticket_booking.model.luggage.Luggage;
+import com.example.air_ticket_booking.model.paypal.TicketProjection;
 import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TicketSearch;
@@ -245,7 +246,7 @@ public class TicketService implements ITicketService {
      * @return Page<Ticket>
      **/
     @Override
-    public Page<Ticket> searchAllListPaymentByCustomerById(Long id, Pageable pageable,String departure,String destination) {
+    public Page<TicketProjection> searchAllListPaymentByCustomerById(Long id, Pageable pageable, String departure, String destination) {
         return ticketRepository.searchAllListPaymentByCustomerById(id,pageable,departure, destination);
     }
 
@@ -268,5 +269,11 @@ public class TicketService implements ITicketService {
     public void deleteTicketFlagIsFalse(Long customer_id_customer) {
         ticketRepository.deleteTicketFlagIsFalse(customer_id_customer);
     }
+
+    @Override
+    public List<Ticket> getListTicketByRoute(String departure, String  destination, String dateBooking) {
+        return ticketRepository.getListTicketByRoute(departure,destination, dateBooking);
+    }
+
 
 }
