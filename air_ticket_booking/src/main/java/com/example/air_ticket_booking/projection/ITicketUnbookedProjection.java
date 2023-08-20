@@ -6,6 +6,7 @@ public interface ITicketUnbookedProjection {
     String getNameDeparture();
     String getNameDestination();
     String getTimeDeparture();
+    String getDepartureDate();
     int getCountEmpty();
     Long getPriceTicket();
 

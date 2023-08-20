@@ -153,11 +153,14 @@ public class TicketService implements ITicketService {
      */
     @Override
     public Page<ITicketProjection> searchTicket(TicketSearch ticketSearch, Pageable pageable) {
+        System.out.println(ticketSearch.getTypeTicket());
+        System.out.println("vu");
         System.out.println(ticketSearch.isHasParameter());
         if(!ticketSearch.isHasParameter()){
             return ticketRepository.findAllTickets(pageable);
         }
         if(ticketSearch.getIdSearch()==1){
+
 //            int typeTicket, String departure, String destination, String departureDate, String destinationDate, String passenger, int idSearch
             if(ticketSearch.getDeparture()==null){
                 ticketSearch.setDeparture("");
@@ -168,10 +171,16 @@ public class TicketService implements ITicketService {
             if(ticketSearch.getPassenger()==null){
                 ticketSearch.setPassenger("");
             }
-            if(ticketSearch.getDestinationDate()==null){
-                ticketRepository.getSearchReturn(ticketSearch,pageable);
+            if(ticketSearch.getDepartureDate()==null){
+                ticketSearch.setDepartureDate("");
             }
-            return ticketRepository.searchTicket(ticketSearch,pageable);
+            if(ticketSearch.getTypeTicket()==2){
+                return ticketRepository.searchTicketOne(ticketSearch,pageable);
+            }
+            if(ticketSearch.getDestinationDate()==null){
+                ticketSearch.setDestinationDate("");
+            }
+            return ticketRepository.searchTicketReturn(ticketSearch,pageable);
         }else if(ticketSearch.getIdSearch()==2){
 //            String passenger, String chairCode, int idSearch
             if(ticketSearch.getPassenger()==null){
