@@ -45,7 +45,9 @@ public class PaymentController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else if (currentPage < 0 || departure.length() > 50 || destination.length() > 50) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
+        } else if (iTicketService.searchAllListPaymentByCustomerById(id, pageable, departure, destination).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else{
             return new ResponseEntity<>(iTicketService.searchAllListPaymentByCustomerById(id, pageable, departure, destination), HttpStatus.OK);
         }
     }
