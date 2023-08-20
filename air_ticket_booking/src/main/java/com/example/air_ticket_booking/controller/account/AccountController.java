@@ -171,7 +171,7 @@ public class AccountController {
      //     * @return status
      //     */
     @PatchMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
+//    @PreAuthorize("hasAnyRole('ROLE_CUSTOMER','ROLE_EMPLOYEE','ROLE_ADMIN')")
     public ResponseEntity<?> updateAccount(@Valid @RequestBody AccountChangeDTO accountChangeDTO, @PathVariable Long id) {
         Account account = accountService.findAccountById(id);
         boolean flag = passwordEncoder.matches(accountChangeDTO.getOldPassword(), account.getPassword());

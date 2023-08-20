@@ -108,7 +108,7 @@ public class CustomerController {
         Customer customer = customerService.findCustomerById(id);
         if (customer != null) {
             customerService.deleteCustomer(id);
-            customerService.deleteAccount(customer.getAccount().getIdAccount());
+            customerService.deleteAccount(customer.getEmailCustomer());
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
