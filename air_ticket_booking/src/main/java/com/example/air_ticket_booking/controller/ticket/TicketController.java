@@ -69,8 +69,8 @@ public class TicketController {
      * method :findTicketByNameAndIdCardPassengers()
      * created by :KietNT
      * date create: 10/08/2023
-     *
-     * @param namePassenger,idCardPassenger return List Ticket
+     * @param namePassenger,idCardPassenger
+     * return List Ticket
      */
     @GetMapping("/search-ticket/{namePassenger}/{idCardPassenger}")
     @ResponseBody
@@ -108,12 +108,11 @@ public class TicketController {
     }
 
     /**
-     * Create by: VuDT
-     * Date create: 10/08/2023
+     *Create by: VuDT
+     *Date create: 10/08/2023
      * Function:getTicketById()
-     *
      * @Param: Long id
-     * @Return: if found and then return a ticket, otherwise it will return error not found.
+     * @Return:  if found and then return a ticket, otherwise it will return error not found.
      */
     @GetMapping("/{id}")
     public ResponseEntity<Ticket> getTicketById(@PathVariable Long id) {
@@ -152,7 +151,6 @@ public class TicketController {
         iTicketService.updateTicket(id, name, email);
         return ResponseEntity.ok("Cập nhật vé thành công");
     }
-
     /**
      * task validate data ticket to BE
      *
@@ -176,10 +174,9 @@ public class TicketController {
 
     /**
      * task response data ticket booked to FE
-     *
+     * @Method showAllTickets
      * @param page
      * @return HttpStatus and Page<Ticket>
-     * @Method showAllTickets
      * @author Nhàn NA
      */
     @GetMapping("/booked/{page}")

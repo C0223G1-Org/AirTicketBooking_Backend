@@ -29,11 +29,11 @@ import java.util.Optional;
 @Transactional
 public interface ITicketRepository extends JpaRepository<Ticket, Long> {
     /**
-     * method :findTicketByNameAndIdCardPassengers()
+     *method :findTicketByNameAndIdCardPassengers()
      * created by :KietNT
      * date create: 10/08/2023
-     *
-     * @param namePassenger,idCardPassenger return List Ticket
+     * @param namePassenger,idCardPassenger
+     * return List Ticket
      */
     @Query(nativeQuery = true,
             value = "select t.id_ticket as id,t.tel_passenger as telPassenger,t.price_ticket as priceTicket,t.name_passenger as namePassenger," +
@@ -55,15 +55,14 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
                     "    where t.name_passenger like concat('%', :namePassenger, '%') and t.id_card_passenger = :idCardPassenger")
 
     Page<ITicketPassengerProjection> findTicketByNameAndIdCardPassengers(@Param("namePassenger") String namePassenger,
-                                                                         @Param("idCardPassenger") String idCardPassenger, Pageable pageable);
-
+                                                                                    @Param("idCardPassenger") String idCardPassenger, Pageable pageable);
 
     /**
-     * method :used to create a new ticket when the user confirms the booking
+     *method :used to create a new ticket when the user confirms the booking
      * created by :NamPC
      * date create: 10/08/2023
-     *
-     * @param ticket return void
+     * @param ticket
+     * return void
      */
     @Modifying
     @Query(value = "insert into " +
@@ -98,10 +97,9 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
 
     /**
      * task take  data from database
-     *
+     * @Method findAllTickets
      * @param pageable
      * @return Page<Ticket>
-     * @Method findAllTickets
      * @author Nhàn NA
      */
     @Query(value = "select id_ticket as id, date_booking as dateBooking, name_passenger as namePassenger, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture,price_ticket as priceTicket  from ticket t \n" +
@@ -117,13 +115,11 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             "join departure de on de.id_departure=r.id_departure\n" +
             "where t.flag_ticket=0 and s.flag_seat=1",nativeQuery = true)
     Page<ITicketProjection> findAllTickets(Pageable pageable);
-
     /**
      * task delete ticket by ID database
-     *
+     * @Method deleteTicketById
      * @param id
      * @return
-     * @Method deleteTicketById
      * @author Nhàn NA
      */
     @javax.transaction.Transactional
@@ -210,11 +206,11 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
     Page<ITicketProjection> searchRouteTicket(@Param("ticketSearch") TicketSearch ticketSearch, Pageable pageable);
 
     /**
+     * and name_passenger like concat('%',:namePassenger,'%') and name_route like concat('%',:nameRoute,'%') and name_destination like concat('%',:nameDeparture,'%') and name_destination like concat('%',:nameDestination,'%')
      * task get all tickets  unbooked from database
-     *
+     * @Method findAllTicketUnbooked
      * @param pageable
      * @return Page<Ticket>
-     * @Method findAllTicketUnbooked
      * @author Nhàn NA
      */
     @Query(value = "SELECT r.id_route AS idRoute, r.name_route AS nameRoute, de.name_departure AS nameDeparture, d.name_destination AS nameDestination, r.time_departure AS timeDeparture, COUNT(*) AS 'soVe'\n" +
@@ -227,13 +223,11 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             "GROUP BY r.id_route, r.name_route, de.name_departure, d.name_destination, r.time_departure\n" +
             "order by r.id_route ;",nativeQuery = true)
     Page<ITicketUnbookedProjection> findAllTicketUnbooked(Pageable pageable);
-
     /**
      * task get search all tickets unbooked from database
-     *
+     * @Method searchTicketUnbooked
      * @param pageable,idTypeSeat,positionSeat,nameRoute,nameDeparture,timeDeparture
      * @return Page<Ticket>
-     * @Method searchTicketUnbooked
      * @author Nhàn NA
      */
 

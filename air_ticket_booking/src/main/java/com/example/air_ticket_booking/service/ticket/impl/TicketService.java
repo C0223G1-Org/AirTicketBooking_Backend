@@ -52,8 +52,8 @@ public class TicketService implements ITicketService {
      * @param namePassenger,idCardPassenger return List Ticket
      */
     @Override
-    public Page<ITicketPassengerProjection> findTicketByNameAndIdCard(String namePassenger, String idCardPassenger, Pageable pageablee) {
-        return ticketRepository.findTicketByNameAndIdCardPassengers(namePassenger, idCardPassenger,pageablee);
+    public Page<ITicketPassengerProjection> findTicketByNameAndIdCard(String namePassenger, String idCardPassenger, Pageable pageable) {
+        return ticketRepository.findTicketByNameAndIdCardPassengers(namePassenger, idCardPassenger,pageable);
     }
 
     /**
