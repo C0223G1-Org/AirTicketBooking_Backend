@@ -39,6 +39,7 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
     List<Ticket> findTicketByNameAndIdCardPassengers(@Param("namePassenger") String namePassenger,
                                                      @Param("idCardPassenger") String idCardPassenger);
 
+
     /**
      * method :used to create a new ticket when the user confirms the booking
      * created by :NamPC
