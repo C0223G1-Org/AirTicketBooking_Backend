@@ -135,7 +135,7 @@ public interface ITicketService {
      **/
     List<Ticket> getListTicketByIdCustomer( Long id, Integer num);
     void deleteTicketFlagIsFalse(Long customer_id_customer);
-    List<Ticket> getListTicketByIdCustomer( Long id);
+
     List<Ticket> getListTicketByRoute ( String nameRoute , String destination, String dateBooking);
 
 }

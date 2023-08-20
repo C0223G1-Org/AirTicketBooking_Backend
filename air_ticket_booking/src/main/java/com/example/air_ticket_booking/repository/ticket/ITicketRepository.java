@@ -296,8 +296,7 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             "and flag_ticket = false " +
             "order by ticket.date_booking desc limit :num")
     List<Ticket> getListTicketByIdCustomer(@Param("id") Long id, @Param("num") Integer num);
-            "and flag_ticket = false")
-    List<Ticket> getListTicketByIdCustomer(@Param("id") Long id);
+
     @Query(nativeQuery = true, value = "select * from ticket " +
             "join customer on customer.id_customer = ticket.customer_id_customer \n" +
             "join seat on seat.id_seat = ticket.seat_id_seat \n" +
