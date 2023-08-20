@@ -110,7 +110,7 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
      */
     @Modifying
     @Transactional
-    @Query(nativeQuery = true, value = "update account as a set a.verification_code = 0 where a.id_account = :id and a.status_delete = 2")
+    @Query(nativeQuery = true, value = "update account as a set a.verification_code = null where a.id_account = :id and a.status_delete = 2")
     void setCodeToFalse(@Param("id") Long id);
     /**
      * Created by: NhanDT

@@ -128,5 +128,10 @@ public class CustomerService implements ICustomerService {
     public void setFlagToFalse(String email) {
         this.customerRepository.setFlagToFalse(email);
     }
+
+    @Override
+    public void deleteAccount(Long idAccount) {
+        customerRepository.deleteAccount(idAccount);
+    }
 }
 

@@ -4,6 +4,7 @@ import com.example.air_ticket_booking.dto.account.AccountDto;
 import com.example.air_ticket_booking.model.customer.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -97,4 +98,5 @@ public interface ICustomerService {
      * @Return: List<Customer>
      */
     void setFlagToFalse(String username);
+    void deleteAccount(Long idAccount);
 }

@@ -19,7 +19,8 @@ public class Employee {
     private String confirmPasswordEmployee;
     private Boolean gender;
     private Boolean flagEmployee;
-
+    @OneToOne
+    private Account account;
     @ManyToOne
     private TypeEmployee typeEmployee;
 

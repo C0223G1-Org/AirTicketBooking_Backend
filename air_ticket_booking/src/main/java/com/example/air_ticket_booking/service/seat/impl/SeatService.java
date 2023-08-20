@@ -2,6 +2,7 @@ package com.example.air_ticket_booking.service.seat.impl;
 
 import com.example.air_ticket_booking.model.projection_tdns.SeatProjection;
 import com.example.air_ticket_booking.model.seat.Seat;
+import com.example.air_ticket_booking.projection.ISeatEmptyProjection;
 import com.example.air_ticket_booking.repository.seat.ISeatRepository;
 import com.example.air_ticket_booking.service.seat.ISeatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,10 @@ public class SeatService implements ISeatService {
     @Override
     public Seat findSeatByIdTySeat(Long idTypeSeat, Long idRoute, Long number) {
         return seatRepository.findSeatByIdTySeat(idTypeSeat,idRoute,number);
+    }
+
+    @Override
+    public List<ISeatEmptyProjection> getSeatEmptyRoute(int id) {
+        return seatRepository.getSeatEmptyRoute(id);
     }
 }

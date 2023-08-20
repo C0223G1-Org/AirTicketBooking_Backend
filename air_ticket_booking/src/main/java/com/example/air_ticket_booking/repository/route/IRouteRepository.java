@@ -96,7 +96,8 @@ public interface IRouteRepository extends JpaRepository<Route,Long> {
             "where dp.name_departure = :departure \n" +
             "and dt.name_destination = :destination \n" +
             "and rt.date_departure = :dateDeparture \n" +
-            "and rt.date_departure >= now()", nativeQuery = true)
+            "and rt.date_departure >= DATE_SUB(NOW(), INTERVAL 1 DAY) \n" +
+            "ORDER BY rt.time_departure ASC", nativeQuery = true)
     List<RouteProjection> showListRoute(@Param("departure") String departure, @Param("destination") String destination,
                                         @Param("dateDeparture") String dateDeparture);
 

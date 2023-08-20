@@ -12,7 +12,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.mail.javamail.JavaMailSender;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.util.List;
 
 // ThanhVH
@@ -61,12 +69,12 @@ public class PaymentController {
         }
     }
 
-    @GetMapping("/payment/{id}")
-    public ResponseEntity<List<Ticket>> getTicketById(@PathVariable Long id) {
+    @GetMapping("/payment/{id}/{num}")
+    public ResponseEntity<List<Ticket>> getTicketById(@PathVariable Long id, @PathVariable Integer num) {
         if (iCustomerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(iTicketService.getListTicketByIdCustomer(id),HttpStatus.OK);
+        return new ResponseEntity<>(iTicketService.getListTicketByIdCustomer(id, num),HttpStatus.OK);
     }
 
     @PatchMapping("/callback/{id}/{message}")
