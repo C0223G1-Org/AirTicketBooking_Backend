@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
@@ -42,6 +43,7 @@ public class CustomerController {
      * Date create: 10/08/2023
      */
     @GetMapping(value = {"/", "/list"})
+    @PreAuthorize("hasAnyRole('ROLE_CUSTOMER','ROLE_EMPLOYEE','ROLE_ADMIN')")
     public ResponseEntity<Page<Customer>> getListCustomers(@PageableDefault(size = 5) Pageable pageable, @RequestParam("page") String page, @RequestParam("email") String email,
                                                            @RequestParam("name") String name, @RequestParam("nationality") String nationality) {
         int currentPage;
@@ -104,6 +106,7 @@ public class CustomerController {
      * Date create: 10/08/2023
      */
     @PutMapping("/delete/{id}")
+    @PreAuthorize("hasAnyRole('ROLE-ADMIN','ROLE_EMPLOYEE')")
     public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable("id") Long id) {
         if (customerService.findCustomerById(id) != null) {
             customerService.deleteCustomer(id);
@@ -122,6 +125,7 @@ public class CustomerController {
      * @return ResponseEntity<>
      */
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_CUSTOMER','ROLE_EMPLOYEE','ROLE_ADMIN')")
     public ResponseEntity<?> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto) {
         if (customerService.findCustomerById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -171,6 +175,7 @@ public class CustomerController {
      */
 
     @PostMapping("")
+    @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE','ROLE_ADMIN')")
     public ResponseEntity<?> saveCustomer(@Valid @RequestBody CustomerDto customerdto) {
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerdto,customer);
@@ -186,6 +191,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_EMPLOYEE', 'ROLE_CUSTOMER')")
     public ResponseEntity<?> getCustomerById(@PathVariable Long id ){
         Customer customer = customerService.findCustomerById(id);
         if(customer==null){
