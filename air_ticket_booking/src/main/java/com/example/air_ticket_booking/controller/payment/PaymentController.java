@@ -46,7 +46,7 @@ public class PaymentController {
      **/
     @GetMapping("/history/{id}")
     @PreAuthorize("hasAnyRole('ROLE_CUSTOMER')")
-    public ResponseEntity<Page<Ticket>> getListHistoryPayment(@PathVariable Long id, @PageableDefault(size = 4) Pageable pageable,
+    public ResponseEntity<Page<TicketProjection>> getListHistoryPayment(@PathVariable Long id, @PageableDefault(size = 4) Pageable pageable,
                                                               @RequestParam("departure") String departure, @RequestParam("destination") String destination,
                                                               @RequestParam("page") String page) {
         int currentPage;

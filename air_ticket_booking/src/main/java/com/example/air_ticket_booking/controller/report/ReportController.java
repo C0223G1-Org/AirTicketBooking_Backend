@@ -26,7 +26,7 @@ public class ReportController {
      * @return revenue data
      */
     @GetMapping("/current-revenue")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')")
     public ResponseEntity<List<IReport>> getCurrentRevenue(@RequestParam("timeRange") String timeRange) {
         List<IReport> reportList = reportService.getCurrentRevenue(timeRange);
         if (reportList.size() == 0) {
@@ -44,7 +44,7 @@ public class ReportController {
      * @return revenue data
      */
     @GetMapping("/previous-revenue")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')")
     public ResponseEntity<List<IReport>> getPreviousRevenue(@RequestParam("timeRange") String timeRange) {
         List<IReport> reportList = reportService.getPreviousRevenue(timeRange);
         if (reportList.size() == 0) {
@@ -62,7 +62,7 @@ public class ReportController {
      * @return revenue data
      */
     @GetMapping("/about-revenue")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')")
     public ResponseEntity<List<IReport>> getAboutRevenue(@RequestParam(value = "startDate", defaultValue = "")String startDate,
                                                     @RequestParam(value = "endDate", defaultValue = "")String endDate) {
         List<IReport> reportList = reportService.getRevenue(startDate,endDate);

@@ -170,7 +170,7 @@ public class EmployeeController {
         }
     }
     @GetMapping("/login/{email}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE','ROLE_ADMIN','ROLE_CUSTOMER')")
     public ResponseEntity<Employee> getEmployeeLoginByEmail(@PathVariable String email) {
         if (employeeService.getEmployeeLoginByEmail(email) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
