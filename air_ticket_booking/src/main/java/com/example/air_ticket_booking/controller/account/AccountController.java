@@ -13,6 +13,7 @@ import com.example.air_ticket_booking.service.customer.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -170,6 +171,7 @@ public class AccountController {
      //     * @return status
      //     */
     @PatchMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<?> updateAccount(@Valid @RequestBody AccountChangeDTO accountChangeDTO, @PathVariable Long id) {
         Account account = accountService.findAccountById(id);
         boolean flag = passwordEncoder.matches(accountChangeDTO.getOldPassword(), account.getPassword());
