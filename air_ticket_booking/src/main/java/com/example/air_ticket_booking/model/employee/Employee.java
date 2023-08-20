@@ -20,6 +20,7 @@ public class Employee {
     private Boolean gender;
     private Boolean flagEmployee;
 
+
     @ManyToOne
     private TypeEmployee typeEmployee ;
 
