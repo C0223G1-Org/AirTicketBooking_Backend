@@ -1,5 +1,6 @@
 package com.example.air_ticket_booking.service.ticket;
 
+import com.example.air_ticket_booking.model.paypal.TicketProjection;
 import com.example.air_ticket_booking.model.ticket.Ticket;
 import com.example.air_ticket_booking.model.ticket.TicketSearch;
 import com.example.air_ticket_booking.projection.ITicketPassengerProjection;
@@ -109,7 +110,7 @@ public interface ITicketService {
      * @param id,pageable,departure,destination
      * @return Page<Ticket>
      **/
-    Page<Ticket> searchAllListPaymentByCustomerById(Long id, Pageable pageable, String departure, String destination);
+    Page<TicketProjection> searchAllListPaymentByCustomerById(Long id, Pageable pageable, String departure, String destination);
     /**
      *Create by: ThanhVh
      *Date create: 11/08/2023
@@ -133,5 +134,9 @@ public interface ITicketService {
      * @param id
      * @return List<Ticket>
      **/
-    List<Ticket> getListTicketByIdCustomer( Long id);
+    List<Ticket> getListTicketByIdCustomer( Long id, Integer num);
+    void deleteTicketFlagIsFalse(Long customer_id_customer);
+
+    List<Ticket> getListTicketByRoute ( String nameRoute , String destination, String dateBooking);
+
 }

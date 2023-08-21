@@ -70,6 +70,9 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
             "account_id_account = :#{#customer.account.idAccount} where id_customer = :#{#customer.idCustomer}"
             ,nativeQuery = true)
     void updateCustomer(@Param("customer") Customer customer);
+    @Modifying
+    @Query(value = "update account set status_delete = 1 where id_account = :id_account",nativeQuery = true)
+    void deleteAccount(@Param("id_account") Long id_account);
 
     /**
      * Create by: HoaLTY, TaiMP, HungLV
@@ -143,5 +146,8 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
 
     @Query(nativeQuery = true, value = "select * from customer where email_customer = :email")
     Customer getCustomerLoginByEmail(@Param("email") String email);
+    @Modifying
+    @Query(nativeQuery = true, value = "update  account set status_delete = 1  where username = :email")
+    void deleteAccount(@Param("email") String email);
 }
 
