@@ -8,12 +8,6 @@ import com.example.air_ticket_booking.repository.account.IAccountRepository;
 import com.example.air_ticket_booking.service.account.IAccountService;
 import com.example.air_ticket_booking.service.customer.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
-//import org.springframework.security.core.userdetails.UserDetailsService;
-//import org.springframework.security.core.userdetails.UsernameNotFoundException;
-//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,7 +28,7 @@ import java.util.Random;
  *
  * @param
  * @return
- */
+// */
 @Service
 public class AccountService implements UserDetailsService, IAccountService {
     @Autowired
@@ -77,7 +71,12 @@ public class AccountService implements UserDetailsService, IAccountService {
      */
     @Override
     public boolean signUp(AccountDto accountDto) {
+
         String email = accountDto.getEmailCustomer();
+        List<Account> accountList = accountRepository.findAllByEmailAndStatus2(email);
+        if(accountList.size()>0){
+            this.accountRepository.setAllStatusToTrue();
+        }
         Boolean checkExistAccount = checkExistAccount(email);
         Boolean checkExistCustomer = checkExistCustomer(email);
         if (checkExistAccount || checkExistCustomer) {
@@ -87,7 +86,13 @@ public class AccountService implements UserDetailsService, IAccountService {
         Random random = new Random();
         int randomNumber = random.nextInt(900000) + 100000;
         this.accountRepository.saveAccount(accountDto.getEmailCustomer(), encoderPassword, randomNumber);
-        this.emailService.sendMail(email, "Mã xác nhận đăng ký", "Chào bạn, mã xác nhận đăng ký tài khoản của bạn là: \n " + randomNumber + "." +
+
+        Account accountNew = accountRepository.getByUserNameAndStatus2(email);
+        if (accountNew == null) {
+            return false;
+        }
+        this.customerService.createCustomer(accountDto, accountNew.getIdAccount());
+        this.emailService.sendMail(email, "Mã xác nhận đăng ký", "Chào bạn, mã xác nhận đăng ký tài khoản của bạn là: \n " + randomNumber +
                 "\n" +
                 "\n" +
                 "\n" +
@@ -96,11 +101,6 @@ public class AccountService implements UserDetailsService, IAccountService {
                 "Sđt: 0383767463\n" +
                 "Email: codegymairC0223G1@gmail.com\n" +
                 "Địa chỉ: 280 Trần Hưng Đạo, Sơn Trà, Đà Nẵng");
-        Account accountNew = accountRepository.getByUserNameAndStatusTrue(email);
-        if (accountNew == null) {
-            return false;
-        }
-        this.customerService.createCustomer(accountDto, accountNew.getIdAccount());
         return true;
     }
 
@@ -144,9 +144,18 @@ public class AccountService implements UserDetailsService, IAccountService {
         return accountRepository.getByUserNameAndStatusFalse(email);
     }
 
+    @Override
+    public void setAccountToTrue(String emailEmployee) {
+this.accountRepository.setStatusToTrueByEmail(emailEmployee);
+    }
+
     private boolean checkExistCustomer(String email) {
         List<Customer> customerList = customerService.findAllByEmailOrIdCard(email);
         return customerList.size() > 0;
+    }
+    private boolean checkInfoSignUp(String email) {
+        List<Account> accountList = accountRepository.findAllByEmailAndStatus2(email);
+        return accountList.size() > 0;
     }
 
     /**
@@ -158,14 +167,23 @@ public class AccountService implements UserDetailsService, IAccountService {
      * @return
      */
     @Override
-    public boolean checkCode(Account account) {
-        Account accountCheck = accountRepository.getByUserNameAndStatusTrue(account.getUsername());
-        if (Objects.equals(account.getVerificationCode(), accountCheck.getVerificationCode())) {
-            this.accountRepository.setStatusToFalse(accountCheck.getIdAccount());
-            this.accountRepository.setCodeToFalse(accountCheck.getIdAccount());
-            return true;
+    public boolean checkCode(AccountDto account) {
+        Account accountCheck = accountRepository.getByUserNameAndStatus2(account.getEmailCustomer());
+        if (accountCheck == null) {
+            return false;
         }
-        return false;
+        boolean check = Objects.equals(account.getVerificationCode(), accountCheck.getVerificationCode());
+        if (account.getCount() <= 3 && check) {
+            this.accountRepository.setCodeToFalse(accountCheck.getIdAccount());
+            this.accountRepository.setStatusToFalse(accountCheck.getIdAccount());
+            this.customerService.setFlagToFalse(accountCheck.getUsername());
+            return true;
+        } else if (account.getCount() >= 3 && !check) {
+            this.accountRepository.setCodeToFalse(accountCheck.getIdAccount());
+            this.accountRepository.setStatusToTrue(accountCheck.getIdAccount());
+            return false;
+        }
+        return check;
     }
 
 
