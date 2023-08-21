@@ -9,4 +9,5 @@ public interface ITicketProjection {
     String getNameDestination();
     String getTimeDeparture();
     String getPriceTicket();
+    String getDepartureDate();
 }
