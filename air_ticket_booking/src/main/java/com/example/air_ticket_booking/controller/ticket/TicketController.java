@@ -123,6 +123,7 @@ public class TicketController {
         return new ResponseEntity<>(ticket, HttpStatus.OK);
     }
 
+
     /**
      * Create by: VuDT
      * Date create: 10/08/2023
