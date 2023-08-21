@@ -144,6 +144,11 @@ public class AccountService implements UserDetailsService, IAccountService {
         return accountRepository.getByUserNameAndStatusFalse(email);
     }
 
+    @Override
+    public void setAccountToTrue(String emailEmployee) {
+this.accountRepository.setStatusToTrueByEmail(emailEmployee);
+    }
+
     private boolean checkExistCustomer(String email) {
         List<Customer> customerList = customerService.findAllByEmailOrIdCard(email);
         return customerList.size() > 0;

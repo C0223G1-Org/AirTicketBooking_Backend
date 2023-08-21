@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.air_ticket_booking.model.seat.Seat;
 import com.example.air_ticket_booking.model.seat.TypeSeat;
+import com.example.air_ticket_booking.projection.ISeatEmptyProjection;
 
 public interface ISeatService {
     /**
@@ -15,4 +16,5 @@ public interface ISeatService {
      */
     Seat findSeatById(Long id);
     Seat findSeatByIdTySeat(Long idTypeSeat, Long idRoute ,Long number );
+    List<ISeatEmptyProjection> getSeatEmptyRoute(int id);
 }

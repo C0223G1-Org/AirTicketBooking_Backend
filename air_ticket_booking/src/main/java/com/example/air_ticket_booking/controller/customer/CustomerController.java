@@ -105,8 +105,10 @@ public class CustomerController {
      */
     @PutMapping("/delete/{id}")
     public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable("id") Long id) {
-        if (customerService.findCustomerById(id) != null) {
+        Customer customer = customerService.findCustomerById(id);
+        if (customer != null) {
             customerService.deleteCustomer(id);
+            customerService.deleteAccount(customer.getEmailCustomer());
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -133,6 +135,7 @@ public class CustomerController {
         Customer customer=new Customer();
         BeanUtils.copyProperties(customerDto,customer);
         customerService.updateCustomer(customer);
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
