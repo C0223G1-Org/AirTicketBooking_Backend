@@ -116,7 +116,9 @@ public class TicketController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Ticket> getTicketById(@PathVariable Long id) {
+        System.out.println(id);
         Ticket ticket = this.iTicketService.findByIdTicket(id);
+        System.out.println(ticket.getPriceTicket());
         if (ticket == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -140,7 +142,8 @@ public class TicketController {
 //        if (bindingResult.hasErrors()) {
 //            return ResponseEntity.badRequest().body("Lỗi Không Đúng Định Dạng");
 //        }
-
+        System.out.println(id);
+        System.out.println("nhhan");
         Ticket existingTicket = iTicketService.findByIdTicket(id);
         System.out.println("nhan");
         if (existingTicket == null) {

@@ -137,7 +137,7 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
      * @return
      * @author Nhàn NA
      */
-    @Query(value = "select  * from ticket where ticket.flag_ticket=0 and ticket.id_ticket=:id",nativeQuery = true)
+    @Query(value = "select  * from ticket where  ticket.id_ticket=:id",nativeQuery = true)
     Optional<Ticket> findByTicket(@Param("id")Long id);
 
     @Query(value ="select id_ticket as id, date_booking as dateBooking, name_passenger as namePassenger, name_route as nameRoute,name_departure as nameDeparture , name_destination as  nameDestination, time_departure as timeDeparture,r.date_departure as departureDate,price_ticket as priceTicket  from ticket t \n" +
