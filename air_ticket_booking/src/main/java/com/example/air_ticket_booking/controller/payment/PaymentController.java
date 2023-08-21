@@ -55,7 +55,7 @@ public class PaymentController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else if (currentPage < 0 || departure.length() > 50 || destination.length() > 50) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
+        } else  {
             return new ResponseEntity<>(iTicketService.searchAllListPaymentByCustomerById(id, pageable, departure, destination), HttpStatus.OK);
         }
     }
@@ -76,6 +76,7 @@ public class PaymentController {
         }
         return new ResponseEntity<>(iTicketService.getListTicketByIdCustomer(id, num),HttpStatus.OK);
     }
+
 
     @PatchMapping("/callback/{id}/{message}")
     public ResponseEntity<String> updateTicketByIdTicket(@PathVariable Long id , @PathVariable("message") String paymentStatus) {

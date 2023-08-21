@@ -141,8 +141,8 @@ public class EmployeeService implements IEmployeeService {
      */
     @Override
     public void deleteEmployee(Long id) {
-//        employeeRepository.deleteEmployee(id);
         Employee employee = employeeRepository.findById(id).get();
+        this.accountService.setAccountToTrue(employee.getEmailEmployee());
         employee.setFlagEmployee(true);
         employeeRepository.save(employee);
     }
