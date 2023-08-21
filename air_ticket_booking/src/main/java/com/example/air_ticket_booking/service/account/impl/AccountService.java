@@ -8,6 +8,7 @@ import com.example.air_ticket_booking.repository.account.IAccountRepository;
 import com.example.air_ticket_booking.service.account.IAccountService;
 import com.example.air_ticket_booking.service.customer.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +17,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -70,7 +74,7 @@ public class AccountService implements UserDetailsService, IAccountService {
      * @return
      */
     @Override
-    public boolean signUp(AccountDto accountDto) {
+    public boolean signUp(AccountDto accountDto) throws MessagingException, UnsupportedEncodingException {
 
         String email = accountDto.getEmailCustomer();
         List<Account> accountList = accountRepository.findAllByEmailAndStatus2(email);
@@ -92,17 +96,10 @@ public class AccountService implements UserDetailsService, IAccountService {
             return false;
         }
         this.customerService.createCustomer(accountDto, accountNew.getIdAccount());
-        this.emailService.sendMail(email, "Mã xác nhận đăng ký", "Chào bạn, mã xác nhận đăng ký tài khoản của bạn là: \n " + randomNumber +
-                "\n" +
-                "\n" +
-                "\n" +
-                "---------------------------------------" + "\n" +
-                "CodeGymAirLines\n" +
-                "Sđt: 0383767463\n" +
-                "Email: codegymairC0223G1@gmail.com\n" +
-                "Địa chỉ: 280 Trần Hưng Đạo, Sơn Trà, Đà Nẵng");
+        this.emailService.sendMail(email, randomNumber);
         return true;
     }
+
 
     /**
      * create by : SangTDN

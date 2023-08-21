@@ -5,6 +5,8 @@ import com.example.air_ticket_booking.dto.account.AccountDto;
 import com.example.air_ticket_booking.model.account.Account;
 import org.springframework.data.repository.query.Param;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public interface IAccountService {
@@ -16,7 +18,7 @@ public interface IAccountService {
      * @param accountDto
      * @return boolean
      */
-    boolean signUp(AccountDto accountDto);
+    boolean signUp(AccountDto accountDto) throws MessagingException, UnsupportedEncodingException;
     /**
      * Created by: NhanDT
      * Date created: 10/08/2023

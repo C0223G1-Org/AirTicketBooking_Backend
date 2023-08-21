@@ -25,7 +25,10 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import com.example.air_ticket_booking.dto.account.AccountChangeDTO;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import javax.mail.MessagingException;
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -109,7 +112,7 @@ public class AccountController {
      * @return
      */
     @PostMapping("/signup")
-    public ResponseEntity<?> signUp(@Valid @RequestBody AccountDto accountDto) {
+    public ResponseEntity<?> signUp(@Valid @RequestBody AccountDto accountDto) throws MessagingException, UnsupportedEncodingException {
         if (accountService.signUp(accountDto)) {
             return ResponseEntity.ok(new JwtResponse(accountDto.getEmailCustomer()));
         }
