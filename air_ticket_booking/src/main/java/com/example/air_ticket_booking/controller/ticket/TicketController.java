@@ -116,12 +116,15 @@ public class TicketController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Ticket> getTicketById(@PathVariable Long id) {
+        System.out.println(id);
         Ticket ticket = this.iTicketService.findByIdTicket(id);
+        System.out.println(ticket.getPriceTicket());
         if (ticket == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(ticket, HttpStatus.OK);
     }
+
 
     /**
      * Create by: VuDT
@@ -139,7 +142,8 @@ public class TicketController {
 //        if (bindingResult.hasErrors()) {
 //            return ResponseEntity.badRequest().body("Lỗi Không Đúng Định Dạng");
 //        }
-
+        System.out.println(id);
+        System.out.println("nhhan");
         Ticket existingTicket = iTicketService.findByIdTicket(id);
         System.out.println("nhan");
         if (existingTicket == null) {
@@ -230,6 +234,8 @@ public class TicketController {
      * date create: 10/08/2023
      * @author Nhàn NA
      */
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     @GetMapping("/search/{page}")
     public ResponseEntity<Page<ITicketProjection>> searchTickets(@ModelAttribute TicketSearch ticketSearch, @PathVariable("page") int page) {
         String idString = String.valueOf(page);
@@ -255,6 +261,8 @@ public class TicketController {
      * date create: 10/08/2023
      * @author Nhàn NA
      */
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     @GetMapping("/unbooked/{page}")
     public ResponseEntity<Page<ITicketUnbookedProjection>> findAllTicketUnbooked(@PathVariable int page) {
         String idString = String.valueOf(page);
