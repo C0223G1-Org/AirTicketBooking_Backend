@@ -183,7 +183,12 @@ public class TicketService implements ITicketService {
             if(ticketSearch.getDestinationDate()==null){
                 ticketSearch.setDestinationDate("");
             }
-            return ticketRepository.searchTicketReturn(ticketSearch,pageable);
+            try {
+                return ticketRepository.searchTicketReturn(ticketSearch,pageable);
+            }catch (Exception e){
+                return null;
+            }
+
         }else if(ticketSearch.getIdSearch()==2){
 //            String passenger, String chairCode, int idSearch
             if(ticketSearch.getPassenger()==null){
@@ -207,6 +212,7 @@ public class TicketService implements ITicketService {
             return null;
         }
     }
+
 
     /**
      * task get all ticket unbooked

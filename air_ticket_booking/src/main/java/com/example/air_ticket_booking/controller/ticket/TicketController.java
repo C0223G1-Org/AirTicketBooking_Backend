@@ -230,6 +230,8 @@ public class TicketController {
      * date create: 10/08/2023
      * @author Nhàn NA
      */
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     @GetMapping("/search/{page}")
     public ResponseEntity<Page<ITicketProjection>> searchTickets(@ModelAttribute TicketSearch ticketSearch, @PathVariable("page") int page) {
         String idString = String.valueOf(page);
@@ -255,6 +257,8 @@ public class TicketController {
      * date create: 10/08/2023
      * @author Nhàn NA
      */
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     @GetMapping("/unbooked/{page}")
     public ResponseEntity<Page<ITicketUnbookedProjection>> findAllTicketUnbooked(@PathVariable int page) {
         String idString = String.valueOf(page);
