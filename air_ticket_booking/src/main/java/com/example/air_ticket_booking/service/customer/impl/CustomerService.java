@@ -130,8 +130,8 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public void deleteAccount(Long idAccount) {
-        customerRepository.deleteAccount(idAccount);
+    public void deleteAccount(String email) {
+        customerRepository.deleteAccount(email);
     }
 }
 

@@ -98,5 +98,5 @@ public interface ICustomerService {
      * @Return: List<Customer>
      */
     void setFlagToFalse(String username);
-    void deleteAccount(Long idAccount);
+    void deleteAccount(String email);
 }
