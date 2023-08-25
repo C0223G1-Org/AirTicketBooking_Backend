@@ -30,10 +30,10 @@ public interface IAccountService {
     /**
      * create by : SangTDN
      * @param newPass
-     * @param idCustomer
+     * @param idAccount
      * @Return void
      */
-    void updatePasswordForId(String newPass,Long idCustomer);
+    void updatePasswordForId(String newPass,Long idAccount);
 
     Account findAccountById (Long id);
     List<Account> getList();

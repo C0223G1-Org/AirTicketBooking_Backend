@@ -151,18 +151,18 @@ public class AccountController {
      * @param
      * @return
      */
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, String> handleValidationExceptions(
-            MethodArgumentNotValidException ex) {
-        Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
-        });
-        return errors;
-    }
+        @ResponseStatus(HttpStatus.BAD_REQUEST)
+        @ExceptionHandler(MethodArgumentNotValidException.class)
+        public Map<String, String> handleValidationExceptions(
+                MethodArgumentNotValidException ex) {
+            Map<String, String> errors = new HashMap<>();
+            ex.getBindingResult().getAllErrors().forEach((error) -> {
+                String fieldName = ((FieldError) error).getField();
+                String errorMessage = error.getDefaultMessage();
+                errors.put(fieldName, errorMessage);
+            });
+            return errors;
+        }
 
     /**
      //     * create by : SangTDN
@@ -174,13 +174,24 @@ public class AccountController {
 //    @PreAuthorize("hasAnyRole('ROLE_CUSTOMER','ROLE_EMPLOYEE','ROLE_ADMIN')")
     public ResponseEntity<?> updateAccount(@Valid @RequestBody AccountChangeDTO accountChangeDTO, @PathVariable Long id) {
         Account account = accountService.findAccountById(id);
-        boolean flag = passwordEncoder.matches(accountChangeDTO.getOldPassword(), account.getPassword());
-        if (flag) {
+        if(account==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        if (passwordEncoder.matches(accountChangeDTO.getOldPassword(), account.getPassword())) {
             String encoderNewPassword = passwordEncoder.encode(accountChangeDTO.getNewPassword());
             accountService.updatePasswordForId(encoderNewPassword, id);
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/check/{id}")
+    public ResponseEntity<Account> accountById (@PathVariable Long id){
+        if (accountService.findAccountById(id)==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<>(accountService.findAccountById(id),HttpStatus.OK);
+        }
     }
 
     @GetMapping("/email/{email}")
